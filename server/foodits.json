@@ -1,0 +1,43 @@
+[
+    {
+      "foodID": "100001",
+      "foodName": "Veg Biryani",
+      "foodType": "Main Course",
+      "foodDescription": "A delicious mix of basmati rice, vegetables, and spices.",
+      "foodUrl": "https://example.com/veg-biryani.jpg",
+      "foodPrice": 250
+    },
+    {
+      "foodID": "100002",
+      "foodName": "Chicken Tikka Masala",
+      "foodType": "Main Course",
+      "foodDescription": "Tender chicken pieces marinated in spices and grilled to perfection.",
+      "foodUrl": "https://example.com/chicken-tikka-masala.jpg",
+      "foodPrice": 300
+    },
+    {
+      "foodID": "100003",
+      "foodName": "Paneer Butter Masala",
+      "foodType": "Main Course",
+      "foodDescription": "Creamy dish made with paneer and a rich tomato-based sauce.",
+      "foodUrl": "https://example.com/paneer-butter-masala.jpg",
+      "foodPrice": 200
+    },
+    {
+      "foodID": "100004",
+      "foodName": "Vegetable Spring Rolls",
+      "foodType": "Starters",
+      "foodDescription": "Crispy fried rolls filled with a mixture of vegetables and spices.",
+      "foodUrl": "https://example.com/vegetable-spring-rolls.jpg",
+      "foodPrice": 150
+    },
+    {
+      "foodID": "100005",
+      "foodName": "Chicken Wings",
+      "foodType": "Starters",
+      "foodDescription": "Juicy and flavorful chicken wings coated with a special sauce.",
+      "foodUrl": "https://example.com/chicken-wings.jpg",
+      "foodPrice": 250
+    }
+  ]
+  

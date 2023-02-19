@@ -1,0 +1,170 @@
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: black;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* add shadow */
+
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  animation: rotate 2s linear infinite; /* add animation */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+#navbar {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  margin-right: 1rem;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+#kit-claim {
+  /* background-color: black; */
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* #kit-claim:hover {
+  background-color: #333;
+} */
+
+#close {
+  margin-left: auto;
+  color: black;
+  text-decoration: none;
+}
+
+#close:hover {
+  color: #333;
+}
+
+
+#mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #navbar {
+    display: none;
+  }
+
+  #mobile {
+    display: block;
+  }
+
+  #bar {
+    font-size: 24px;
+    margin-left: 10px;
+  }
+
+  .active {
+    display: block;
+  }
+}
+/* claim kit form */
+#claim-kit-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+
+#claim-kit-form {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#claim-kit-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+#claim-kit-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#claim-kit-form input,
+#claim-kit-form select,
+#claim-kit-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+#claim-kit-form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#claim-kit-form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.closeShowClaimKitForm {
+  position: relative;
+  bottom: 50px;
+  left: 15rem;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.closeShowClaimKitForm img {
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+}
+
+.closeShowClaimKitForm:hover img {
+  opacity: 1;
+}

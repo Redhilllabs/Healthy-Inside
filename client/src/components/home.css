@@ -1,0 +1,167 @@
+/* slider css */
+.hero {
+    position: relative;
+    height: 500px;
+  }
+  
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .slides img {
+    /* width: 100%; */
+    /* height: 100%; */
+    object-fit: cover;
+  }
+  
+  .slide-navigation {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  
+  .slide-navigation button {
+    background-color: white;
+    border: none;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 50%;
+    outline: none;
+  }
+  
+  .slide-navigation button.active {
+    background-color: black;
+    color: white;
+  }
+  
+
+/* features */
+
+#feature {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.fe-box {
+  width: 250px;
+  height: 280px;
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.fe-box:hover {
+  transform: translateY(-10px);
+}
+
+.fe-box img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.fe-box h6 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #333333;
+}
+
+
+/* shop section */
+ .pro-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  padding: 1rem;
+}
+
+/* #floatingButton {
+ 
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+} */
+
+#floatingButton:hover {
+  transform: scale(1.1);
+}
+.button-position {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#floatingButton {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: lightgray;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#cartquantity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#floatingButton img {
+  width: 30px;
+  height: 30px;
+}
+
+

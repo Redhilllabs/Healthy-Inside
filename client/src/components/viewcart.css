@@ -1,0 +1,54 @@
+.viewcart {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .viewcart img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  .viewcart_box {
+    flex: 1;
+  }
+  
+  .viewcart_box_name {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+  }
+  
+  .viewcart_box_price {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .viewcart_box_control {
+    display: flex;
+    align-items: center;
+  }
+  
+  .viewcart_box_control a {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    /* background-color: #ccc; */
+    /* border-radius: 50%; */
+    text-align: center;
+    margin: 0 0.5rem;
+  }
+  .viewcart_box_control a img{
+    width: 30px;
+    height: 30px;
+  }
+  .viewcart_box_control a:hover {
+    cursor: pointer;
+  }
+  
+  .viewcart_box_control p {
+    font-size: 1.2rem;
+    margin: 0 1rem;
+  }
+  
