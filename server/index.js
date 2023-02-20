@@ -1,63 +1,74 @@
 import express from "express";
 import mongoose from "mongoose";
-
-const app = express();
 import bodyParser from "body-parser";
-import fs from "fs";
 import dotenv from "dotenv";
-dotenv.config();
 import cors from 'cors';
-// var MongoClient = require("mongodb").MongoClient;
-import { MongoClient } from "mongodb";
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-var url = "mongodb://localhost:27017/";
-const dbName = "mydb";
-app.use(bodyParser.json());
-mongoose.set("strictQuery", false);
-// app.set("views", "./views");
-// app.set("view engine", "ejs");
 import foodRoutes from "./routes/fooditem.js";
 import CartRoutes from "./routes/cart.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
+const app = express();
+app.use(bodyParser.json());
+mongoose.set("strictQuery", false);
+dotenv.config();
+// import fs from "fs";
+// var MongoClient = require("mongodb").MongoClient;
+// import { MongoClient } from "mongodb";
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// var url = "mongodb://localhost:27017/";
+// const dbName = "mydb";
+
+// app.set("views", "./views");
+// app.set("view engine", "ejs");
+
+
+
+// app.use(express.static("public"));
 // app.use("/css", express.static(__dirname + "public/css"));
 // app.use("/js", express.static(__dirname + "public/js"));
 // app.use("/img", express.static(__dirname + "public/img"));
 // app.use("/image", express.static(__dirname + "public/image"));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 app.use("/api/food", foodRoutes);
 app.use("/api/cart", CartRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users",userRoutes);
-
 app.get("/", function (req, res) {
-  res.render("form.ejs");
+  res.json("server is running ");
 });
-
-const connect = () => {
-  mongoose
-    .connect(process.env.MONGO)
-    .then(() => {
-      console.log("Connected to DB");
-    })
-    .catch((err) => {
-      throw err;
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO , {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
+
+    const db = mongoose.connection;
+    // console.log(db)
+    db.on("error", console.error.bind(console, "connection error:"));
+    db.once("open", function () {
+      console.log("Connected successfully to database");
+    })
+ 
+  } catch (error) {
+    console.error("Error connecting to database:", error);
+  }
 };
 
-var displayName;
-var credits;
-var dynamicDisplay;
-var userName;
-var password;
-var customerId;
-var address;
+
+// var displayName;
+// var credits;
+// var dynamicDisplay;
+// var userName;
+// var password;
+// var customerId;
+// var address;
 
 // app.post("/", async function (req, res) {
 //   userName = req.body.userName;
@@ -201,7 +212,9 @@ var address;
 //   });
 // });
 
-app.listen(8000, function () {
+const port = process.env.port ||8000;
+
+app.listen(port, function () {
   connect();
   console.log("Server is started.");
 

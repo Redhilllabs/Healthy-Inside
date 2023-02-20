@@ -1,17 +1,17 @@
-import mongoose from "mongoose";
-import User from "../models/user.js";
+// import mongoose from "mongoose";
+import Users from "../models/user.js";
 import bcrypt from "bcryptjs";
-import { createError } from "../error.js";
+// import { createError } from "../error.js";
 import jwt from "jsonwebtoken";
 import { MongoClient } from "mongodb";
-var url = "mongodb://localhost:27017/";
-const dbName = "mydb";
+var url = process.env.MONGO;
+const dbName = process.env.dbName;
 
 export const signup = async (req, res, next) => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
-    const newUser = new User({ ...req.body, password: hash });
+    const newUser = new Users({ ...req.body, password: hash });
 
     await newUser.save();
     res.status(200).send("User has been created!");
@@ -55,7 +55,7 @@ export const signin = async (req, res, next) => {
 
 export const googleAuth = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await Users.findOne({ email: req.body.email });
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT);
       res
@@ -65,7 +65,7 @@ export const googleAuth = async (req, res, next) => {
         .status(200)
         .json(user._doc);
     } else {
-      const newUser = new User({
+      const newUser = new Users({
         ...req.body,
         fromGoogle: true,
       });

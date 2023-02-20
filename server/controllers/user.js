@@ -1,11 +1,11 @@
-import User from "../models/user.js";
+import Users from "../models/user.js";
 import mongoose from "mongoose";
 
 export const saveUserAddress = async (req, res, next) => {
   const userId = req.params.user_id;
   const addressData = req.body;
   try {
-    const user = await User.findById(userId);
+    const user = await Users.findById(userId);
     if (!user) {
       return res.status(404).send("User not found");
     }

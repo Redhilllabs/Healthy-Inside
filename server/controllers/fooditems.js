@@ -1,9 +1,9 @@
-import Food from "../models/fooditems.js";
+import Foods from "../models/fooditems.js";
 
 export async function addFood(req, res, next) {
 
   try {
-    const food = new Food({ ...req.body});
+    const food = new Foods({ ...req.body});
     await food.save();
     console.log("Food added successfully");
     res.status(200).send("Food has been created!");
@@ -14,7 +14,7 @@ export async function addFood(req, res, next) {
 
 export async function getAllFoods(req, res, next) {
   try {
-    const foods = await Food.find();
+    const foods = await Foods.find();
     res.status(200).json(foods);
   } catch (error) {
     console.log("came in backend error")

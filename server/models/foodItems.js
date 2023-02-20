@@ -36,4 +36,4 @@ const FoodSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Food", FoodSchema);
+export default mongoose.model("Foods", FoodSchema);

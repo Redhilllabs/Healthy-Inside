@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+import Users from "../models/user.js";
 import mongoose from "mongoose";
 
 
@@ -7,7 +7,7 @@ export async function addtocart(req, res, next) {
 
   try {
 console.log( req.body.userID,req.body.productID)
-    const user = await User.findOne({_id: req.body.userID});
+    const user = await Users.findOne({_id: req.body.userID});
     const productID = mongoose.Types.ObjectId(req.body.productID);
 
     // console.log(user.cart)
@@ -19,14 +19,14 @@ console.log( req.body.userID,req.body.productID)
     const existingCartItem = user.cart.find(item => item.productID.equals(productID));
     // console.log("exsist",existingCartItem)
     if (existingCartItem) {
-      await User.updateOne(
+      await Users.updateOne(
         {_id: req.body.userID, "cart.productID": productID},
         {$inc: {"cart.$.quantity": 1}}
       );
 
       res.status(200).send("Cart updated.");
     } else {
-      await User.updateOne(
+      await Users.updateOne(
         {_id: req.body.userID},
         {$addToSet: {cart: {productID:productID , quantity: 1}}}
       );
@@ -40,7 +40,7 @@ console.log( req.body.userID,req.body.productID)
 export async function getcart(req, res, next) {
   try {
     const userID = req.body.userID;
-    const data = await User.findOne({_id: userID}).populate('cart.productID');
+    const data = await Users.findOne({_id: userID}).populate('cart.productID');
 
     if (data) {
       res.status(200).send({ message: "Get cart", data: data });
@@ -55,7 +55,7 @@ export async function getcart(req, res, next) {
 
 export async function decreaseCartItem(req, res, next) {
   try {
-    const user = await User.findOne({ _id: req.body.userID });
+    const user = await Users.findOne({ _id: req.body.userID });
     const productID = mongoose.Types.ObjectId(req.body.productID);
     if (!user) {
       res.status(404).send("User not found.");
@@ -73,7 +73,7 @@ export async function decreaseCartItem(req, res, next) {
 
     if (existingCartItem.quantity === 1) {
       // If the item quantity is 1, remove it from the cart
-      await User.updateOne(
+      await Users.updateOne(
         { _id: req.body.userID },
         {
           $pull: {
@@ -84,7 +84,7 @@ export async function decreaseCartItem(req, res, next) {
       res.status(200).send("Item removed from cart.");
     } else {
       // If the item quantity is greater than 1, decrement the quantity by 1
-      await User.updateOne(
+      await Users.updateOne(
         { _id: req.body.userID, "cart.productID": productID },
         { $inc: { "cart.$.quantity": -1 } }
       );
