@@ -3,13 +3,14 @@ import './viewcart.css'
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import { AddToCart ,decreaseCartItem  } from "../utils/mongodbFunctions";
+import { Buffer } from 'buffer';
 
 let items = [];
 const ViewCart = ({ item, setFlag, flag }) => {
 // console.log("viewcart",item)
     const [{ cartItems ,user}, dispatch] = useStateValue();
     const [qty, setQty] = useState(item.quantity);
-  
+    const [image, setImage] = useState("");
     const cartDispatch = () => {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       dispatch({
@@ -17,7 +18,17 @@ const ViewCart = ({ item, setFlag, flag }) => {
         cartItems: cartItems,
       });
     };
-  
+    console.log(item.productID)
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const response = await fetch(`data:${item.productID.foodUrl.contentType};base64,${Buffer.from(item.productID.foodUrl.data).toString('base64')}`);
+      const data = await response.blob();
+      setImage(URL.createObjectURL(data));
+    };
+    fetchImage();
+  }, [item.productID.foodUrl.contentType, item.productID.foodUrl.data]);
+
     const updateQty = (action, id) => {
       let updateItems ;
       if (action == "add") {
@@ -61,7 +72,7 @@ const ViewCart = ({ item, setFlag, flag }) => {
 
   return (
     <div className="viewcart">
-        <img src={item?.productID.foodUrl} alt="" srcset="" />
+        <img src={image} alt="" srcset="" />
         <div className="viewcart_box">
             <p className="viewcart_box_name">{item?.productID.foodName}</p>
             <p className="viewcart_box_price">

@@ -8,29 +8,19 @@ import CartRoutes from "./routes/cart.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
 
+
+import path from 'path';
+import multer from 'multer';
+import Foods from './models/fooditems.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import fs from 'fs';
+
+
 const app = express();
 app.use(bodyParser.json());
 mongoose.set("strictQuery", false);
 dotenv.config();
-// import fs from "fs";
-// var MongoClient = require("mongodb").MongoClient;
-// import { MongoClient } from "mongodb";
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// var url = "mongodb://localhost:27017/";
-// const dbName = "mydb";
-
-// app.set("views", "./views");
-// app.set("view engine", "ejs");
-
-
-
-// app.use(express.static("public"));
-// app.use("/css", express.static(__dirname + "public/css"));
-// app.use("/js", express.static(__dirname + "public/js"));
-// app.use("/img", express.static(__dirname + "public/img"));
-// app.use("/image", express.static(__dirname + "public/image"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,15 +29,18 @@ app.use("/api/food", foodRoutes);
 app.use("/api/cart", CartRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users",userRoutes);
-app.get("/", function (req, res) {
-  res.json("server is running ");
-});
+
+// app.get("/", function (req, res) {
+//   res.json("server is running ");
+// });
+
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO , {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
+    
     const db = mongoose.connection;
     // console.log(db)
     db.on("error", console.error.bind(console, "connection error:"));
@@ -60,6 +53,56 @@ const connect = async () => {
   }
 };
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.set("view engine", "ejs");
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now());
+  }
+});
+
+
+const upload = multer({ storage });
+app.post('/', upload.single('image'), (req, res, next) => {
+  const obj = {
+    foodName: req.body.name,
+    foodID: req.body.id,
+    foodType: req.body.foodtype,
+    foodPrice: req.body.price,
+    foodUrl: {
+      data: fs.readFileSync(path.join(__dirname, 'uploads', req.file.filename)),
+      contentType: 'image/png'
+    }
+  };
+  
+  Foods.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('An error occurred', err);
+    } else {
+      res.redirect('/');
+    }
+  });
+});
+
+app.get('/', (req, res) => {
+  Foods.find({}, (err, items) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('An error occurred', err);
+    } else {
+      res.render('imagesPage', { items });
+    }
+  });
+});
 
 // var displayName;
 // var credits;

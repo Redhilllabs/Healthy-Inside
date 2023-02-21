@@ -1,46 +1,50 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./cartitem.css";
-// import { AddToCart } from "../utils/mongodbFunctions";
 import { useStateValue } from "../context/StateProvider";
+import { Buffer } from 'buffer';
 
 let items = [];
 const CartItem = ({ item,addfooditem ,addcartmongo}) => {
-  const [{user}, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
+  const [image, setImage] = useState("");
 
-// const addcartmongo = async(item_id)=>{
-// if(user){
-//   AddToCart(item_id, user[0]._id).then((data)=>{
-//     console.log("response from server",data)
-//     }).catch((err)=>{
-//     console.log("Error occured",err)
-//     })
-// }
-// }
+  useEffect(() => {
+    const fetchImage = async () => {
+      const response = await fetch(`data:${item.foodUrl.contentType};base64,${Buffer.from(item.foodUrl.data).toString('base64')}`);
+      const data = await response.blob();
+      setImage(URL.createObjectURL(data));
+    };
+    fetchImage();
+  }, [item.foodUrl.contentType, item.foodUrl.data]);
 
+  
   return (
-    <div className="cart_container">
-      <div class="card" key={item.foodID}>
-        <img src={item.foodUrl} alt="${food.foodUrl}" />
-        <div class="box">
-          <div class="des">
-            <h5>{item.foodName}</h5>
-            
-            <div className="cart-item-controls">
-            <button id="additemtocart" onClick={() => {
-            addfooditem(item)
-            addcartmongo(item._id)
-          }
-            }>
-            <img src="https://img.icons8.com/ios/50/null/plus-key.png"/>
-            </button>
-
-          </div>
-          <h4>${item.foodPrice} </h4>
-          </div>
-          
+    <div className="cart_container contain" key={item.foodID}>
+    {item.foodUrl ? (
+      <img src={image} alt={item.foodName} /> ) : (
+      <img
+        src="https://via.placeholder.com/150x150.png?text=No+Image"
+        alt="No Image"
+      />
+    )}
+    <div className="box">
+      <h2>{item.foodName}</h2>
+      <div className="des">
+        <div className="cart-item-controls">
+          <button
+            id="additemtocart"
+            onClick={() => {
+              addfooditem(item);
+              addcartmongo(item._id);
+            }}
+          >
+            <img src="https://img.icons8.com/ios/50/null/plus-key.png" />
+          </button>
         </div>
+        <h4>${item.foodPrice}</h4>
       </div>
     </div>
+  </div>
   );
 };
 

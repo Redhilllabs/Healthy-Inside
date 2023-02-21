@@ -6,6 +6,8 @@ import { actionType } from "../context/reducer";
 import ViewCart from "./ViewCart";
 import { useNavigate } from "react-router-dom";
 import { LoginAPi } from "../utils/mongodbFunctions";
+import loadingGif from '../images/loading.gif';
+
 const Cart = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
   const [flag, setFlag] = useState(1);
@@ -20,11 +22,15 @@ const Cart = () => {
   const [zip, setZip] = useState("");
   const [ShowAddressForm, setShowAddressForm] = useState(false);
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     // Fetch cart data and set state
     if (user) {
       GetCart(user._id).then((data) => {
+        console.log(data)
         setCart(data.data.cart);
+        setIsLoading(false);
       });
     }
   }, [user]);
@@ -40,7 +46,7 @@ const Cart = () => {
     // submit the order to the server (assuming this is handled by a separate function)
     // ...
     navigate("/oderSubmit");
-    console.log("orderSubmited !");
+    // console.log("orderSubmited !");
   }
   function checkout() {
     // check if the user's address is available
@@ -57,6 +63,11 @@ const Cart = () => {
   const handleUserAddressForm = async (event) => {
     event.preventDefault();
     console.log("coming to submit form ");
+
+    if (!addressLine1 || !addressLine2 || !city || !state || !zip ) {
+      alert("Please enter your complete address");
+      return;
+    }
     const data = {
       addressLine1: addressLine1,
       addressLine2: addressLine2,
@@ -77,6 +88,9 @@ const Cart = () => {
     submitOrder();
     alert("Address saved!");
   };
+  if (isLoading) {
+    return <img src={loadingGif} alt="Loading..." />;
+  }
 
   return (
     <div className="Viewcart">
@@ -96,13 +110,14 @@ const Cart = () => {
           <h3>Total</h3>
           <h2 id="total">${tot}</h2>
         </div>
+        
         <div class="foot">
           <h6>
             Your Credit
             <br />
-            {user ? user[0]?.sellingPrice : <></>}{" "}
+            {user ? user?.sellingPrice : <></>}{" "}
           </h6>
-          <h3 id="balance">{user ? user[0]?.name : <></>}</h3>
+          <h3 id="balance">{user ? user?.name : <></>}</h3>
         </div>
 
         <div id="address-display"></div>
@@ -113,19 +128,16 @@ const Cart = () => {
       </div>
 
       {ShowAddressForm && (
+
+        <div class="modal">
+        <div class="modal-content">
         <form id="address-form" class="address-form">
           <div class="address-form-heading">
             <div class="addressheading">
               <h3>Enter Address</h3>
             </div>
             <div class="address-close">
-              <a
-                href="#"
-                id="address-close"
-                onClick={() => setShowAddressForm(false)}
-              >
-                <i class="fa-solid fa-xmark"> close </i>
-              </a>
+              <img id="address-close" onClick={() => setShowAddressForm(false)} src="https://img.icons8.com/ios/50/null/close-window--v1.png"/>              
             </div>
           </div>
           <label for="name">Name</label>
@@ -191,6 +203,8 @@ const Cart = () => {
           </button>
           {/* <button onClick={()=>handleUserAddressForm}>Checkout</button> */}
         </form>
+        </div>
+</div>
       )}
     </div>
   );

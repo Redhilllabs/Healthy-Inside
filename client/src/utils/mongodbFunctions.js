@@ -1,5 +1,11 @@
-
 import axios from "axios";
+// import dotenv from 'dotenv';
+// dotenv.config();
+const isLocalhost = window.location.hostname.includes('localhost')
+console.log(isLocalhost)
+const localhosturl = process.env.REACT_APP_LOCALHOST_URL;
+const produrl = process.env.REACT_APP_PROD_URL
+
 
 // getall food items from food collection
 export const getAllFoodItems = async () => {
@@ -7,9 +13,12 @@ export const getAllFoodItems = async () => {
       let headersList = {
         "Accept": "*/*",
       };
-    
+      let url = isLocalhost
+      ? `${localhosturl}/api/food/getallfood`
+      : `${produrl}/api/food/getallfood`;
+
       let reqOptions = {
-        url: "http://localhost:8000/api/food/getallfood",
+        url: url,
         method: "GET",
         headers: headersList,
       };
@@ -35,9 +44,12 @@ let bodyContent = JSON.stringify({
   "productID":item_id,
   "userID":user_id
 });
+let url = isLocalhost
+? `${localhosturl}/api/cart/addtocart`
+: `${produrl}/api/cart/addtocart`;
 
 let reqOptions = {
-  url: "http://localhost:8000/api/cart/addtocart",
+  url: url,
   method: "POST",
   headers: headersList,
   data: bodyContent,
@@ -59,9 +71,12 @@ export const decreaseCartItem = async(item_id,user_id)=>{
     "productID":item_id,
     "userID":user_id
   });
+  let url = isLocalhost
+? `${localhosturl}/api/cart/decreaseCartItem`
+:`${produrl}/api/cart/decreaseCartItem`;
   
   let reqOptions = {
-    url: "http://localhost:8000/api/cart/decreaseCartItem",
+    url: url,
     method: "POST",
     headers: headersList,
     data: bodyContent,
@@ -83,8 +98,12 @@ export const GetCart = async(user_id)=>{
     "userID":user_id
   });
   
+  let url = isLocalhost
+  ? `${localhosturl}/api/cart/getcart`
+  : `${produrl}/api/cart/getcart`;
+
   let reqOptions = {
-    url: "http://localhost:8000/api/cart/getcart",
+    url: url,
     method: "POST",
     headers: headersList,
     data: bodyContent,
@@ -100,21 +119,33 @@ export const LoginAPi = async(username,password)=>{
     "Accept": "*/*",
     "Content-Type": "application/json" 
    }
+   let corsHeaders = {
+    "Access-Control-Allow-Origin": "*", // Change to your desired domain
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization"
+  }
    
    let bodyContent = JSON.stringify({
      "userName":username,
      "password":password
    });
    
+
+   let url = isLocalhost
+   ? `${localhosturl}/api/auth/signin`
+   : `${produrl}/api/auth/signin`;
+
    let reqOptions = {
-     url: "http://localhost:8000/api/auth/signin",
+     url: url,
      method: "POST",
-     headers: headersList,
+     headers: {
+      ...headersList,
+      ...corsHeaders
+    },
      data: bodyContent,
    }
    
    let response = await axios.request(reqOptions);
-  //  console.log(response)
    return await response.data
 } 
 
@@ -126,9 +157,11 @@ export const SaveUserAddress = async (user_id, data) => {
     Accept: "*/*",
     "Content-Type": "application/json",
   };
-
+  let url = isLocalhost
+  ? `${localhosturl}/api/users/${user_id}/address`
+  : `${produrl}/api/users/${user_id}/address`;
   let reqOptions = {
-    url: `http://localhost:8000/api/users/${user_id}/address`,
+    url: url,
     method: "POST",
     headers: headersList,
     data: data,

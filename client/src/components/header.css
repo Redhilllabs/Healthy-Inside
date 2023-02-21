@@ -2,27 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: rgb(196, 210, 226);
   color: black;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* add shadow */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 
 }
 
 .logo {
   width: 50px;
   height: 50px;
-  animation: rotate 2s linear infinite; /* add animation */
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(180deg);
-  }
-}
 #navbar {
   display: flex;
   list-style: none;
@@ -38,10 +30,13 @@
   text-decoration: none;
   color: black;
   cursor: pointer;
+  font-size: 20px;
+}
+#navbar li :hover{
+  color: #fff;
 }
 
 #kit-claim {
-  /* background-color: black; */
   color: black;
   padding: 0.5rem 1rem;
   border: none;
@@ -49,9 +44,6 @@
   cursor: pointer;
 }
 
-/* #kit-claim:hover {
-  background-color: #333;
-} */
 
 #close {
   margin-left: auto;
@@ -63,9 +55,54 @@
   color: #333;
 }
 
-
 #mobile {
   display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #mobile {
+    display: block;
+  }
+  .mobilemenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 80%;
+    background-color: white;
+    padding: 2rem;
+    z-index: 1000;
+  }
+  .mobilemenu img {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+  .mobilemenu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* margin-top: 3rem; */
+  }
+  .mobilemenu li {
+    margin: 1rem;
+    text-align: center;
+  }
+  .mobilemenu li p {
+    font-size: 2rem;
+  }
+  .mobilemenu a {
+    color: black;
+    text-decoration: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .mobilemenu a:hover {
+    color: #d0d0d0;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -78,10 +115,6 @@
     display: none;
   }
 
-  #mobile {
-    display: block;
-  }
-
   #bar {
     font-size: 24px;
     margin-left: 10px;
@@ -91,6 +124,7 @@
     display: block;
   }
 }
+
 /* claim kit form */
 #claim-kit-form-overlay {
   position: fixed;
@@ -166,5 +200,42 @@
 }
 
 .closeShowClaimKitForm:hover img {
+
   opacity: 1;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+  #claim-kit-form {
+    max-width: 90%;
+    margin: auto;
+  }
+  .closeShowClaimKitForm {
+    left: 110px;
+    right: 10px;
+  }
+}
+
+/* Medium screens */
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  #claim-kit-form {
+    max-width: 70%;
+    margin: auto;
+  }
+  .closeShowClaimKitForm {
+    left: auto;
+    right: 20px;
+  }
+}
+
+/* Large screens */
+@media only screen and (min-width: 900px) {
+  #claim-kit-form {
+    max-width: 500px;
+    margin: auto;
+  }
+  .closeShowClaimKitForm {
+    left: 9rem;
+    right: auto;
+  }
 }

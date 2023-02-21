@@ -27,7 +27,7 @@ await LoginAPi(username,password).then((response)=>{
       type: actionType.SET_USER,
       user: response.user[0],
     });
-    localStorage.setItem("user", JSON.stringify(response.user));
+    localStorage.setItem("user", JSON.stringify(response.user[0]));
       console.log(username,password)
       navigate("/");
   

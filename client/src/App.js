@@ -7,15 +7,14 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Account from "./components/Account";
 import OrderSubmit from "./components/OrderSubmit";
-
 import Cart from "./components/Cart";
 import { getAllFoodItems } from "./utils/mongodbFunctions";
 import React, { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { actionType } from "./context/reducer";
 
-
 function App() {
+  
   // fetching data to store into State foodItems from mongodbfuntion getAllFoodItems
   const [{ foodItems }, dispatch] = useStateValue();
   const fetchData = async () => {
@@ -26,6 +25,7 @@ function App() {
       });
     });
   };
+
   useEffect(() => {
     fetchData();
   }, []);
