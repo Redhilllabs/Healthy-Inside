@@ -1,6 +1,4 @@
 import axios from "axios";
-// import dotenv from 'dotenv';
-// dotenv.config();
 const isLocalhost = window.location.hostname.includes('localhost')
 console.log(isLocalhost)
 const localhosturl = process.env.REACT_APP_LOCALHOST_URL;

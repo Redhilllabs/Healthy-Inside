@@ -27,6 +27,7 @@ const Cart = () => {
   useEffect(() => {
     // Fetch cart data and set state
     if (user) {
+      console.log("load ho raha haii data")
       GetCart(user._id).then((data) => {
         console.log(data)
         setCart(data.data.cart);
@@ -96,7 +97,7 @@ const Cart = () => {
     <div className="Viewcart">
       <div class="sidebar">
         <div class="head">
-          <p>My Cart</p>
+          <p> Cart </p>
         </div>
         <div id="cartItem">
           {cart &&
@@ -107,21 +108,15 @@ const Cart = () => {
             ))}
         </div>
         <div class="foot">
-          <h3>Total</h3>
+          <h2>Total</h2>
           <h2 id="total">${tot}</h2>
+          <br />
+          
         </div>
-        
-        <div class="foot">
-          <h6>
+        <h2>
             Your Credit
-            <br />
-            {user ? user?.sellingPrice : <></>}{" "}
-          </h6>
-          <h3 id="balance">{user ? user?.name : <></>}</h3>
-        </div>
-
-        <div id="address-display"></div>
-
+            </h2>
+            <h2>{user ? user?.sellingPrice : <></>}{" "}</h2> 
         <a onClick={checkout} class="orderbtn">
           Place Order
         </a>

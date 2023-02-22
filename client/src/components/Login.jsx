@@ -15,10 +15,10 @@ const navigate = useNavigate();
 
 const handellogin = async (event)=>{
   event.preventDefault();
-  console.log("user",user)
+  // console.log("user",user)
   
 await LoginAPi(username,password).then((response)=>{
-  console.log(response)
+  // console.log(response)
   if(!response){
     alert("wrong username or Password")
   }

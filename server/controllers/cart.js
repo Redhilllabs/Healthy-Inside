@@ -6,10 +6,13 @@ import mongoose from "mongoose";
 export async function addtocart(req, res, next) {
 
   try {
-console.log( req.body.userID,req.body.productID)
+
+// console.log( req.body.userID,req.body.productID)
+
     const user = await Users.findOne({_id: req.body.userID});
     const productID = mongoose.Types.ObjectId(req.body.productID);
-
+    const userID = req.body.userID;
+    
     // console.log(user.cart)
     if (!user) {
       res.status(404).send("User not found.");
@@ -23,14 +26,17 @@ console.log( req.body.userID,req.body.productID)
         {_id: req.body.userID, "cart.productID": productID},
         {$inc: {"cart.$.quantity": 1}}
       );
+      const data = await Users.findOne({_id: userID}).populate('cart.productID');
 
-      res.status(200).send("Cart updated.");
+
+      res.status(200).send({ message: "Get cart", data: data });
     } else {
       await Users.updateOne(
         {_id: req.body.userID},
         {$addToSet: {cart: {productID:productID , quantity: 1}}}
       );
-      res.status(200).send("Item has been added to cart.");
+      const data = await Users.findOne({_id: userID}).populate('cart.productID');
+      res.status(200).send({ message: "Get cart", data: data });
     }
   } catch (error) {
     console.error("Error adding food to cart: ", error);
@@ -39,6 +45,7 @@ console.log( req.body.userID,req.body.productID)
 
 export async function getcart(req, res, next) {
   try {
+    console.log("came to get cart items")
     const userID = req.body.userID;
     const data = await Users.findOne({_id: userID}).populate('cart.productID');
 

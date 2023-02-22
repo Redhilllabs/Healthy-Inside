@@ -1,3 +1,52 @@
+
+
+
+/* header dropdown  */
+li {
+  position: relative;
+  list-style-type: none;
+  margin: 1rem;
+}
+
+ul.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ebeff0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+  display: none;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+ul.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 10px 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent #76c6cc transparent;
+}
+
+ul.dropdown-menu li {
+  list-style-type: none;
+}
+
+li:hover ul.dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
 #header {
   display: flex;
   justify-content: space-between;
@@ -82,14 +131,18 @@
   .mobilemenu ul {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* Change to align items to left */
     justify-content: center;
-    height: 100%;
-    /* margin-top: 3rem; */
+    height: 25%;
   }
   .mobilemenu li {
     margin: 1rem;
     text-align: center;
+    background-color: transparent; /* Set initial background color to transparent */
+    transition: background-color 0.2s ease-in-out; /* Add transition effect */
+  }
+  .mobilemenu li:hover {
+    background-color: #d0d0d0; /* Add background color on hover */
   }
   .mobilemenu li p {
     font-size: 2rem;
@@ -99,10 +152,13 @@
     text-decoration: none;
     font-size: 2rem;
     cursor: pointer;
+    display: block; /* Display as block to take up full width of list item */
+    padding: 1rem; /* Add padding for visual effect */
   }
-  .mobilemenu a:hover {
-    color: #d0d0d0;
-  }
+  
+.mobilemenu a:hover {
+  color: white; /* Change text color on hover */
+}
 }
 
 @media only screen and (max-width: 768px) {
@@ -211,7 +267,7 @@
     margin: auto;
   }
   .closeShowClaimKitForm {
-    left: 110px;
+    left: 14rem;
     right: 10px;
   }
 }
@@ -223,7 +279,7 @@
     margin: auto;
   }
   .closeShowClaimKitForm {
-    left: auto;
+    left: 14rem;
     right: 20px;
   }
 }
@@ -235,7 +291,7 @@
     margin: auto;
   }
   .closeShowClaimKitForm {
-    left: 9rem;
+    left: 14rem;
     right: auto;
   }
 }

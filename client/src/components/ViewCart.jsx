@@ -18,7 +18,7 @@ const ViewCart = ({ item, setFlag, flag }) => {
         cartItems: cartItems,
       });
     };
-    console.log(item.productID)
+    // console.log(item.productID)
 
   useEffect(() => {
     const fetchImage = async () => {

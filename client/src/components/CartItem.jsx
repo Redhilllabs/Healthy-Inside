@@ -34,8 +34,9 @@ const CartItem = ({ item,addfooditem ,addcartmongo}) => {
           <button
             id="additemtocart"
             onClick={() => {
-              addfooditem(item);
               addcartmongo(item._id);
+              addfooditem(item);
+              
             }}
           >
             <img src="https://img.icons8.com/ios/50/null/plus-key.png" />

@@ -7,17 +7,7 @@ import f2 from "../images/f2.png";
 import f3 from "../images/f3.png";
 import f4 from "../images/f4.png";
 import f5 from "../images/f5.png";
-import aa1 from "../images/aa1.jpeg";
-import aa2 from "../images/aa2.jpeg";
-import aa3 from "../images/aa3.jpeg";
-import aa4 from "../images/aa4.jpeg";
-import aa5 from "../images/aa5.jpeg";
-import aa6 from "../images/aa6.jpeg";
-import aa7 from "../images/aa7.jpeg";
-import aa8 from "../images/aa8.jpeg";
-import SimpleImageSlider from "react-simple-image-slider";
 import f6 from "../images/f6.png";
-import heroimage from "../images/heroimage.jpg"
 import { actionType } from "../context/reducer";
 import CartItem from "./CartItem";
 import { GetCart , AddToCart } from "../utils/mongodbFunctions";
@@ -31,17 +21,34 @@ const Home = () => {
   const [{ foodItems, cartItems, user }, dispatch] = useStateValue();
   const [fooditems, setfooditems] = useState([]);
   const [cart, setCart] = useState([]);
-  const [mogoadd, setmongoadd] = useState([])
+  const [mogoadd, setmongoadd] = useState([]);
+  const[alert ,setalert] = useState("");
+  const [loading, setLoading] = useState(true);
   
+
+  const fetchdata = async()=>{
+    if(user && user._id){
+     await GetCart(user._id).then((data) => {
+       setCart( data.data.cart);
+     });
+   }
+  }
+
+  useEffect(() => {
+    // Fetch cart data and set state
+    fetchdata()
+  }, [user,fooditems,mogoadd]);
+
   const addfooditem = (item) => {
     if(user){
       const existingProductIndex = cartItems.findIndex(
         (e) => e.foodID === item.foodID
       );
-      // console.log("check", existingProductIndex);
+
       if (existingProductIndex === -1) {
         // If the product is not in the cart, add it
         setfooditems([...cartItems, { ...item, quantity: 1 }]);
+
       } else {
         // If the product is already in the cart, increase its quantity
         const updatedCartItems = cartItems.map((cartItem, index) => {
@@ -58,22 +65,39 @@ const Home = () => {
         setfooditems(updatedCartItems);
       }
     }
-   
+    else{
+      setalert("Login To Continue")
+      setTimeout(function() {
+        setalert("")
+      }, 1000);
+    }
+    
+  
   };
-
+  
   const addcartmongo = async(item_id)=>{
+    console.log("cameing into addto mongo")
     if(user){
-      console.log(item_id,user._id)
      await AddToCart(item_id,user._id).then((data)=>{
-        console.log("response from server",data)
+      // console.log(data)
         setmongoadd(data)
+        setalert("Item Added")
+       setTimeout(function() {
+          setalert("")
+        }, 1000);
         }).catch((err)=>{
+          alert("Server Issue")
         console.log("Error occured",err)
         })
     }
     }
-
-    
+    const addtocart = () => {
+      dispatch({
+        type: actionType.SET_CARTITEMS,
+        cartItems: fooditems,
+      });
+      localStorage.setItem("cartItems", JSON.stringify(fooditems));
+    };
     const divStyle = {
       display: 'flex',
       alignItems: 'center',
@@ -117,43 +141,10 @@ const Home = () => {
       },
     ];
 
-  const addtocart = () => {
-    dispatch({
-      type: actionType.SET_CARTITEMS,
-      cartItems: fooditems,
-    });
-    localStorage.setItem("cartItems", JSON.stringify(fooditems));
-  };
+
   useEffect(() => {
     addtocart();
   }, [fooditems]);
-
-  useEffect(() => {
-    // Fetch cart data and set state
-    if(user && user._id){
-      GetCart(user._id).then((data) => {
-        console.log(data)
-        setCart(data.data.cart);
-      });
-    }
-  }, [user, fooditems , mogoadd]);
-
-  // for floating button
-  useEffect(() => {
-    const floatingButton = document.getElementById("floatingButton");
-    if(cart){
-      // console.log(cartItems.length);
-      if (cart.length === 0) {
-        floatingButton.classList.remove("button-position");
-        floatingButton.style.display = "none";
-      } else {
-        floatingButton.classList.add("button-position");
-        floatingButton.style.display = "block";
-      }
-    }   
-  }, [cart]);
-  // for hero slider
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <div>
@@ -163,7 +154,9 @@ const Home = () => {
             <div key={index}>
               <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
               <div className="sliderInfo">
-              <span className="spanStyle" >{slideImage.caption}</span>
+              {/* <span className="spanStyle" >  */}
+              <h1>{slideImage.caption} </h1>
+              {/* </span> */}
                 <a  style={buttonStyle} href={slideImage.linkto}> Comming Soon </a>
               </div>
              
@@ -176,7 +169,7 @@ const Home = () => {
 
       <section id="product1" class="section-p1">
         <div id="breakfast"></div>
-        <h2>Breakfast</h2>
+        <h1>Breakfast</h1>
         <p>Enjoy our range of healthy and fresh breakfast.</p>
 
         <div class="pro-container card-slider" id="shop-section1">
@@ -188,9 +181,11 @@ const Home = () => {
                   <CartItem item={item} addfooditem={addfooditem} addcartmongo={addcartmongo}/>
                 </React.Fragment>
               ))}
+
+
         </div>
         <div id="lunch"></div>
-        <h2>Lunch</h2>
+        <h1>Lunch</h1>
         <p>Enjoy our nutritious lunch.</p>
         <div class="pro-container card-slider" id="shop-section2">
           {foodItems &&
@@ -203,7 +198,7 @@ const Home = () => {
               ))}
         </div>
         <div id="fitness"></div>
-        <h2>Fitness Equipment</h2>
+        <h1>Fitness Equipment</h1>
         <p>We have variety of fitness equipments.</p>
         <div class="pro-container card-slider" id="shop-section3">
         {foodItems &&
@@ -242,10 +237,17 @@ const Home = () => {
           <h6>Vegan</h6>
         </div>
       </section>
-      <Link to="/cart" id="floatingButton">
-      <div id="cartquantity">{cart?cart?.length:0}</div>
-        <img src="https://img.icons8.com/ios/50/null/shopping-cart--v1.png" />
-      </Link>
+
+
+{fooditems&&fooditems.length>0?
+<Link to="/cart" id="floatingButton">
+      <div id="cartquantity">{fooditems?fooditems?.length:0}</div>
+      <img src="https://img.icons8.com/pastel-glyph/64/000000/shopping-cart--v1.png"/>
+      </Link>:<></>
+}
+      
+
+      {alert&&(<div id="alert-box"> <p>{alert}</p>  </div>)}
     </div>
   );
 };
