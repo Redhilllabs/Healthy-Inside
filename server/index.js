@@ -7,8 +7,6 @@ import foodRoutes from "./routes/fooditem.js";
 import CartRoutes from "./routes/cart.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
-
-
 import path from 'path';
 import multer from 'multer';
 import Foods from './models/fooditems.js';
