@@ -13,7 +13,7 @@ export const getAllFoodItems = async () => {
       };
       let url = isLocalhost
       ? `${localhosturl}/api/food/getallfood`
-      : `${produrl}/api/food/getallfood`;
+      : `${produrl}/getallfood`;
 
       let reqOptions = {
         url: url,
