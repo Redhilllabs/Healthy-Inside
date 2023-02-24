@@ -37,9 +37,9 @@ const Header = () => {
   const [address, setAddress] = useState("");
   const [jerseyNumber, setjerseyNumber] = useState("");
   const [jerseySize, setJerseySize] = useState("");
-  console.log("user",user);
-  console.log("user name",user.name);
-  console.log(user?.name);
+  // console.log("user",user);
+  // console.log("user name",user.name);
+  // console.log(user?.name);
   const showmenu = () => {
     setmenu(true);
   };
