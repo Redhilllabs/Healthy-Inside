@@ -150,17 +150,20 @@ const Header = () => {
             <div className="mobilemenu">
                 <img onClick={() => setmenu(false)} src="https://img.icons8.com/ios/50/null/close-window--v1.png" />
               <ul>
-              {user?.name?<li>
+              { user ?
+              <li>
                   <p>
                     <Link
                       onClick={() => setmenu(false)}
                       class="active"
                       to="/account"
                     >
-                      {isMenu ? user?.name : <></>}
+                      {user?.name}
                     </Link>
                   </p>
-                </li>:<></>}
+                </li>:<></>
+                
+                }
                 
                 <li>
                   <p>
