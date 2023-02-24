@@ -183,7 +183,7 @@ user?.name?
                       }}
                       id="kit-claim"
                     >
-                      Claim your Kit
+                      ClaimKit
                     </a>
                     
                   </p>
