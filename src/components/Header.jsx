@@ -136,9 +136,9 @@ const Header = () => {
               </p>
             </li>
 
-            <a href="#" id="close">
+            {/* <a href="#" id="close">
               <i class="fa-solid fa-xmark"></i>
-            </a>
+            </a> */}
           </ul>
         </div>
 
@@ -219,7 +219,8 @@ user?.name?
               className="closeShowClaimKitForm"
               onClick={() => setShowClaimKitForm(false)}
             >
-              <img src="https://img.icons8.com/ios/50/null/close-window--v1.png" />
+              {/* <img src="https://img.icons8.com/ios/50/null/close-window--v1.png" /> */}
+              <i class="fa-solid fa-xmark"></i>
             </div>
             <label htmlFor="name"> Your Name</label>
             <input

@@ -12,7 +12,7 @@ const Cart = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0.0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalPrice, setTotalPrice] = useState(0);
   const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
@@ -23,26 +23,31 @@ const Cart = () => {
   const [ShowAddressForm, setShowAddressForm] = useState(false);
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  //   // Fetch cart data and set state
+  //   if (user) {
+  //     console.log("load ho raha haii data")
+  //     GetCart(user._id).then((data) => {
+  //       console.log(data)
+  //       setCart(data.data.cart);
+  //       setIsLoading(false);
+  //     });
+  //   }
+  // }, [user]);
+
   useEffect(() => {
-    // Fetch cart data and set state
-    if (user) {
-      console.log("load ho raha haii data")
-      GetCart(user._id).then((data) => {
-        console.log(data)
-        setCart(data.data.cart);
-        setIsLoading(false);
-      });
+    let totalPrice = 0;
+  if(cartItems){
+    for (let i = 0; i < cartItems?.length; i++) {
+      totalPrice += cartItems[i].quantity * cartItems[i].foodPrice;
     }
-  }, [user]);
-
-  useEffect(() => {
-    let totalPrice = cart.reduce(function (accumulator, item) {
-      return accumulator + item.quantity * item.productID.foodPrice;
-    }, 0);
     setTot(totalPrice);
-  }, [cart, flag]);
-
+  }
+  
+ 
+  }, [cartItems,flag ]);
+  
   function submitOrder() {
     // submit the order to the server (assuming this is handled by a separate function)
     // ...
@@ -70,14 +75,15 @@ const Cart = () => {
       return;
     }
     const data = {
+      email : user.email,
       addressLine1: addressLine1,
       addressLine2: addressLine2,
       city: city,
       state: state,
       zip: zip,
     };
-    const res = await SaveUserAddress(user._id, data);
-    console.log(res);
+    // const res = await SaveUserAddress(data);
+    // console.log(res);
     const updatedUser = { ...user, address: data };
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
@@ -89,9 +95,9 @@ const Cart = () => {
     submitOrder();
     alert("Address saved!");
   };
-  if (isLoading) {
-    return <img src={loadingGif} alt="Loading..." />;
-  }
+  // if (isLoading) {
+  //   return <img src={loadingGif} alt="Loading..." />;
+  // }
 
   return (
     <div className="Viewcart">
@@ -100,12 +106,16 @@ const Cart = () => {
           <p> Cart </p>
         </div>
         <div id="cartItem">
-          {cart &&
-            cart.map((item) => (
-              <React.Fragment key={item._id}>
+          {cartItems?.length>0 ?
+            cartItems.map((item) => (
+              <React.Fragment key={item.foodID}>
                 <ViewCart item={item} setFlag={setFlag} flag={flag} />
               </React.Fragment>
-            ))}
+            )):(<> 
+            <div>
+           Empty Cart ! 
+            </div>
+             </>) }
         </div>
         <div class="foot">
           <h2>Total</h2>
@@ -117,9 +127,13 @@ const Cart = () => {
             Your Credit
             </h2>
             <h2>{user ? user?.sellingPrice : <></>}{" "}</h2> 
-        <a onClick={checkout} class="orderbtn">
+
+            {
+          cartItems?.length>0 ?(<a onClick={checkout} class="orderbtn">
           Place Order
-        </a>
+        </a>):<></>
+            }
+        
       </div>
 
       {ShowAddressForm && (
@@ -131,8 +145,9 @@ const Cart = () => {
             <div class="addressheading">
               <h3>Enter Address</h3>
             </div>
-            <div class="address-close">
-              <img id="address-close" onClick={() => setShowAddressForm(false)} src="https://img.icons8.com/ios/50/null/close-window--v1.png"/>              
+            <div class="address-close" onClick={() => setShowAddressForm(false)}>
+            <i class="fa-solid fa-xmark"></i>
+              {/* <img id="address-close"  src="https://img.icons8.com/ios/50/null/close-window--v1.png"/>               */}
             </div>
           </div>
           <label for="name">Name</label>
@@ -148,8 +163,8 @@ const Cart = () => {
           <label for="address-line1">Address Line 1:</label>
           <input
             type="text"
-            id="address-line1"
-            name="address-line1"
+            id="addressline1"
+            name="addressline1"
             value={addressLine1}
             onChange={(event) => setAddressLine1(event.target.value)}
             required
@@ -158,8 +173,8 @@ const Cart = () => {
           <label for="address-line2">Address Line 2:</label>
           <input
             type="text"
-            id="address-line2"
-            name="address-line2"
+            id="addressline2"
+            name="addressline2"
             value={addressLine2}
             onChange={(event) => setAddressLine2(event.target.value)}
           />

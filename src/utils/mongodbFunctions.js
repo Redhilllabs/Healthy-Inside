@@ -135,30 +135,35 @@ export const LoginAPi = async(username,password)=>{
 
 // save user address
 
-export const SaveUserAddress = async (user_id, data) => {
-  console.log("data coming from form ", data);
+export const SaveUserAddress = async (data) => {
+
   let headersList = {
-    Accept: "*/*",
-    "Content-Type": "application/json",
-  };
-  let url = isLocalhost
-  ? `${localhosturl}/api/users/${user_id}/address`
-  : `${produrl}/api/users/${user_id}/address`;
+   "Accept": "*/*",
+  //  "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+   "Content-Type": "application/json" 
+  }
+  
+  let bodyContent = JSON.stringify(
+   {
+        "email" : "rathore.jatin1987@gmail.com",
+        "addressLine1": "addressLine1",
+        "addressLine2": "addressLine2",
+        "city": "city",
+        "state": "state",
+        "zip": "zip"
+      });
+  
   let reqOptions = {
-    url: url,
+    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod//saveaddress",
     method: "POST",
     headers: headersList,
     data: data,
-  };
-
-  try {
-    let response = await axios.request(reqOptions);
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
   }
+  
+  let response = await axios.request(reqOptions);
+  console.log(response.data);
+  
+
 };
 
 

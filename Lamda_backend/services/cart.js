@@ -97,7 +97,6 @@
     }
   }
 
-  
 
 module.exports ={addtocart,getcart,decreaseCartItem}
   
