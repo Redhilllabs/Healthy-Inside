@@ -6,7 +6,6 @@ import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import {LoginAPi} from '../utils/mongodbFunctions'
 const Login = () => {
-  
 const [username,setusername]=useState()
 const [password,setpassword]=useState()
 const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
@@ -25,9 +24,9 @@ await LoginAPi(username,password).then((response)=>{
   if (!user) {
     dispatch({
       type: actionType.SET_USER,
-      user: response.user[0],
+      user: response.data,
     });
-    localStorage.setItem("user", JSON.stringify(response.user[0]));
+    localStorage.setItem("user", JSON.stringify(response.data));
       console.log(username,password)
       navigate("/");
   
@@ -37,11 +36,8 @@ await LoginAPi(username,password).then((response)=>{
     }
 })
   
- 
 
 }
-
-
   return (
     <div>
       <div class="login">

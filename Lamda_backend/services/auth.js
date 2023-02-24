@@ -1,31 +1,34 @@
+const AWS = require("aws-sdk");
+AWS.config.update({
+  region: "us-east-1",
+});
+const util = require("../utils/util");
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+const userTable = "users";
 
-
-
-const signin = async (req, res, next) => {
-    try {
-      const userName = req.body.userName;
-      const password = req.body.password;
+async function signin(data) {
+  const username = data.userName;
+  const password = data.password;
   
-      const filter = {
-        contact: password,
-        email: userName,
-      };
-    //   const client = await MongoClient.connect(url, {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true,
-    //   });
-      const coll = client.db(dbName).collection("users");
-      const cursor = coll.find(filter);
-      const result = await cursor.toArray();
-      await client.close();
-  
-      if (result.length > 0) {
-        return res.json({ status: "ok", user: result });
-      } else {
-        return res.json({ status: "error", user: null });
-      }
-    } catch (err) {
-      next(err);
-    }
+  const params = {
+    TableName: userTable,
+    Key: {
+      email: username,
+    },
   };
-  module.exports.signin = signin ;
+  
+  try {
+    const dynamouserdata = await dynamodb.get(params).promise();
+    
+    if (dynamouserdata.Item && dynamouserdata.Item.contact === password) {
+      return util.buildResponse(200, { data: dynamouserdata.Item });
+    } else {
+      return util.buildResponse(401, "Incorrect password");
+    }
+  } catch (error) {
+    console.error("Error retrieving user data:", error);
+    return util.buildResponse(500, "Error retrieving user data");
+  }
+}
+
+module.exports.signin = signin;

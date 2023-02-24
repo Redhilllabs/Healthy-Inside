@@ -14,8 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
-      // console.log(user);
+    if(user){
       setIsMenu(true);
     }
   }, [user]);
@@ -38,7 +37,9 @@ const Header = () => {
   const [address, setAddress] = useState("");
   const [jerseyNumber, setjerseyNumber] = useState("");
   const [jerseySize, setJerseySize] = useState("");
-
+  console.log("user",user);
+  console.log("user name",user.name);
+  console.log(user?.name);
   const showmenu = () => {
     setmenu(true);
   };
@@ -48,10 +49,7 @@ const Header = () => {
   };
   const handleClaimKitFormSubmit = (event) => {
     event.preventDefault();
-
-    // Do something with the form data, e.g. send it to a server
     console.log({ name, NameOnKit, jerseyNumber, jerseySize });
-
     // send data to backend
 
     // Reset the form fields
@@ -108,7 +106,8 @@ const Header = () => {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <a >{isMenu ? user?.name : <></>}</a>
+                    <a> {user?.name} </a>
+
                     {showMenu && (
                       <ul className="dropdown-menu">
                         <li>
@@ -129,6 +128,8 @@ const Header = () => {
                       </ul>
                     )}
                   </li>
+
+
                 ) : (
                   <Link to="/login">Login</Link>
                 )}

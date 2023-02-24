@@ -8,23 +8,20 @@ const produrl = process.env.REACT_APP_PROD_URL
 // getall food items from food collection
 export const getAllFoodItems = async () => {
     try {
-      let headersList = {
-        "Accept": "*/*",
-      };
-      let url = isLocalhost
-      ? `${localhosturl}/api/food/getallfood`
-      : `${produrl}/getallfood`;
 
-      let reqOptions = {
-        url: url,
-        method: "GET",
-        headers: headersList,
-      };
-        
-      let response = await axios.request(reqOptions);
-      // console.log(response.data);
-    
-      return response.data;
+let headersList = {
+ "Accept": "*/*",
+}
+
+let reqOptions = {
+  url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/getallfood",
+  method: "GET",
+  headers: headersList,
+}
+
+let response = await axios.request(reqOptions);
+// console.log(response.data);
+return (response.data);
     } catch (error) {
       console.error("Error getting all food items: ", error);
       throw error;
@@ -114,37 +111,26 @@ export const GetCart = async(user_id)=>{
 export const LoginAPi = async(username,password)=>{
 
   let headersList = {
-    "Accept": "*/*",
-    "Content-Type": "application/json" 
-   }
-   let corsHeaders = {
-    "Access-Control-Allow-Origin": "*", // Change to your desired domain
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization"
+   "Accept": "*/*",
+   "Content-Type": "application/json" 
   }
-   
-   let bodyContent = JSON.stringify({
-     "userName":username,
-     "password":password
-   });
-   
-
-   let url = isLocalhost
-   ? `${localhosturl}/api/auth/signin`
-   : `${produrl}/api/auth/signin`;
-
-   let reqOptions = {
-     url: url,
-     method: "POST",
-     headers: {
-      ...headersList,
-      ...corsHeaders
-    },
-     data: bodyContent,
-   }
-   
-   let response = await axios.request(reqOptions);
-   return await response.data
+  
+  let bodyContent = JSON.stringify({
+    "userName":username,
+    "password":password
+  });
+  
+  let reqOptions = {
+    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/signin",
+    method: "POST",
+    headers: headersList,
+    data: bodyContent,
+  }
+  
+  let response = await axios.request(reqOptions);
+  console.log(response.data);
+  return (response.data);
+  
 } 
 
 // save user address
