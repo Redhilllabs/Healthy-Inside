@@ -28,30 +28,29 @@ return (response.data);
     }
   };
 // add food to cart 
-export const AddToCart = async(item_id,user_id)=>{
+export const AddToCart = async(email,foodID,quantity)=>{
 
-let headersList = {
- "Accept": "*/*",
- "Content-Type": "application/json" 
-}
-
-let bodyContent = JSON.stringify({
-  "productID":item_id,
-  "userID":user_id
-});
-let url = isLocalhost
-? `${localhosturl}/api/cart/addtocart`
-: `${produrl}/api/cart/addtocart`;
-
-let reqOptions = {
-  url: url,
-  method: "POST",
-  headers: headersList,
-  data: bodyContent,
-}
-
-let response = await axios.request(reqOptions);
-return(response.data);
+  let headersList = {
+   "Accept": "*/*",
+   "Content-Type": "application/json" 
+  }
+  
+  let bodyContent = JSON.stringify({
+    "email":email,
+    "foodID":foodID,
+    "quantity":quantity
+  });
+  
+  let reqOptions = {
+    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/addtocart",
+    method: "POST",
+    headers: headersList,
+    data: bodyContent,
+  }
+  
+  let response = await axios.request(reqOptions);
+  console.log(response.data);
+  
 } 
 
 // decrease cart item 

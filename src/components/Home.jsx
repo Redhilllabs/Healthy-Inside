@@ -20,24 +20,24 @@ const Home = () => {
   // add to cart funtionality
   const [{ foodItems, cartItems, user }, dispatch] = useStateValue();
   const [fooditems, setfooditems] = useState([]);
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [mogoadd, setmongoadd] = useState([]);
   const[alert ,setalert] = useState("");
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   
 
-  const fetchdata = async()=>{
-    if(user && user._id){
-     await GetCart(user._id).then((data) => {
-       setCart( data.data.cart);
-     });
-   }
-  }
+  // const fetchdata = async()=>{
+  //   if(user && user._id){
+  //    await GetCart(user._id).then((data) => {
+  //      setCart( data.data.cart);
+  //    });
+  //  }
+  // }
 
-  useEffect(() => {
-    // Fetch cart data and set state
-    fetchdata()
-  }, [user,fooditems,mogoadd]);
+  // useEffect(() => {
+  //   // Fetch cart data and set state
+  //   fetchdata()
+  // }, [user,fooditems,mogoadd]);
 
   const addfooditem = (item) => {
     if(user){
@@ -81,7 +81,9 @@ const Home = () => {
      await AddToCart(item_id,user._id).then((data)=>{
       // console.log(data)
         setmongoadd(data)
+
         setalert("Item Added")
+
        setTimeout(function() {
           setalert("")
         }, 1000);
@@ -92,11 +94,23 @@ const Home = () => {
     }
     }
     const addtocart = () => {
+console.log(cartItems)
+
       dispatch({
         type: actionType.SET_CARTITEMS,
         cartItems: fooditems,
       });
+
+      setalert("Item Added")
+        
+       setTimeout(function() {
+          setalert("")
+        }, 1000);
+        
+      
       localStorage.setItem("cartItems", JSON.stringify(fooditems));
+
+
     };
     const divStyle = {
       display: 'flex',

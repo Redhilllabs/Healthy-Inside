@@ -10,11 +10,10 @@ const ViewCart = ({ item, setFlag, flag }) => {
 
   const [{ cartItems, user }, dispatch] = useStateValue();
   const [qty, setQty] = useState(item.quantity);
+
   const cartDispatch = () => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    dispatch({
-      type: actionType.SET_CARTITEMS,
-      cartItems: cartItems,
+    cartItems.forEach((item) => {
+      AddToCart(user.email, item.foodID, item.quantity);
     });
   };
 
@@ -54,10 +53,12 @@ const ViewCart = ({ item, setFlag, flag }) => {
     });
   };
   
+  useEffect(() => {
+cartDispatch()
+  }, [cartItems]);
 
   useEffect(() => {
     items = cartItems;
-    // console.log(cartItems)
   }, [qty, items]);
 
   return (

@@ -13,7 +13,7 @@ const Cart = () => {
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0.0);
   // const [totalPrice, setTotalPrice] = useState(0);
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
@@ -82,8 +82,8 @@ const Cart = () => {
       state: state,
       zip: zip,
     };
-    // const res = await SaveUserAddress(data);
-    // console.log(res);
+    const res = await SaveUserAddress(data);
+    console.log(res);
     const updatedUser = { ...user, address: data };
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
@@ -91,10 +91,11 @@ const Cart = () => {
       type: actionType.SET_USER,
       user: updatedUser,
     });
-
+    
     submitOrder();
     alert("Address saved!");
   };
+
   // if (isLoading) {
   //   return <img src={loadingGif} alt="Loading..." />;
   // }
