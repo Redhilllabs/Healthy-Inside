@@ -21,29 +21,20 @@ const Home = () => {
   const [{ foodItems, cartItems, user }, dispatch] = useStateValue();
   const [fooditems, setfooditems] = useState([]);
   // const [cart, setCart] = useState([]);
-  const [mogoadd, setmongoadd] = useState([]);
+  // const [mogoadd, setmongoadd] = useState([]);
   const[alert ,setalert] = useState("");
-  // const [loading, setLoading] = useState(true);
-  
-
-  // const fetchdata = async()=>{
-  //   if(user && user._id){
-  //    await GetCart(user._id).then((data) => {
-  //      setCart( data.data.cart);
-  //    });
-  //  }
-  // }
-
-  // useEffect(() => {
-  //   // Fetch cart data and set state
-  //   fetchdata()
-  // }, [user,fooditems,mogoadd]);
 
   const addfooditem = (item) => {
     if(user){
       const existingProductIndex = cartItems.findIndex(
         (e) => e.foodID === item.foodID
       );
+
+      setalert("Item Added")
+        
+       setTimeout(function() {
+          setalert("")
+        }, 1000);
 
       if (existingProductIndex === -1) {
         // If the product is not in the cart, add it
@@ -77,35 +68,31 @@ const Home = () => {
   
   const addcartmongo = async(item_id)=>{
     console.log("cameing into addto mongo")
-    if(user){
-     await AddToCart(item_id,user._id).then((data)=>{
-      // console.log(data)
-        setmongoadd(data)
+    // if(user){
+    //  await AddToCart(item_id,user._id).then((data)=>{
+    //   // console.log(data)
+    //     setmongoadd(data)
 
-        setalert("Item Added")
+    //     setalert("Item Added")
 
-       setTimeout(function() {
-          setalert("")
-        }, 1000);
-        }).catch((err)=>{
-          alert("Server Issue")
-        console.log("Error occured",err)
-        })
-    }
+    //    setTimeout(function() {
+    //       setalert("")
+    //     }, 1000);
+    //     }).catch((err)=>{
+    //       alert("Server Issue")
+    //     console.log("Error occured",err)
+    //     })
+    // }
     }
     const addtocart = () => {
-console.log(cartItems)
+// console.log(cartItems)
 
       dispatch({
         type: actionType.SET_CARTITEMS,
         cartItems: fooditems,
       });
 
-      setalert("Item Added")
-        
-       setTimeout(function() {
-          setalert("")
-        }, 1000);
+      
         
       
       localStorage.setItem("cartItems", JSON.stringify(fooditems));
@@ -139,18 +126,18 @@ console.log(cartItems)
 
     const slideImages = [
       {
-        url: BhelMakhani2,
-        caption: 'Healthified tasty breakfast meals',
+        url:"https://amplify-amplifye544c09ddce64-staging-51255-deployment.s3.amazonaws.com/foodsImages/aa7.jpeg",
+        caption:'Healthified tasty breakfast meals',
         linkto: "#breakfast"
       },
       {
-        url: OilFreeChole1 ,
-        caption: 'Subscribe for Daily Breakfast Packages',
+        url: "https://amplify-amplifye544c09ddce64-staging-51255-deployment.s3.amazonaws.com/foodsImages/aa2.jpeg",
+        caption:'Subscribe for Daily Breakfast Packages',
         linkto: "#lunch"
       },
       {
-        url: ff2,
-        caption: 'Exclusive range of fitness equipments',
+        url: "https://amplify-amplifye544c09ddce64-staging-51255-deployment.s3.amazonaws.com/foodsImages/ff2.jpeg",
+        caption:'Exclusive range of fitness equipments',
         linkto: "#fitness"
       },
     ];

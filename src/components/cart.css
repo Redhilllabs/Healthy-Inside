@@ -26,18 +26,57 @@
     margin-bottom: 1rem;
   }
   
-  .foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 1rem;
-  }
-  
-  #total {
-    font-weight: bold;
-  }
-  
+ /* Style for the parent container */
+.foot {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18rem;
+  background-color: #acacac6e;
+  padding: 20px;
+}
+
+/* Style for the "Total" section */
+.totalprice {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalprice h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.totalprice #total {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FF8C00; /* Change color as desired */
+}
+
+/* Style for the "Your Credit" section */
+.creditsuser {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creditsuser h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for the credit value */
+.creditsuser h2:last-of-type {
+  font-size: 24px;
+  font-weight: bold;
+  color: #008000; /* Change color as desired */
+}
+
   #balance {
     font-weight: bold;
   }

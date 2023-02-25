@@ -118,16 +118,22 @@ const Cart = () => {
             </div>
              </>) }
         </div>
+
         <div class="foot">
-          <h2>Total</h2>
+        <div className="totalprice">
+        <h2>Total</h2>
           <h2 id="total">${tot}</h2>
-          <br />
-          
         </div>
-        <h2>
-            Your Credit
+          
+          <div className="creditsuser">
+          <h2>
+            Credit
             </h2>
             <h2>{user ? user?.sellingPrice : <></>}{" "}</h2> 
+          </div>
+          
+        </div>
+        
 
             {
           cartItems?.length>0 ?(<a onClick={checkout} class="orderbtn">
