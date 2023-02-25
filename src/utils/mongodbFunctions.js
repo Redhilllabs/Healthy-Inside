@@ -106,6 +106,33 @@ export const GetCart = async(user_id)=>{
   let response = await axios.request(reqOptions);
   return(response.data);
   } 
+
+
+export const saveClaimKit = async(email,data)=>{
+  let headersList = {
+   "Accept": "*/*",
+   "Content-Type": "application/json" 
+  }
+  
+  let bodyContent = JSON.stringify({
+    "email": email,
+    "NameOnKit": data.NameOnKit,
+    "jerseyNumber": data.jerseyNumber,
+    "jerseySize": data.jerseySize
+  });
+  
+  let reqOptions = {
+    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/saveclaimkit",
+    method: "POST",
+    headers: headersList,
+    data: bodyContent,
+  }
+  
+  let response = await axios.request(reqOptions);
+  console.log(response.data);
+  return(response.data)
+}
+
 // login user
 export const LoginAPi = async(username,password)=>{
 

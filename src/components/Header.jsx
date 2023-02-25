@@ -5,6 +5,7 @@ import logo from "../images/logo.png";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import { useNavigate } from "react-router-dom";
+import {saveClaimKit} from  "../utils/mongodbFunctions"
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue();
@@ -37,9 +38,6 @@ const Header = () => {
   const [address, setAddress] = useState("");
   const [jerseyNumber, setjerseyNumber] = useState("");
   const [jerseySize, setJerseySize] = useState("");
-  // console.log("user",user);
-  // console.log("user name",user.name);
-  // console.log(user?.name);
   const showmenu = () => {
     setmenu(true);
   };
@@ -47,11 +45,21 @@ const Header = () => {
   const handleClaimKitClick = () => {
     setShowClaimKitForm(true);
   };
-  const handleClaimKitFormSubmit = (event) => {
+  const handleClaimKitFormSubmit = async (event) => {
     event.preventDefault();
     console.log({ name, NameOnKit, jerseyNumber, jerseySize });
-    // send data to backend
+    const data = {"NameOnKit":NameOnKit, "jerseyNumber":jerseyNumber,"jerseySize":jerseySize}
 
+    // send data to backend
+    const res = await saveClaimKit(user.email,data);
+    console.log(res)
+    if(res.status === 401){
+      alert(res.message)
+    }
+    else{
+      alert(" Saved Your Kit ");
+    }
+    
     // Reset the form fields
     setName("");
     setNameOnKit("");
@@ -236,7 +244,7 @@ user?.name?
               type="text"
               id="Name kit"
               value={NameOnKit}
-              placeholder="Name On Youre Kit"
+              placeholder="Name On Kit"
               onChange={(event) => setNameOnKit(event.target.value)}
               required
             />
@@ -249,6 +257,7 @@ user?.name?
               placeholder
               required
             ></input>
+
             <label htmlFor="address">Address</label>
             <textarea
               id="address"
@@ -270,6 +279,8 @@ user?.name?
           </form>
         </div>
       )}
+
+
     </div>
   );
 };

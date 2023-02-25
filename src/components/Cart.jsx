@@ -56,7 +56,7 @@ const Cart = () => {
   }
   function checkout() {
     // check if the user's address is available
-    const userAddress = user?.address;
+    const userAddress = user?.addressLine1;
     if (!userAddress) {
       console.log("userAddress is not availabe");
       setShowAddressForm(true);
