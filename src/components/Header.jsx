@@ -142,7 +142,7 @@ const Header = () => {
               )}
             </li>
             <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <a id="header_link" >Cook Your know</a>
+              <a id="header_link" >Cook Your Own</a>
 
               {showMenu && (
                 <ul className="dropdown-menu">
@@ -243,21 +243,34 @@ const Header = () => {
                   <></>
                 )}
 
+                <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <a id="header_link">Bento Box</a>
+
+              {showMenu && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link  to="/morninigfood">Morning</Link>
+                  </li>
+
+                  <li>
+                    <a>Lunch</a>
+                  </li>
+                  <li>
+                    <a>Supper</a>
+                  </li>
+                </ul>
+              )}
+            </li>
+
                 <li>
                   <Link class="active" id="header_link" to="/">
-                    PRICING
+                  Happy Inside
                   </Link>
                 </li>
 
                 <li>
                   <Link class="active" id="header_link" to="/">
-                    WHY PLANTS
-                  </Link>
-                </li>
-
-                <li>
-                  <Link class="active" id="header_link" to="/">
-                    GIFTS
+                  Cook Your Own
                   </Link>
                 </li>
 
