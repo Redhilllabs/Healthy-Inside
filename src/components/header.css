@@ -2,19 +2,19 @@
 
 
 /* header dropdown  */
-li {
+/* li {
   position: relative;
   list-style-type: none;
   margin: 1rem;
-}
+} */
 
 ul.dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #ebeff0;
+  top:69%;
+  /* left: 0; */
+  background-color: var(--color1);
   border: 1px solid #ccc;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   padding: 10px;
   display: none;
   z-index: 999;
@@ -32,11 +32,23 @@ ul.dropdown-menu::before {
   transform: translateX(-50%);
   border-width: 0 10px 10px 10px;
   border-style: solid;
-  border-color: transparent transparent #76c6cc transparent;
+  border-color: transparent transparent var(--secondary) transparent;
 }
 
 ul.dropdown-menu li {
   list-style-type: none;
+}
+
+ul.dropdown-menu li a{
+  text-decoration: none;
+  padding: 10px;
+  color: var(--color3);
+  cursor: pointer;
+
+}
+
+ul.dropdown-menu li a:hover{
+  background-color: var(--primary);
 }
 
 li:hover ul.dropdown-menu {
@@ -45,23 +57,74 @@ li:hover ul.dropdown-menu {
   transform: translateY(0);
 }
 
+/* main header */
 
+#header_container{
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 3;
+  border-bottom: 1px solid #ddd;
+}
 
 #header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(196, 210, 226);
+  background-color: var(--color1);
   color: black;
-  padding: 1rem;
+  padding: 0.3rem;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+ 
+}
 
+#header_login{
+border: 1.5px solid var(--color2);
+padding:.5rem 1rem;
+color:var(--secondary);
+text-decoration: none;
+}
+
+#header_Signup{
+margin-left: 5px;
+padding:.5rem 1rem;
+color: var(--color3);
+text-decoration: none;
+background-color: var(--secondary);
+}
+
+#header_Signup:hover{
+  background-color: var(--primary); 
+}
+#header_login:hover{
+  border: 2px solid var(--primary);
+}
+#header_logo{
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--secondary);
 }
 
 .logo {
   width: 50px;
   height: 50px;
+}
+
+#navbar_container{ 
+
+  flex: 1 0 auto;
+    margin-right: 15px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
 }
 
 #navbar {
@@ -72,26 +135,30 @@ li:hover ul.dropdown-menu {
 }
 
 #navbar li {
-  margin-right: 1rem;
+  display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
-#navbar a {
-  text-decoration: none;
-  color: black;
+#navbar li #header_link{
   cursor: pointer;
-  font-size: 20px;
-}
-#navbar li :hover{
-  color: #fff;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--color3);
+    text-decoration: none;
+    /* margin: 1rem; */
+    padding: 4px 24px;
 }
 
-#kit-claim {
-  color: black;
-  /* padding: 0.5rem 1rem; */
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
+
+
 
 
 #close {
@@ -113,7 +180,7 @@ li:hover ul.dropdown-menu {
     display: block;
   }
   .mobilemenu {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     height: 100%;
@@ -133,6 +200,7 @@ li:hover ul.dropdown-menu {
     flex-direction: column;
     align-items: flex-start; /* Change to align items to left */
     justify-content: center;
+    list-style: none;
     /* height: 25%; */
   }
   .mobilemenu li {
@@ -182,6 +250,15 @@ li:hover ul.dropdown-menu {
 }
 
 /* claim kit form */
+
+#kit-claim {
+  color: black;
+  /* padding: 0.5rem 1rem; */
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 #claim-kit-form-overlay {
   position: fixed;
   top: 0;
@@ -267,7 +344,7 @@ li:hover ul.dropdown-menu {
     margin: auto;
   }
   .closeShowClaimKitForm {
-    left: 10rem;
+    left: 21rem;
     right: 10px;
   }
 }
@@ -291,7 +368,7 @@ li:hover ul.dropdown-menu {
     margin: auto;
   }
   .closeShowClaimKitForm {
-    left: 14rem;
+    left: 32rem;
     right: auto;
   }
 }

@@ -1,12 +1,31 @@
 .footer {
-    background-color: #f2f2f2;
-    padding: 20px;
+  font-family: 'Zilla Slab', serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
+  }
+  .footer_container{
+    width: 100%;
+    /* padding: 30px; */
+  }
+.ror_footer{
+  display: flex;
+  background-color:var(--primary);
+}
+  .col_option{
+    
+    display: flex;
+    padding: 1rem;
   }
   
+  .col_option ul{
+    list-style-type: none;
+    margin: 3rem;
+
+  }
   .section-p1 .col {
     width: 100%;
     max-width: 300px;
@@ -30,3 +49,8 @@
     font-weight: bold;
   }
   
+  @media only screen and (max-width: 600px) {
+    .col_option {
+  flex-direction: column;
+  }
+}

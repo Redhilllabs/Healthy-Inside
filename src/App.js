@@ -3,6 +3,8 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
+import Signup from "./components/Signup";
+import Morninigfood from "./components/Morninigfood";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Account from "./components/Account";
@@ -55,6 +57,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/morninigfood" element={<Morninigfood />} />
      
           <Route element={<PrivateRoutes></PrivateRoutes>}>
           <Route path="/account" element={<Account />}></Route>
@@ -64,6 +67,7 @@ function App() {
 
           <Route element={<PublicRoutes></PublicRoutes>}>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
        
           </Route>
 

@@ -8,10 +8,13 @@ import f3 from "../images/f3.png";
 import f4 from "../images/f4.png";
 import f5 from "../images/f5.png";
 import f6 from "../images/f6.png";
+import menu1 from "../images/menu1.jpg";
+import menu2 from "../images/menu2.jpg";
 import { actionType } from "../context/reducer";
 import CartItem from "./CartItem";
 import { GetCart , AddToCart } from "../utils/mongodbFunctions";
 import ff2 from "../images/ff2.jpeg";
+import heroimg from "../images/heroimg.jpg"
 import BhelMakhani2 from "../images/BhelMakhani2.jpg" 
 import OilFreeChole1 from "../images/OilFreeChole1.jpg"
 import { Slide } from 'react-slideshow-image';
@@ -149,26 +152,78 @@ const Home = () => {
 
   return (
     <div>
-    <div className="slide-container">
-        <Slide>
-         {slideImages.map((slideImage, index)=> (
-            <div key={index}>
-              <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
-              <div className="sliderInfo">
-              {/* <span className="spanStyle" >  */}
-              <h1>{slideImage.caption} </h1>
-              {/* </span> */}
-                <a  style={buttonStyle} href={slideImage.linkto}> Comming Soon </a>
-              </div>
-             
-              </div>
-            </div>
-          ))} 
-        </Slide>
+    <div className="hero-section" >
+
+  <div className="hero_container">
+    <div className="texthero">
+      <h1>
+        Make your <br /> taste buds <span className="texthero_design">happy!</span>
+      </h1>
+      <p>
+        Discover outrageously tasty, super satisfying plant-based meals.
+      </p>
+
+<a className="herobutton"  href="">
+<h4> Let's Do This! </h4>
+<img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png"/>
+</a>
+
+    </div>
+  </div>
+</div>
+
+
+<section className="menu">
+  <div className="menu_container">
+    <hr />
+    <h2>
+      Pick Your Delicious
+    </h2>
+    <div className="menucontent">
+      <p className="menucontent_1">
+        Start with either a Meal Kit or Fresh, Prepared Meal plan  <br />  and then customize your weekly delivery.
+       </p>
+       <p>
+        It’s easy peasy. Get exactly what you want—<br />meal kits, prepared meals, or both—every time.<br/>
+        And don’t worry, we’ve got lots of
+        Less Prep
+        ,<br /> high-protein and gluten-free meals.
+
+      </p>
+    </div>
+  </div>
+  <div className="menuitems">
+    <div className="menuitem_1">
+      <img id="item_img" src={menu1} alt="" />
+      <div className="content">
+        <h3>Morning</h3>
+        <p>We’ll send you everything you need to slice, dice, and sauté your way to</p>
       </div>
+      <a className="herobutton"  href="">
+<h4>Morning Menu </h4>
+<img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png"/>
+</a>
 
+    </div>
+    <div className="menuitem_1">
+      <img id="item_img" src={menu2} alt="" />
+      <div className="content">
+      <h3>Supper</h3>
+        <p>Heat ‘em up—they’re ready in less than 5 minutes —and dig in!</p>
+      </div>
+      <a className="herobutton"  href="">
+<h4>Supper Menu</h4>
+<img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png"/>
+</a>
+    </div>
+  </div>
+</section>
 
-      <section id="product1" class="section-p1">
+<div className="imggfood">
+  {/* <h1>jd</h1> */}
+</div>
+
+      {/* <section id="product1" class="section-p1">
         <div id="breakfast"></div>
         <h1>Breakfast</h1>
         <p>Enjoy our range of healthy and fresh breakfast.</p>
@@ -211,8 +266,10 @@ const Home = () => {
                 </React.Fragment>
               ))}
         </div>
-      </section>
-      <section id="feature" class="section-p1">
+      </section> */}
+
+
+      {/* <section id="feature" class="section-p1">
         <div class="fe-box">
           <img src={f1} alt="" />
           <h6>Free Shipping</h6>
@@ -237,15 +294,15 @@ const Home = () => {
           <img src={f6} alt="" />
           <h6>Vegan</h6>
         </div>
-      </section>
+      </section> */}
 
 
-{fooditems&&fooditems.length>0?
+{/* {fooditems&&fooditems.length>0?
 <Link to="/cart" id="floatingButton">
       <div id="cartquantity">{fooditems?fooditems?.length:0}</div>
       <img src="https://img.icons8.com/pastel-glyph/64/000000/shopping-cart--v1.png"/>
       </Link>:<></>
-}
+} */}
       
 
       {alert&&(<div id="alert-box"> <p>{alert}</p>  </div>)}

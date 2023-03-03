@@ -5,7 +5,7 @@ import logo from "../images/logo.png";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import { useNavigate } from "react-router-dom";
-import {saveClaimKit} from  "../utils/mongodbFunctions"
+import { saveClaimKit } from "../utils/mongodbFunctions";
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue();
@@ -15,7 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(user){
+    if (user) {
       setIsMenu(true);
     }
   }, [user]);
@@ -48,18 +48,21 @@ const Header = () => {
   const handleClaimKitFormSubmit = async (event) => {
     event.preventDefault();
     console.log({ name, NameOnKit, jerseyNumber, jerseySize });
-    const data = {"NameOnKit":NameOnKit, "jerseyNumber":jerseyNumber,"jerseySize":jerseySize}
+    const data = {
+      NameOnKit: NameOnKit,
+      jerseyNumber: jerseyNumber,
+      jerseySize: jerseySize,
+    };
 
     // send data to backend
-    const res = await saveClaimKit(user.email,data);
-    console.log(res)
-    if(res.status === 401){
-      alert(res.message)
-    }
-    else{
+    const res = await saveClaimKit(user.email, data);
+    console.log(res);
+    if (res.status === 401) {
+      alert(res.message);
+    } else {
       alert(" Saved Your Kit ");
     }
-    
+
     // Reset the form fields
     setName("");
     setNameOnKit("");
@@ -91,62 +94,125 @@ const Header = () => {
     setShowMenu(false);
   };
   return (
-    <div>
+    <div id="header_container">
       <section id="header">
-        <a href="/">
+        <Link to="/" id="header_logo">
+          <h1>HEALTHY</h1>
           <img src={logo} class="logo" alt="logo" />
-        </a>
+          <h1>INSIDE</h1>
+        </Link>
 
-        <div>
+        <div id="navbar_container">
           <ul id="navbar">
-            <li>
-              <p>
-                <Link class="active" to="/">
-                  Home
-                </Link>
-              </p>
+        
+            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <a id="header_link">Bento Box</a>
+
+              {showMenu && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link  to="/morninigfood">Morning</Link>
+                  </li>
+
+                  <li>
+                    <a>Lunch</a>
+                  </li>
+                  <li>
+                    <a>Supper</a>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <a id="header_link" >Happy Inside</a>
+
+              {showMenu && (
+                <ul className="dropdown-menu">
+                  <li>
+                  <a>MindFull Game</a>
+                  </li>
+
+                  <li>
+                    <a>Challenge Game</a>
+                  </li>
+                  <li>
+                    <a>Order Game</a>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <a id="header_link" >Cook Your know</a>
+
+              {showMenu && (
+                <ul className="dropdown-menu">
+                  <li>
+                  <a>Make your own food</a>
+                  </li>
+
+                  <li>
+                    <a>Heat up food</a>
+                  </li>
+
+                </ul>
+              )}
+            </li>
+            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <a id="header_link" >Make SomeOne Happy</a>
+
+              {showMenu && (
+                <ul className="dropdown-menu">
+                  <li>
+                  <a>Gift</a>
+                  </li>
+
+                  <li>
+                    <a>Free Food</a>
+                  </li>
+
+                </ul>
+              )}
             </li>
             
             <li>
-              <p>
-                {isMenu ? (
-                  <li
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <a> {user?.name} </a>
+              {isMenu ? (
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a> {user?.name} </a>
 
-                    {showMenu && (
-                      <ul className="dropdown-menu">
-                        <li>
-                          <Link to="/account">Profile</Link>
-                        </li>
+                  {showMenu && (
+                    <ul className="dropdown-menu">
+                      <li>
+                        <Link to="/account">Profile</Link>
+                      </li>
 
-                        <li>
-              <p>
-                <a id="kit-claim" onClick={handleClaimKitClick}>
-                ClaimKit
-                </a>
-              </p>
+                      <li>
+                        <p>
+                          <a id="kit-claim" onClick={handleClaimKitClick}>
+                            ClaimKit
+                          </a>
+                        </p>
+                      </li>
+                      <li>
+                        <a onClick={logout}>Log out</a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <>
+                <Link id="header_login" to="/login">
+                  Log In
+                </Link>
+                <Link id="header_Signup" to="/signup">
+                  Sign Up
+                </Link>
+                </>
+              )}
             </li>
-                        <li>
-                          <a onClick={logout}>Logout</a>
-                        </li>
-                       
-                      </ul>
-                    )}
-                  </li>
 
-
-                ) : (
-                  <Link to="/login">Login</Link>
-                )}
-              </p>
-            </li>
-
-            {/* <a href="#" id="close">
-              <i class="fa-solid fa-xmark"></i>
-            </a> */}
           </ul>
         </div>
 
@@ -156,48 +222,62 @@ const Header = () => {
           </span>
           {menu && (
             <div className="mobilemenu">
-                <img onClick={() => setmenu(false)} src="https://img.icons8.com/ios/50/null/close-window--v1.png" />
+              <img
+                onClick={() => setmenu(false)}
+                src="https://img.icons8.com/ios/50/null/close-window--v1.png"
+              />
               <ul>
-              { user ?
-              <li>
-                  <p>
-                    <Link
-                      onClick={() => setmenu(false)}
-                      class="active"
-                      to="/account"
-                    >
-                      {user?.name}
-                    </Link>
-                  </p>
-                </li>:<></>
-                
-                }
-                
+                {user ? (
+                  <li>
+                    <p>
+                      <Link
+                        onClick={() => setmenu(false)}
+                        class="active"
+                        to="/account"
+                      >
+                        {user?.name}
+                      </Link>
+                    </p>
+                  </li>
+                ) : (
+                  <></>
+                )}
+
                 <li>
-                  <p>
-                    <Link onClick={() => setmenu(false)} class="active" to="/">
-                      Home
-                    </Link>
-                  </p>
+                  <Link class="active" id="header_link" to="/">
+                    PRICING
+                  </Link>
                 </li>
-                {
-user?.name?
+
                 <li>
-                  <p>
-                  <a
-                      onClick={() => {
-                        handleClaimKitClick();
-                        setmenu(false);
-                      }}
-                      id="kit-claim"
-                    >
-                      ClaimKit
-                    </a>
-                    
-                  </p>
+                  <Link class="active" id="header_link" to="/">
+                    WHY PLANTS
+                  </Link>
                 </li>
-                :<></>
-                  }
+
+                <li>
+                  <Link class="active" id="header_link" to="/">
+                    GIFTS
+                  </Link>
+                </li>
+
+                {user?.name ? (
+                  <li>
+                    <p>
+                      <a
+                        onClick={() => {
+                          handleClaimKitClick();
+                          setmenu(false);
+                        }}
+                        id="kit-claim"
+                      >
+                        ClaimKit
+                      </a>
+                    </p>
+                  </li>
+                ) : (
+                  <></>
+                )}
                 <li>
                   <p>
                     {isMenu ? (
@@ -279,8 +359,6 @@ user?.name?
           </form>
         </div>
       )}
-
-
     </div>
   );
 };

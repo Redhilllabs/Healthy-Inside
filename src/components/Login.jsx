@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
+import GoogleButton from "./GoogleButton";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import axios from "axios";
@@ -64,6 +65,8 @@ await LoginAPi(username,password).then((response)=>{
           <button type="submit" onClick={handellogin} name="submit">
             Log In
           </button>
+          or
+          <GoogleButton/>
         </form>
       </div>
     </div>
