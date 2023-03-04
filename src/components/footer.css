@@ -15,6 +15,9 @@
   display: flex;
   background-color:var(--primary);
 }
+.col{
+  margin: 2rem;
+}
   .col_option{
     
     display: flex;

@@ -249,7 +249,7 @@ const Header = () => {
               {showMenu && (
                 <ul className="dropdown-menu">
                   <li>
-                    <Link  to="/morninigfood">Morning</Link>
+                    <Link onClick={() => setmenu(false)} to="/morninigfood">Morning</Link>
                   </li>
 
                   <li>
@@ -270,7 +270,7 @@ const Header = () => {
 
                 <li>
                   <Link class="active" id="header_link" to="/">
-                  Cook Your Own
+                  Cook Own
                   </Link>
                 </li>
 
@@ -303,9 +303,20 @@ const Header = () => {
                   </p>
                 </li>
 
-                {/* <a href="#" id="close">
-              <i class="fa-solid fa-xmark"></i>
-            </a> */}
+
+                <li>
+                  <p>
+                    {isMenu ? (
+                      <a> </a>
+                    ) : (
+                      <Link onClick={() => setmenu(false)} to="/signup">
+                        SignUp
+                      </Link>
+                    )}
+                  </p>
+                </li>
+
+
               </ul>
             </div>
           )}

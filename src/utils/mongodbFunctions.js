@@ -1,6 +1,6 @@
 import axios from "axios";
 const isLocalhost = window.location.hostname.includes('localhost')
-console.log(isLocalhost)
+// console.log(isLocalhost)
 const localhosturl = process.env.REACT_APP_LOCALHOST_URL;
 const produrl = process.env.REACT_APP_PROD_URL
 

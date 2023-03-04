@@ -45,6 +45,12 @@
   @media (max-width: 768px) {
     .signupform form {
       max-width: 100%;
+
+    }
+
+
+    .signupform{
+      flex-direction: column;
     }
   }
   

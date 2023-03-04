@@ -179,6 +179,9 @@ background-color: var(--secondary);
   #mobile {
     display: block;
   }
+  ul.dropdown-menu {
+    top: 15%;
+  }
   .mobilemenu {
     position: fixed;
     top: 0;
@@ -218,7 +221,7 @@ background-color: var(--secondary);
   .mobilemenu a {
     color: black;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     /* display: block; Display as block to take up full width of list item */
     /* padding: 1rem; Add padding for visual effect */
