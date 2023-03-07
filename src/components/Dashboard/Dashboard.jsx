@@ -20,23 +20,42 @@ const Dashboard = () => {
   const [ShowinventoryForm, setShowinventoryForm] = useState(false);
   const [showblogwriting, setshowblogwriting] = useState(false);
   const [serviceList, setserviceList] = useState([{ unit: "gram",quantity:"1",ingredient_name:"Asafoetida (हींग/Heeng)" }]);
-console.log(serviceList)
+  const [recipeName, setRecipeName] = useState("");
+  const [procedure, setProcedure] = useState("");
+  const [showTable, setShowTable] = useState(false); 
+  const [showProfile, setShowProfile] = useState(false);
+
   const handelblogwriting = () => {
     setshowblogwriting(!showblogwriting);
     setShowinventoryForm(false);
     setrecipeform(false);
+    setShowTable(false)
+    setShowProfile(false)
   };
   const handelinventoryForm = () => {
     setShowinventoryForm(!ShowinventoryForm);
     setrecipeform(false);
     setshowblogwriting(false);
+    setShowTable(false)
+    setShowProfile(false)
   };
 
   const handelrecipeform = () => {
     setrecipeform(!showrecipeform);
     setShowinventoryForm(false);
     setshowblogwriting(false);
+    setShowTable(false)
+    setShowProfile(false)
   };
+  const handleProfileForm = () => {
+    setShowProfile(!showProfile)
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setShowTable(false)
+    setshowblogwriting(false);
+    // Update the user's profile information
+  }
+
   const handleProducts = () => {
     const image = document.getElementById("arrow4");
     image.style.transform = "rotate(0deg)";
@@ -66,8 +85,6 @@ console.log(serviceList)
     setShowTech(!showTech);
   };
 
-  const [items, setItems] = useState([]);
-  const [quantities, setQuantities] = useState({});
 
   const handeladdmore = (event) => {
     setserviceList([...serviceList, { unit: "gram",quantity:"1",ingredient_name:"Asafoetida (हींग/Heeng)" }]);
@@ -78,8 +95,7 @@ console.log(serviceList)
     List.splice(index, 1);
     setserviceList(List);
   };
-  const [recipeName, setRecipeName] = useState("");
-
+  
   const handleRecipeNameChange = (event) => {
     setRecipeName(event.target.value);
   };
@@ -91,24 +107,18 @@ console.log(serviceList)
     setserviceList(List);
   };
 
-  const [procedure, setProcedure] = useState("");
 
   const handleProcedureChange = (event) => {
     setProcedure(event.target.value);
   };
-  const [recipes, setRecipes] = useState([]);
-  const [showTable, setShowTable] = useState(false); // <-- add this line
-
+ 
   const handelrecipesubmitform = (event) => {
     event.preventDefault();
 console.log(recipeName,serviceList,procedure)
-// const newRecipe = { recipeName,serviceList,procedure };
-//     setRecipes([...recipes, newRecipe]);
-// console.log(recipes)
-    // setRecipeName("");
-    // setServiceList("");
-    // setProcedure("");
-
+if (!recipeName || !serviceList.length || !procedure) {
+  alert("Please fill in all fields.");
+  return;
+}
     setShowTable(true);
   };
 
@@ -120,12 +130,6 @@ console.log(recipeName,serviceList,procedure)
           <span className="logo_name">DashBoard</span>
         </div>
         <ul className="nav-links">
-          <li>
-            <a href="#">
-              {/* <img src="https://img.icons8.com/material-rounded/24/null/dashboard-layout.png"/> */}
-              {/* <span className="link_name">Dashboard</span> */}
-            </a>
-          </li>
 
           <li
             onClick={() => handleProducts()}
@@ -148,11 +152,10 @@ console.log(recipeName,serviceList,procedure)
             <ul className="sub-menu">
               {showProducts && (
                 <div id="product-dash">
-                  <a href="#">Raw Material Master List</a>
-                  <a href="#">Buffer</a>
-                  <a href="#">MRP Calculator</a>
+                  <a href="#">Upload File</a>
+                  <a href="#">Item designing</a>
                   <a href="#" onClick={handelrecipeform}>
-                    Receipe Designing
+                  Receipe Designing
                   </a>
                 </div>
               )}
@@ -180,15 +183,12 @@ console.log(recipeName,serviceList,procedure)
             <ul className="sub-menu">
               {showOperations && (
                 <div id="operations-dash">
-                  <a href="#">Sale Plan</a>
                   <a href="#">Batch Manager</a>
                   <a href="#">Purchase Order</a>
-                  <a href="#">Front Desk</a>
+                  <a href="#">Forward & Losses</a>
                   <a href="#" onClick={handelinventoryForm}>
-                    Inventory Purcase Log
+                  Purchase Log
                   </a>
-                  <a href="#">Packaging Master</a>
-                  <a href="#">Packaging Material Master List</a>
                 </div>
               )}
             </ul>
@@ -205,7 +205,7 @@ console.log(recipeName,serviceList,procedure)
             <div className="iocn-link">
               <a href="#">
                 {/* <img  src="https://img.icons8.com/windows/32/null/add-pie-chart-report.png"/> */}
-                <span className="link_name">Marketing</span>
+                <span className="link_name">Branding</span>
               </a>
               <img
                 id="arrow2"
@@ -218,10 +218,10 @@ console.log(recipeName,serviceList,procedure)
                   <a href="#" onClick={handelblogwriting}>
                     Blog Writing
                   </a>
-                  <a href="#">Rwl Master</a>
-                  <a href="#">IwR Master</a>
-                  <a href="#">RMI</a>
-                  <a href="#">PI</a>
+                  <a href="#">Daily Revenue Records</a>
+                  <a href="#">Sale Plan</a>
+                  <a href="#">Receipe Refining</a>
+                 
                 </div>
               )}
             </ul>
@@ -249,21 +249,30 @@ console.log(recipeName,serviceList,procedure)
             <ul className="sub-menu">
               {showFinance && (
                 <div id="finance-dash">
-                  <a href="#">Expenses</a>
-                  <a href="#">DRR</a>
-                  <a href="#">Forwards and Losses</a>
+                  <a href="#">MRP Calculator</a>
+                  <a href="#">Glance</a>
                   <a href="#">Budget</a>
                 </div>
               )}
             </ul>
           </li>
+          <li
+            onClick={() => handleFinance()}
+            onMouseLeave={() => {
+              const image = document.getElementById("arrow1");
+              image.style.transform = "rotate(180deg)";
 
-          {/* <li>
-            <a href="#" onClick={handleTech}>
-          Tech
-        </a>
-        {showTech && <div id="tech-dash"></div>}
-            </li> */}
+              setShowFinance(false);
+            }}
+          >
+            <div className="iocn-link">
+              <a href="#">
+                {/* <img src="https://img.icons8.com/sf-black/64/null/deposit.png"/> */}
+                <span  onClick={handleProfileForm} className="link_name">Profile</span>
+              </a>
+            </div>
+
+          </li>
         </ul>
       </div>
 
@@ -1296,10 +1305,6 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
         {showTable && (
   <div className="table-container">
     <h2>Your Recipe</h2>
-    <div onClick={()=>setShowTable(false)}>
-      close
-    </div>
-    <div id="recipebutton">Save</div>
     <br />
     <table className="recipe_table">
       <thead>
@@ -1329,10 +1334,39 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
         </tr>
       </tbody>
     </table>
+    <div id="tabel_controllers">
+    <div  id="recipebutton_close" onClick={()=>setShowTable(false)}>
+      cancel
+    </div>
+    <div id="recipebutton_save">Save</div>
+    </div>
+ 
   </div>
 )}
 
-
+{showProfile && (
+  <div className="formcontains">
+        <form id="profile_form_dashboard">
+          <h2>Profile</h2>
+          <label>
+            Name:
+            <input type="text" />
+          </label>
+          <br />
+          <label>
+            Company's mail id:
+            <input type="email" />
+          </label>
+          <br />
+          <label>
+            Mobile no.:
+            <input type="tel" />
+          </label>
+          <br />
+          <button>Logout</button>
+        </form>
+        </div>
+      )}
       </div>
     </div>
   );

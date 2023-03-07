@@ -46,4 +46,18 @@
   .login button[type="submit"]:hover {
     background-color: #3e8e41;
   }
+  #continue_with_google {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .GoogleButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.54);
+    box-shadow: 0 
+  }  
   

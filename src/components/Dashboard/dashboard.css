@@ -15,7 +15,7 @@
   width: 25%;
   display: flex;
   flex-direction: column;
-  background: var(--primary);
+  background: var(--secondary);
   /* z-index: 100; */
   transition: all 0.5s ease;
 }
@@ -67,9 +67,11 @@
   position: relative;
   list-style: none;
   transition: all 0.4s ease;
+  padding: 13px;
+    border-radius: 20px;
 }
 .dashboard_sidebar .nav-links li:hover{
-  background: var(--secondary);
+  background: var(--primary);
 }
 .dashboard_sidebar .nav-links li .iocn-link{
   display: flex;
@@ -217,14 +219,11 @@ width: 75%;
 
   .main_dashbord .form input,
   .main_dashbord  .form select {
-    font-size: 14px;
-    width:  70px;
-    height: 30px;
-    /* padding: 5px; */
-    border: 1px solid green;
     border-radius: 5px;
-    /* border: none; */
-    /* margin: 5px; */
+    width:  110px;
+    border: 1px solid green;
+    height: 30px;
+    margin: 5px;
   }
   
   .main_dashbord  .form select {
@@ -270,7 +269,7 @@ width: 75%;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 6rem;
+    width: 9rem;
     margin: 2px;
 
   }
@@ -330,6 +329,46 @@ width: 75%;
         flex-direction: column;
     }
     
+  }
+  
+  #profile_form_dashboard{
+    border-radius: 20px;
+    background-color: #f2f2f2;
+  padding: 20px;}
+  
+  #profile_form_dashboard label {
+    display: flex;
+    flex-direction: column;
+    color: var(--color3);
+    margin-right: 20px;
+  }
+  
+  #profile_form_dashboard input {
+    margin-top: 5px;
+    padding: 5px;
+  }
+  
+  #tabel_controllers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  #recipebutton_close {
+    background-color: red;
+    color: white;
+    margin-right: 10px;
+    padding: 0rem 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  #recipebutton_save {
+    background-color: green;
+    color: white;
+    padding: 0rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
   }
   
 

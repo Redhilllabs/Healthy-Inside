@@ -44,7 +44,7 @@ await LoginAPi(username,password).then((response)=>{
       <div class="login">
         <h1>Login</h1>
         <form  >
-          <label for="userName">Your E-mail </label>
+          <label for="userName">Email </label>
           <input
           value={username}
             type="email"
@@ -53,7 +53,7 @@ await LoginAPi(username,password).then((response)=>{
             placeholder="someone@xyz.com"
             onChange={(e)=>{setusername(e.target.value)}}
           />
-          <label for="password">Password </label>
+          <label for="password">Password</label>
           <input
           value={password}
             type="password"
@@ -65,8 +65,10 @@ await LoginAPi(username,password).then((response)=>{
           <button type="submit" onClick={handellogin} name="submit">
             Log In
           </button>
-          or
+          <div id="continue_with_google">
           <GoogleButton/>
+          </div>
+          
         </form>
       </div>
     </div>

@@ -4,17 +4,11 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 const GoogleButton = () => {
-  const history = useNavigate()
- 
+
   function handleCallbackResponse(response) {
     var userObject = jwt_decode(response.credential);
     console.log(userObject)
-    // sessionStorage.clear()
   }
-
-  // function signOut() {
-  //   google.accounts.id.disableAutoSelect();
-  // }
 
   useEffect(() => {
     /* global google */
@@ -30,16 +24,12 @@ const GoogleButton = () => {
         size: "large",
       }
     );
-    // document
-    // .getElementById("signOutButton")
-    // .addEventListener("click", signOut);
 
     google.accounts.id.prompt();
   
     return () => {
       google.accounts.id.cancel();
       google.accounts.id.disableAutoSelect();
-      // button.removeEventListener("click");
     };
   }, []);
   
@@ -47,7 +37,6 @@ const GoogleButton = () => {
   return (
     <>
       <div id="signInDiv"> </div>
-      {/* <div id="signOutButton" onClick={signOut}> Signout</div> */}
     </>
   );
 };
