@@ -105,7 +105,7 @@ const Header = () => {
         <div id="navbar_container">
           <ul id="navbar">
         
-            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            {/* <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <a id="header_link">Bento Box</a>
 
               {showMenu && (
@@ -172,7 +172,7 @@ const Header = () => {
 
                 </ul>
               )}
-            </li>
+            </li> */}
             
             <li>
               {isMenu ? (

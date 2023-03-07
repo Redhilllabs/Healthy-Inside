@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Account from "./components/Account";
 import OrderSubmit from "./components/OrderSubmit";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Cart from "./components/Cart";
 import { getAllFoodItems,GetCart} from "./utils/mongodbFunctions";
 import React, { useEffect } from "react";
@@ -58,17 +59,18 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/morninigfood" element={<Morninigfood />} />
-     
+          <Route path="/urvi" element={<Dashboard />}></Route>
+          
           <Route element={<PrivateRoutes></PrivateRoutes>}>
           <Route path="/account" element={<Account />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/oderSubmit" element={<OrderSubmit />}></Route>
+          
           </Route>
 
           <Route element={<PublicRoutes></PublicRoutes>}>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
-       
           </Route>
 
         </Routes>
