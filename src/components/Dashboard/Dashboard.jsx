@@ -276,7 +276,7 @@ console.log(recipeName,serviceList,procedure)
               id="recipe-designing"
               
             >
-              <div className="option_container">
+              <div >
                 <label for="Receipe Name">Receipe Name</label>
                 <input type="text" name="reciepeNameRD" id="reciepeNameRD" value={recipeName}
         onChange={handleRecipeNameChange} required
@@ -285,7 +285,8 @@ console.log(recipeName,serviceList,procedure)
               <div id="addmore">
                 {serviceList.map((singleService, index) => (
                   <div className="addmoreitems" key={index}>
-                    <div >
+
+                    <div>
                       <label htmlFor="Ingredient Name">Ingredient</label>
                       <select
                         id="ingredient_name"
@@ -527,125 +528,13 @@ onChange={(e)=>handelServiceChange(e,index,"ingredient_name")}
                           Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala
                           Mirch)
                         </option>
-                        <option value="Aluminium Containers">
-                          Aluminium Containers
-                        </option>
-                        <option value="Aluminium Container Lids">
-                          Aluminium Container Lids
-                        </option>
-                        <option value="Biodegradable Big Plates">
-                          Biodegradable Big Plates
-                        </option>
-                        <option value="Biodegradable Medium Plates">
-                          Biodegradable Medium Plates
-                        </option>
-                        <option value="Biodegradable Small Plates">
-                          Biodegradable Small Plates
-                        </option>
-                        <option value="Carry Bag">Carry Bag</option>
-                        <option value="Disposable Container Lids (Unknown)">
-                          Disposable Container Lids (Unknown)
-                        </option>
-                        <option value="Disposable Containers (Without Lids)">
-                          Disposable Containers (Without Lids)
-                        </option>
-                        <option value="Disposable Plastic Plates">
-                          Disposable Plastic Plates
-                        </option>
-                        <option value="Disposable Tiffin Box Lids (Unknown)">
-                          Disposable Tiffin Box Lids (Unknown)
-                        </option>
-                        <option value="Disposable Transparent Plastic Lids">
-                          Disposable Transparent Plastic Lids
-                        </option>
-                        <option value="Flat Bowl with Lid(250ml)">
-                          Flat Bowl with Lid(250ml)
-                        </option>
-                        <option value="Flat Bowl with Lid(40ml)">
-                          Flat Bowl with Lid(40ml)
-                        </option>
-                        <option value="Flat Bowl with Lid(750ml)">
-                          Flat Bowl with Lid(750ml)
-                        </option>
-                        <option value="Flat Rectangular Box">
-                          Flat Rectangular Box
-                        </option>
-                        <option value="Ice Cream Spoons">
-                          Ice Cream Spoons
-                        </option>
-                        <option value="Paper Disposable Glass">
-                          Paper Disposable Glass
-                        </option>
-                        <option value="Paper Disposable Lids">
-                          Paper Disposable Lids
-                        </option>
-                        <option value="Plastic Bottle with Caps">
-                          Plastic Bottle with Caps
-                        </option>
-                        <option value="Plastic Bottle with Caps (Not Usable)">
-                          Plastic Bottle with Caps (Not Usable)
-                        </option>
-                        <option value="Plastic Bottles Lids">
-                          Plastic Bottles Lids
-                        </option>
-                        <option value="Plastic Fork">Plastic Fork</option>
-                        <option value="Plastic Lids">Plastic Lids</option>
-                        <option value="Plastic Spoons (Big)">
-                          Plastic Spoons (Big)
-                        </option>
-                        <option value="Plastic Spoons Small">
-                          Plastic Spoons Small
-                        </option>
-                        <option value="Plastic Tiffin Box">
-                          Plastic Tiffin Box
-                        </option>
-                        <option value="Plastic Water Bottles Caps">
-                          Plastic Water Bottles Caps
-                        </option>
-                        <option value="Plastic Water Bottles with Caps">
-                          Plastic Water Bottles with Caps
-                        </option>
-                        <option value="Rectangular Cardbox(1200ml)">
-                          Rectangular Cardbox(1200ml)
-                        </option>
-                        <option value="Rectangular Cardbox(1400ml)">
-                          Rectangular Cardbox(1400ml)
-                        </option>
-                        <option value="Rectangular Cardbox(800ml)">
-                          Rectangular Cardbox(800ml)
-                        </option>
-                        <option value="Roti Wrap">Roti Wrap</option>
-                        <option value="Semi Wooden Small Plates">
-                          Semi Wooden Small Plates
-                        </option>
-                        <option value="Spoon">Spoon</option>
-                        <option value="Tissue Paper">Tissue Paper</option>
-                        <option value="Wooden Fruit Fork">
-                          Wooden Fruit Fork
-                        </option>
-                        <option value="Brown Rice Idli">Brown Rice Idli</option>
-                        <option value="Cashew Mayos">Cashew Mayos</option>
-                        <option value="Coconut Dip">Coconut Dip</option>
-                        <option value="Jau Pulao">Jau Pulao</option>
-                        <option value="Mint Dip">Mint Dip</option>
-                        <option value="Minty Appe">Minty Appe</option>
-                        <option value="Palak Meethi Cutlets">
-                          Palak Meethi Cutlets
-                        </option>
-                        <option value="Ragi Chila">Ragi Chila</option>
-                        <option value="Ragi Dosa">Ragi Dosa</option>
-                        <option value="Ramas Dal Moth">Ramas Dal Moth</option>
-                        <option value="Rasam Sambhar">Rasam Sambhar</option>
-                        <option value="Roti Tacos">Roti Tacos</option>
-                        <option value="Tofu Parantha">Tofu Parantha</option>
-                        <option value="Tomato Dip">Tomato Dip</option>
-                        <option value="Veggie Mix Dip">Veggie Mix Dip</option>
+                        
                       </select>
                     </div>
-                    <div >
+
+                    <div id="recipequantity">
                       <label htmlFor="quantity">Quantity</label>
-                      <input type="number"  value={singleService.quantity}
-onChange={(e)=>handelServiceChange(e,index,"quantity")}  />
+                      <input type="number"  value={singleService.quantity} onChange={(e)=>handelServiceChange(e,index,"quantity")}  />
                     </div>
 
                     <div>
@@ -659,11 +548,10 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                         <option value="teaspoon">teaspoon</option>
                         <option value="cup">cup</option>
                       </select>
- 
                     </div>
 
                     {
-  serviceList.length >1?<div  className="option_container" onClick={() => handleRemoveItem(index)} > <i class="fa-solid fa-xmark"></i> </div>:<></>
+  serviceList.length >1?<div  onClick={() => handleRemoveItem(index)} > <i class="fa-solid fa-xmark"></i> </div>:<></>
 }
                   </div>
                 ))}
@@ -672,13 +560,13 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                 </div>
               </div>
 
-              <div className="option_container">
+              <div>
                 <label htmlFor="procedure">Procedure</label>
                 <textarea
         id="procedure"
         name="procedure"
         cols="15"
-        rows="10"
+        rows="2"
         value={procedure}
         onChange={handleProcedureChange}
       ></textarea>
@@ -704,12 +592,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               method="post"
             >
             <div className="option_container">
-            <label for="Name">Date</label> <br />
-              <input type="date" name="Date" id="dateIPL" required /> <br />
+            <label for="Name">Date</label> 
+              <input type="date" name="Date" id="dateIPL" required /> 
             </div>
               
               <div className="option_container">
-              <label for="Item">Item Name</label> <br />
+              <label for="Item">Item Name</label>
               <select id="itemIPL" name="Item" required>
                 <option value="Anise, Fennel (सौंफ़/Saunf)">
                   Anise, Fennel (सौंफ़/Saunf)
@@ -925,119 +813,13 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                 <option value="Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala Mirch)">
                   Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala Mirch)
                 </option>
-                <option value="Aluminium Containers">
-                  Aluminium Containers
-                </option>
-                <option value="Aluminium Container Lids">
-                  Aluminium Container Lids
-                </option>
-                <option value="Biodegradable Big Plates">
-                  Biodegradable Big Plates
-                </option>
-                <option value="Biodegradable Medium Plates">
-                  Biodegradable Medium Plates
-                </option>
-                <option value="Biodegradable Small Plates">
-                  Biodegradable Small Plates
-                </option>
-                <option value="Carry Bag">Carry Bag</option>
-                <option value="Disposable Container Lids (Unknown)">
-                  Disposable Container Lids (Unknown)
-                </option>
-                <option value="Disposable Containers (Without Lids)">
-                  Disposable Containers (Without Lids)
-                </option>
-                <option value="Disposable Plastic Plates">
-                  Disposable Plastic Plates
-                </option>
-                <option value="Disposable Tiffin Box Lids (Unknown)">
-                  Disposable Tiffin Box Lids (Unknown)
-                </option>
-                <option value="Disposable Transparent Plastic Lids">
-                  Disposable Transparent Plastic Lids
-                </option>
-                <option value="Flat Bowl with Lid(250ml)">
-                  Flat Bowl with Lid(250ml)
-                </option>
-                <option value="Flat Bowl with Lid(40ml)">
-                  Flat Bowl with Lid(40ml)
-                </option>
-                <option value="Flat Bowl with Lid(750ml)">
-                  Flat Bowl with Lid(750ml)
-                </option>
-                <option value="Flat Rectangular Box">
-                  Flat Rectangular Box
-                </option>
-                <option value="Ice Cream Spoons">Ice Cream Spoons</option>
-                <option value="Paper Disposable Glass">
-                  Paper Disposable Glass
-                </option>
-                <option value="Paper Disposable Lids">
-                  Paper Disposable Lids
-                </option>
-                <option value="Plastic Bottle with Caps">
-                  Plastic Bottle with Caps
-                </option>
-                <option value="Plastic Bottle with Caps (Not Usable)">
-                  Plastic Bottle with Caps (Not Usable)
-                </option>
-                <option value="Plastic Bottles Lids">
-                  Plastic Bottles Lids
-                </option>
-                <option value="Plastic Fork">Plastic Fork</option>
-                <option value="Plastic Lids">Plastic Lids</option>
-                <option value="Plastic Spoons (Big)">
-                  Plastic Spoons (Big)
-                </option>
-                <option value="Plastic Spoons Small">
-                  Plastic Spoons Small
-                </option>
-                <option value="Plastic Tiffin Box">Plastic Tiffin Box</option>
-                <option value="Plastic Water Bottles Caps">
-                  Plastic Water Bottles Caps
-                </option>
-                <option value="Plastic Water Bottles with Caps">
-                  Plastic Water Bottles with Caps
-                </option>
-                <option value="Rectangular Cardbox(1200ml)">
-                  Rectangular Cardbox(1200ml)
-                </option>
-                <option value="Rectangular Cardbox(1400ml)">
-                  Rectangular Cardbox(1400ml)
-                </option>
-                <option value="Rectangular Cardbox(800ml)">
-                  Rectangular Cardbox(800ml)
-                </option>
-                <option value="Roti Wrap">Roti Wrap</option>
-                <option value="Semi Wooden Small Plates">
-                  Semi Wooden Small Plates
-                </option>
-                <option value="Spoon">Spoon</option>
-                <option value="Tissue Paper">Tissue Paper</option>
-                <option value="Wooden Fruit Fork">Wooden Fruit Fork</option>
-                <option value="Brown Rice Idli">Brown Rice Idli</option>
-                <option value="Cashew Mayos">Cashew Mayos</option>
-                <option value="Coconut Dip">Coconut Dip</option>
-                <option value="Jau Pulao">Jau Pulao</option>
-                <option value="Mint Dip">Mint Dip</option>
-                <option value="Minty Appe">Minty Appe</option>
-                <option value="Palak Meethi Cutlets">
-                  Palak Meethi Cutlets
-                </option>
-                <option value="Ragi Chila">Ragi Chila</option>
-                <option value="Ragi Dosa">Ragi Dosa</option>
-                <option value="Ramas Dal Moth">Ramas Dal Moth</option>
-                <option value="Rasam Sambhar">Rasam Sambhar</option>
-                <option value="Roti Tacos">Roti Tacos</option>
-                <option value="Tofu Parantha">Tofu Parantha</option>
-                <option value="Tomato Dip">Tomato Dip</option>
-                <option value="Veggie Mix Dip">Veggie Mix Dip</option>
+               
               </select>{" "}
               </div>
               
-              <br />
+              
               <div className="option_container">
-              <label for="Quantity">Quantity</label> <br />
+              <label for="Quantity">Quantity</label> 
               <input
                 type="number"
                 name="Quantity"
@@ -1046,20 +828,20 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               />{" "}
               </div>
               
-              <br />
+              
               <div className="option_container">
-              <label for="Unit">Unit </label> <br />
-              <input type="number" name="Unit" id="unitIPL" required /> <br />
+              <label for="Unit">Unit </label> 
+              <input type="number" name="Unit" id="unitIPL" required /> 
               </div>
               
               <div className="option_container">
-              <label for="Amount">Amount</label> <br />
+              <label for="Amount">Amount</label>
               <input type="number" name="Amount" id="amountIPL" required />{" "}
               </div>
               
-              <br />
+            
               <div className="option_container">
-              <label for="Unit-Price">Unit Price</label> <br />
+              <label for="Unit-Price">Unit Price</label> 
               <input
                 type="number"
                 name="Unit-Price"
@@ -1068,7 +850,7 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               />{" "}
               </div>
               
-              <br />
+              
               <div class="button-container">
                 <button type="submit" name="submit">
                   Submit

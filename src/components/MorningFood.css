@@ -55,11 +55,11 @@
     margin-top: 20px;
   }
   
-  label {
+  /* label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-  }
+  } */
   
   select {
     width: 100%;
