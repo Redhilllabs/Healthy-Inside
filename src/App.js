@@ -22,7 +22,6 @@ function App() {
   
   // fetching data to store into State foodItems from mongodbfuntion getAllFoodItems
   const [{ foodItems,user }, dispatch] = useStateValue();
-
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
       // console.log("food items",data.data)
@@ -55,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header />
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/morninigfood" element={<Morninigfood />} />

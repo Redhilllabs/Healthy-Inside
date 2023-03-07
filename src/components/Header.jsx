@@ -6,6 +6,7 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import { useNavigate } from "react-router-dom";
 import { saveClaimKit } from "../utils/mongodbFunctions";
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [{ user }, dispatch] = useStateValue();
@@ -93,6 +94,7 @@ const Header = () => {
   const handleMouseLeave = () => {
     setShowMenu(false);
   };
+  const location = useLocation();
   return (
     <div id="header_container">
       <section id="header">
@@ -104,8 +106,12 @@ const Header = () => {
 
         <div id="navbar_container">
           <ul id="navbar">
-        
-            {/* <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+
+          {location.pathname === '/urvi' ? (
+          <></>
+        ) : (
+          <>
+          <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <a id="header_link">Bento Box</a>
 
               {showMenu && (
@@ -172,8 +178,12 @@ const Header = () => {
 
                 </ul>
               )}
-            </li> */}
+            </li>
+          </>
+        )}
             
+            
+
             <li>
               {isMenu ? (
                 <li

@@ -12,7 +12,7 @@
 }
 .dashboard_sidebar{
   height: 100%;
-  width: 290px;
+  width: 25%;
   display: flex;
   flex-direction: column;
   background: var(--primary);
@@ -54,12 +54,8 @@
 .dashboard_sidebar .nav-links{
   height: 100%;
   padding: 30px;
-  /* overflow: auto; */
 }
-/* #product-dash{
-    padding: 20px;
-    background-color: var(--primary);
-} */
+
 
 .dashboard_sidebar.close .nav-links{
   overflow: visible;
@@ -174,22 +170,25 @@
 .main_dashbord {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:flex-start;
     flex-direction: column;
-    /* margin: 20px; */
+    margin: 20px;
+width: 75%;
     /* overflow-x: scroll; */
     
   }
   #addmore{
     display: flex;
-    height: 150px ;
+    height: 200px ;
     flex-direction: column;
-overflow: scroll; }
+    overflow-y: scroll;
+   }
   .main_dashbord .form{
     display: flex; 
     align-items: center;
     justify-content: center;
     /* overflow-x: scroll; */
+
     padding: 30px;
     background-color: #f2f2f2;
     border-radius: 10px;
@@ -214,20 +213,20 @@ overflow: scroll; }
   .main_dashbord .form input[type="number"],
   .main_dashbord  .form select {
     font-size: 9px;
-    padding: 10px;
+    padding: 2px;
     border-radius: 5px;
     border: none;
-    margin: 0.5rem;
+    margin: 1px;
   }
   
   .main_dashbord  .form select {
     width: 50%;
   }
   
-  .main_dashbord  .button-container {
+  .main_dashbord .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin: 30px;
   }
   
   #recipebutton{

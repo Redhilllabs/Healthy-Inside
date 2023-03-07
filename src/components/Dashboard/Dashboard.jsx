@@ -285,7 +285,7 @@ console.log(recipeName,serviceList,procedure)
               <div id="addmore">
                 {serviceList.map((singleService, index) => (
                   <div className="addmoreitems" key={index}>
-                    <div className="option_container">
+                    <div >
                       <label htmlFor="Ingredient Name">Ingredient</label>
                       <select
                         id="ingredient_name"
@@ -642,13 +642,13 @@ onChange={(e)=>handelServiceChange(e,index,"ingredient_name")}
                         <option value="Veggie Mix Dip">Veggie Mix Dip</option>
                       </select>
                     </div>
-                    <div className="option_container">
+                    <div >
                       <label htmlFor="quantity">Quantity</label>
                       <input type="number"  value={singleService.quantity}
 onChange={(e)=>handelServiceChange(e,index,"quantity")}  />
                     </div>
 
-                    <div className="option_container">
+                    <div>
                       <label htmlFor="Unit">Unit</label>
                       <select name="unitRD" id="unitRD"  value={singleService.unit}
 onChange={(e)=>handelServiceChange(e,index,"unit")}   >
@@ -659,11 +659,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                         <option value="teaspoon">teaspoon</option>
                         <option value="cup">cup</option>
                       </select>
+ 
                     </div>
-{
-  serviceList.length >1?<div onClick={() => handleRemoveItem(index)} > <i class="fa-solid fa-xmark"></i> </div>:<></>
+
+                    {
+  serviceList.length >1?<div  className="option_container" onClick={() => handleRemoveItem(index)} > <i class="fa-solid fa-xmark"></i> </div>:<></>
 }
-                    
                   </div>
                 ))}
                 <div id="addmoreingredients" onClick={handeladdmore}>
@@ -676,8 +677,8 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                 <textarea
         id="procedure"
         name="procedure"
-        cols="10"
-        rows="4"
+        cols="15"
+        rows="10"
         value={procedure}
         onChange={handleProcedureChange}
       ></textarea>
