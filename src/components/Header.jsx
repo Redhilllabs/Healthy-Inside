@@ -9,7 +9,7 @@ import { saveClaimKit } from "../utils/mongodbFunctions";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user ,admin}, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
   const [menu, setmenu] = useState(false);
   const [showClaimKitForm, setShowClaimKitForm] = useState(false);
@@ -107,7 +107,7 @@ const Header = () => {
         <div id="navbar_container">
           <ul id="navbar">
 
-          {location.pathname === '/urvi' ? (
+          {location.pathname === '/urvi' || location.pathname === '/Adminlogin' ? (
           <></>
         ) : (
           <>
@@ -211,14 +211,17 @@ const Header = () => {
                     </ul>
                   )}
                 </li>
-              ) : (
-                <>
+              ) : (<>
+
+                {admin?(<Link  id="header_login" to="/urvi">{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
                 <Link id="header_login" to="/login">
                   Log In
                 </Link>
                 <Link id="header_Signup" to="/signup">
                   Sign Up
                 </Link>
+                </>)} 
+
                 </>
               )}
             </li>

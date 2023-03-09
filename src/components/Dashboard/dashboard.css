@@ -268,7 +268,7 @@ width: 75%;
     margin: 2px;
 
   }
-  .option_container input, select{
+  .option_container input, select,textarea{
     width:  70px;
     border: 1px solid green;
     height: 30px;

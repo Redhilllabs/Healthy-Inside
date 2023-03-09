@@ -35,6 +35,10 @@ await LoginAdminAPi(username,password).then((response)=>{
       alert("You are Alredy loggedIn")
       setIsMenu(!isMenu);
     }
+}).catch((error)=>{
+// console.log(error.response)
+const message = error.response.data
+alert(message)
 })
   
 

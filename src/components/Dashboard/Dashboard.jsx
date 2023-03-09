@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 const Dashboard = () => {
+  const [{ user ,admin}, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const [option, setoption] = useState(false);
   const toggleMenu = () => {
@@ -12,7 +13,6 @@ const Dashboard = () => {
   const toggleoption = () => {
     setoption(!option);
   };
-  const [{ user }, dispatch] = useStateValue();
   const [showProducts, setShowProducts] = useState(false);
   const [showOperations, setShowOperations] = useState(false);
   const [showMarketing, setShowMarketing] = useState(false);
@@ -54,6 +54,10 @@ const Dashboard = () => {
 
   const handleBlogSubmit = (event) => {
     event.preventDefault();
+    if(!blog  ||!miniBlog||!blogTitle ||!files){
+      alert("field required")
+      return
+    }
     setShowBlogTable(true)
     // submit logic goes here
   };
@@ -89,6 +93,8 @@ const Dashboard = () => {
     setrecipeform(false);
     setShowTable(false)
     setShowProfile(false)
+    setShowInventoryTable(false)
+    
   };
   const handelinventoryForm = () => {
     setShowinventoryForm(!ShowinventoryForm);
@@ -96,6 +102,7 @@ const Dashboard = () => {
     setshowblogwriting(false);
     setShowTable(false)
     setShowProfile(false)
+    setShowBlogTable(false)
   };
 
   const handelrecipeform = () => {
@@ -104,6 +111,8 @@ const Dashboard = () => {
     setshowblogwriting(false);
     setShowTable(false)
     setShowProfile(false)
+    setShowBlogTable(false)
+    setShowInventoryTable(false)
   };
   const handleProfileForm = () => {
     setShowProfile(!showProfile)
@@ -111,6 +120,8 @@ const Dashboard = () => {
     setrecipeform(false);
     setShowTable(false)
     setshowblogwriting(false);
+    setShowBlogTable(false)
+    setShowInventoryTable(false)
     // Update the user's profile information
   }
 
@@ -955,12 +966,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             </div>
             <div className="option_container">
             <label for="Mini Blog">Mini Blog</label>
-            <input type="text" name="miniBlogBW"  value={miniBlog} onChange={(e) => setMiniBlog(e.target.value)} id="miniBlogBW" />
+            <textarea type="text" name="miniBlogBW"  value={miniBlog} onChange={(e) => setMiniBlog(e.target.value)} id="miniBlogBW" />
             </div>
             
             <div className="option_container">
             <label for="Blog">Blog</label> 
-            <input type="text" name="blogBW" id="blogBW" />
+            <textarea type="text"   value={blog} onChange={(e) => setBlog(e.target.value)} name="blogBW" id="blogBW" />
            </div>
            
             <div className="option_container">
@@ -1472,8 +1483,9 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             <tr>
               <th>Blog Title</th>
               <th>Mini Blog</th>
-              <th>Item Name</th>
-              <th>Profile</th>
+              <th>Blog</th>
+              {showProfileBlog && <th>Profile</th> }
+              
               <th>Files</th>
             </tr>
           </thead>
@@ -1481,8 +1493,8 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             <tr>
               <td>{blogTitle}</td>
               <td>{miniBlog}</td>
-              <td>{blogItemName}</td>
-              <td>{profile}</td>
+              <td>{blog}</td>
+              {showProfileBlog && <td>{profile}</td> }
               <td>{files && (
             <p>Selected file: {files[0].name}</p>
           )}</td>
@@ -1506,7 +1518,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
           <h2>Profile</h2>
           <label>
             Name:
-            <input type="text" />
+            <input type="text" value={admin.email.split("@")[0].replace("hi", "")}  />
+          </label>
+          <br />
+          <label>
+            Email:
+            <input type="text"  value={admin.email}  />
           </label>
           <br />
           <label>
@@ -1516,12 +1533,15 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
           <br />
           <label>
             Mobile no.:
-            <input type="tel" />
+            <input type="tel" value={admin.contact} />
           </label>
           <br />
+          <div class="button-container">
           <div  onClick={logout} id="recipebutton" type="submit" name="submit">
           Log out
                 </div>
+          </div>
+          
         </form>
         </div>
       )}
