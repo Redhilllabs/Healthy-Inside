@@ -29,7 +29,7 @@ await LoginAdminAPi(username,password).then((response)=>{
     });
     localStorage.setItem("admin", JSON.stringify(response.data));
       // console.log(username,password)
-      navigate("/");
+      navigate("/urvi");
   
     }else {
       alert("You are Alredy loggedIn")
@@ -42,7 +42,7 @@ await LoginAdminAPi(username,password).then((response)=>{
   return (
     <div>
       <div class="login">
-        <h1>Login</h1>
+        <h1> Admin Login </h1>
         <form  >
           <label for="userName">Email </label>
           <input

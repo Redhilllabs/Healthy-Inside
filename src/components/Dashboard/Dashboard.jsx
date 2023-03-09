@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./dashboard.css";
-
+import { useNavigate } from "react-router-dom";
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [option, setoption] = useState(false);
@@ -10,7 +12,7 @@ const Dashboard = () => {
   const toggleoption = () => {
     setoption(!option);
   };
-
+  const [{ user }, dispatch] = useStateValue();
   const [showProducts, setShowProducts] = useState(false);
   const [showOperations, setShowOperations] = useState(false);
   const [showMarketing, setShowMarketing] = useState(false);
@@ -179,6 +181,18 @@ if (!recipeName || !serviceList.length || !procedure) {
   return;
 }
     setShowTable(true);
+  };
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    dispatch({
+      type: actionType.SET_Admin_USER,
+      admin: null,
+    });
+    window.location.reload(true);
+    navigate("/urvi");
   };
 
   return (
@@ -1505,7 +1519,9 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             <input type="tel" />
           </label>
           <br />
-          <button>Logout</button>
+          <div  onClick={logout} id="recipebutton" type="submit" name="submit">
+          Log out
+                </div>
         </form>
         </div>
       )}
