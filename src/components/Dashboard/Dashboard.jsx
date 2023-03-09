@@ -36,8 +36,14 @@ const Dashboard = () => {
   const [blog, setBlog] = useState('');
   const [blogItemName, setBlogItemName] = useState('');
   const [profile, setProfile] = useState('');
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState('');
   const [showBlogTable, setShowBlogTable] = useState(false);
+  const [files, setFiles] = useState(null);
+
+  const handleFileChange = (event) => {
+    setFiles(event.target.files);
+  };
+
 
   const handleBlogSubmit = (event) => {
     event.preventDefault();
@@ -1338,10 +1344,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                 <option value="Yogurt (दही/Dahi)">Yogurt (दही/Dahi)</option>
               </select>
             </div>
+
             <div className="option_container">
             <label for="Files">Files</label>
-            <input type="file" name="filesBW" id="filesBW"  multiple onChange={(e) => setFiles([...files, ...e.target.files])} />
+            <input type="file" name="filesBW" id="filesBW" onChange={handleFileChange} />
             </div>
+
             <div class="button-container">
             <div  onClick={handleBlogSubmit} id="recipebutton" type="submit" name="submit">
                   Submit
@@ -1442,7 +1450,7 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               <th>Mini Blog</th>
               <th>Item Name</th>
               <th>Profile</th>
-              {/* <th>Files</th> */}
+              <th>Files</th>
             </tr>
           </thead>
           <tbody>
@@ -1451,7 +1459,9 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               <td>{miniBlog}</td>
               <td>{blogItemName}</td>
               <td>{profile}</td>
-              {/* <td>{files}</td> */}
+              <td>{files && (
+            <p>Selected file: {files[0].name}</p>
+          )}</td>
               
             </tr>
           </tbody>
