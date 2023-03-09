@@ -321,6 +321,21 @@ width: 75%;
     background-color: lightgreen;
   }
   
+  .showInventoryTable{
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .showInventoryTable th,
+  .showInventoryTable td {
+    border: 1px solid green;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .showInventoryTable th {
+    background-color: lightgreen;
+  }
   
 
   @media only screen and (max-width: 768px) {

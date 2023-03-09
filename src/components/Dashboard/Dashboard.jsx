@@ -24,6 +24,51 @@ const Dashboard = () => {
   const [procedure, setProcedure] = useState("");
   const [showTable, setShowTable] = useState(false); 
   const [showProfile, setShowProfile] = useState(false);
+  const [date, setDate] = useState('');
+  const [itemName, setItemName] = useState('');
+  const [quantity, setQuantity] = useState(0);
+  const [unit, setUnit] = useState('');
+  const [unitPrice, setUnitPrice] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [showInventoryTable, setShowInventoryTable] = useState(false);
+  const [blogTitle, setBlogTitle] = useState('');
+  const [miniBlog, setMiniBlog] = useState('');
+  const [blog, setBlog] = useState('');
+  const [blogItemName, setBlogItemName] = useState('');
+  const [profile, setProfile] = useState('');
+  const [files, setFiles] = useState([]);
+  const [showBlogTable, setShowBlogTable] = useState(false);
+
+  const handleBlogSubmit = (event) => {
+    event.preventDefault();
+    setShowBlogTable(true)
+    // submit logic goes here
+  };
+
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
+
+  const handleItemNameChange = (event) => {
+    setItemName(event.target.value);
+  };
+
+  const handleQuantityChange = (event) => {
+    setQuantity(parseInt(event.target.value));
+  };
+
+  const handleUnitChange = (event) => {
+    setUnit(event.target.value);
+  };
+
+  const handleUnitPriceChange = (event) => {
+    setUnitPrice(parseFloat(event.target.value));
+  };
+
+  const handleAmountChange = (event) => {
+    setAmount(parseFloat(event.target.value));
+  };
+
 
   const handelblogwriting = () => {
     setshowblogwriting(!showblogwriting);
@@ -107,6 +152,9 @@ const Dashboard = () => {
     setserviceList(List);
   };
 
+  const handleInventorySubmitForm = () => {
+    setShowInventoryTable(true);
+  };
 
   const handleProcedureChange = (event) => {
     setProcedure(event.target.value);
@@ -582,7 +630,7 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               </div>
 
               <div class="button-container">
-                <div onClick={handelrecipesubmitform}  id="recipebutton" name="submit">
+                <div onClick={handelrecipesubmitform}  id="recipebutton" type="submit" name="submit">
                   Submit
                 </div>
               </div>
@@ -602,12 +650,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             >
             <div className="option_container">
             <label for="Name">Date</label> 
-              <input type="date" name="Date" id="dateIPL" required /> 
+              <input type="date" name="Date" id="dateIPL" value={date}  onChange={handleDateChange} required /> 
             </div>
               
               <div className="option_container">
               <label for="Item">Item Name</label>
-              <select id="itemIPL" name="Item" required>
+              <select id="itemIPL" name="Item" value={itemName} onChange={handleItemNameChange}  required>
                 <option value="Anise, Fennel (सौंफ़/Saunf)">
                   Anise, Fennel (सौंफ़/Saunf)
                 </option>
@@ -826,13 +874,15 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               </select>{" "}
               </div>
               
-              
               <div className="option_container">
               <label for="Quantity">Quantity</label> 
               <input
                 type="number"
                 name="Quantity"
                 id="quantityIPL"
+
+                value={quantity} onChange={handleQuantityChange}
+
                 required
               />{" "}
               </div>
@@ -840,12 +890,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
               
               <div className="option_container">
               <label for="Unit">Unit </label> 
-              <input type="number" name="Unit" id="unitIPL" required /> 
+              <input type="number" name="Unit" id="unitIPL"  value={unit} onChange={handleUnitChange}  required /> 
               </div>
               
               <div className="option_container">
               <label for="Amount">Amount</label>
-              <input type="number" name="Amount" id="amountIPL" required />{" "}
+              <input type="number" name="Amount" id="amountIPL" value={amount} onChange={handleAmountChange}   required />{" "}
               </div>
               
             
@@ -855,15 +905,16 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                 type="number"
                 name="Unit-Price"
                 id="unitPriceIPL"
+                value={unitPrice} onChange={handleUnitPriceChange}
                 required
               />{" "}
               </div>
               
               
               <div class="button-container">
-                <button type="submit" name="submit">
+                <div  onClick={handleInventorySubmitForm} id="recipebutton" type="submit" name="submit">
                   Submit
-                </button>
+                </div>
               </div>
             </form>
           </div>
@@ -875,24 +926,24 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
           <form action="" class="form" id="blog-writing" method="post">
           <div className="option_container">
             <label for="Blog Title">Blog Title</label> 
-            <input type="text" name="blogTitleBW" id="blogTitleBW" /> 
+            <input type="text" name="blogTitleBW" id="blogTitleBW" value={blogTitle} onChange={(e) => setBlogTitle(e.target.value)} /> 
             </div>
             <div className="option_container">
             <label for="Mini Blog">Mini Blog</label>
-            <input type="text" name="miniBlogBW" id="miniBlogBW" />
+            <input type="text" name="miniBlogBW"  value={miniBlog} onChange={(e) => setMiniBlog(e.target.value)} id="miniBlogBW" />
             </div>
-            <div className="option_container">
+            {/* <div className="option_container">
             <label for="Blog">Blog</label> 
             <input type="text" name="blogBW" id="blogBW" />
-           </div>
+           </div> */}
            
             <div className="option_container">
             <label for="Item Name">Item Name</label>
-            <input type="text" name="itemNameBW" id="itemNameBW" />
+            <input type="text" name="itemNameBW" value={blogItemName} onChange={(e) => setBlogItemName(e.target.value)} id="itemNameBW" />
             </div>
             <div className="option_container">
               <label for="Profile">Profile </label>
-              <select name="profileBW" id="profileBW">
+              <select name="profileBW"   value={profile} onChange={(e) => setProfile(e.target.value)} id="profileBW">
                 <option value="Adzuki Beans (लाल फ़लियां/Lal Faliyan)">
                   Adzuki Beans (लाल फ़लियां/Lal Faliyan)
                 </option>
@@ -1289,12 +1340,12 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             </div>
             <div className="option_container">
             <label for="Files">Files</label>
-            <input type="file" name="filesBW" id="filesBW" />
+            <input type="file" name="filesBW" id="filesBW"  multiple onChange={(e) => setFiles([...files, ...e.target.files])} />
             </div>
             <div class="button-container">
-              <button type="submit" name="submit">
-                Submit
-              </button>
+            <div  onClick={handleBlogSubmit} id="recipebutton" type="submit" name="submit">
+                  Submit
+                </div>
             </div>
           </form>
           </div>
@@ -1336,6 +1387,77 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
     </table>
     <div id="tabel_controllers">
     <div  id="recipebutton_close" onClick={()=>setShowTable(false)}>
+      cancel
+    </div>
+    <div id="recipebutton_save">Save</div>
+    </div>
+ 
+  </div>
+)}
+
+{showInventoryTable && (
+  <div className="table-container">
+    <h2>Purchase Log</h2>
+    <br />
+        <table  className="showInventoryTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Unit Price</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{date}</td>
+              <td>{itemName}</td>
+              <td>{quantity}</td>
+              <td>{unit}</td>
+              <td>{unitPrice}</td>
+              <td>{amount}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="tabel_controllers">
+    <div  id="recipebutton_close" onClick={()=>setShowInventoryTable(false)}>
+      cancel
+    </div>
+    <div id="recipebutton_save">Save</div>
+    </div>
+ 
+  </div>
+      )}
+
+{showBlogTable&&(
+  <div className="table-container">
+    <h2>Blog </h2>
+    <br />
+        <table  className="showInventoryTable">
+          <thead>
+            <tr>
+              <th>Blog Title</th>
+              <th>Mini Blog</th>
+              <th>Item Name</th>
+              <th>Profile</th>
+              {/* <th>Files</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{blogTitle}</td>
+              <td>{miniBlog}</td>
+              <td>{blogItemName}</td>
+              <td>{profile}</td>
+              {/* <td>{files}</td> */}
+              
+            </tr>
+          </tbody>
+        </table>
+        <div id="tabel_controllers">
+    <div  id="recipebutton_close" onClick={()=>setShowBlogTable(false)}>
       cancel
     </div>
     <div id="recipebutton_save">Save</div>
