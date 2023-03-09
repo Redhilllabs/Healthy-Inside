@@ -344,13 +344,97 @@ width: 75%;
     .dashboard_sidebar .nav-links li:hover {
       background-color: transparent;
     }
+    .dashboard{
+      height: 35rem;
+    }
+    #product-dash {
+      display: flex;
+      margin: 15px;
+      flex-direction: column;
+      background: var(--secondary);
+      padding: 20px;
+  }
+  .dashboard_sidebar .nav-links li img {
+    display: none;
+  }
+  .dashboard_sidebar .nav-links li a .link_name {
+    font-size: 14px;
+  }
+  .dashboard_sidebar .nav-links {
+    padding: 10px;
+  }
+  
+  .addmoreitems {
+    flex-direction: column;  
+    align-items: flex-start;
+    padding: 6px;
+    border: 1px solid black;
+    margin: 2px;
+  }
+  .addmoreitems i {
+    color: white;
+    font-weight: 900;
+    background: red;
+    padding: 1px;
+  }
+
+
+.formcontains {
+    overflow-y: scroll;
+}
+#addmore {
+  height: 150px;
+}
+
+.main_dashbord .form input, .main_dashbord .form select {
+  width: 64px;
+  height: 16px;
+  margin: 6px;
+}
+#recipequantity {
+  margin: 0rem;
+  display: flex;
+}
+
+
+.option_container input, select, textarea {
+  width: 81px;
+  height: 16px;
+}
+
+
+#inventory-purchase-log {
+ 
+  width: auto;
+  flex-direction: column;
+}
+.main_dashbord {
+  width: 63%;
+}
+.table-container {
+  width: 100%;
+  overflow-x: scroll;
+}
+.table-container h2{
+  font-size: smaller;
+}
+.showInventoryTable th, .showInventoryTable td {
+  font-size: xx-small;
+}
+#tabel_controllers {
+  font-size: xx-small;
+}
+
+.recipe_table th, .recipe_table td {
+  font-size: xx-small;
+}
     
   }
   
   #profile_form_dashboard{
     border-radius: 20px;
     background-color: #f2f2f2;
-  padding: 20px;}
+  padding: 23px;}
   
   #profile_form_dashboard label {
     display: flex;

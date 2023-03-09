@@ -266,7 +266,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             </div>
             <ul className="sub-menu">
               {showOperations && (
-                <div id="operations-dash">
+                <div id="product-dash">
                   <a href="#">Batch Manager</a>
                   <a href="#">Purchase Order</a>
                   <a href="#">Forward & Losses</a>
@@ -298,7 +298,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             </div>
             <ul className="sub-menu">
               {showMarketing && (
-                <div id="marketing-dash">
+                <div id="product-dash">
                   <a href="#" onClick={handelblogwriting}>
                     Blog Writing
                   </a>
@@ -332,7 +332,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             </div>
             <ul className="sub-menu">
               {showFinance && (
-                <div id="finance-dash">
+                <div id="product-dash">
                   <a href="#">MRP Calculator</a>
                   <a href="#">Glance</a>
                   <a href="#">Budget</a>
