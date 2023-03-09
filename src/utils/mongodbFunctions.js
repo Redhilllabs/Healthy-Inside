@@ -159,6 +159,32 @@ export const LoginAPi = async(username,password)=>{
   
 } 
 
+// admin login
+export const LoginAdminAPi = async(username,password)=>{
+
+  let headersList = {
+   "Accept": "*/*",
+   "Content-Type": "application/json" 
+  }
+  
+  let bodyContent = JSON.stringify({
+    "userName":username,
+    "password":password
+  });
+  
+  let reqOptions = {
+    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/adminlogin",
+    method: "POST",
+    headers: headersList,
+    data: bodyContent,
+  }
+  
+  let response = await axios.request(reqOptions);
+  console.log(response.data);
+  return (response.data);
+  
+} 
+
 // save user address
 
 export const SaveUserAddress = async (data) => {

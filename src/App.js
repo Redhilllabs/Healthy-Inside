@@ -7,6 +7,7 @@ import Signup from "./components/Signup";
 import Morninigfood from "./components/Morninigfood";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
+import AdminLogin from "./components/AdminLogin";
 import Account from "./components/Account";
 import OrderSubmit from "./components/OrderSubmit";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -17,6 +18,8 @@ import { useStateValue } from "./context/StateProvider";
 import { actionType } from "./context/reducer";
 import PublicRoutes from "./Routes/PublicRoute";
 import PrivateRoutes from "./Routes/PrivateRoute";
+import AdminRoutes from "./Routes/AdminRoute";
+
 
 function App() {
   
@@ -58,8 +61,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/morninigfood" element={<Morninigfood />} />
+
+          <Route element={<AdminRoutes></AdminRoutes>}>
           <Route path="/urvi" element={<Dashboard />}></Route>
-          
+          </Route>
+
           <Route element={<PrivateRoutes></PrivateRoutes>}>
           <Route path="/account" element={<Account />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
@@ -69,6 +75,7 @@ function App() {
 
           <Route element={<PublicRoutes></PublicRoutes>}>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/Adminlogin" element={<AdminLogin />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
           </Route>
 

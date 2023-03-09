@@ -211,11 +211,6 @@ width: 75%;
     /* margin-bottom: 20px; */
   }
   
-  .main_dashbord  .form label {
-    /* font-size: 14px; */
-    /* margin: 20px; */
-    
-  }
 
   .main_dashbord .form input,
   .main_dashbord  .form select {
@@ -272,10 +267,6 @@ width: 75%;
     width: 9rem;
     margin: 2px;
 
-  }
-
-  .option_container label{
-    /* width: 20px; */
   }
   .option_container input, select{
     width:  70px;
@@ -342,6 +333,16 @@ width: 75%;
 
     .main_dashbord .form {
         flex-direction: column;
+    }
+    .dashboard_sidebar .logo-details .logo_name {
+      font-size: 10px;
+    }
+    .dashboard_sidebar .nav-links li {
+      padding: 0px;
+      display: flex;
+    }
+    .dashboard_sidebar .nav-links li:hover {
+      background-color: transparent;
     }
     
   }

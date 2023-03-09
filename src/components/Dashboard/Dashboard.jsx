@@ -34,9 +34,9 @@ const Dashboard = () => {
   const [blogTitle, setBlogTitle] = useState('');
   const [miniBlog, setMiniBlog] = useState('');
   const [blog, setBlog] = useState('');
-  const [blogItemName, setBlogItemName] = useState('');
+  const [blogItemName, setBlogItemName] = useState("");
+  const [showProfileBlog, setShowProfileBlog] = useState(false);
   const [profile, setProfile] = useState('');
-  // const [files, setFiles] = useState('');
   const [showBlogTable, setShowBlogTable] = useState(false);
   const [files, setFiles] = useState(null);
 
@@ -44,6 +44,11 @@ const Dashboard = () => {
     setFiles(event.target.files);
   };
 
+  
+  function handleItemNameBlogChange(e) {
+    setBlogItemName(prev => prev ? "" : "Blog");
+    setShowProfileBlog(prev => !prev);
+  }
 
   const handleBlogSubmit = (event) => {
     event.preventDefault();
@@ -938,15 +943,19 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
             <label for="Mini Blog">Mini Blog</label>
             <input type="text" name="miniBlogBW"  value={miniBlog} onChange={(e) => setMiniBlog(e.target.value)} id="miniBlogBW" />
             </div>
-            {/* <div className="option_container">
+            
+            <div className="option_container">
             <label for="Blog">Blog</label> 
             <input type="text" name="blogBW" id="blogBW" />
-           </div> */}
+           </div>
            
             <div className="option_container">
             <label for="Item Name">Item Name</label>
-            <input type="text" name="itemNameBW" value={blogItemName} onChange={(e) => setBlogItemName(e.target.value)} id="itemNameBW" />
+            <input type="checkbox" name="itemNameBW" value={blogItemName} checked={!!blogItemName}
+        onChange={handleItemNameBlogChange} id="itemNameBW" />
             </div>
+
+            {showProfileBlog && 
             <div className="option_container">
               <label for="Profile">Profile </label>
               <select name="profileBW"   value={profile} onChange={(e) => setProfile(e.target.value)} id="profileBW">
@@ -1344,6 +1353,7 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
                 <option value="Yogurt (दही/Dahi)">Yogurt (दही/Dahi)</option>
               </select>
             </div>
+          }
 
             <div className="option_container">
             <label for="Files">Files</label>

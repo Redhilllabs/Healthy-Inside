@@ -6,6 +6,14 @@ export const fetchUser = () => {
 
   return userInfo;
 };
+export const fetchAdminUser = () => {
+  const userInfo =
+    localStorage.getItem("admin") !== "undefined"
+      ? JSON.parse(localStorage.getItem("admin"))
+      : localStorage.clear();
+
+  return userInfo;
+};
 
 export const fetchCart = () => {
   const cartInfo =
