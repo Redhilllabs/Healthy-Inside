@@ -30,6 +30,7 @@ const Signup = () => {
   return (
 
     <div className="signupform">
+    <h1>Sign-Up </h1>
  <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>
       <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
