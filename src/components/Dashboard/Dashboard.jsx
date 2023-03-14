@@ -154,13 +154,17 @@ const Dashboard = () => {
 
 
   const handeladdmore = (event) => {
-    setIngredientsList((prevList) => [...prevList, ingredient]);
-    setIngredient({
-      ingredient_name: '',
-      quantity: '',
-      unit: '',
-    });
-    setserviceList([...serviceList, { unit: "gram",quantity:"1",ingredient_name:"Asafoetida (हींग/Heeng)" }]);
+    
+    const newIngredient = {
+      ingredient_name: _recipe_ingredient_name,
+      quantity: recipequantity,
+      unit: recipeunit,
+    };
+    setIngredientsList(prevList => [...prevList, newIngredient]);
+    set_recipe_ingredient_name('')
+    setrecipequantity('')
+    setrecipeunit('')
+    // setserviceList([...serviceList, { unit: "gram",quantity:"1",ingredient_name:"Asafoetida (हींग/Heeng)" }]);
   };
 
   const handleRemoveItem = (index) => {
@@ -186,6 +190,7 @@ const Dashboard = () => {
     setShowInventoryTable(true);
   };
 
+  const [_recipe_ingredient_name, set_recipe_ingredient_name] = useState('')
   const [ingredient, setIngredient] = useState({
     ingredient_name: '',
     quantity: '1',
@@ -194,16 +199,27 @@ const Dashboard = () => {
   const [ingredientsList, setIngredientsList] = useState([]);
 
   function handleIngredientChange(e) {
-    const { name, value } = e.target;
-    setIngredient((prevIngredient) => ({
-      ...prevIngredient,
-      [name]: value,
-    }));
+    set_recipe_ingredient_name(e.target.value)
+    // const { name, value } = e.target;
+    // setIngredient((prevIngredient) => ({
+    //   ...prevIngredient,
+    //   [name]: value,
+    // }));
   }
   const handleProcedureChange = (event) => {
     setProcedure(event.target.value);
   };
  
+  const [recipequantity ,setrecipequantity] = useState('')
+
+  const handleRecipequantityChange = (e)=>{
+setrecipequantity(e.target.value)
+  }
+  const [recipeunit,setrecipeunit] = useState('')
+
+  const handleRecipeunitChange = (e)=>{
+    setrecipeunit(e.target.value)
+  }
 //   const handelrecipesubmitform = (event) => {
 //     event.preventDefault();
 // console.log(recipeName,serviceList,procedure)
@@ -394,7 +410,7 @@ const Dashboard = () => {
     id="ingredient_name"
     name="ingredient_name"
     required
-    value={ingredient.ingredient_name} onChange={handleIngredientChange}
+    value={_recipe_ingredient_name} onChange={handleIngredientChange}
 
   >
     <option value="Anise, Fennel (सौंफ़/Saunf)">
@@ -635,14 +651,14 @@ const Dashboard = () => {
 
 <div id="recipequantity">
   <label htmlFor="quantity">Quantity</label>
-  <input type="number"  value={ingredient.quantity} onChange={handleIngredientChange} 
+  <input type="number"  value={recipequantity} onChange={handleRecipequantityChange} 
 
   />
 </div>
 
 <div>
   <label htmlFor="Unit">Unit</label>
-  <select name="unitRD" id="unitRD" value={ingredient.unit} onChange={handleIngredientChange}  
+  <select name="unitRD" id="unitRD" value={recipeunit} onChange={handleRecipeunitChange}  
 >
     <option value="gram">g (gram)</option>
     <option value="millilitre">ml (millilitre)</option>
