@@ -147,14 +147,14 @@ export const LoginAPi = async(username,password)=>{
   });
   
   let reqOptions = {
-    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/signin",
+    url: `${produrl}/signin`,
     method: "POST",
     headers: headersList,
     data: bodyContent,
   }
   
   let response = await axios.request(reqOptions);
-  console.log(response.data);
+  // console.log(response.data);
   return (response.data);
   
 } 
@@ -173,14 +173,14 @@ export const LoginAdminAPi = async(username,password)=>{
   });
   
   let reqOptions = {
-    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/adminlogin",
+    url: `${produrl}/adminlogin`,
     method: "POST",
     headers: headersList,
     data: bodyContent,
   }
   
   let response = await axios.request(reqOptions);
-  console.log(response.data);
+  // console.log(response.data);
   return (response.data);
   
 } 

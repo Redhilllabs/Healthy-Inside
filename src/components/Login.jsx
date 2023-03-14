@@ -36,6 +36,11 @@ await LoginAPi(username,password).then((response)=>{
       setIsMenu(!isMenu);
     }
 })
+.catch((error)=>{
+  // console.log(error.response)
+  const message = error.response.data
+  alert(message)
+  })
   
 
 }

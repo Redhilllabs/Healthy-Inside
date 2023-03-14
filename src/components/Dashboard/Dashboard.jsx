@@ -226,7 +226,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             <div className="iocn-link">
               <a href="#">
                 {/* <img  src="https://img.icons8.com/material-outlined/24/null/shipping-product.png"/> */}
-                <span className="link_name">Products</span>
+                <span className="link_name">Product & Research</span>
               </a>
               <img
                 id="arrow4"
@@ -238,6 +238,8 @@ if (!recipeName || !serviceList.length || !procedure) {
                 <div id="product-dash">
                   <a href="#">Upload File</a>
                   <a href="#">Item designing</a>
+                  <a href="#">Item Profile</a>
+                  <a href="#">Receipe Profile</a>
                   <a href="#" onClick={handelrecipeform}>
                   Receipe Designing
                   </a>
@@ -257,7 +259,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             <div className="iocn-link">
               <a href="#">
                 {/* <img src="https://img.icons8.com/external-parzival-1997-detailed-outline-parzival-1997/64/null/external-operation-digital-transformation-parzival-1997-detailed-outline-parzival-1997.png"/> */}
-                <span className="link_name">Operations</span>
+                <span className="link_name">Operations & Supply Chain</span>
               </a>
               <img
                 id="arrow3"
@@ -267,7 +269,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             <ul className="sub-menu">
               {showOperations && (
                 <div id="product-dash">
-                  <a href="#">Batch Manager</a>
+                  {/* <a href="#">Batch Manager</a> */}
                   <a href="#">Purchase Order</a>
                   <a href="#">Forward & Losses</a>
                   <a href="#" onClick={handelinventoryForm}>
@@ -289,7 +291,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             <div className="iocn-link">
               <a href="#">
                 {/* <img  src="https://img.icons8.com/windows/32/null/add-pie-chart-report.png"/> */}
-                <span className="link_name">Branding</span>
+                <span className="link_name"> Business & Branding</span>
               </a>
               <img
                 id="arrow2"
@@ -299,12 +301,12 @@ if (!recipeName || !serviceList.length || !procedure) {
             <ul className="sub-menu">
               {showMarketing && (
                 <div id="product-dash">
-                  <a href="#" onClick={handelblogwriting}>
+                  {/* <a href="#" onClick={handelblogwriting}>
                     Blog Writing
-                  </a>
+                  </a> */}
                   <a href="#">Daily Revenue Records</a>
                   <a href="#">Sale Plan</a>
-                  <a href="#">Receipe Refining</a>
+                  {/* <a href="#">Receipe Refining</a> */}
                  
                 </div>
               )}
@@ -323,7 +325,7 @@ if (!recipeName || !serviceList.length || !procedure) {
             <div className="iocn-link">
               <a href="#">
                 {/* <img src="https://img.icons8.com/sf-black/64/null/deposit.png"/> */}
-                <span className="link_name">Finance</span>
+                <span className="link_name">Finance  & Metrics </span>
               </a>
               <img
                 id="arrow1"
@@ -1517,13 +1519,13 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
         <form id="profile_form_dashboard">
           <h2>Profile</h2>
           <label>
-            Name:
-            <input type="text" value={admin.email.split("@")[0].replace("hi", "")}  />
+            Name: {admin.email.split("@")[0].replace("hi", "")} 
+            {/* <input type="text" value={admin.email.split("@")[0].replace("hi", "")}  /> */}
           </label>
           <br />
           <label>
-            Email:
-            <input type="text"  value={admin.email}  />
+            Email: {admin.email}
+            {/* <input type="text"  value={admin.email}  /> */}
           </label>
           <br />
           <label>
@@ -1532,8 +1534,8 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
           </label>
           <br />
           <label>
-            Mobile no.:
-            <input type="tel" value={admin.contact} />
+            Mobile no.: {admin.contact}
+            {/* <input type="tel" value={admin.contact} /> */}
           </label>
           <br />
           <div class="button-container">
