@@ -50,7 +50,7 @@ const Dashboard = () => {
   const [SalesPlanForm, setSalesPlanForm] = useState(false);
   const [showSalesPlanTable, setshowSalesPlanTable]  = useState(false);
 const [saleplanItemname,setsaleplanItemname] = useState("item1");
-const [salesForecast ,setsalesForecast] = useState("forecast");
+const [salesForecast ,setsalesForecast] = useState("1");
 const [salesplandate ,setsalesplandate] = useState("2023-03-16");
 const [DaysPlan,setDaysPlan] = useState(false);
 
@@ -211,9 +211,9 @@ const handeladdtoplanner = ()=>{
   setplannerList(prevList => [...prevList, newplaner])
 
   setshowSalesPlanTable(true)
-  setsaleplanItemname('')
-  setsalesForecast('')
-  setsalesplandate('')
+  setsaleplanItemname('item1')
+  setsalesForecast('1')
+  setsalesplandate('2023-03-16')
 }
   const handleRemoveItem = (index) => {
     const List = [...serviceList];
@@ -458,8 +458,8 @@ setrecipequantity(e.target.value)
               <div className="addmoreitems" >
 
 <div>
-  <label htmlFor="salesForcast">sales Forecast</label>
-  <input type="text" name="salesForcast" id="salesForcast" value={salesForecast}
+  <label htmlFor="salesForcast">Sales Forecast quantity</label>
+  <input type="number" name="salesForcast" id="salesForcast" value={salesForecast}
         onChange={handlesalesForecastChange} required
          />
 </div>
@@ -1927,17 +1927,20 @@ onChange={(e)=>handelServiceChange(e,index,"unit")}   >
     <table className="recipe_table">
   <thead>
     <tr>
-      <th>Sales Forecast</th>
+    <th>Date</th>
+      
       <th>Item Name</th>
-      <th>Date</th>
+      <th>Sales Forecast</th>
     </tr>
   </thead>
   <tbody>
     {plannerList.map((service, index) => (
       <tr key={index}>
+      <td>{service.saledate}</td>
+      <td>{service.iTem_name}</td>
         <td>{service.salesforecast}</td>
-        <td>{service.iTem_name}</td>
-        <td>{service.saledate}</td>
+       
+        
       </tr>
     ))}
   </tbody>
