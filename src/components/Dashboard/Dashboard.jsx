@@ -267,10 +267,10 @@ setrecipequantity(e.target.value)
             <ul className="sub-menu" >
               {showProducts && (
                 <div id="product-dash">
-                  <a href="#"  >Upload File</a>
-                  <a href="#">Item designing</a>
-                  <a href="#">Item Profile</a>
-                  <a href="#">Receipe Profile</a>
+                  <a  href="#">Upload File</a>
+                  <a  href="#">Item designing</a>
+                  <a  href="#">Item Profile</a>
+                  <a  href="#">Receipe Profile</a>
                   <a id={showrecipeform?'active':''} href="#" onClick={handelrecipeform}>
                   Receipe Designing
                   </a>
@@ -296,9 +296,9 @@ setrecipequantity(e.target.value)
               {showOperations && (
                 <div id="product-dash">
                   {/* <a href="#">Batch Manager</a> */}
-                  <a href="#">Purchase Order</a>
-                  <a href="#">Forward & Losses</a>
-                  <a href="#" onClick={handelinventoryForm}>
+                  <a  href="#">Purchase Order</a>
+                  <a  href="#">Forward & Losses</a>
+                  <a id={ShowinventoryForm?'active':''} href="#" onClick={handelinventoryForm}>
                   Purchase Log
                   </a>
                 </div>
@@ -326,8 +326,8 @@ setrecipequantity(e.target.value)
                   {/* <a href="#" onClick={handelblogwriting}>
                     Blog Writing
                   </a> */}
-                  <a href="#">Daily Revenue Records</a>
-                  <a href="#">Sale Plan</a>
+                  <a  href="#">Daily Revenue Records</a>
+                  <a  href="#">Sale Plan</a>
                   {/* <a href="#">Receipe Refining</a> */}
                  
                 </div>
@@ -350,16 +350,16 @@ setrecipequantity(e.target.value)
             <ul className="sub-menu">
               {showFinance && (
                 <div id="product-dash">
-                  <a href="#">MRP Calculator</a>
-                  <a href="#">Glance</a>
-                  <a href="#">Budget</a>
+                  <a  href="#">MRP Calculator</a>
+                  <a  href="#">Glance</a>
+                  <a  href="#">Budget</a>
                 </div>
               )}
             </ul>
           </li>
           <li>
-            <div className="iocn-link">
-              <a href="#">
+            <div className="iocn-link" id={showProfile?'active':''} >
+              <a href="#"  >
                 {/* <img src="https://img.icons8.com/sf-black/64/null/deposit.png"/> */}
                 <span  onClick={handleProfileForm} className="link_name">Profile</span>
               </a>
