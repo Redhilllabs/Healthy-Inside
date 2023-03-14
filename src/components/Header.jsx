@@ -98,11 +98,15 @@ const Header = () => {
   return (
     <div id="header_container">
       <section id="header">
+      {admin? (
+        <Link to="/" id="header_logo"><h1>Urvi</h1></Link>
+          
+        ) : (
         <Link to="/" id="header_logo">
           <h1>HEALTHY</h1>
           <img src={logo} class="logo" alt="logo" />
           <h1>INSIDE</h1>
-        </Link>
+        </Link>)}
 
         <div id="navbar_container">
           <ul id="navbar">
