@@ -97,6 +97,10 @@
     display: block;
 }
 
+#active{
+  background-color: white;
+  color: green;
+}
 .dashboard_sidebar .nav-links li a{
   display: flex;
   align-items: center;

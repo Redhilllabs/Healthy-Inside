@@ -188,8 +188,8 @@ const Dashboard = () => {
 
   const [ingredient, setIngredient] = useState({
     ingredient_name: '',
-    quantity: '',
-    unit: '',
+    quantity: '1',
+    unit: 'gram',
   });
   const [ingredientsList, setIngredientsList] = useState([]);
 
@@ -255,7 +255,7 @@ const Dashboard = () => {
                   <a href="#">Item designing</a>
                   <a href="#">Item Profile</a>
                   <a href="#">Receipe Profile</a>
-                  <a href="#" onClick={handelrecipeform}>
+                  <a id={showrecipeform?'active':''} href="#" onClick={handelrecipeform}>
                   Receipe Designing
                   </a>
                 </div>
@@ -356,7 +356,7 @@ const Dashboard = () => {
       <div className="main_dashbord">
         {showrecipeform && (
           <div className="formcontains">
-            <h1>Receipe Designing</h1>
+            {/* <h1>Receipe Designing</h1> */}
             <div className="recipeform_buttons_options">
             <button onClick={() => setIngredientProfile(!ingredientProfile)}>
         Ingredient Profile
@@ -378,7 +378,6 @@ const Dashboard = () => {
             {ingredientProfile?<form
               class="form"
               id="recipe-designing"
-              
             >
               <div >
                 <label for="Receipe Name">Receipe Name</label>
