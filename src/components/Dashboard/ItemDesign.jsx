@@ -302,17 +302,17 @@ const ItemDesignForm = () => {
                       </select>
                     </div>
 
-                    <div id="recipequantity">
+                    {/* <div id="recipequantity">
                       <label htmlFor="quantity">Used</label>
                       <input
                         type="number"
                         value={recipequantity}
                         onChange={handleRecipequantityChange}
                       />
-                    </div>
+                    </div> */}
 
-                    <div>
-                      <label htmlFor="Unit">Unit</label>
+                    <div id="recipequantity">
+                      <label htmlFor="Unit">Unit </label>
                       <select
                         name="unitRD"
                         id="unitRD"
@@ -344,7 +344,7 @@ const ItemDesignForm = () => {
             <table className="recipe_table">
               <thead>
                 <tr>
-                  <th>Recipe Name</th>
+                  <th>Item Name</th>
                   <th>Ingredients</th>
                   {/* <th>Procedure</th> */}
                 </tr>
@@ -358,7 +358,7 @@ const ItemDesignForm = () => {
                         {ingredientsList.map((service, index) => (
                           <tr key={index}>
                             <td>{service.ingredient_name}</td>
-                            <td>{service.quantity}</td>
+                            {/* <td>{service.quantity}</td> */}
                             <td>{service.unit}</td>
                           </tr>
                         ))}
