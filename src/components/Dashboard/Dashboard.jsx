@@ -745,6 +745,14 @@ const Dashboard = () => {
                   onChange={handleRecordForwardLossesDateChange}
                 />
               </div>
+              <div className="option_container">
+                <label>Item Name:</label>
+                <input
+                  type="text"
+                  value={RecordForwardLossesitemName}
+                  onChange={handleRecordForwardLossesItemNameChange}
+                />
+              </div>
 
               <div className="option_container">
                 <label>Units:</label>
@@ -778,14 +786,7 @@ const Dashboard = () => {
                   onChange={handleRecordForwardLossesSpecificationChange}
                 />
               </div>
-              <div className="option_container">
-                <label>Item Name:</label>
-                <input
-                  type="text"
-                  value={RecordForwardLossesitemName}
-                  onChange={handleRecordForwardLossesItemNameChange}
-                />
-              </div>
+              
               <div class="button-container">
                 <div
                   onClick={handleRecordForwardLossesSubmit}
