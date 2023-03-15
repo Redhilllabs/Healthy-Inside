@@ -134,7 +134,6 @@ const Dashboard = () => {
     setShowinventoryForm(!ShowinventoryForm);
     setrecipeform(false);
     setshowblogwriting(false);
-    // setShowTable(false);
     setShowProfile(false);
     setShowBlogTable(false);
     setSalesPlanForm(false);
@@ -148,6 +147,7 @@ const Dashboard = () => {
   const [PackingPlanner, setPackingPlanner] = useState(false);
   const handelPackingPlanner = () => {
     setrecipeform(false);
+    setShowinventoryForm(false)
     setshowblogwriting(false);
     setShowProfile(false);
     setShowBlogTable(false);
@@ -197,6 +197,8 @@ const Dashboard = () => {
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    setShowRecordForwardLossesForm(false);
+    setShowinventoryForm(false);
     // setsalesForecast
   };
   const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
@@ -222,6 +224,7 @@ const Dashboard = () => {
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
     setShowinventoryForm(false);
+    setdailysalesmatricsform(false)
   };
 
   const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState("");
@@ -313,18 +316,27 @@ const Dashboard = () => {
     setShowInventoryTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    setPackingPlanner(false);
+    setViewSalesPlanform(false);
+    setdailysalesmatricsform(false);
+    setPackingPlanner(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
   };
   const handleProfileForm = () => {
     setShowProfile(!showProfile);
-    setShowPurchaseOrderForm(false);
-    setShowRecordForwardLossesForm(false);
     setShowinventoryForm(false);
-    setrecipeform(false);
     setshowblogwriting(false);
     setShowBlogTable(false);
     setShowInventoryTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    setPackingPlanner(false);
+    setViewSalesPlanform(false);
+    setdailysalesmatricsform(false);
+    setPackingPlanner(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
   };
 
   const handleProducts = () => {
