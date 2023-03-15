@@ -46,9 +46,10 @@ const Dashboard = () => {
   const [profile, setProfile] = useState("");
   const [showBlogTable, setShowBlogTable] = useState(false);
   const [files, setFiles] = useState(null);
-
+  const [ShowPurchaseOrderForm, setShowPurchaseOrderForm] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [recipeformprocedure, setrecipeformprocedure] = useState(false);
-
   const [recipeformMiniBlog, setrecipeformMiniBlog] = useState(false);
   const [labels, setLabels] = useState(false);
   const [SalesPlanForm, setSalesPlanForm] = useState(false);
@@ -57,6 +58,24 @@ const Dashboard = () => {
   const [salesForecast, setsalesForecast] = useState("1");
   const [salesplandate, setsalesplandate] = useState("2023-03-16");
   const [DaysPlan, setDaysPlan] = useState(false);
+  const [PackingPlanner, setPackingPlanner] = useState(false);
+  const [ViewSalesPlanform, setViewSalesPlanform] = useState(false);
+  const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState("");
+  const [ViewSalesPlanendDate, setViewSalesPlanEndDate] = useState("");
+  const [ViewSalesPlanstable, setViewSalesPlanstable] = useState(false);
+  const [dailysalesmatricsform, setdailysalesmatricsform] = useState(false);
+  const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
+  const [showdailysalesmatricstable, setshowdailysalesmatricstable] =useState(false);
+  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] = useState(false);
+  const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState("");
+  const [RecordForwardLossesitemName, setRecordForwardLossesItemName] =useState("");
+  const [RecordForwardLossesspecification,setRecordForwardLossesSpecification] = useState("");
+  const [RecordForwardLossesquantity, setRecordForwardLossesQuantity] =useState("");
+  const [RecordForwardLossesunits, setRecordForwardLossesUnits] = useState("");
+  const [RecordForwardLossesestimatedValue,setRecordForwardLossesEstimatedValue] = useState("");
+  const [showRecordForwardLossestable, setshowRecordForwardLossestable] = useState(false);
+  const [plannerList, setplannerList] = useState([]);
+  const [ShowViewPurchaseOrderTable, setShowViewPurchaseOrderTable] = useState(false);
 
   const handlesaleplanItemnameChange = (e) => {
     setsaleplanItemname(e.target.value);
@@ -68,17 +87,6 @@ const Dashboard = () => {
     setsalesplandate(e.target.value);
   };
 
-  const handleSalesPlanForm = () => {
-    setSalesPlanForm(!SalesPlanForm);
-    setShowinventoryForm(false);
-    setdailysalesmatricsform(false);
-    setrecipeform(false);
-    setViewSalesPlanform(false);
-    setPackingPlanner(false);
-    setShowProfile(false);
-    setShowInventoryTable(false);
-    setShowBlogTable(false);
-  };
   const handleFileChange = (event) => {
     setFiles(event.target.files);
   };
@@ -130,53 +138,7 @@ const Dashboard = () => {
     setShowProfile(false);
     setShowInventoryTable(false);
   };
-  const handelinventoryForm = () => {
-    setShowinventoryForm(!ShowinventoryForm);
-    setrecipeform(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setViewSalesPlanform(false);
-    setdailysalesmatricsform(false);
-    setShowRecordForwardLossesForm(false);
-    setShowPurchaseOrderForm(false);
-  };
-
-  const [PackingPlanner, setPackingPlanner] = useState(false);
-  const handelPackingPlanner = () => {
-    setrecipeform(false);
-    setShowinventoryForm(false)
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setViewSalesPlanform(false);
-    setdailysalesmatricsform(false);
-    setShowRecordForwardLossesForm(false);
-    setShowPurchaseOrderForm(false);
-    setPackingPlanner(!PackingPlanner);
-  };
-  const [ViewSalesPlanform, setViewSalesPlanform] = useState(false);
-  const handelViewSalesPlanform = () => {
-    setrecipeform(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setViewSalesPlanform(false);
-    setdailysalesmatricsform(false);
-    setPackingPlanner(false);
-    setShowRecordForwardLossesForm(false);
-    setShowPurchaseOrderForm(false);
-    setViewSalesPlanform(!ViewSalesPlanform);
-  };
-  const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState("");
-  const [ViewSalesPlanendDate, setViewSalesPlanEndDate] = useState("");
-
+  
   const handleViewSalesPlanStartDateChange = (event) => {
     setViewSalesPlanStartDate(event.target.value);
   };
@@ -184,63 +146,15 @@ const Dashboard = () => {
   const handleViewSalesPlanEndDateChange = (event) => {
     setViewSalesPlanEndDate(event.target.value);
   };
-  const [ViewSalesPlanstable, setViewSalesPlanstable] = useState(false);
+ 
   const handleViewSalesPlansubmit = () => {};
 
-  const [dailysalesmatricsform, setdailysalesmatricsform] = useState(false);
 
-  const handeldailysalesmatricsform = () => {
-    setdailysalesmatricsform(!dailysalesmatricsform);
-    setrecipeform(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setShowRecordForwardLossesForm(false);
-    setShowinventoryForm(false);
-    // setsalesForecast
-  };
-  const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
   const handledailysalesmatricsDateChange = (event) => {
     setdailysalesmatricsdate(event.target.value);
   };
 
-  const [showdailysalesmatricstable, setshowdailysalesmatricstable] =
-    useState(false);
-  const handledailysalesmatricssubmit = () => {
-    setshowdailysalesmatricstable(true);
-  };
-
-  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] =
-    useState(false);
-  const handelRecordForwardLossesForm = () => {
-    setShowRecordForwardLossesForm(!ShowRecordForwardLossesForm);
-    setShowPurchaseOrderForm(false);
-    setrecipeform(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setShowinventoryForm(false);
-    setdailysalesmatricsform(false)
-  };
-
-  const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState("");
-  const [RecordForwardLossesitemName, setRecordForwardLossesItemName] =
-    useState("");
-  const [
-    RecordForwardLossesspecification,
-    setRecordForwardLossesSpecification,
-  ] = useState("");
-  const [RecordForwardLossesquantity, setRecordForwardLossesQuantity] =
-    useState("");
-  const [RecordForwardLossesunits, setRecordForwardLossesUnits] = useState("");
-  const [
-    RecordForwardLossesestimatedValue,
-    setRecordForwardLossesEstimatedValue,
-  ] = useState("");
+  const handledailysalesmatricssubmit = () => {setshowdailysalesmatricstable(true)};
 
   const handleRecordForwardLossesDateChange = (event) => {
     setRecordForwardLossesDate(event.target.value);
@@ -266,31 +180,13 @@ const Dashboard = () => {
     setRecordForwardLossesEstimatedValue(event.target.value);
   };
 
-  const [showRecordForwardLossestable, setshowRecordForwardLossestable] =
-    useState(false);
+
 
   const handleRecordForwardLossesSubmit = (event) => {
     event.preventDefault();
     setshowRecordForwardLossestable(true);
     // do something with the form data
   };
-
-  const [ShowPurchaseOrderForm, setShowPurchaseOrderForm] = useState(false);
-
-  const handelPurchseOrderForm = () => {
-    setShowPurchaseOrderForm(!ShowPurchaseOrderForm);
-    setShowRecordForwardLossesForm(false);
-    setrecipeform(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setShowinventoryForm(false);
-  };
-
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -300,43 +196,153 @@ const Dashboard = () => {
     setEndDate(event.target.value);
   };
 
-  const [ShowViewPurchaseOrderTable, setShowViewPurchaseOrderTable] =
-    useState(false);
   const handleViewPurchaseOrder = () => {
     setShowViewPurchaseOrderTable(true);
+  };
+
+  const handelinventoryForm = () => {
+    setShowinventoryForm(!ShowinventoryForm);
+    
+    setrecipeform(false);
+    setdailysalesmatricsform(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
+    setSalesPlanForm(false);
+    setViewSalesPlanform(false);
+    setPackingPlanner(false);
+    setShowProfile(false);
+
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    
+    
+  };
+
+  const handelPackingPlanner = () => {
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setdailysalesmatricsform(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
+    setSalesPlanForm(false);
+    setViewSalesPlanform(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(!PackingPlanner);
+  };
+
+  const handeldailysalesmatricsform = () => {
+    setdailysalesmatricsform(!dailysalesmatricsform);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
+    setSalesPlanForm(false);
+    setViewSalesPlanform(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
+  };
+  const handelPurchseOrderForm = () => {
+    setShowPurchaseOrderForm(!ShowPurchaseOrderForm);
+    setdailysalesmatricsform(false);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setShowRecordForwardLossesForm(false);
+    setSalesPlanForm(false);
+    setViewSalesPlanform(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
+  };
+  const handleSalesPlanForm = () => {
+    setSalesPlanForm(!SalesPlanForm);
+    setShowPurchaseOrderForm(false);
+    setdailysalesmatricsform(false);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setShowRecordForwardLossesForm(false);
+    
+    setViewSalesPlanform(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
+  };
+  const handelRecordForwardLossesForm = () => {
+    setShowRecordForwardLossesForm(!ShowRecordForwardLossesForm);
+    setSalesPlanForm(false);
+    setShowPurchaseOrderForm(false);
+    setdailysalesmatricsform(false);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setViewSalesPlanform(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
+  };
+   const handelViewSalesPlanform = () => {
+    setViewSalesPlanform(!ViewSalesPlanform);
+    setShowRecordForwardLossesForm(false);
+    setSalesPlanForm(false);
+    setShowPurchaseOrderForm(false);
+    setdailysalesmatricsform(false);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
   };
 
   const handelrecipeform = () => {
     setrecipeform(true);
     setShowProducts(true);
-    setShowinventoryForm(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setShowInventoryTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setPackingPlanner(false);
     setViewSalesPlanform(false);
-    setdailysalesmatricsform(false);
-    setPackingPlanner(false);
     setShowRecordForwardLossesForm(false);
+    setSalesPlanForm(false);
     setShowPurchaseOrderForm(false);
+    setdailysalesmatricsform(false);
+    setShowinventoryForm(false);
+    setShowProfile(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
   };
   const handleProfileForm = () => {
     setShowProfile(!showProfile);
-    setShowinventoryForm(false);
-    setshowblogwriting(false);
-    setShowBlogTable(false);
-    setShowInventoryTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setPackingPlanner(false);
     setViewSalesPlanform(false);
-    setdailysalesmatricsform(false);
-    setPackingPlanner(false);
     setShowRecordForwardLossesForm(false);
+    setSalesPlanForm(false);
     setShowPurchaseOrderForm(false);
+    setdailysalesmatricsform(false);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+    setPackingPlanner(false);
   };
 
   const handleProducts = () => {
@@ -355,7 +361,8 @@ const Dashboard = () => {
     setShowFinance(!showFinance);
   };
 
-  const [plannerList, setplannerList] = useState([]);
+
+
   const handeladdtoplanner = () => {
     const newplaner = {
       iTem_name: saleplanItemname,
@@ -370,25 +377,15 @@ const Dashboard = () => {
     setsalesForecast("1");
     setsalesplandate("2023-03-16");
   };
-  const handleRemoveItem = (index) => {
-    const List = [...serviceList];
-    List.splice(index, 1);
-    setserviceList(List);
-  };
 
-  const handelServiceChange = (e, rname) => {
-    const { value } = e.target;
-    const List = [...serviceList];
-    List[rname] = value;
-    setserviceList(List);
-  };
+
+
 
   const handleInventorySubmitForm = () => {
     setShowInventoryTable(true);
   };
 
   const navigate = useNavigate();
-
   const logout = () => {
     localStorage.clear();
     dispatch({
@@ -409,7 +406,7 @@ const Dashboard = () => {
         <ul className="nav-links">
           <li>
             <div className="iocn-link" onClick={() => handleProducts()}>
-              <a href="#">
+              <a >
                 {/* <img  src="https://img.icons8.com/material-outlined/24/null/shipping-product.png"/> */}
                 <span className="link_name">Product & Research</span>
               </a>
@@ -425,10 +422,10 @@ const Dashboard = () => {
             <ul className="sub-menu">
               {showProducts && (
                 <div id="product-dash">
-                  <a href="#">Upload File</a>
-                  <a href="#">Item designing</a>
-                  <a href="#">Item Profile</a>
-                  <a href="#">Receipe Profile</a>
+                  <a >Upload File</a>
+                  <a >Item designing</a>
+                  <a >Item Profile</a>
+                  <a >Receipe Profile</a>
                   <a
                     id={showrecipeform ? "active" : ""}
                     href="#"
@@ -443,7 +440,7 @@ const Dashboard = () => {
 
           <li>
             <div className="iocn-link" onClick={() => handleOperations()}>
-              <a href="#">
+              <a >
                 {/* <img src="https://img.icons8.com/external-parzival-1997-detailed-outline-parzival-1997/64/null/external-operation-digital-transformation-parzival-1997-detailed-outline-parzival-1997.png"/> */}
                 <span className="link_name">Operations & Supply Chain</span>
               </a>
@@ -461,7 +458,7 @@ const Dashboard = () => {
                 <div id="product-dash">
                   {/* <a href="#">Batch Manager</a> */}
                   <a
-                    href="#"
+                    
                     id={ShowPurchaseOrderForm ? "active" : ""}
                     onClick={handelPurchseOrderForm}
                   >
@@ -469,7 +466,7 @@ const Dashboard = () => {
                     View Purchase Order
                   </a>
                   <a
-                    href="#"
+                    
                     id={ShowRecordForwardLossesForm ? "active" : ""}
                     onClick={handelRecordForwardLossesForm}
                   >
@@ -478,7 +475,7 @@ const Dashboard = () => {
                   </a>
                   <a
                     id={ShowinventoryForm ? "active" : ""}
-                    href="#"
+                    
                     onClick={handelinventoryForm}
                   >
                     Purchase Log Entry
@@ -490,7 +487,7 @@ const Dashboard = () => {
 
           <li>
             <div className="iocn-link" onClick={() => handleMarketing()}>
-              <a href="#">
+              <a >
                 {/* <img  src="https://img.icons8.com/windows/32/null/add-pie-chart-report.png"/> */}
                 <span className="link_name"> Business & Branding</span>
               </a>
@@ -510,7 +507,7 @@ const Dashboard = () => {
                     Blog Writing
                   </a> */}
                   <a
-                    href="#"
+                    
                     id={dailysalesmatricsform ? "active" : ""}
                     onClick={handeldailysalesmatricsform}
                   >
@@ -519,19 +516,19 @@ const Dashboard = () => {
                   <a
                     id={SalesPlanForm ? "active" : ""}
                     onClick={handleSalesPlanForm}
-                    href="#"
+                    
                   >
                     Sale Forecast Planner
                   </a>
                   <a
-                    href="#"
+                    
                     id={ViewSalesPlanform ? "active" : ""}
                     onClick={handelViewSalesPlanform}
                   >
                     View Sales Plan
                   </a>
                   <a
-                    href="#"
+                    
                     id={PackingPlanner ? "active" : ""}
                     onClick={handelPackingPlanner}
                   >
@@ -544,7 +541,7 @@ const Dashboard = () => {
 
           <li>
             <div className="iocn-link" onClick={() => handleFinance()}>
-              <a href="#">
+              <a >
                 <span className="link_name">Finance & Metrics </span>
               </a>
               {showFinance ? (
@@ -559,16 +556,16 @@ const Dashboard = () => {
             <ul className="sub-menu">
               {showFinance && (
                 <div id="product-dash">
-                  <a href="#">MRP Calculator</a>
-                  <a href="#">Glance</a>
-                  <a href="#">Budget</a>
+                  <a >MRP Calculator</a>
+                  <a >Glance</a>
+                  <a >Budget</a>
                 </div>
               )}
             </ul>
           </li>
           <li>
             <div className="iocn-link" id={showProfile ? "active" : ""}>
-              <a href="#">
+              <a >
                 {/* <img src="https://img.icons8.com/sf-black/64/null/deposit.png"/> */}
                 <span onClick={handleProfileForm} className="link_name">
                   Profile
@@ -688,7 +685,7 @@ const Dashboard = () => {
                   type="submit"
                   name="submit"
                 >
-                  Submit
+                  View Sales plan
                 </div>
               </div>
             </form>
@@ -732,7 +729,7 @@ const Dashboard = () => {
                   type="submit"
                   name="submit"
                 >
-                  Submit
+                  View Purchase Order
                 </div>
               </div>
             </form>
@@ -759,11 +756,21 @@ const Dashboard = () => {
               </div>
               <div className="option_container">
                 <label>Item Name:</label>
-                <input
-                  type="text"
-                  value={RecordForwardLossesitemName}
-                  onChange={handleRecordForwardLossesItemNameChange}
-                />
+                <select
+    value={RecordForwardLossesitemName}
+    onChange={handleRecordForwardLossesItemNameChange}
+  >
+    <option value="">Select an item</option>
+    <option value="Brown Rice Idli">Brown Rice Idli</option>
+    <option value="Jau Pulao">Jau Pulao</option>
+    <option value="Minty Appe">Minty Appe</option>
+    <option value="Palak Meethi Cutlets">Palak Meethi Cutlets</option>
+    <option value="Ragi Chila">Ragi Chila</option>
+    <option value="Ragi Dosa">Ragi Dosa</option>
+    <option value="Ramas Dal Moth">Ramas Dal Moth</option>
+    <option value="Roti Tacos">Roti Tacos</option>
+    <option value="Tofu Parantha">Tofu Parantha</option>
+  </select>
               </div>
 
               <div className="option_container">
