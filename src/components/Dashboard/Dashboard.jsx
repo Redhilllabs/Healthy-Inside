@@ -3,7 +3,7 @@ import "./dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import RecipeForm from './RecipeForm';
+import RecipeForm from "./RecipeForm";
 const Dashboard = () => {
   const [{ user, admin }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
@@ -26,9 +26,9 @@ const Dashboard = () => {
     { unit: "gram", quantity: "1", ingredient_name: "Asafoetida (हींग/Heeng)" },
   ]);
   const [description, setDescription] = useState(false);
- 
+
   const [procedure, setProcedure] = useState("");
- 
+
   const [showProfile, setShowProfile] = useState(false);
   const [ingredient_name, setingredient_name] = useState("");
   const [date, setDate] = useState("");
@@ -46,9 +46,9 @@ const Dashboard = () => {
   const [profile, setProfile] = useState("");
   const [showBlogTable, setShowBlogTable] = useState(false);
   const [files, setFiles] = useState(null);
- 
+
   const [recipeformprocedure, setrecipeformprocedure] = useState(false);
-  
+
   const [recipeformMiniBlog, setrecipeformMiniBlog] = useState(false);
   const [labels, setLabels] = useState(false);
   const [SalesPlanForm, setSalesPlanForm] = useState(false);
@@ -139,45 +139,43 @@ const Dashboard = () => {
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
-    setViewSalesPlanform(false)
-    setdailysalesmatricsform(false)
-    setShowRecordForwardLossesForm(false)
-    setShowPurchaseOrderForm(false)
+    setViewSalesPlanform(false);
+    setdailysalesmatricsform(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
   };
 
-
-  const [PackingPlanner,setPackingPlanner] = useState(false);
- const handelPackingPlanner =()=>{
-  setrecipeform(false);
+  const [PackingPlanner, setPackingPlanner] = useState(false);
+  const handelPackingPlanner = () => {
+    setrecipeform(false);
     setshowblogwriting(false);
     setShowProfile(false);
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
-    setViewSalesPlanform(false)
-    setdailysalesmatricsform(false)
-    setShowRecordForwardLossesForm(false)
-    setShowPurchaseOrderForm(false)
-  setPackingPlanner(!PackingPlanner)
-
- }
-const [ViewSalesPlanform,setViewSalesPlanform] = useState(false)
-const handelViewSalesPlanform = ()=>{
-  setrecipeform(false);
+    setViewSalesPlanform(false);
+    setdailysalesmatricsform(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
+    setPackingPlanner(!PackingPlanner);
+  };
+  const [ViewSalesPlanform, setViewSalesPlanform] = useState(false);
+  const handelViewSalesPlanform = () => {
+    setrecipeform(false);
     setshowblogwriting(false);
     setShowProfile(false);
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
-    setViewSalesPlanform(false)
-    setdailysalesmatricsform(false)
+    setViewSalesPlanform(false);
+    setdailysalesmatricsform(false);
     setPackingPlanner(false);
-    setShowRecordForwardLossesForm(false)
-    setShowPurchaseOrderForm(false)
-  setViewSalesPlanform(!ViewSalesPlanform)
-}
-const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState('');
-  const [ViewSalesPlanendDate, setViewSalesPlanEndDate] = useState('');
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
+    setViewSalesPlanform(!ViewSalesPlanform);
+  };
+  const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState("");
+  const [ViewSalesPlanendDate, setViewSalesPlanEndDate] = useState("");
 
   const handleViewSalesPlanStartDateChange = (event) => {
     setViewSalesPlanStartDate(event.target.value);
@@ -187,90 +185,36 @@ const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState('');
     setViewSalesPlanEndDate(event.target.value);
   };
   const [ViewSalesPlanstable, setViewSalesPlanstable] = useState(false);
-  const handleViewSalesPlansubmit = ()=>{
+  const handleViewSalesPlansubmit = () => {};
 
-  }
+  const [dailysalesmatricsform, setdailysalesmatricsform] = useState(false);
 
-const [dailysalesmatricsform,setdailysalesmatricsform] = useState(false);
-
-const handeldailysalesmatricsform = ()=>{
-  setdailysalesmatricsform(!dailysalesmatricsform);
-  setrecipeform(false);
+  const handeldailysalesmatricsform = () => {
+    setdailysalesmatricsform(!dailysalesmatricsform);
+    setrecipeform(false);
     setshowblogwriting(false);
     setShowProfile(false);
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
     // setsalesForecast
-}
-const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState('');
-const handledailysalesmatricsDateChange =(event)=>{
-  setdailysalesmatricsdate(event.target.value)
-}
+  };
+  const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
+  const handledailysalesmatricsDateChange = (event) => {
+    setdailysalesmatricsdate(event.target.value);
+  };
 
-const [showdailysalesmatricstable, setshowdailysalesmatricstable] = useState(false);
-const handledailysalesmatricssubmit = ()=>{
-  setshowdailysalesmatricstable(true)
-}
+  const [showdailysalesmatricstable, setshowdailysalesmatricstable] =
+    useState(false);
+  const handledailysalesmatricssubmit = () => {
+    setshowdailysalesmatricstable(true);
+  };
 
-const [ShowRecordForwardLossesForm,setShowRecordForwardLossesForm] = useState(false)
-const handelRecordForwardLossesForm = ()=>{
-  setShowRecordForwardLossesForm(!ShowRecordForwardLossesForm);
-  setShowPurchaseOrderForm(false)
-  setrecipeform(false);
-    setshowblogwriting(false);
-    setShowProfile(false);
-    setShowBlogTable(false);
-    setSalesPlanForm(false);
-    setshowSalesPlanTable(false);
-    setShowinventoryForm(false);
-}
-
-const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState('');
-const [RecordForwardLossesitemName, setRecordForwardLossesItemName] = useState('');
-const [RecordForwardLossesspecification, setRecordForwardLossesSpecification] = useState('');
-const [RecordForwardLossesquantity, setRecordForwardLossesQuantity] = useState('');
-const [RecordForwardLossesunits, setRecordForwardLossesUnits] = useState('');
-const [RecordForwardLossesestimatedValue, setRecordForwardLossesEstimatedValue] = useState('');
-
-const handleRecordForwardLossesDateChange = (event) => {
-  setRecordForwardLossesDate(event.target.value);
-};
-
-const handleRecordForwardLossesItemNameChange = (event) => {
-  setRecordForwardLossesItemName(event.target.value);
-};
-
-const handleRecordForwardLossesSpecificationChange = (event) => {
-  setRecordForwardLossesSpecification(event.target.value);
-};
-
-const handleRecordForwardLossesQuantityChange = (event) => {
-  setRecordForwardLossesQuantity(event.target.value);
-};
-
-const handleRecordForwardLossesUnitsChange = (event) => {
-  setRecordForwardLossesUnits(event.target.value);
-};
-
-const handleRecordForwardLossesEstimatedValueChange = (event) => {
-  setRecordForwardLossesEstimatedValue(event.target.value);
-};
-
-const [showRecordForwardLossestable,setshowRecordForwardLossestable] = useState(false);
-
-const handleRecordForwardLossesSubmit = (event) => {
-  event.preventDefault();
-  setshowRecordForwardLossestable(true)
-  // do something with the form data
-};
-
-
-  const [ShowPurchaseOrderForm,setShowPurchaseOrderForm] = useState(false)
-
-  const handelPurchseOrderForm = () =>{
-    setShowPurchaseOrderForm(!ShowPurchaseOrderForm)
-    setShowRecordForwardLossesForm(false)
+  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] =
+    useState(false);
+  const handelRecordForwardLossesForm = () => {
+    setShowRecordForwardLossesForm(!ShowRecordForwardLossesForm);
+    setShowPurchaseOrderForm(false);
     setrecipeform(false);
     setshowblogwriting(false);
     setShowProfile(false);
@@ -278,10 +222,72 @@ const handleRecordForwardLossesSubmit = (event) => {
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
     setShowinventoryForm(false);
-  }
+  };
 
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState("");
+  const [RecordForwardLossesitemName, setRecordForwardLossesItemName] =
+    useState("");
+  const [
+    RecordForwardLossesspecification,
+    setRecordForwardLossesSpecification,
+  ] = useState("");
+  const [RecordForwardLossesquantity, setRecordForwardLossesQuantity] =
+    useState("");
+  const [RecordForwardLossesunits, setRecordForwardLossesUnits] = useState("");
+  const [
+    RecordForwardLossesestimatedValue,
+    setRecordForwardLossesEstimatedValue,
+  ] = useState("");
+
+  const handleRecordForwardLossesDateChange = (event) => {
+    setRecordForwardLossesDate(event.target.value);
+  };
+
+  const handleRecordForwardLossesItemNameChange = (event) => {
+    setRecordForwardLossesItemName(event.target.value);
+  };
+
+  const handleRecordForwardLossesSpecificationChange = (event) => {
+    setRecordForwardLossesSpecification(event.target.value);
+  };
+
+  const handleRecordForwardLossesQuantityChange = (event) => {
+    setRecordForwardLossesQuantity(event.target.value);
+  };
+
+  const handleRecordForwardLossesUnitsChange = (event) => {
+    setRecordForwardLossesUnits(event.target.value);
+  };
+
+  const handleRecordForwardLossesEstimatedValueChange = (event) => {
+    setRecordForwardLossesEstimatedValue(event.target.value);
+  };
+
+  const [showRecordForwardLossestable, setshowRecordForwardLossestable] =
+    useState(false);
+
+  const handleRecordForwardLossesSubmit = (event) => {
+    event.preventDefault();
+    setshowRecordForwardLossestable(true);
+    // do something with the form data
+  };
+
+  const [ShowPurchaseOrderForm, setShowPurchaseOrderForm] = useState(false);
+
+  const handelPurchseOrderForm = () => {
+    setShowPurchaseOrderForm(!ShowPurchaseOrderForm);
+    setShowRecordForwardLossesForm(false);
+    setrecipeform(false);
+    setshowblogwriting(false);
+    setShowProfile(false);
+    setShowBlogTable(false);
+    setSalesPlanForm(false);
+    setshowSalesPlanTable(false);
+    setShowinventoryForm(false);
+  };
+
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -291,7 +297,8 @@ const handleRecordForwardLossesSubmit = (event) => {
     setEndDate(event.target.value);
   };
 
-const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(false)
+  const [ShowViewPurchaseOrderTable, setShowViewPurchaseOrderTable] =
+    useState(false);
   const handleViewPurchaseOrder = () => {
     setShowViewPurchaseOrderTable(true);
   };
@@ -309,8 +316,8 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
   };
   const handleProfileForm = () => {
     setShowProfile(!showProfile);
-    setShowPurchaseOrderForm(false)
-    setShowRecordForwardLossesForm(false)
+    setShowPurchaseOrderForm(false);
+    setShowRecordForwardLossesForm(false);
     setShowinventoryForm(false);
     setrecipeform(false);
     setshowblogwriting(false);
@@ -336,9 +343,6 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
     setShowFinance(!showFinance);
   };
 
-
-
-
   const [plannerList, setplannerList] = useState([]);
   const handeladdtoplanner = () => {
     const newplaner = {
@@ -359,8 +363,6 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
     List.splice(index, 1);
     setserviceList(List);
   };
-
-
 
   const handelServiceChange = (e, rname) => {
     const { value } = e.target;
@@ -412,7 +414,7 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               {showProducts && (
                 <div id="product-dash">
                   <a href="#">Upload File</a>
-                  <a href="#"  >Item designing</a>
+                  <a href="#">Item designing</a>
                   <a href="#">Item Profile</a>
                   <a href="#">Receipe Profile</a>
                   <a
@@ -446,9 +448,25 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               {showOperations && (
                 <div id="product-dash">
                   {/* <a href="#">Batch Manager</a> */}
-                  <a href="#" id={ShowPurchaseOrderForm ? "active" : ""} onClick={handelPurchseOrderForm} > View Purchase Order</a>
-                  <a href="#" id={ShowRecordForwardLossesForm ? "active" : ""} onClick={handelRecordForwardLossesForm}   > Record Forward & Losses</a>
-                  <a id={ShowinventoryForm ? "active" : ""} href="#"
+                  <a
+                    href="#"
+                    id={ShowPurchaseOrderForm ? "active" : ""}
+                    onClick={handelPurchseOrderForm}
+                  >
+                    {" "}
+                    View Purchase Order
+                  </a>
+                  <a
+                    href="#"
+                    id={ShowRecordForwardLossesForm ? "active" : ""}
+                    onClick={handelRecordForwardLossesForm}
+                  >
+                    {" "}
+                    Record Forward & Losses
+                  </a>
+                  <a
+                    id={ShowinventoryForm ? "active" : ""}
+                    href="#"
                     onClick={handelinventoryForm}
                   >
                     Purchase Log Entry
@@ -479,8 +497,13 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
                   {/* <a href="#" onClick={handelblogwriting}>
                     Blog Writing
                   </a> */}
-                  <a href="#" id={dailysalesmatricsform ? "active" : ""}
-      onClick={handeldailysalesmatricsform}>Daily Sales Matrics</a>
+                  <a
+                    href="#"
+                    id={dailysalesmatricsform ? "active" : ""}
+                    onClick={handeldailysalesmatricsform}
+                  >
+                    Daily Sales Matrics
+                  </a>
                   <a
                     id={SalesPlanForm ? "active" : ""}
                     onClick={handleSalesPlanForm}
@@ -488,10 +511,20 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
                   >
                     Sale Forecast Planner
                   </a>
-                  <a href="#" id={ViewSalesPlanform ? "active" : ""}
-      onClick={handelViewSalesPlanform }>View Sales Plan</a>
-                  <a href="#" id={PackingPlanner ? "active" : ""}
-      onClick={handelPackingPlanner } >Packaging planner</a>
+                  <a
+                    href="#"
+                    id={ViewSalesPlanform ? "active" : ""}
+                    onClick={handelViewSalesPlanform}
+                  >
+                    View Sales Plan
+                  </a>
+                  <a
+                    href="#"
+                    id={PackingPlanner ? "active" : ""}
+                    onClick={handelPackingPlanner}
+                  >
+                    Packaging planner
+                  </a>
                 </div>
               )}
             </ul>
@@ -604,11 +637,10 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
           </div>
         )}
 
-        {showrecipeform && (
-          <RecipeForm/>
-        )}
+        {showrecipeform && <RecipeForm />}
 
-        {ViewSalesPlanform&&(<div className="formcontains">
+        {ViewSalesPlanform && (
+          <div className="formcontains">
             <h1>View Sales Plan</h1>
             <form
               action=""
@@ -617,31 +649,25 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               id="inventory-purchase-log"
               method="post"
             >
-
               <div className="option_container">
-              <label htmlFor="start-date-input">Start Date:</label>
-      <input
-        type="date"
-        id="start-date-input"
-        value={ViewSalesPlanstartDate}
-        onChange={handleViewSalesPlanStartDateChange}
-      />
-                
-              </div>
-              
-
-      
-
-              <div className="option_container">
-              <label htmlFor="end-date-input">End Date:</label>
-      <input
-        type="date"
-        id="end-date-input"
-        value={ViewSalesPlanendDate}
-        onChange={handleViewSalesPlanEndDateChange}
-      />
+                <label htmlFor="start-date-input">Start Date:</label>
+                <input
+                  type="date"
+                  id="start-date-input"
+                  value={ViewSalesPlanstartDate}
+                  onChange={handleViewSalesPlanStartDateChange}
+                />
               </div>
 
+              <div className="option_container">
+                <label htmlFor="end-date-input">End Date:</label>
+                <input
+                  type="date"
+                  id="end-date-input"
+                  value={ViewSalesPlanendDate}
+                  onChange={handleViewSalesPlanEndDateChange}
+                />
+              </div>
 
               <div class="button-container">
                 <div
@@ -654,10 +680,11 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
                 </div>
               </div>
             </form>
-          </div>)}
+          </div>
+        )}
 
-{ShowPurchaseOrderForm &&(
-  <div className="formcontains">
+        {ShowPurchaseOrderForm && (
+          <div className="formcontains">
             <h1>View Purchase Order</h1>
             <form
               action=""
@@ -666,31 +693,25 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               id="inventory-purchase-log"
               method="post"
             >
-
               <div className="option_container">
-              <label htmlFor="start-date-input">Start Date:</label>
-      <input
-        type="date"
-        id="start-date-input"
-        value={startDate}
-        onChange={handleStartDateChange}
-      />
-                
-              </div>
-              
-
-      
-
-              <div className="option_container">
-              <label htmlFor="end-date-input">End Date:</label>
-      <input
-        type="date"
-        id="end-date-input"
-        value={endDate}
-        onChange={handleEndDateChange}
-      />
+                <label htmlFor="start-date-input">Start Date:</label>
+                <input
+                  type="date"
+                  id="start-date-input"
+                  value={startDate}
+                  onChange={handleStartDateChange}
+                />
               </div>
 
+              <div className="option_container">
+                <label htmlFor="end-date-input">End Date:</label>
+                <input
+                  type="date"
+                  id="end-date-input"
+                  value={endDate}
+                  onChange={handleEndDateChange}
+                />
+              </div>
 
               <div class="button-container">
                 <div
@@ -704,10 +725,10 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               </div>
             </form>
           </div>
-)}
+        )}
 
-{ShowRecordForwardLossesForm&& (
-  <div className="formcontains">
+        {ShowRecordForwardLossesForm && (
+          <div className="formcontains">
             <h1>Record Forward and Losses </h1>
             <form
               action=""
@@ -716,73 +737,54 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               id="inventory-purchase-log"
               method="post"
             >
+              <div className="option_container">
+                <label>Date:</label>
+                <input
+                  type="date"
+                  value={RecordForwardLossesdate}
+                  onChange={handleRecordForwardLossesDateChange}
+                />
+              </div>
 
               <div className="option_container">
-              <label>
-        Date:
-        </label>
-        <input
-          type="date"
-          value={RecordForwardLossesdate}
-          onChange={handleRecordForwardLossesDateChange}
-        />
-                
-              </div>
- 
-              <div className="option_container">
-              <label>
-        Units:
-        
-      </label>
-              <input
-          type="text"
-          value={RecordForwardLossesunits}
-          onChange={handleRecordForwardLossesUnitsChange}
-        />
+                <label>Units:</label>
+                <input
+                  type="text"
+                  value={RecordForwardLossesunits}
+                  onChange={handleRecordForwardLossesUnitsChange}
+                />
               </div>
               <div className="option_container">
-              <label>
-        Estimated Value:
-        
-      </label>
-              <input
-          type="number"
-          value={RecordForwardLossesestimatedValue}
-          onChange={handleRecordForwardLossesEstimatedValueChange}
-        />
+                <label>Estimated Value:</label>
+                <input
+                  type="number"
+                  value={RecordForwardLossesestimatedValue}
+                  onChange={handleRecordForwardLossesEstimatedValueChange}
+                />
               </div>
               <div className="option_container">
-              <label>
-        Quantity:
-        
-      </label>
-              <input
-          type="number"
-          value={RecordForwardLossesquantity}
-          onChange={handleRecordForwardLossesQuantityChange}
-        />
+                <label>Quantity:</label>
+                <input
+                  type="number"
+                  value={RecordForwardLossesquantity}
+                  onChange={handleRecordForwardLossesQuantityChange}
+                />
               </div>
               <div className="option_container">
-              <label>
-        Specification:
-        
-      </label>
-              <input
-          type="text"
-          value={RecordForwardLossesspecification}
-          onChange={handleRecordForwardLossesSpecificationChange}
-        />
+                <label>Specification:</label>
+                <input
+                  type="text"
+                  value={RecordForwardLossesspecification}
+                  onChange={handleRecordForwardLossesSpecificationChange}
+                />
               </div>
               <div className="option_container">
-              <label>
-        Item Name:
-        
-      </label>
-              <input
-          type="text"
-          value={RecordForwardLossesitemName}
-          onChange={handleRecordForwardLossesItemNameChange}
-        />
+                <label>Item Name:</label>
+                <input
+                  type="text"
+                  value={RecordForwardLossesitemName}
+                  onChange={handleRecordForwardLossesItemNameChange}
+                />
               </div>
               <div class="button-container">
                 <div
@@ -796,11 +798,10 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               </div>
             </form>
           </div>
+        )}
 
-)}
-
-{dailysalesmatricsform &&(
-  <div className="formcontains">
+        {dailysalesmatricsform && (
+          <div className="formcontains">
             <h1>Daily Sales Metrics</h1>
             <form
               action=""
@@ -809,14 +810,16 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               id="inventory-purchase-log"
               method="post"
             >
-
               <div className="option_container">
-              <label htmlFor="date">Date:</label>
-      <input type="date" id="date" value={dailysalesmatricsdate} onChange={handledailysalesmatricsDateChange} />
-      
-     
+                <label htmlFor="date">Date:</label>
+                <input
+                  type="date"
+                  id="date"
+                  value={dailysalesmatricsdate}
+                  onChange={handledailysalesmatricsDateChange}
+                />
               </div>
- 
+
               <div class="button-container">
                 <div
                   onClick={handledailysalesmatricssubmit}
@@ -829,23 +832,21 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               </div>
             </form>
           </div>
-)}
+        )}
 
-{showdailysalesmatricstable && (
-  <div className="table-container">
+        {showdailysalesmatricstable && (
+          <div className="table-container">
             <h2>Daily Sales</h2>
             <br />
             <table className="showInventoryTable">
               <thead>
                 <tr>
                   <th>Date</th>
-                
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{dailysalesmatricsdate}</td>
-                 
                 </tr>
               </tbody>
             </table>
@@ -859,7 +860,7 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               <div id="recipebutton_save">Save</div>
             </div>
           </div>
-)}
+        )}
         {ShowinventoryForm && (
           <div className="formcontains">
             <h1>Inventory Purchase Log</h1>
@@ -1673,32 +1674,33 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
           </div>
         )}
 
-{PackingPlanner&&(<div className="formcontains">  
-<h1>Packing Planner</h1>  
-              <form class="form" id="recipe-designing">
-                <div>
-                  <label for="Receipe Name">Select Item  Name</label>
-                  <input
-                    type="text"
-                    name="reciepeNameRD"
-                    id="reciepeNameRD"
-                    // value={recipeName}
-                    // onChange={handleRecipeNameChange}
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="Receipe Name">Select packageing to be used</label>
-                  <input
-                    type="text"
-                    name="reciepeNameRD"
-                    id="reciepeNameRD"
-                    // value={recipeName}
-                    // onChange={handleRecipeNameChange}
-                    required
-                  />
-                </div>
-                {/* <div id="addmore">
+        {PackingPlanner && (
+          <div className="formcontains">
+            <h1>Packing Planner</h1>
+            <form class="form" id="recipe-designing">
+              <div>
+                <label for="Receipe Name">Select Item Name</label>
+                <input
+                  type="text"
+                  name="reciepeNameRD"
+                  id="reciepeNameRD"
+                  // value={recipeName}
+                  // onChange={handleRecipeNameChange}
+                  required
+                />
+              </div>
+              <div>
+                <label for="Receipe Name">Select packageing to be used</label>
+                <input
+                  type="text"
+                  name="reciepeNameRD"
+                  id="reciepeNameRD"
+                  // value={recipeName}
+                  // onChange={handleRecipeNameChange}
+                  required
+                />
+              </div>
+              {/* <div id="addmore">
                   <div className="addmoreitems">
                     <div>
                       <label htmlFor="Ingredient Name">Ingredient</label>
@@ -1733,17 +1735,14 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
                   </div>
                 </div> */}
 
-                <div id="addmoreingredients" >
+              <div id="addmoreingredients">Add To Package</div>
+            </form>
+          </div>
+        )}
+        {/* {ShowViewPurchaseOrderTable&& ()} */}
 
-                  Add  To Package
-                </div>
-              </form>
-            
-          </div>)}
-{/* {ShowViewPurchaseOrderTable&& ()} */}
-
-{showRecordForwardLossestable && (
-  <div className="table-container">
+        {showRecordForwardLossestable && (
+          <div className="table-container">
             <h2>Record Forward Losses</h2>
             <br />
             <table className="showInventoryTable">
@@ -1777,7 +1776,8 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               </div>
               <div id="recipebutton_save">Save</div>
             </div>
-          </div>)}
+          </div>
+        )}
 
         {showInventoryTable && (
           <div className="table-container">
@@ -1927,8 +1927,6 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
             </form>
           </div>
         )}
-
-
       </div>
     </div>
   );
