@@ -71,8 +71,10 @@ const Dashboard = () => {
   const handleSalesPlanForm = () => {
     setSalesPlanForm(!SalesPlanForm);
     setShowinventoryForm(false);
+    setdailysalesmatricsform(false);
     setrecipeform(false);
-    // setShowTable(false);
+    setViewSalesPlanform(false);
+    setPackingPlanner(false);
     setShowProfile(false);
     setShowInventoryTable(false);
     setShowBlogTable(false);
@@ -137,11 +139,41 @@ const Dashboard = () => {
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    setViewSalesPlanform(false)
+    setdailysalesmatricsform(false)
+    setShowRecordForwardLossesForm(false)
+    setShowPurchaseOrderForm(false)
   };
 
 
+  const [PackingPlanner,setPackingPlanner] = useState(false);
+ const handelPackingPlanner =()=>{
+  setrecipeform(false);
+    setshowblogwriting(false);
+    setShowProfile(false);
+    setShowBlogTable(false);
+    setSalesPlanForm(false);
+    setshowSalesPlanTable(false);
+    setViewSalesPlanform(false)
+    setdailysalesmatricsform(false)
+    setShowRecordForwardLossesForm(false)
+    setShowPurchaseOrderForm(false)
+  setPackingPlanner(!PackingPlanner)
+
+ }
 const [ViewSalesPlanform,setViewSalesPlanform] = useState(false)
 const handelViewSalesPlanform = ()=>{
+  setrecipeform(false);
+    setshowblogwriting(false);
+    setShowProfile(false);
+    setShowBlogTable(false);
+    setSalesPlanForm(false);
+    setshowSalesPlanTable(false);
+    setViewSalesPlanform(false)
+    setdailysalesmatricsform(false)
+    setPackingPlanner(false);
+    setShowRecordForwardLossesForm(false)
+    setShowPurchaseOrderForm(false)
   setViewSalesPlanform(!ViewSalesPlanform)
 }
 const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState('');
@@ -169,6 +201,7 @@ const handeldailysalesmatricsform = ()=>{
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    // setsalesForecast
 }
 const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState('');
 const handledailysalesmatricsDateChange =(event)=>{
@@ -183,12 +216,14 @@ const handledailysalesmatricssubmit = ()=>{
 const [ShowRecordForwardLossesForm,setShowRecordForwardLossesForm] = useState(false)
 const handelRecordForwardLossesForm = ()=>{
   setShowRecordForwardLossesForm(!ShowRecordForwardLossesForm);
+  setShowPurchaseOrderForm(false)
   setrecipeform(false);
     setshowblogwriting(false);
     setShowProfile(false);
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    setShowinventoryForm(false);
 }
 
 const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState('');
@@ -235,12 +270,14 @@ const handleRecordForwardLossesSubmit = (event) => {
 
   const handelPurchseOrderForm = () =>{
     setShowPurchaseOrderForm(!ShowPurchaseOrderForm)
+    setShowRecordForwardLossesForm(false)
     setrecipeform(false);
     setshowblogwriting(false);
     setShowProfile(false);
     setShowBlogTable(false);
     setSalesPlanForm(false);
     setshowSalesPlanTable(false);
+    setShowinventoryForm(false);
   }
 
   const [startDate, setStartDate] = useState('');
@@ -272,6 +309,8 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
   };
   const handleProfileForm = () => {
     setShowProfile(!showProfile);
+    setShowPurchaseOrderForm(false)
+    setShowRecordForwardLossesForm(false)
     setShowinventoryForm(false);
     setrecipeform(false);
     setshowblogwriting(false);
@@ -373,7 +412,7 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
               {showProducts && (
                 <div id="product-dash">
                   <a href="#">Upload File</a>
-                  <a href="#">Item designing</a>
+                  <a href="#"  >Item designing</a>
                   <a href="#">Item Profile</a>
                   <a href="#">Receipe Profile</a>
                   <a
@@ -451,7 +490,8 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
                   </a>
                   <a href="#" id={ViewSalesPlanform ? "active" : ""}
       onClick={handelViewSalesPlanform }>View Sales Plan</a>
-                  {/* <a href="#">Receipe Refining</a> */}
+                  <a href="#" id={PackingPlanner ? "active" : ""}
+      onClick={handelPackingPlanner } >Packaging planner</a>
                 </div>
               )}
             </ul>
@@ -1633,6 +1673,73 @@ const [ShowViewPurchaseOrderTable,setShowViewPurchaseOrderTable] = useState(fals
           </div>
         )}
 
+{PackingPlanner&&(<div className="formcontains">  
+<h1>Packing Planner</h1>  
+              <form class="form" id="recipe-designing">
+                <div>
+                  <label for="Receipe Name">Select Item  Name</label>
+                  <input
+                    type="text"
+                    name="reciepeNameRD"
+                    id="reciepeNameRD"
+                    // value={recipeName}
+                    // onChange={handleRecipeNameChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="Receipe Name">Select packageing to be used</label>
+                  <input
+                    type="text"
+                    name="reciepeNameRD"
+                    id="reciepeNameRD"
+                    // value={recipeName}
+                    // onChange={handleRecipeNameChange}
+                    required
+                  />
+                </div>
+                {/* <div id="addmore">
+                  <div className="addmoreitems">
+                    <div>
+                      <label htmlFor="Ingredient Name">Ingredient</label>
+                      
+                    </div>
+
+                    <div id="recipequantity">
+                      <label htmlFor="quantity">Quantity</label>
+                      <input
+                        type="number"
+                        value={recipequantity}
+                        onChange={handleRecipequantityChange}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="Unit">Unit</label>
+                      <select
+                        name="unitRD"
+                        id="unitRD"
+                        value={recipeunit}
+                        onChange={handleRecipeunitChange}
+                      >
+                        <option value="gram">g (gram)</option>
+                        <option value="millilitre">ml (millilitre)</option>
+                        <option value="microgram">mcg (microgram)</option>
+                        <option value="tablespoon">tbsp (tablespoon)</option>
+                        <option value="teaspoon">teaspoon</option>
+                        <option value="cup">cup</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> */}
+
+                <div id="addmoreingredients" >
+
+                  Add  To Package
+                </div>
+              </form>
+            
+          </div>)}
 {/* {ShowViewPurchaseOrderTable&& ()} */}
 
 {showRecordForwardLossestable && (
