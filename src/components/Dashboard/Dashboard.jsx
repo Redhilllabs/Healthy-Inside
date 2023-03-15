@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 import RecipeForm from "./RecipeForm";
+import ItemDesignForm from './ItemDesign';
 const Dashboard = () => {
   const [{ user, admin }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
@@ -76,6 +77,7 @@ const Dashboard = () => {
   const [showRecordForwardLossestable, setshowRecordForwardLossestable] = useState(false);
   const [plannerList, setplannerList] = useState([]);
   const [ShowViewPurchaseOrderTable, setShowViewPurchaseOrderTable] = useState(false);
+  const [showItemDesignForm, setshowItemDesignForm] = useState(false);
 
   const handlesaleplanItemnameChange = (e) => {
     setsaleplanItemname(e.target.value);
@@ -211,6 +213,7 @@ const Dashboard = () => {
     setViewSalesPlanform(false);
     setPackingPlanner(false);
     setShowProfile(false);
+    setshowItemDesignForm(false);
 
     setshowSalesPlanTable(false);
     setshowdailysalesmatricstable(false)
@@ -219,6 +222,24 @@ const Dashboard = () => {
     
     
   };
+  const handelItemDesignForm = ()=>{
+    setshowItemDesignForm(!showItemDesignForm);
+    setShowinventoryForm(false);
+    setrecipeform(false);
+    setdailysalesmatricsform(false);
+    setShowRecordForwardLossesForm(false);
+    setShowPurchaseOrderForm(false);
+    setSalesPlanForm(false);
+    setViewSalesPlanform(false);
+    setPackingPlanner(false);
+    setShowProfile(false);
+
+    setshowSalesPlanTable(false);
+    setshowdailysalesmatricstable(false)
+    setshowRecordForwardLossestable(false)
+    setShowInventoryTable(false);
+
+  }
 
   const handelPackingPlanner = () => {
     setShowinventoryForm(false);
@@ -233,6 +254,7 @@ const Dashboard = () => {
     setshowdailysalesmatricstable(false)
     setshowRecordForwardLossestable(false)
     setShowInventoryTable(false);
+    setshowItemDesignForm(false);
     setPackingPlanner(!PackingPlanner);
   };
 
@@ -250,6 +272,7 @@ const Dashboard = () => {
     setshowRecordForwardLossestable(false)
     setShowInventoryTable(false);
     setPackingPlanner(false);
+    setshowItemDesignForm(false);
   };
   const handelPurchseOrderForm = () => {
     setShowPurchaseOrderForm(!ShowPurchaseOrderForm);
@@ -265,6 +288,7 @@ const Dashboard = () => {
     setshowRecordForwardLossestable(false)
     setShowInventoryTable(false);
     setPackingPlanner(false);
+    setshowItemDesignForm(false);
   };
   const handleSalesPlanForm = () => {
     setSalesPlanForm(!SalesPlanForm);
@@ -273,7 +297,7 @@ const Dashboard = () => {
     setShowinventoryForm(false);
     setrecipeform(false);
     setShowRecordForwardLossesForm(false);
-    
+    setshowItemDesignForm(false);
     setViewSalesPlanform(false);
     setShowProfile(false);
     setshowSalesPlanTable(false);
@@ -289,6 +313,7 @@ const Dashboard = () => {
     setdailysalesmatricsform(false);
     setShowinventoryForm(false);
     setrecipeform(false);
+    setshowItemDesignForm(false);
     setViewSalesPlanform(false);
     setShowProfile(false);
     setshowSalesPlanTable(false);
@@ -301,6 +326,7 @@ const Dashboard = () => {
     setViewSalesPlanform(!ViewSalesPlanform);
     setShowRecordForwardLossesForm(false);
     setSalesPlanForm(false);
+    setshowItemDesignForm(false);
     setShowPurchaseOrderForm(false);
     setdailysalesmatricsform(false);
     setShowinventoryForm(false);
@@ -315,6 +341,7 @@ const Dashboard = () => {
 
   const handelrecipeform = () => {
     setrecipeform(true);
+    setshowItemDesignForm(false);
     setShowProducts(true);
     setViewSalesPlanform(false);
     setShowRecordForwardLossesForm(false);
@@ -332,6 +359,7 @@ const Dashboard = () => {
   const handleProfileForm = () => {
     setShowProfile(!showProfile);
     setViewSalesPlanform(false);
+    setshowItemDesignForm(false);
     setShowRecordForwardLossesForm(false);
     setSalesPlanForm(false);
     setShowPurchaseOrderForm(false);
@@ -423,12 +451,14 @@ const Dashboard = () => {
               {showProducts && (
                 <div id="product-dash">
                   <a >Upload File</a>
-                  <a >Item designing</a>
+                  <a id={showItemDesignForm ? "active" : ""}
+                    
+                    onClick={handelItemDesignForm} >Item designing</a>
                   <a >Item Profile</a>
                   <a >Receipe Profile</a>
                   <a
                     id={showrecipeform ? "active" : ""}
-                    href="#"
+                    
                     onClick={handelrecipeform}
                   >
                     Receipe Designing
@@ -648,6 +678,7 @@ const Dashboard = () => {
 
         {showrecipeform && <RecipeForm />}
 
+{showItemDesignForm && <ItemDesignForm/>}
         {ViewSalesPlanform && (
           <div className="formcontains">
             <h1>View Sales Plan</h1>

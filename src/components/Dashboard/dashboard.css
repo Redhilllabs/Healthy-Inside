@@ -11,8 +11,9 @@
   font-family: 'Poppins', sans-serif;
 }
 .dashboard_sidebar{
-  height: 100%;
-  width: 25%;
+  height: 550px;
+    width: 25%;
+    overflow-y: scroll;
   display: flex;
   flex-direction: column;
   background: var(--secondary);
@@ -67,7 +68,7 @@
   position: relative;
   list-style: none;
   transition: all 0.4s ease;
-  padding: 13px;
+  /* padding: 13px; */
     border-radius: 20px;
 }
 
@@ -133,7 +134,7 @@
 
 
 .dashboard_sidebar .nav-links li a .link_name{
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   color: #fff;
   transition: all 0.4s ease;

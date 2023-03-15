@@ -85,6 +85,13 @@ padding:.5rem 1rem;
 color:var(--secondary);
 text-decoration: none;
 }
+#header_login_admin{
+  color:var(--secondary);
+text-decoration: none;
+font-size: larger;
+text-transform: capitalize;
+
+}
 
 #header_Signup{
 margin-left: 5px;
@@ -106,6 +113,13 @@ background-color: var(--secondary);
   display: flex;
   align-items: center;
   color: var(--secondary);
+}
+#header_logo_admin{
+  text-decoration: none;
+  margin-left: 15px;
+  font-size: 1.3rem;
+  color: var(--secondary);
+
 }
 
 .logo {

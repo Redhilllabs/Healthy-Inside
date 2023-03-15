@@ -99,7 +99,7 @@ const Header = () => {
     <div id="header_container">
       <section id="header">
       {admin? (
-        <Link to="/" id="header_logo"><h1>Urvi</h1></Link>
+        <Link to="/" id="header_logo_admin"><h1>Urvi</h1></Link>
           
         ) : (
         <Link to="/" id="header_logo">
@@ -217,7 +217,7 @@ const Header = () => {
                 </li>
               ) : (<>
 
-                {admin?(<Link  id="header_login" to="/urvi">{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
+                {admin?(<Link  id="header_login_admin" to="/urvi">{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
                 <Link id="header_login" to="/login">
                   Log In
                 </Link>
