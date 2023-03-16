@@ -62,7 +62,7 @@ const handleFormSubmit = (e) => {
     <tr>
       <th>Task</th>
       <th>Assigned To</th>
-      <th>utensil used </th>
+      <th>Utensil used </th>
     </tr>
   </thead>
   <tbody>

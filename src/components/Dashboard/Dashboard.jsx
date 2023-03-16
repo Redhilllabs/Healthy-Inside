@@ -11,7 +11,12 @@ import ImportandExportLogForm from "./ImportandExportLogForm";
 import TaskSheetForm from "./TaskSheetForm";
 import OrderstatusForm from "./OrderstatusForm";
 import PurchaseOrderForm from './PurchaseOrderForm';
+import RMIProfileingForm from './RMIProfileingForm';
+
+
+
 const Dashboard = ( { showProfile , onProfileToggle }) => {
+
   const [{ user, admin }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -166,9 +171,11 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
     // do something with the form data
   };
 
- 
+ const [showRMIProfileingForm,setshowRMIProfileingForm] = useState(false)
 
   const handleFormToggle = (formName) => {
+    setshowRMIProfileingForm( formName === "RMIProfileingForm" ? !showRMIProfileingForm :false)
+
     setShowSalesPlanForm(
       formName === "salesPlanForm" ? !showSalesPlanForm : false
     );
@@ -292,6 +299,9 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
               {showProducts && (
                 <div id="product-dash">
                   <a>Upload File</a>
+                  <a id={showRMIProfileingForm ? "active" : ""}
+                    onClick={() => handleFormToggle("RMIProfileingForm")}>RMI Profileing</a>
+
                   <a
                     id={showItemDesignForm ? "active" : ""}
                     onClick={() => handleFormToggle("itemDesignForm")}
@@ -544,6 +554,30 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
             </ul>
           </li>
           
+          <li>
+            <div className="iocn-link" onClick={() => handleFinance()}>
+              <a>
+                <span className="link_name">Training & Certification</span>
+              </a>
+              {/* {showFinance ? (
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
+              ) : (
+                <img
+                  id="arrow4"
+                  src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
+                />
+              )} */}
+            </div>
+            {/* <ul className="sub-menu">
+              {showFinance && (
+                <div id="product-dash">
+                  <a>MRP Calculator</a>
+                  <a>Glance</a>
+                  <a>Budget</a>
+                </div>
+              )}
+            </ul> */}
+          </li>
         </ul>
       </div>
 
@@ -551,6 +585,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
         {/* product and Research option Form */}
         {showItemDesignForm && <ItemDesignForm />}
         {showrecipeform && <RecipeForm />}
+        {showRMIProfileingForm && <RMIProfileingForm></RMIProfileingForm>}
 
         {/* Oprations and Supply Chain Option form */}
 

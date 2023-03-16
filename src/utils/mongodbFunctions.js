@@ -27,6 +27,31 @@ return (response.data);
       throw error;
     }
   };
+
+
+export const getmateriallist = async ()=>{
+  try {
+let headersList = {
+ "Accept": "*/*",
+}
+
+let reqOptions = {
+  url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/materiallist",
+  method: "GET",
+  headers: headersList,
+}
+
+let response = await axios.request(reqOptions);
+console.log(response.data);
+
+return (response.data );
+
+} catch (error) {
+  console.error("Error getting all material items: ", error);
+  throw error;
+}
+}
+
 // add food to cart 
 export const AddToCart = async(email,foodID,quantity)=>{
 

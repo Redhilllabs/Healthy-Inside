@@ -322,13 +322,20 @@ width: 75%;
   .table-container {
     padding: 10px;
     border: 10px solid green;
-    /* height: 210px; */
-    /* overflow: scroll; */
+    
+    
+  }
+  #materiallisttable{
+    height: 510px;
+overflow: scroll;
   }
   
   .recipe_table {
     border-collapse: collapse;
     width: 100%;
+  }
+  #materiallisttable_main{
+    font-size:x-small
   }
   
   .recipe_table th,
