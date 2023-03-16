@@ -11,7 +11,7 @@ import ImportandExportLogForm from "./ImportandExportLogForm";
 import TaskSheetForm from "./TaskSheetForm";
 import OrderstatusForm from "./OrderstatusForm";
 import PurchaseOrderForm from './PurchaseOrderForm';
-const Dashboard = ( { showProfile }) => {
+const Dashboard = ( { showProfile , onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -187,13 +187,17 @@ const Dashboard = ( { showProfile }) => {
         ? !ShowRecordForwardLossesForm
         : false
     );
+
     setshowItemDesignForm(
-      formName === "itemDesignForm" ? !showItemDesignForm : false
+      formName === "itemDesignForm"&& !showProfile ? !showItemDesignForm : false
     );
     setViewSalesPlanform(
-      formName === "viewSalesPlanForm" ? !ViewSalesPlanform : false
+      formName === "viewSalesPlanForm"&& !showProfile ? !ViewSalesPlanform : false
     );
-    // setShowProfile(formName === "profileForm" ? !showProfile : false);
+
+    if(showProfile){
+      onProfileToggle()
+    }
     setshowdailysalesmatricstable(
       formName === "dailySalesMatricsTable"
         ? !showdailysalesmatricstable

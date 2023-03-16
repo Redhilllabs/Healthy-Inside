@@ -69,7 +69,7 @@ function App() {
           <Route path="/morninigfood" element={<Morninigfood />} />
 
           <Route element={<AdminRoutes></AdminRoutes>}>
-          <Route path="/urvi" element={<Dashboard  showProfile={showProfile} />}></Route>
+          <Route path="/urvi" element={<Dashboard  showProfile={showProfile} onProfileToggle={handleProfileToggle} />}></Route>
           </Route>
 
           <Route element={<PrivateRoutes></PrivateRoutes>}>

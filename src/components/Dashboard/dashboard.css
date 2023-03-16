@@ -99,8 +99,8 @@
 }
 
 #active{
-  background-color: rgb(235, 235, 235);
-  color: rgb(31, 66, 31);
+  background-color: rgb(181, 255, 9);
+  color: rgb(10, 10, 10);
 }
 .dashboard_sidebar .nav-links li a{
   display: flex;
