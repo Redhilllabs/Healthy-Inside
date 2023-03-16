@@ -54,48 +54,29 @@
 }
 .dashboard_sidebar .nav-links{
   height: 100%;
-  padding: 30px;
+  padding: 20px;
 }
 
-
-.dashboard_sidebar.close .nav-links{
-  overflow: visible;
-}
-.dashboard_sidebar .nav-links::-webkit-scrollbar{
-  display: none;
-}
 .dashboard_sidebar .nav-links li{
   position: relative;
   list-style: none;
   transition: all 0.4s ease;
-  /* padding: 13px; */
-    border-radius: 20px;
+
+}
+.iocn-link {
+  /* padding: 20px; */
+  display: flex;
+}
+.dashboard_sidebar .nav-links li a:hover{
+  background: var(--primary);
 }
 
-.dashboard_sidebar .nav-links li ul.active{
-  background: var(--primary);
-}
-.dashboard_sidebar .nav-links li:hover{
-  background: var(--primary);
-}
-.dashboard_sidebar .nav-links li .iocn-link{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.dashboard_sidebar.close .nav-links li .iocn-link{
-  display: block
-}
 .dashboard_sidebar .nav-links li img{
     height: 1rem;
     min-width: 1rem;
     cursor: pointer;
     margin: 1rem;
     transition: all 0.3s ease;
-}
-
-.dashboard_sidebar .nav-links li .sub-menu .showop{
-    display: block;
 }
 
 #active{
@@ -105,6 +86,8 @@
 .dashboard_sidebar .nav-links li a{
   display: flex;
   align-items: center;
+  padding: 8px;
+  border-radius: 15px;
   cursor: pointer;
   text-decoration: none;
 }
@@ -139,65 +122,28 @@
   color: #fff;
   transition: all 0.4s ease;
 }
-.dashboard_sidebar.close .nav-links li a .link_name{
+/* .dashboard_sidebar.close .nav-links li a .link_name{
   opacity: 0;
   pointer-events: none;
-}
+} */
+
 .dashboard_sidebar .nav-links li .sub-menu{
-  /* background: var(--primary); */
   padding: 15px;
 }
-/* .dashboard_sidebar .nav-links li.showMenu .sub-menu{
-  display: block;
-} */
+
 .dashboard_sidebar .nav-links li .sub-menu a{
   color: #fff;
   font-size: 15px;
-  padding: 5px 0;
+  padding: 9px ;
   white-space: nowrap;
   opacity: 0.6;
   transition: all 0.3s ease;
 }
+
 .dashboard_sidebar .nav-links li .sub-menu a:hover{
   opacity: 1;
 }
-.dashboard_sidebar.close .nav-links li .sub-menu{
-  position: absolute;
-  left: 100%;
-  top: -10px;
-  margin-top: 0;
-  padding: 10px 20px;
-  border-radius: 0 6px 6px 0;
-  opacity: 0;
-  display: block;
-  pointer-events: none;
-  transition: 0s;
-}
-.dashboard_sidebar.close .nav-links li:hover .sub-menu{
-  top: 0;
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.4s ease;
-}
-.dashboard_sidebar .nav-links li .sub-menu .link_name{
-  display: none;
-}
-.dashboard_sidebar.close .nav-links li .sub-menu .link_name{
-  font-size: 18px;
-  opacity: 1;
-  display: block;
-}
-.dashboard_sidebar .nav-links li .sub-menu.blank{
-  opacity: 1;
-  pointer-events: auto;
-  padding: 3px 20px 6px 16px;
-  opacity: 0;
-  pointer-events: none;
-}
-.dashboard_sidebar .nav-links li:hover .sub-menu.blank{
-  top: 50%;
-  transform: translateY(-50%);
-}
+
 
 .main_dashbord {
     display: flex;
@@ -206,14 +152,12 @@
     flex-direction: column;
     margin: 20px;
 width: 75%;
-    /* overflow-x: scroll; */
     
   }
   #addmore{
     display: flex;
     height: 200px ;
     flex-direction: column;
-    /* overflow-y: scroll; */
     align-items: self-end;
     margin: 1rem;
    }
@@ -224,8 +168,6 @@ width: 75%;
     display: flex; 
     align-items: baseline;
     justify-content: center;
-    /* overflow-x: scroll; */
-
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 10px;
@@ -238,9 +180,7 @@ width: 75%;
   
   .main_dashbord h1 {
     font-size: 30px;
-    /* margin-bottom: 20px; */
   }
-  
 
   .main_dashbord .form input,
   .main_dashbord  .form select {
@@ -251,9 +191,6 @@ width: 75%;
     margin: 5px;
   }
   
-  .main_dashbord  .form select {
-    /* width: 50%; */
-  }
   
   .main_dashbord .button-container {
     display: flex;
@@ -322,9 +259,29 @@ width: 75%;
   .table-container {
     padding: 10px;
     border: 10px solid green;
-    
-    
   }
+
+#multisubmenu li .iocn-link{
+  padding: 9px;
+  /* background-color: rgb(92, 40, 40); */
+}
+#multisubmenu li .iocn-link a{
+  padding: 5px;
+  /* background-color: rgb(92, 40, 40); */
+}
+
+#RMIform-designing{
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#RMIform-designing label {
+  width: 9rem;
+  height: fit-content;
+}
+
   #materiallisttable{
     height: 510px;
 overflow: scroll;
@@ -384,13 +341,7 @@ overflow: scroll;
     .dashboard{
       height: 35rem;
     }
-    #product-dash {
-      display: flex;
-      margin: 15px;
-      flex-direction: column;
-      background: var(--secondary);
-      padding: 20px;
-  }
+    
   .dashboard_sidebar .nav-links li img {
     display: none;
   }

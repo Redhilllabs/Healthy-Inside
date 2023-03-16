@@ -12,6 +12,11 @@ import TaskSheetForm from "./TaskSheetForm";
 import OrderstatusForm from "./OrderstatusForm";
 import PurchaseOrderForm from './PurchaseOrderForm';
 import RMIProfileingForm from './RMIProfileingForm';
+import RecordForwardLossesForm from './RecordForwardLossesForm';
+import InventoryForm from './InventoryForm';
+import Dailysalesmatricsform from './Dailysalesmatricsform';
+import ViewSalesPlanform from './ViewSalesPlanform';
+import PackingPlanner from './PackingPlanner';
 
 
 
@@ -25,154 +30,28 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
   const [showFinance, setShowFinance] = useState(false);
   const [showrecipeform, setrecipeform] = useState(false);
   const [ShowinventoryForm, setShowinventoryForm] = useState(false);
-  // const [showProfile, setShowProfile] = useState(false);
-  const [date, setDate] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [unit, setUnit] = useState("");
-  const [unitPrice, setUnitPrice] = useState(0);
-  const [amount, setAmount] = useState(0);
-  const [showInventoryTable, setShowInventoryTable] = useState(false);
   const [ShowPurchaseOrderForm, setShowPurchaseOrderForm] = useState(false);
-
   const [showSalesPlanForm, setShowSalesPlanForm] = useState(false);
-  const [PackingPlanner, setPackingPlanner] = useState(false);
-  const [ViewSalesPlanform, setViewSalesPlanform] = useState(false);
-  const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState("");
-  const [ViewSalesPlanendDate, setViewSalesPlanEndDate] = useState("");
-  const [dailysalesmatricsform, setdailysalesmatricsform] = useState(false);
-  const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
-  const [showdailysalesmatricstable, setshowdailysalesmatricstable] =
-    useState(false);
-  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] =
-    useState(false);
-  const [RecordForwardLossesdate, setRecordForwardLossesDate] = useState("");
-  const [RecordForwardLossesitemName, setRecordForwardLossesItemName] =
-    useState("");
-  const [
-    RecordForwardLossesspecification,
-    setRecordForwardLossesSpecification,
-  ] = useState("");
-  const [RecordForwardLossesquantity, setRecordForwardLossesQuantity] =
-    useState("");
-  const [RecordForwardLossesunits, setRecordForwardLossesUnits] = useState("");
-  const [
-    RecordForwardLossesestimatedValue,
-    setRecordForwardLossesEstimatedValue,
-  ] = useState("");
-  const [showRecordForwardLossestable, setshowRecordForwardLossestable] =
-    useState(false);
-
- 
+  const [ShowPackingPlanner, setShowPackingPlanner] = useState(false);
+  const [ShowViewSalesPlanform, setShowViewSalesPlanform] = useState(false);
+  const [Showdailysalesmatricsform, setShowdailysalesmatricsform] = useState(false);
+  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] = useState(false); 
   const [showItemDesignForm, setshowItemDesignForm] = useState(false);
-
-  const [OprationsOption1, setOprationsOption1] = useState(false);
-
-  const handleOprationsOption1 = () => {
-    setOprationsOption1(!OprationsOption1);
-  };
-  const [OprationsOption2, setOprationsOption2] = useState(false);
-
-  const handleOprationsOption2 = () => {
-    setOprationsOption2(!OprationsOption2);
-  };
-  const [
-    ShowItemmanufacturingPlannerForm,
-    setShowItemmanufacturingPlannerForm,
-  ] = useState(false);
-
-
-
-  const [ShowImportandExportLogForm, setShowImportandExportLogForm] =
-    useState(false);
-
-
+  const [ShowItemmanufacturingPlannerForm,setShowItemmanufacturingPlannerForm] = useState(false);
+  const [ShowImportandExportLogForm, setShowImportandExportLogForm] = useState(false);
   const [showTaskSheetForm, setShowTaskSheetForm] = useState(false);
-
-
   const [OprationsOption3, setOprationsOption3] = useState(false);
-
-  const handleOprationsOption3 = () => {
-    setOprationsOption3(!OprationsOption3);
-  };
-
+  const [OprationsOption1, setOprationsOption1] = useState(false);
+  const [OprationsOption2, setOprationsOption2] = useState(false);
   const [ShowOrderstatusForm, setShowOrderstatusForm] = useState(false);
-
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-  };
-
-  const handleItemNameChange = (event) => {
-    setItemName(event.target.value);
-  };
-
-  const handleQuantityChange = (event) => {
-    setQuantity(parseInt(event.target.value));
-  };
-
-  const handleUnitChange = (event) => {
-    setUnit(event.target.value);
-  };
-
-  const handleUnitPriceChange = (event) => {
-    setUnitPrice(parseFloat(event.target.value));
-  };
-
-  const handleAmountChange = (event) => {
-    setAmount(parseFloat(event.target.value));
-  };
+  const [showRMIProfileingForm,setshowRMIProfileingForm] = useState(false)
 
 
-  const handleViewSalesPlanStartDateChange = (event) => {
-    setViewSalesPlanStartDate(event.target.value);
-  };
 
-  const handleViewSalesPlanEndDateChange = (event) => {
-    setViewSalesPlanEndDate(event.target.value);
-  };
-
-  const handleViewSalesPlansubmit = () => {};
-
-  const handledailysalesmatricsDateChange = (event) => {
-    setdailysalesmatricsdate(event.target.value);
-  };
-
-  const handledailysalesmatricssubmit = () => {
-    setshowdailysalesmatricstable(true);
-  };
-
-  const handleRecordForwardLossesDateChange = (event) => {
-    setRecordForwardLossesDate(event.target.value);
-  };
-
-  const handleRecordForwardLossesItemNameChange = (event) => {
-    setRecordForwardLossesItemName(event.target.value);
-  };
-
-  const handleRecordForwardLossesSpecificationChange = (event) => {
-    setRecordForwardLossesSpecification(event.target.value);
-  };
-
-  const handleRecordForwardLossesQuantityChange = (event) => {
-    setRecordForwardLossesQuantity(event.target.value);
-  };
-
-  const handleRecordForwardLossesUnitsChange = (event) => {
-    setRecordForwardLossesUnits(event.target.value);
-  };
-
-  const handleRecordForwardLossesEstimatedValueChange = (event) => {
-    setRecordForwardLossesEstimatedValue(event.target.value);
-  };
-
-  const handleRecordForwardLossesSubmit = (event) => {
-    event.preventDefault();
-    setshowRecordForwardLossestable(true);
-    // do something with the form data
-  };
-
- const [showRMIProfileingForm,setshowRMIProfileingForm] = useState(false)
-
+  const handleOprationsOption1 = () => {setOprationsOption1(!OprationsOption1);};
+  const handleOprationsOption2 = () => {setOprationsOption2(!OprationsOption2);};
+  const handleOprationsOption3 = () => {setOprationsOption3(!OprationsOption3);};
+  
   const handleFormToggle = (formName) => {
     setshowRMIProfileingForm( formName === "RMIProfileingForm" ? !showRMIProfileingForm :false)
 
@@ -182,8 +61,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
     setShowPurchaseOrderForm(
       formName === "purchaseOrderForm" ? !ShowPurchaseOrderForm : false
     );
-    setdailysalesmatricsform(
-      formName === "dailySalesMatricsForm" ? !dailysalesmatricsform : false
+    setShowdailysalesmatricsform(
+      formName === "dailySalesMatricsForm" ? !Showdailysalesmatricsform : false
     );
     setShowinventoryForm(
       formName === "inventoryForm" ? !ShowinventoryForm : false
@@ -198,28 +77,17 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
     setshowItemDesignForm(
       formName === "itemDesignForm"&& !showProfile ? !showItemDesignForm : false
     );
-    setViewSalesPlanform(
-      formName === "viewSalesPlanForm"&& !showProfile ? !ViewSalesPlanform : false
+    setShowViewSalesPlanform(
+      formName === "viewSalesPlanForm"&& !showProfile ? !ShowViewSalesPlanform : false
     );
 
     if(showProfile){
       onProfileToggle()
     }
-    setshowdailysalesmatricstable(
-      formName === "dailySalesMatricsTable"
-        ? !showdailysalesmatricstable
-        : false
-    );
-    setshowRecordForwardLossestable(
-      formName === "recordForwardLossesTable"
-        ? !showRecordForwardLossestable
-        : false
-    );
-    setShowInventoryTable(
-      formName === "inventoryTable" ? !showInventoryTable : false
-    );
-    setPackingPlanner(
-      formName === "packingPlannerForm" ? !PackingPlanner : false
+
+  
+    setShowPackingPlanner(
+      formName === "packingPlannerForm" ? !ShowPackingPlanner : false
     );
     setShowItemmanufacturingPlannerForm(
       formName === "itemManufacturingPlannerForm"
@@ -239,14 +107,15 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
     );
   };
 
-  
-
   const handleProducts = () => {
     setShowProducts(!showProducts);
   };
 
   const handleOperations = () => {
     setShowOperations(!showOperations);
+    setOprationsOption1(false)
+    setOprationsOption2(false)
+    setOprationsOption3(false)
   };
 
   const handleMarketing = () => {
@@ -257,11 +126,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
     setShowFinance(!showFinance);
   };
 
-  const handleInventorySubmitForm = () => {
-    setShowInventoryTable(true);
-  };
-
   const navigate = useNavigate();
+
   const logout = () => {
     localStorage.clear();
     dispatch({
@@ -276,17 +142,15 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
     <div className="dashboard">
       <div className={`dashboard_sidebar ${isOpen ? "close" : ""}`}>
         <div className="logo-details">
-          {/* <img  src="https://img.icons8.com/ios/50/null/plus-math--v1.png"/> */}
           <span className="logo_name">DashBoard</span>
         </div>
         <ul className="nav-links">
           <li>
             <div className="iocn-link" onClick={() => handleProducts()}>
               <a>
-                {/* <img  src="https://img.icons8.com/material-outlined/24/null/shipping-product.png"/> */}
+                
                 <span className="link_name">Product & Research</span>
-              </a>
-              {showProducts ? (
+                {showProducts ? (
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
               ) : (
                 <img
@@ -294,6 +158,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                   src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                 />
               )}
+              </a>
+              
             </div>
             <ul className="sub-menu">
               {showProducts && (
@@ -326,10 +192,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           <li>
             <div className="iocn-link" onClick={() => handleOperations()}>
               <a>
-                {/* <img src="https://img.icons8.com/external-parzival-1997-detailed-outline-parzival-1997/64/null/external-operation-digital-transformation-parzival-1997-detailed-outline-parzival-1997.png"/> */}
                 <span className="link_name">Operations & Supply Chain</span>
-              </a>
-              {showOperations ? (
+                {showOperations ? (
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
               ) : (
                 <img
@@ -337,10 +201,12 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                   src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                 />
               )}
+              </a>
+              
             </div>
             <ul className="sub-menu">
               {showOperations && (
-                <div id="product-dash">
+                <div id="multisubmenu">
                   <li>
                     <div
                       className="iocn-link"
@@ -478,10 +344,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           <li>
             <div className="iocn-link" onClick={() => handleMarketing()}>
               <a>
-                {/* <img  src="https://img.icons8.com/windows/32/null/add-pie-chart-report.png"/> */}
                 <span className="link_name"> Business & Branding</span>
-              </a>
-              {showMarketing ? (
+                {showMarketing ? (
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
               ) : (
                 <img
@@ -489,6 +353,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                   src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                 />
               )}
+              </a>
+              
             </div>
             <ul className="sub-menu">
               {showMarketing && (
@@ -497,7 +363,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                     Blog Writing
                   </a> */}
                   <a
-                    id={dailysalesmatricsform ? "active" : ""}
+                    id={Showdailysalesmatricsform ? "active" : ""}
                     onClick={() => handleFormToggle("dailySalesMatricsForm")}
                     // onClick={handeldailysalesmatricsform}
                   >
@@ -511,14 +377,14 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                     Sale Forecast Planner
                   </a>
                   <a
-                    id={ViewSalesPlanform ? "active" : ""}
+                    id={ShowViewSalesPlanform ? "active" : ""}
                     // onClick={handelViewSalesPlanform}
                     onClick={() => handleFormToggle("viewSalesPlanForm")}
                   >
                     View Sales Plan
                   </a>
                   <a
-                    id={PackingPlanner ? "active" : ""}
+                    id={ShowPackingPlanner ? "active" : ""}
                     onClick={() => handleFormToggle("packingPlannerForm")}
                     // onClick={handelPackingPlanner}
                   >
@@ -533,8 +399,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
             <div className="iocn-link" onClick={() => handleFinance()}>
               <a>
                 <span className="link_name">Finance & Metrics </span>
-              </a>
-              {showFinance ? (
+                {showFinance ? (
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
               ) : (
                 <img
@@ -542,6 +407,8 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                   src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                 />
               )}
+              </a>
+              
             </div>
             <ul className="sub-menu">
               {showFinance && (
@@ -555,559 +422,43 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           </li>
           
           <li>
-            <div className="iocn-link" onClick={() => handleFinance()}>
+            <div className="iocn-link" >
               <a>
                 <span className="link_name">Training & Certification</span>
               </a>
-              {/* {showFinance ? (
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
-              ) : (
-                <img
-                  id="arrow4"
-                  src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
-                />
-              )} */}
+              
             </div>
-            {/* <ul className="sub-menu">
-              {showFinance && (
-                <div id="product-dash">
-                  <a>MRP Calculator</a>
-                  <a>Glance</a>
-                  <a>Budget</a>
-                </div>
-              )}
-            </ul> */}
+            
           </li>
         </ul>
       </div>
 
       <div className="main_dashbord">
-        {/* product and Research option Form */}
+{/* product and Research option Form */}
         {showItemDesignForm && <ItemDesignForm />}
         {showrecipeform && <RecipeForm />}
         {showRMIProfileingForm && <RMIProfileingForm></RMIProfileingForm>}
 
-        {/* Oprations and Supply Chain Option form */}
+{/* Oprations and Supply Chain Option form */}
 
         {/* option 1 */}
         {ShowPurchaseOrderForm && (<PurchaseOrderForm/>)}
-        {ShowRecordForwardLossesForm && (
-          <div className="formcontains">
-            <h1>Record Forward and Losses </h1>
-            <form
-              action=""
-              class="form"
-              name="inventory-purchase-log"
-              id="inventory-purchase-log"
-              method="post"
-            >
-              <div className="option_container">
-                <label>Date:</label>
-                <input
-                  type="date"
-                  value={RecordForwardLossesdate}
-                  onChange={handleRecordForwardLossesDateChange}
-                />
-              </div>
-              <div className="option_container">
-                <label>Item Name:</label>
-                <select
-                  value={RecordForwardLossesitemName}
-                  onChange={handleRecordForwardLossesItemNameChange}
-                >
-                  <option value="">Select an item</option>
-                  <option value="Brown Rice Idli">Brown Rice Idli</option>
-                  <option value="Jau Pulao">Jau Pulao</option>
-                  <option value="Minty Appe">Minty Appe</option>
-                  <option value="Palak Meethi Cutlets">
-                    Palak Meethi Cutlets
-                  </option>
-                  <option value="Ragi Chila">Ragi Chila</option>
-                  <option value="Ragi Dosa">Ragi Dosa</option>
-                  <option value="Ramas Dal Moth">Ramas Dal Moth</option>
-                  <option value="Roti Tacos">Roti Tacos</option>
-                  <option value="Tofu Parantha">Tofu Parantha</option>
-                </select>
-              </div>
-
-              <div className="option_container">
-                <label>Units:</label>
-                <input
-                  type="text"
-                  value={RecordForwardLossesunits}
-                  onChange={handleRecordForwardLossesUnitsChange}
-                />
-              </div>
-              <div className="option_container">
-                <label>Estimated Value:</label>
-                <input
-                  type="number"
-                  value={RecordForwardLossesestimatedValue}
-                  onChange={handleRecordForwardLossesEstimatedValueChange}
-                />
-              </div>
-              <div className="option_container">
-                <label>Quantity:</label>
-                <input
-                  type="number"
-                  value={RecordForwardLossesquantity}
-                  onChange={handleRecordForwardLossesQuantityChange}
-                />
-              </div>
-              <div className="option_container">
-                <label>Specification:</label>
-                <input
-                  type="text"
-                  value={RecordForwardLossesspecification}
-                  onChange={handleRecordForwardLossesSpecificationChange}
-                />
-              </div>
-
-              <div class="button-container">
-                <div
-                  onClick={handleRecordForwardLossesSubmit}
-                  id="recipebutton"
-                  type="submit"
-                  name="submit"
-                >
-                  Submit
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
-        {ShowinventoryForm && (
-          <div className="formcontains">
-            <h1>Inventory Purchase Log</h1>
-            <form
-              action=""
-              class="form"
-              name="inventory-purchase-log"
-              id="inventory-purchase-log"
-              method="post"
-            >
-              <div className="option_container">
-                <label for="Name">Date</label>
-                <input
-                  type="date"
-                  name="Date"
-                  id="dateIPL"
-                  value={date}
-                  onChange={handleDateChange}
-                  required
-                />
-              </div>
-
-              <div className="option_container">
-                <label for="Item">Item Name</label>
-                <select
-                  id="itemIPL"
-                  name="Item"
-                  value={itemName}
-                  onChange={handleItemNameChange}
-                  required
-                >
-                  <option value="Anise, Fennel (सौंफ़/Saunf)">
-                    Anise, Fennel (सौंफ़/Saunf)
-                  </option>
-                  <option value="Asafoetida (हींग/Heeng)">
-                    Asafoetida (हींग/Heeng)
-                  </option>
-                  <option value="Baking Soda (बेकिंग सोडा/Baking Soda/ENO)">
-                    Baking Soda (बेकिंग सोडा/Baking Soda/ENO)
-                  </option>
-                  <option value="Beans (फलिया/Beans)">
-                    Beans (फलिया/Beans)
-                  </option>
-                  <option value="Beetroot (चुकंदर/Chukander)">
-                    Beetroot (चुकंदर/Chukander)
-                  </option>
-                  <option value="Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)">
-                    Black Pepper Powder(काली मिर्च पाउडर/Kali Mirch Powder)
-                  </option>
-                  <option value="Black Salt (काला नमक/Kala Namak)">
-                    Black Salt (काला नमक/Kala Namak)
-                  </option>
-                  <option value="Bottle Gourd (लौकी/Lauki)">
-                    Bottle Gourd (लौकी/Lauki)
-                  </option>
-                  <option value="Broken Wheat (दलिया/Dalia)">
-                    Broken Wheat (दलिया/Dalia)
-                  </option>
-                  <option value="Brown Rice (ब्राउन राइस/Brown Rice)">
-                    Brown Rice (ब्राउन राइस/Brown Rice)
-                  </option>
-                  <option value="Capsicum (शिमला मिर्च/Shimla Mirch)">
-                    Capsicum (शिमला मिर्च/Shimla Mirch)
-                  </option>
-                  <option value="Carrot (गाजर/Gazar)">
-                    Carrot (गाजर/Gazar)
-                  </option>
-                  <option value="Cashew Nuts (काजू/Kajju)">
-                    Cashew Nuts (काजू/Kajju)
-                  </option>
-                  <option value="Cauliflower (फूल गोभी/Phool Gobhee)">
-                    Cauliflower (फूल गोभी/Phool Gobhee)
-                  </option>
-                  <option value="Celery Seeds (अजवाइन के बीज/Ajwain k beej)">
-                    Celery Seeds (अजवाइन के बीज/Ajwain k beej)
-                  </option>
-                  <option value="Chaat Masala (चाट मसाला/Chaat Masala)">
-                    Chaat Masala (चाट मसाला/Chaat Masala)
-                  </option>
-                  <option value="Coconut (नारियल/Nariyal)">
-                    Coconut (नारियल/Nariyal)
-                  </option>
-                  <option value="Common Salt (सादा नमक/Saada Namak)">
-                    Common Salt (सादा नमक/Saada Namak)
-                  </option>
-                  <option value="Coriander Leaves (धनिया/Dhaniya)">
-                    Coriander Leaves (धनिया/Dhaniya)
-                  </option>
-                  <option value="Coriander Powder (धनिया पाउडर/Dhaniya Powder)">
-                    Coriander Powder (धनिया पाउडर/Dhaniya Powder)
-                  </option>
-                  <option value="Cucumber (खीरा/Kheera)">
-                    Cucumber (खीरा/Kheera)
-                  </option>
-                  <option value="Cumin Seed Powder (जीरा पाउडर/Jeera Powder)">
-                    Cumin Seed Powder (जीरा पाउडर/Jeera Powder)
-                  </option>
-                  <option value="Cumin Seeds (जीरा/Jeera)">
-                    Cumin Seeds (जीरा/Jeera)
-                  </option>
-                  <option value="Curd (दही/Dahi)">Curd (दही/Dahi) </option>
-                  <option value="Curry Leaves (कड़ी पत्ता/Kadi Patta)">
-                    Curry Leaves (कड़ी पत्ता/Kadi Patta)
-                  </option>
-                  <option value="Egg Plant (बैंगन/Baigan)">
-                    Egg Plant (बैंगन/Baigan)
-                  </option>
-                  <option value="Ekgaon Moth Beans (रामास/Ramaas)">
-                    Ekgaon Moth Beans (रामास/Ramaas)
-                  </option>
-                  <option value="Fenugreek (मेंथी/Meethi)">
-                    Fenugreek (मेंथी/Meethi)
-                  </option>
-                  <option value="Fenugreek seeds (मेथी के बीज/Meethi ke Beej)">
-                    Fenugreek seeds (मेथी के बीज/Meethi ke Beej)
-                  </option>
-                  <option value="Flattened Rice (पोहा/Poha)">
-                    Flattened Rice (पोहा/Poha)
-                  </option>
-                  <option value="Garlic (लहसुन/Lehsun)">
-                    Garlic (लहसुन/Lehsun)
-                  </option>
-                  <option value="Ginger (अदरक/Adrak)">
-                    Ginger (अदरक/Adrak)
-                  </option>
-                  <option value="Gram Flour (बेसन/Besan)">
-                    Gram Flour (बेसन/Besan)
-                  </option>
-                  <option value="Green Peas (हरी मटर/Hari Matar)">
-                    Green Peas (हरी मटर/Hari Matar)
-                  </option>
-                  <option value="Idli Batter (इडली बैटर/Idli Batter)">
-                    Idli Batter (इडली बैटर/Idli Batter)
-                  </option>
-                  <option value="Jaggery (गूढ़/Gud)">Jaggery (गूढ़/Gud)</option>
-                  <option value="Kashmiri Red Chilli Powder (कश्मीरी लाल मिर्च पाउडर/Kasmiri Lal Mirch Powder)">
-                    Kashmiri Red Chilli Powder ,(कश्मीरी लाल मिर्च पाउडर/Kasmiri
-                    Lal Mirch Powder)
-                  </option>
-                  <option value="Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri Lal Mirch Sabut)">
-                    Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri
-                    Lal Mirch Sabut)
-                  </option>
-                  <option value="Large Green Chilli (बड़ी हरी मिर्च/Badee Haree Mirch)">
-                    Large Green Chilli (बड़ी हरी मिर्च/Badee Haree Mirch)
-                  </option>
-                  <option value="Lemon Juice (नींबू का रस/Nimbu ka Ras)">
-                    Lemon Juice (नींबू का रस/Nimbu ka Ras)
-                  </option>
-                  <option value="Lettuce (सलाद पत्ता/Salaad Patta)">
-                    Lettuce (सलाद पत्ता/Salaad Patta)
-                  </option>
-                  <option value="Millet Flour (बाजरे का आटा/Baajaree Ka Atta)">
-                    Millet Flour (बाजरे का आटा/Baajaree Ka Atta)
-                  </option>
-                  <option value="Moringa (मोरिंगा/Drumstick)">
-                    Moringa (मोरिंगा/Drumstick)
-                  </option>
-                  <option value="Mustard (सरसों/Sarsoo)">
-                    Mustard (सरसों/Sarsoo)
-                  </option>
-                  <option value="Mustard Seeds (राई/Rai)">
-                    Mustard Seeds (राई/Rai)
-                  </option>
-                  <option value="Olive Oil (जैतून का तेल/Jaitun ka Tel)">
-                    Olive Oil (जैतून का तेल/Jaitun ka Tel)
-                  </option>
-                  <option value="Onion (प्याज/Pyaaj)">
-                    Onion (प्याज/Pyaaj)
-                  </option>
-                  <option value="Oregano (ओरिगैनो/Oregano)">
-                    Oregano (ओरिगैनो/Oregano)
-                  </option>
-                  <option value="Peppermint (पुदीना/Pudeena)">
-                    Peppermint (पुदीना/Pudeena)
-                  </option>
-                  <option value="Petite Yellow Lentils (पीली मूंग दाल/Peelee Moong Daal)">
-                    Petite Yellow Lentils (पीली मूंग दाल/Peelee Moong Daal)
-                  </option>
-                  <option value="Pigeon Peas (अरहर दाल/Arhar daal)">
-                    Pigeon Peas (अरहर दाल/Arhar daal)
-                  </option>
-                  <option value="Pumpkin (कद्दू/Kaddu)">
-                    Pumpkin (कद्दू/Kaddu)
-                  </option>
-                  <option value="Ragi Flour (रागी का आटा?Ragee Ka Atta)">
-                    Ragi Flour (रागी का आटा?Ragee Ka Atta)
-                  </option>
-                  <option value="Red Bell Pepper (लाल शिमला मिर्च/Lal Shimla Mirch)">
-                    Red Bell Pepper (लाल शिमला मिर्च/Lal Shimla Mirch)
-                  </option>
-                  <option value="Red Chilli Powder (लाल मिर्च पाउडर/Lal Mirch Powder)">
-                    Red Chilli Powder (लाल मिर्च पाउडर/Lal Mirch Powder)
-                  </option>
-                  <option value="Rock Salt (सेंधा नमक/Sendha Namak)">
-                    Rock Salt (सेंधा नमक/Sendha Namak)
-                  </option>
-                  <option value="Sambhar Masala Powder (सांभर मसाला पाउडर/Sambhar Masala Powder)">
-                    Sambhar Masala Powder (सांभर मसाला पाउडर/Sambhar Masala
-                    Powder)
-                  </option>
-                  <option value="Semolina (सूजी/Suji)">
-                    Semolina (सूजी/Suji)
-                  </option>
-                  <option value="Sesame Seeds (तिल के बीज/Til Ke Beej)">
-                    Sesame Seeds (तिल के बीज/Til Ke Beej)
-                  </option>
-                  <option value="Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree Mirch)">
-                    Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree Mirch)
-                  </option>
-                  <option value="Soybean Seeds (सोयाबीन के बीज/soyaabeen ke beej)">
-                    Soybean Seeds (सोयाबीन के बीज/soyaabeen ke beej)
-                  </option>
-                  <option value="Spinach (पालक/Paalak)">
-                    Spinach (पालक/Paalak)
-                  </option>
-                  <option value="Split Chickpeas (चना दाल/Channa Daal)">
-                    Split Chickpeas (चना दाल/Channa Daal)
-                  </option>
-                  <option value="Split Washed Vigna Mungo (उड़द दाल/Urad Daal)">
-                    Split Washed Vigna Mungo (उड़द दाल/Urad Daal)
-                  </option>
-                  <option value="Spring Onion (प्याज पत्ता/Pyaz Patta)">
-                    Spring Onion (प्याज पत्ता/Pyaz Patta)
-                  </option>
-                  <option value="Sprouts (अंकुरित/Ankurit)">
-                    Sprouts (अंकुरित/Ankurit)
-                  </option>
-                  <option value="Sweet Corn (स्वीट कॉर्न/Sveet Korn)">
-                    Sweet Corn (स्वीट कॉर्न/Sveet Korn)
-                  </option>
-                  <option value="Sweet Potato (शकरकंद/Shakarakand)">
-                    Sweet Potato (शकरकंद/Shakarakand)
-                  </option>
-                  <option value="Tamarind (इमली/Imalee)">
-                    Tamarind (इमली/Imalee)
-                  </option>
-                  <option value="Tofu (टोफू/Tofu)">Tofu (टोफू/Tofu)</option>
-                  <option value="Tomato (टमाटर/Tamatar)">
-                    Tomato (टमाटर/Tamatar)
-                  </option>
-                  <option value="Turmeric Powder (हल्दी पाउडर/Haldi Powder)">
-                    Turmeric Powder (हल्दी पाउडर/Haldi Powder)
-                  </option>
-                  <option value="Vinegar (सिरका/Siraka)">
-                    Vinegar (सिरका/Siraka)
-                  </option>
-                  <option value="Wheat Flour (गेहूं का आटा/Gehun Ka Atta)">
-                    Wheat Flour (गेहूं का आटा/Gehun Ka Atta)
-                  </option>
-                  <option value="Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala Mirch)">
-                    Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala Mirch)
-                  </option>
-                </select>{" "}
-              </div>
-
-              <div className="option_container">
-                <label for="Quantity">Quantity</label>
-                <input
-                  type="number"
-                  name="Quantity"
-                  id="quantityIPL"
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                  required
-                />{" "}
-              </div>
-
-              <div className="option_container">
-                <label for="Unit">Unit </label>
-                <input
-                  type="number"
-                  name="Unit"
-                  id="unitIPL"
-                  value={unit}
-                  onChange={handleUnitChange}
-                  required
-                />
-              </div>
-
-              <div className="option_container">
-                <label for="Amount">Amount</label>
-                <input
-                  type="number"
-                  name="Amount"
-                  id="amountIPL"
-                  value={amount}
-                  onChange={handleAmountChange}
-                  required
-                />{" "}
-              </div>
-
-              <div className="option_container">
-                <label for="Unit-Price">Unit Price</label>
-                <input
-                  type="number"
-                  name="Unit-Price"
-                  id="unitPriceIPL"
-                  value={unitPrice}
-                  onChange={handleUnitPriceChange}
-                  required
-                />{" "}
-              </div>
-
-              <div class="button-container">
-                <div
-                  onClick={handleInventorySubmitForm}
-                  id="recipebutton"
-                  type="submit"
-                  name="submit"
-                >
-                  Submit
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
+        {ShowRecordForwardLossesForm && ( <RecordForwardLossesForm/>)}
+        {ShowinventoryForm && ( <InventoryForm/> )}
 
         {/* option 2 */}
         {ShowItemmanufacturingPlannerForm && <ItemmanufacPlaner />}
         {ShowImportandExportLogForm && <ImportandExportLogForm />}
         {showTaskSheetForm && <TaskSheetForm />}
+
         {/* option 3 */}
         {ShowOrderstatusForm && <OrderstatusForm />}
 
-        {/* Business and Branding option form */}
-        {dailysalesmatricsform && (
-          <div className="formcontains">
-            <h1>Daily Sales Metrics</h1>
-            <form
-              action=""
-              class="form"
-              name="inventory-purchase-log"
-              id="inventory-purchase-log"
-              method="post"
-            >
-              <div className="option_container">
-                <label htmlFor="date">Date:</label>
-                <input
-                  type="date"
-                  id="date"
-                  value={dailysalesmatricsdate}
-                  onChange={handledailysalesmatricsDateChange}
-                />
-              </div>
-
-              <div class="button-container">
-                <div
-                  onClick={handledailysalesmatricssubmit}
-                  id="recipebutton"
-                  type="submit"
-                  name="submit"
-                >
-                  View Sales Metrics
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
+{/* Business and Branding option form */}
+        {Showdailysalesmatricsform && (<Dailysalesmatricsform/> )}
         {showSalesPlanForm && <SalesPlanForm />}
-
-        {ViewSalesPlanform && (
-          <div className="formcontains">
-            <h1>View Sales Plan</h1>
-            <form
-              action=""
-              class="form"
-              name="inventory-purchase-log"
-              id="inventory-purchase-log"
-              method="post"
-            >
-              <div className="option_container">
-                <label htmlFor="start-date-input">Start Date:</label>
-                <input
-                  type="date"
-                  id="start-date-input"
-                  value={ViewSalesPlanstartDate}
-                  onChange={handleViewSalesPlanStartDateChange}
-                />
-              </div>
-
-              <div className="option_container">
-                <label htmlFor="end-date-input">End Date:</label>
-                <input
-                  type="date"
-                  id="end-date-input"
-                  value={ViewSalesPlanendDate}
-                  onChange={handleViewSalesPlanEndDateChange}
-                />
-              </div>
-
-              <div class="button-container">
-                <div
-                  onClick={handleViewSalesPlansubmit}
-                  id="recipebutton"
-                  type="submit"
-                  name="submit"
-                >
-                  View Sales plan
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
-        {PackingPlanner && (
-          <div className="formcontains">
-            <h1>Packing Planner</h1>
-            <form class="form" id="recipe-designing">
-              <div>
-                <label for="Receipe Name">Select Item Name</label>
-                <input
-                  type="text"
-                  name="reciepeNameRD"
-                  id="reciepeNameRD"
-                  required
-                />
-              </div>
-              <div>
-                <label for="Receipe Name">Select packageing to be used</label>
-                <input
-                  type="text"
-                  name="reciepeNameRD"
-                  id="reciepeNameRD"
-                  required
-                />
-              </div>
-
-              <div id="addmoreingredients">Add To Package</div>
-            </form>
-          </div>
-        )}
-
+        {ShowViewSalesPlanform && (<ViewSalesPlanform/>)}
+        {ShowPackingPlanner && (<PackingPlanner/>)}
         {/* profile Form */}
         {showProfile && (
           <div className="formcontains">
@@ -1147,109 +498,6 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           </div>
         )}
 
-        {showdailysalesmatricstable && (
-          <div className="table-container">
-            <h2>Daily Sales</h2>
-            <br />
-            <table className="showInventoryTable">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{dailysalesmatricsdate}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div id="tabel_controllers">
-              <div
-                id="recipebutton_close"
-                onClick={() => setshowdailysalesmatricstable(false)}
-              >
-                cancel
-              </div>
-              <div id="recipebutton_save">Save</div>
-            </div>
-          </div>
-        )}
-
-        {showRecordForwardLossestable && (
-          <div className="table-container">
-            <h2>Record Forward Losses</h2>
-            <br />
-            <table className="showInventoryTable">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Item Name</th>
-                  <th>Specifications</th>
-                  <th>Quantity</th>
-                  <th>Unit </th>
-                  <th>Estimated Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{RecordForwardLossesdate}</td>
-                  <td>{RecordForwardLossesitemName}</td>
-                  <td>{RecordForwardLossesspecification}</td>
-                  <td>{RecordForwardLossesquantity}</td>
-                  <td>{RecordForwardLossesunits}</td>
-                  <td>{RecordForwardLossesestimatedValue}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div id="tabel_controllers">
-              <div
-                id="recipebutton_close"
-                onClick={() => setshowRecordForwardLossestable(false)}
-              >
-                cancel
-              </div>
-              <div id="recipebutton_save">Save</div>
-            </div>
-          </div>
-        )}
-
-        {showInventoryTable && (
-          <div className="table-container">
-            <h2>Purchase Log</h2>
-            <br />
-            <table className="showInventoryTable">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Unit</th>
-                  <th>Unit Price</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{date}</td>
-                  <td>{itemName}</td>
-                  <td>{quantity}</td>
-                  <td>{unit}</td>
-                  <td>{unitPrice}</td>
-                  <td>{amount}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div id="tabel_controllers">
-              <div
-                id="recipebutton_close"
-                onClick={() => setShowInventoryTable(false)}
-              >
-                cancel
-              </div>
-              <div id="recipebutton_save">Save</div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

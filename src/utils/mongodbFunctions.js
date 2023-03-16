@@ -28,7 +28,7 @@ return (response.data);
     }
   };
 
-
+// get all items from material list table
 export const getmateriallist = async ()=>{
   try {
 let headersList = {
@@ -42,7 +42,7 @@ let reqOptions = {
 }
 
 let response = await axios.request(reqOptions);
-console.log(response.data);
+// console.log(response.data);
 
 return (response.data );
 
@@ -51,6 +51,35 @@ return (response.data );
   throw error;
 }
 }
+
+// upload item to material list
+export const addtomateriallist = async (bodyContent)=>{
+
+  try{
+let headersList = {
+ "Accept": "*/*",
+ "Content-Type": "application/json" 
+}
+let reqOptions = {
+  url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/addtomateriallist",
+  method: "POST",
+  headers: headersList,
+  data: bodyContent,
+}
+
+let response = await axios.request(reqOptions);
+// console.log("error",response.data);
+
+return (response.data);
+
+} catch (error) {
+  console.error("Error getting all material items: ", error);
+  throw error;
+}
+
+
+}
+
 
 // add food to cart 
 export const AddToCart = async(email,foodID,quantity)=>{
