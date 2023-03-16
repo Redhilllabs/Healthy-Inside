@@ -10,30 +10,17 @@ import ItemmanufacPlaner from "./ItemmanufacPlaner";
 import ImportandExportLogForm from "./ImportandExportLogForm";
 import TaskSheetForm from "./TaskSheetForm";
 import OrderstatusForm from "./OrderstatusForm";
-const Dashboard = () => {
+import PurchaseOrderForm from './PurchaseOrderForm';
+const Dashboard = ( { showProfile }) => {
   const [{ user, admin }, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
-  const [option, setoption] = useState(false);
-  // const toggleMenu = () => {
-  //   setIsOpen(!isOpen);
-  // };
-  // const toggleoption = () => {
-  //   setoption(!option);
-  // };
   const [showProducts, setShowProducts] = useState(false);
   const [showOperations, setShowOperations] = useState(false);
   const [showMarketing, setShowMarketing] = useState(false);
   const [showFinance, setShowFinance] = useState(false);
-  // const [showTech, setShowTech] = useState(false);
   const [showrecipeform, setrecipeform] = useState(false);
   const [ShowinventoryForm, setShowinventoryForm] = useState(false);
-  const [showblogwriting, setshowblogwriting] = useState(false);
-  // const [serviceList, setserviceList] = useState([
-  //   { unit: "gram", quantity: "1", ingredient_name: "Asafoetida (हींग/Heeng)" },
-  // ]);
-
-  const [showProfile, setShowProfile] = useState(false);
-  // const [ingredient_name, setingredient_name] = useState("");
+  // const [showProfile, setShowProfile] = useState(false);
   const [date, setDate] = useState("");
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -41,27 +28,13 @@ const Dashboard = () => {
   const [unitPrice, setUnitPrice] = useState(0);
   const [amount, setAmount] = useState(0);
   const [showInventoryTable, setShowInventoryTable] = useState(false);
-  const [blogTitle, setBlogTitle] = useState("");
-  const [miniBlog, setMiniBlog] = useState("");
-  const [blog, setBlog] = useState("");
-  // const [blogItemName, setBlogItemName] = useState("");
-  // const [showProfileBlog, setShowProfileBlog] = useState(false);
-  // const [profile, setProfile] = useState("");
-  // const [showBlogTable, setShowBlogTable] = useState(false);
-  const [files, setFiles] = useState(null);
   const [ShowPurchaseOrderForm, setShowPurchaseOrderForm] = useState(false);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  // const [recipeformprocedure, setrecipeformprocedure] = useState(false);
-  // const [recipeformMiniBlog, setrecipeformMiniBlog] = useState(false);
-  const [labels, setLabels] = useState(false);
-  const [showSalesPlanForm, setShowSalesPlanForm] = useState(false);
 
+  const [showSalesPlanForm, setShowSalesPlanForm] = useState(false);
   const [PackingPlanner, setPackingPlanner] = useState(false);
   const [ViewSalesPlanform, setViewSalesPlanform] = useState(false);
   const [ViewSalesPlanstartDate, setViewSalesPlanStartDate] = useState("");
   const [ViewSalesPlanendDate, setViewSalesPlanEndDate] = useState("");
-  // const [ViewSalesPlanstable, setViewSalesPlanstable] = useState(false);
   const [dailysalesmatricsform, setdailysalesmatricsform] = useState(false);
   const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
   const [showdailysalesmatricstable, setshowdailysalesmatricstable] =
@@ -85,8 +58,7 @@ const Dashboard = () => {
   const [showRecordForwardLossestable, setshowRecordForwardLossestable] =
     useState(false);
 
-  const [ShowViewPurchaseOrderTable, setShowViewPurchaseOrderTable] =
-    useState(false);
+ 
   const [showItemDesignForm, setshowItemDesignForm] = useState(false);
 
   const [OprationsOption1, setOprationsOption1] = useState(false);
@@ -104,24 +76,14 @@ const Dashboard = () => {
     setShowItemmanufacturingPlannerForm,
   ] = useState(false);
 
-  // const handleItemmanufacturingPlannerForm = () => {
-  //   setShowItemmanufacturingPlannerForm(!ShowItemmanufacturingPlannerForm);
-  // };
+
 
   const [ShowImportandExportLogForm, setShowImportandExportLogForm] =
     useState(false);
 
-  // const handleImportandExportLogForm = () => {
-  //   setShowImportandExportLogForm(!ShowImportandExportLogForm);
-  //   // add any other logic you need to handle the state change
-  // };
 
   const [showTaskSheetForm, setShowTaskSheetForm] = useState(false);
 
-  // const handleTaskSheetForm = () => {
-  //   setShowTaskSheetForm(!showTaskSheetForm);
-  //   // add any other logic you want to execute when the link is clicked
-  // };
 
   const [OprationsOption3, setOprationsOption3] = useState(false);
 
@@ -130,29 +92,6 @@ const Dashboard = () => {
   };
 
   const [ShowOrderstatusForm, setShowOrderstatusForm] = useState(false);
-
-  // const handleOrderstatusForm = () => {
-  //   setShowOrderstatusForm(true);
-  // };
-
-  // const handleFileChange = (event) => {
-  //   setFiles(event.target.files);
-  // };
-
-  // function handleItemNameBlogChange(e) {
-  //   setBlogItemName((prev) => (prev ? "" : "Blog"));
-  //   setShowProfileBlog((prev) => !prev);
-  // }
-
-  // const handleBlogSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (!blog || !miniBlog || !blogTitle || !files) {
-  //     alert("field required");
-  //     return;
-  //   }
-  //   setShowBlogTable(true);
-  //   // submit logic goes here
-  // };
 
   const handleDateChange = (event) => {
     setDate(event.target.value);
@@ -178,14 +117,6 @@ const Dashboard = () => {
     setAmount(parseFloat(event.target.value));
   };
 
-  // const handelblogwriting = () => {
-  //   setshowblogwriting(!showblogwriting);
-  //   setShowinventoryForm(false);
-  //   setrecipeform(false);
-  //   // setShowTable(false);
-  //   setShowProfile(false);
-  //   setShowInventoryTable(false);
-  // };
 
   const handleViewSalesPlanStartDateChange = (event) => {
     setViewSalesPlanStartDate(event.target.value);
@@ -235,17 +166,7 @@ const Dashboard = () => {
     // do something with the form data
   };
 
-  const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
-  };
-
-  const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
-  };
-
-  const handleViewPurchaseOrder = () => {
-    setShowViewPurchaseOrderTable(true);
-  };
+ 
 
   const handleFormToggle = (formName) => {
     setShowSalesPlanForm(
@@ -272,7 +193,7 @@ const Dashboard = () => {
     setViewSalesPlanform(
       formName === "viewSalesPlanForm" ? !ViewSalesPlanform : false
     );
-    setShowProfile(formName === "profileForm" ? !showProfile : false);
+    // setShowProfile(formName === "profileForm" ? !showProfile : false);
     setshowdailysalesmatricstable(
       formName === "dailySalesMatricsTable"
         ? !showdailysalesmatricstable
@@ -510,7 +431,7 @@ const Dashboard = () => {
                       className="iocn-link"
                       onClick={() => handleOprationsOption3()}
                     >
-                      <a>Tracking Delivery</a>
+                      <a>Order Tracking Delivery</a>
                       {OprationsOption3 ? (
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
                       ) : (
@@ -618,20 +539,7 @@ const Dashboard = () => {
               )}
             </ul>
           </li>
-          <li>
-            <div className="iocn-link" id={showProfile ? "active" : ""}>
-              <a>
-                {/* <img src="https://img.icons8.com/sf-black/64/null/deposit.png"/> */}
-                <span
-                  onClick={() => handleFormToggle("profileForm")}
-                  // onClick={handleProfileForm}
-                  className="link_name"
-                >
-                  Profile
-                </span>
-              </a>
-            </div>
-          </li>
+          
         </ul>
       </div>
 
@@ -643,49 +551,7 @@ const Dashboard = () => {
         {/* Oprations and Supply Chain Option form */}
 
         {/* option 1 */}
-        {ShowPurchaseOrderForm && (
-          <div className="formcontains">
-            <h1>View Purchase Order</h1>
-            <form
-              action=""
-              class="form"
-              name="inventory-purchase-log"
-              id="inventory-purchase-log"
-              method="post"
-            >
-              <div className="option_container">
-                <label htmlFor="start-date-input">Start Date:</label>
-                <input
-                  type="date"
-                  id="start-date-input"
-                  value={startDate}
-                  onChange={handleStartDateChange}
-                />
-              </div>
-
-              <div className="option_container">
-                <label htmlFor="end-date-input">End Date:</label>
-                <input
-                  type="date"
-                  id="end-date-input"
-                  value={endDate}
-                  onChange={handleEndDateChange}
-                />
-              </div>
-
-              <div class="button-container">
-                <div
-                  onClick={handleViewPurchaseOrder}
-                  id="recipebutton"
-                  type="submit"
-                  name="submit"
-                >
-                  View Purchase Order
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
+        {ShowPurchaseOrderForm && (<PurchaseOrderForm/>)}
         {ShowRecordForwardLossesForm && (
           <div className="formcontains">
             <h1>Record Forward and Losses </h1>

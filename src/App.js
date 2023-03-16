@@ -13,7 +13,7 @@ import OrderSubmit from "./components/OrderSubmit";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Cart from "./components/Cart";
 import { getAllFoodItems,GetCart} from "./utils/mongodbFunctions";
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { useStateValue } from "./context/StateProvider";
 import { actionType } from "./context/reducer";
 import PublicRoutes from "./Routes/PublicRoute";
@@ -24,6 +24,12 @@ import AdminRoutes from "./Routes/AdminRoute";
 function App() {
   
   // fetching data to store into State foodItems from mongodbfuntion getAllFoodItems
+  const [showProfile, setShowProfile] = useState(false);
+
+  const handleProfileToggle = () => {
+    setShowProfile(!showProfile);
+  };
+
   const [{ foodItems,user }, dispatch] = useStateValue();
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
@@ -57,13 +63,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Header />
+      <Header  onProfileToggle={handleProfileToggle} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/morninigfood" element={<Morninigfood />} />
 
           <Route element={<AdminRoutes></AdminRoutes>}>
-          <Route path="/urvi" element={<Dashboard />}></Route>
+          <Route path="/urvi" element={<Dashboard  showProfile={showProfile} />}></Route>
           </Route>
 
           <Route element={<PrivateRoutes></PrivateRoutes>}>

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { saveClaimKit } from "../utils/mongodbFunctions";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ onProfileToggle }) => {
   const [{ user ,admin}, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
   const [menu, setmenu] = useState(false);
@@ -217,7 +217,7 @@ const Header = () => {
                 </li>
               ) : (<>
 
-                {admin?(<Link  id="header_login_admin" to="/urvi">{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
+                {admin?(<Link  id="header_login_admin" onClick={onProfileToggle} >{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
                 <Link id="header_login" to="/login">
                   Log In
                 </Link>

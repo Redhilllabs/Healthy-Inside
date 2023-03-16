@@ -2,29 +2,33 @@ import React, { useState } from 'react'
 
 const TaskSheetForm = () => {
 
-    const [ingredientProfile, setIngredientProfile] = useState(false);
+  const [kitchenOption, setKitchenOption] = useState("");
+  const [showTable, setShowTable] = useState(false);
+
+  const handleOptionClick = (option) => {
+    setKitchenOption(option);
+    setShowTable(false);
+  };
     const [seedkitchendate,setseedkitchendate] = useState('')
 
     const handleseedkitchendateChange = (e)=>{
         setseedkitchendate(e.target.value)
 }
-const [table,settable] = useState(false);
-const handelseedKitchenselect = ()=>{
-settable(true)
-}
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  setShowTable(true);
+};
 
 
   return (
     <>
 <div className="formcontains">
             <div className="recipeform_buttons_options">
-              <button onClick={() => setIngredientProfile(!ingredientProfile)}>
-                Seed Kitchen
-              </button>
-              <button>Master Kitchen</button>
-              <button>Op Kitchen</button>
+            <button onClick={() => handleOptionClick("seed")}>Seed Kitchen</button>
+        <button onClick={() => handleOptionClick("master")}>Master Kitchen</button>
+        <button onClick={() => handleOptionClick("op")}>Op Kitchen</button>
             </div>
-            {ingredientProfile ? (
+            {kitchenOption && !showTable && (
               <form className="form" id="recipe-designing">
                 <div>
                   <label for="Receipe Name">date</label>
@@ -38,34 +42,27 @@ settable(true)
                   />
                 </div>
 
-                <div id="addmoreingredients" onClick={handelseedKitchenselect}>
+                <div id="addmoreingredients" onClick={handleFormSubmit}>
                   select
                 </div>
               </form>
-            ) : (
-              <></>
+            
             )}
           </div>
 
-{table && (
+          {kitchenOption && showTable && (
   <div className="table-container">
-            <h2>Task Sheet </h2>
+            <h2>{kitchenOption} Kitchen </h2>
             <br />
             <table className="recipe_table">
   <thead>
     <tr>
       <th rowspan="2">Time</th>
-      <th colspan="2">Seed Kitchen</th>
-      <th colspan="2">Master Kitchen</th>
-      <th colspan="2">Op Kitchen</th>
     </tr>
     <tr>
-      <th>Import</th>
-      <th>Export</th>
-      <th>Import</th>
-      <th>Export</th>
-      <th>Import</th>
-      <th>Export</th>
+      <th>Task</th>
+      <th>Assigned To</th>
+      <th>utensil used </th>
     </tr>
   </thead>
   <tbody>
@@ -74,34 +71,28 @@ settable(true)
       <td>Value 1</td>
       <td>Value 2</td>
       <td>Value 3</td>
-      <td>Value 4</td>
-      <td>Value 5</td>
-      <td>Value 6</td>
+
     </tr>
     <tr>
       <th>1-2</th>
       <td>Value 7</td>
       <td>Value 8</td>
       <td>Value 9</td>
-      <td>Value 10</td>
-      <td>Value 11</td>
-      <td>Value 12</td>
+
     </tr>
     <tr>
       <th>2-3</th>
       <td>Value 13</td>
       <td>Value 14</td>
       <td>Value 15</td>
-      <td>Value 16</td>
-      <td>Value 17</td>
-      <td>Value 18</td>
+
     </tr>
   </tbody>
 </table>
 
 
             <div id="tabel_controllers">
-              <div id="recipebutton_close" onClick={() => settable(false)}>
+              <div id="recipebutton_close" onClick={() => setShowTable(false)}>
                 cancel
               </div>
               <div id="recipebutton_save">Submit</div>
