@@ -301,16 +301,6 @@ const ItemDesignForm = () => {
                         </option>
                       </select>
                     </div>
-
-                    {/* <div id="recipequantity">
-                      <label htmlFor="quantity">Used</label>
-                      <input
-                        type="number"
-                        value={recipequantity}
-                        onChange={handleRecipequantityChange}
-                      />
-                    </div> */}
-
                     <div id="recipequantity">
                       <label htmlFor="Unit">Unit </label>
                       <select
@@ -346,7 +336,6 @@ const ItemDesignForm = () => {
                 <tr>
                   <th>Item Name</th>
                   <th>Ingredients</th>
-                  {/* <th>Procedure</th> */}
                 </tr>
               </thead>
               <tbody>

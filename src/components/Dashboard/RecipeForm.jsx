@@ -52,7 +52,7 @@ const RecipeForm = () => {
               <button>Labels</button>
             </div>
             {ingredientProfile ? (
-              <form class="form" id="recipe-designing">
+              <form className="form" id="recipe-designing">
                 <div>
                   <label for="Receipe Name">Receipe Name</label>
                   <input
@@ -393,4 +393,4 @@ const RecipeForm = () => {
   )
 }
 
-export default RecipeForm
+export default RecipeForm;
