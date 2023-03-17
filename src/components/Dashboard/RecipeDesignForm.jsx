@@ -1,4 +1,5 @@
 import React, { useState }  from 'react'
+import {AddToIngredentProfile} from '../../utils/mongodbFunctions'
 
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -13,6 +14,7 @@ const RecipeForm = () => {
     const handleRecipeNameChange = (event) => {
         setRecipeName(event.target.value);
         setShowTable(true);
+        setIngredientsList([])
       };
        function handleIngredientChange(e) {
     set_recipe_ingredient_name(e.target.value);
@@ -29,9 +31,9 @@ const RecipeForm = () => {
 
     const handeladdmore = (event) => {
     const newIngredient = {
-      ingredient_name: _recipe_ingredient_name,
-      quantity: recipequantity,
-      unit: recipeunit,
+      ingredientName : _recipe_ingredient_name,
+        quantity: recipequantity,
+        unit: recipeunit
     };
     setIngredientsList((prevList) => [...prevList, newIngredient]);
     set_recipe_ingredient_name("Anise, Fennel (सौंफ़/Saunf)");
@@ -39,11 +41,36 @@ const RecipeForm = () => {
     setrecipeunit("gram");
     };
 
+  const handelIngredientProfileSubmit = async ()=>{
+    let bodyContent = JSON.stringify({
+      RecipeName : recipeName,
+      Ingredients :ingredientsList
+    }); 
+console.log(ingredientsList)
+
+if (recipeName === "" || ingredientsList.length === 0) {
+  alert("Fill All The Fields!");
+  return
+}
+    const response = await AddToIngredentProfile(bodyContent);
+    if (response.status === 401) {
+      alert("This Ingredient already exists");
+      return;
+    }
+    set_recipe_ingredient_name("Anise, Fennel (सौंफ़/Saunf)");
+    setrecipequantity("1");
+    setrecipeunit("gram");
+    setRecipeName("");
+    setIngredientsList([]);
+    setShowTable(false);
+
+  }
+
   return (
     <>
 <div className="formcontains">
             <div className="recipeform_buttons_options">
-              <button onClick={() => setIngredientProfile(!ingredientProfile)}>
+              <button  id={ingredientProfile ? "active" : ""}  onClick={() => setIngredientProfile(!ingredientProfile)}>
                 Ingredient Profile
               </button>
               <button>Procedure</button>
@@ -54,7 +81,7 @@ const RecipeForm = () => {
             {ingredientProfile ? (
               <form className="form" id="recipe-designing">
                 <div>
-                  <label for="Receipe Name">Receipe Name</label>
+                  <label for="Receipe Name">Recipe Name</label>
                   <input
                     type="text"
                     name="reciepeNameRD"
@@ -357,7 +384,6 @@ const RecipeForm = () => {
                 <tr>
                   <th>Recipe Name</th>
                   <th>Ingredients</th>
-                  {/* <th>Procedure</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -368,7 +394,7 @@ const RecipeForm = () => {
                       <tbody>
                         {ingredientsList.map((service, index) => (
                           <tr key={index}>
-                            <td>{service.ingredient_name}</td>
+                            <td>{service.ingredientName}</td>
                             <td>{service.quantity}</td>
                             <td>{service.unit}</td>
                           </tr>
@@ -376,7 +402,6 @@ const RecipeForm = () => {
                       </tbody>
                     </table>
                   </td>
-                  {/* <td>{procedure}</td> */}
                 </tr>
               </tbody>
             </table>
@@ -384,7 +409,7 @@ const RecipeForm = () => {
               <div id="recipebutton_close" onClick={() => setShowTable(false)}>
                 cancel
               </div>
-              <div id="recipebutton_save">Submit</div>
+              <div id="recipebutton_save" onClick={handelIngredientProfileSubmit} >Submit</div>
             </div>
           </div>
         )}

@@ -81,6 +81,48 @@ return (response.data);
 }
 
 
+// ADD ITEM TO INGREDIENT PROFILE
+export const AddToIngredentProfile = async(bodyContent)=>{
+
+
+let headersList = {
+ "Accept": "*/*",
+ "Content-Type": "application/json" 
+}
+
+
+let reqOptions = {
+  url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/addtoingredientprofile",
+  method: "POST",
+  headers: headersList,
+  data: bodyContent,
+}
+
+let response = await axios.request(reqOptions);
+// console.log(response.data);
+return (response.data)
+
+}
+
+// get item from ingredient profile
+export const getallIngredientProfile = async()=>{
+
+let headersList = {
+ "Accept": "*/*",
+ "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
+}
+
+let reqOptions = {
+  url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/getingredientprofile",
+  method: "GET",
+  headers: headersList,
+}
+
+let response = await axios.request(reqOptions);
+// console.log(response.data);
+return (response.data)
+} 
+
 // add food to cart 
 export const AddToCart = async(email,foodID,quantity)=>{
 
@@ -271,13 +313,3 @@ export const SaveUserAddress = async (data) => {
   
 
 };
-
-
-
-
-
-
-
-
-
-

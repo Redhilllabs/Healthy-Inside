@@ -3,7 +3,7 @@ import "./dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import RecipeForm from "./RecipeForm";
+import RecipeForm from "./RecipeDesignForm";
 import ItemDesignForm from "./ItemDesign";
 import SalesPlanForm from "./SalesPlanForm";
 import ItemmanufacPlaner from "./ItemmanufacPlaner";
@@ -148,42 +148,25 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           <li>
             <div className="iocn-link" onClick={() => handleProducts()}>
               <a>
-                
                 <span className="link_name">Product & Research</span>
                 {showProducts ? (
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
               ) : (
-                <img
-                  id="arrow4"
-                  src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
-                />
+                <img id="arrow4" src="https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"/>
               )}
               </a>
-              
             </div>
             <ul className="sub-menu">
               {showProducts && (
                 <div id="product-dash">
-                  <a>Upload File</a>
-                  <a id={showRMIProfileingForm ? "active" : ""}
-                    onClick={() => handleFormToggle("RMIProfileingForm")}>RMI Profileing</a>
-
-                  <a
-                    id={showItemDesignForm ? "active" : ""}
-                    onClick={() => handleFormToggle("itemDesignForm")}
-                    // onClick={handelItemDesignForm}
-                  >
-                    Item designing
+                <a id={showrecipeform ? "active" : ""} onClick={() => handleFormToggle("recipeForm")} > Receipe Designing
                   </a>
-                  <a>Item Profile</a>
+                  <a  id={showItemDesignForm ? "active" : ""} onClick={() => handleFormToggle("itemDesignForm")}>
+                    Item Design
+                  </a>
                   <a>Receipe Profile</a>
-                  <a
-                    id={showrecipeform ? "active" : ""}
-                    onClick={() => handleFormToggle("recipeForm")}
-                    // onClick={handelrecipeform}
-                  >
-                    Receipe Designing
-                  </a>
+                  <a>Item Profile</a>
+                  <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profileing</a> 
                 </div>
               )}
             </ul>
@@ -359,9 +342,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
             <ul className="sub-menu">
               {showMarketing && (
                 <div id="product-dash">
-                  {/* <a href="#" onClick={handelblogwriting}>
-                    Blog Writing
-                  </a> */}
+                <a>Upload File</a>
                   <a
                     id={Showdailysalesmatricsform ? "active" : ""}
                     onClick={() => handleFormToggle("dailySalesMatricsForm")}
@@ -424,7 +405,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           <li>
             <div className="iocn-link" >
               <a>
-                <span className="link_name">Training & Certification</span>
+                <span className="link_name">Training</span>
               </a>
               
             </div>
