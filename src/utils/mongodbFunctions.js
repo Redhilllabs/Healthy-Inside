@@ -145,6 +145,25 @@ export const AddToRecipeProfile= async(bodyContent)=>{
   
 }
 
+// get recipeProfile 
+export const getallrecipeProfile  = async()=>{
+
+let headersList = {
+ "Accept": "*/*",
+}
+
+let reqOptions = {
+  url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/recipeprofile",
+  method: "GET",
+  headers: headersList,
+}
+
+let response = await axios.request(reqOptions);
+// console.log(response.data);
+
+  return (response.data)
+  } 
+
 
 // add food to cart 
 export const AddToCart = async(email,foodID,quantity)=>{

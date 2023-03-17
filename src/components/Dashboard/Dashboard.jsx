@@ -164,7 +164,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                   <a  id={showItemDesignForm ? "active" : ""} onClick={() => handleFormToggle("itemDesignForm")}>
                     Item Design
                   </a>
-                  <a>Receipe Profile</a>
+                  <a>Recipe Profile</a>
                   <a>Item Profile</a>
                   <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profileing</a> 
                 </div>
