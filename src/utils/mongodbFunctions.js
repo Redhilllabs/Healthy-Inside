@@ -123,6 +123,29 @@ let response = await axios.request(reqOptions);
 return (response.data)
 } 
 
+// add item to Recipe Profile 
+export const AddToRecipeProfile= async(bodyContent)=>{
+
+  let headersList = {
+   "Accept": "*/*",
+   "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+   "Content-Type": "application/json" 
+  }
+  
+  let reqOptions = {
+    url: "https://zo5siwf5th.execute-api.us-east-1.amazonaws.com/prod/recipeprofile",
+    method: "POST",
+    headers: headersList,
+    data: bodyContent,
+  }
+  
+  let response = await axios.request(reqOptions);
+  // console.log(response.data);
+  return(response.data);
+  
+}
+
+
 // add food to cart 
 export const AddToCart = async(email,foodID,quantity)=>{
 

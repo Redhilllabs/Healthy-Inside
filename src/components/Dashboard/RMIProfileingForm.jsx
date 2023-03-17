@@ -138,7 +138,7 @@ const handelrmisubmit = async ()=>{
         </div>
         {kitchenOption === "MaterialList" && (
           <div className="table-container" id="materiallisttable">
-            <h2>Malterial List</h2>
+            <h2>Material List</h2>
             <br />
             <table className="recipe_table" id="materiallisttable_main">
               <thead>

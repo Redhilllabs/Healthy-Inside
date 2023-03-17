@@ -1,5 +1,5 @@
 import React, { useState,useEffect }  from 'react'
-import {AddToIngredentProfile ,getmateriallist,} from '../../utils/mongodbFunctions'
+import {AddToIngredentProfile ,getmateriallist,AddToRecipeProfile} from '../../utils/mongodbFunctions'
 
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -141,6 +141,37 @@ const RecipeForm = () => {
       RecipeName : recipeName,
       Ingredients :ingredientsList
     }); 
+
+    let bodyContent2 = JSON.stringify({
+      RecipeName : recipeName,
+      Ingredients :{
+        'Energy': calculateTotalVal('Energy'),
+    'Proteins': calculateTotalVal('Proteins'),
+    'Carbohydrates': calculateTotalVal('Carbohydrates'),
+    'Fats': calculateTotalVal('Fats'),
+    'DietaryFibre': calculateTotalVal('DietaryFibre'),
+    'Calcium': calculateTotalVal('Calcium'),
+    'VitaminB9': calculateTotalVal('VitaminB9'),
+    'Potassium': calculateTotalVal('Potassium'),
+    'VitaminB5': calculateTotalVal('VitaminB5'),
+    'VitaminB6': calculateTotalVal('VitaminB6'),
+    'Sodium': calculateTotalVal('Sodium'),
+    'VitaminB1': calculateTotalVal('VitaminB1'),
+    'VitaminB2': calculateTotalVal('VitaminB2'),
+    'VitaminB3': calculateTotalVal('VitaminB3'),
+    'Manganese': calculateTotalVal('Manganese'),
+    'Iron': calculateTotalVal('Iron'),
+    'VitaminE': calculateTotalVal('VitaminE'),
+    'Phosphorous': calculateTotalVal('Phosphorous'),
+    'VitaminA': calculateTotalVal('VitaminA'),
+    'VitaminC': calculateTotalVal('VitaminC'),
+    'VitaminK':calculateTotalVal('VitaminK'),
+    'Copper':calculateTotalVal('Copper'),
+    'Magnesium':calculateTotalVal('Magnesium'),
+    'Zinc':calculateTotalVal('Zinc')
+      }
+      }
+    ); 
 console.log(ingredientsList)
 
 if (recipeName === "" || ingredientsList.length === 0) {
@@ -158,6 +189,13 @@ if (recipeName === "" || ingredientsList.length === 0) {
     setRecipeName("");
     setIngredientsList([]);
     setShowTable(false);
+
+    const response2 = await AddToRecipeProfile(bodyContent2)
+    if (response2.status === 401) {
+      alert("This Recipe Name  already exists in Recipe Profile Table");
+      return;
+    }
+    setMaterialListTable(false)
 
   }
 
@@ -323,13 +361,6 @@ if (recipeName === "" || ingredientsList.length === 0) {
               </tr>
             </thead>
             <tbody>
-
-  {/* {data.map((item, index) => {
-    const ingredient = ingredientsList.find(
-    (ingredient) => ingredient.ingredientName == item.Ingredients
-  );
-  if (ingredient) {
-      return ( */}
         <tr >
         <td>{calculateTotalVal('Energy')}</td>
 <td>{calculateTotalVal('Proteins')}</td>
@@ -357,11 +388,6 @@ if (recipeName === "" || ingredientsList.length === 0) {
 <td>{calculateTotalVal('Zinc')}</td>
 
         </tr>
-      {/* );
-    } else {
-      return null;
-    }
-  })} */}
 </tbody>
 
           </table>
