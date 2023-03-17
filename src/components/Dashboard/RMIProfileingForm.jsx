@@ -143,31 +143,31 @@ const handelrmisubmit = async ()=>{
             <table className="recipe_table" id="materiallisttable_main">
               <thead>
                 <tr>
-                  <th>Ingredient</th>
-                  <th>Energy</th>
-                  <th>Proteins</th>
-                  <th>Carbohydrates</th>
-                  <th>Fats</th>
-                  <th>Dietary Fibre</th>
-                  <th>Calcium</th>
-                  <th>Vitamin B9</th>
-                  <th>Potassium</th>
-                  <th>Vitamin B5</th>
-                  <th>Vitamin B6</th>
-                  <th>Sodium</th>
-                  <th>Vitamin B1</th>
-                  <th>Vitamin B2</th>
-                  <th>Vitamin B3</th>
-                  <th>Manganese</th>
-                  <th>Iron</th>
-                  <th>Vitamin E</th>
-                  <th>Phosphorous</th>
-                  <th>Vitamin A</th>
-                  <th>Vitamin C</th>
-                  <th>Vitamin K</th>
-                  <th>Copper</th>
-                  <th>Magnesium</th>
-                  <th>Zinc</th>
+                <th>Ingredient</th>
+        <th>Energy (kcal/100g)</th>
+        <th>Proteins (g/100g)</th>
+        <th>Carbohydrates (g/100g)</th>
+        <th>Fats (g/100g)</th>
+        <th>Dietary Fibre (g/100g)</th>
+        <th>Calcium (mg/100g)</th>
+        <th>Vitamin B9 (mcg/100g)</th>
+        <th>Potassium (mg/100g)</th>
+        <th>Vitamin B5 (mg/100g)</th>
+        <th>Vitamin B6 (mg/100g)</th>
+        <th>Sodium (mg/100g)</th>
+        <th>Vitamin B1 (mg/100g)</th>
+        <th>Vitamin B2 (mg/100g)</th>
+        <th>Vitamin B3 (mg/100g)</th>
+        <th>Manganese (mg/100g)</th>
+        <th>Iron (mg/100g)</th>
+        <th>Vitamin E (mg/100g)</th>
+        <th>Phosphorous (mg/100g)</th>
+        <th>Vitamin A (mcg/100g)</th>
+        <th>Vitamin C (mg/100g)</th>
+        <th>Vitamin K (mcg/100g)</th>
+        <th>Copper (mg/100g)</th>
+        <th>Magnesium (mg/100g)</th>
+        <th>Zinc (mg/100g)</th>
                 </tr>
               </thead>
               <tbody>

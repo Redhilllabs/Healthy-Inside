@@ -1,5 +1,5 @@
-import React, { useState }  from 'react'
-import {AddToIngredentProfile} from '../../utils/mongodbFunctions'
+import React, { useState,useEffect }  from 'react'
+import {AddToIngredentProfile ,getmateriallist,} from '../../utils/mongodbFunctions'
 
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -9,12 +9,13 @@ const RecipeForm = () => {
     const [recipeunit, setrecipeunit] = useState("gram");
     const [showTable, setShowTable] = useState(false);
     const [ingredientsList, setIngredientsList] = useState([]);
+    const [MaterialListTable, setMaterialListTable] = useState(false)
 
     
     const handleRecipeNameChange = (event) => {
         setRecipeName(event.target.value);
         setShowTable(true);
-        setIngredientsList([])
+        // setIngredientsList([])
       };
        function handleIngredientChange(e) {
     set_recipe_ingredient_name(e.target.value);
@@ -36,9 +37,12 @@ const RecipeForm = () => {
         unit: recipeunit
     };
     setIngredientsList((prevList) => [...prevList, newIngredient]);
+    console.log(ingredientsList)
     set_recipe_ingredient_name("Anise, Fennel (सौंफ़/Saunf)");
     setrecipequantity("1");
     setrecipeunit("gram");
+    setMaterialListTable(true);
+
     };
 
   const handelIngredientProfileSubmit = async ()=>{
@@ -65,6 +69,17 @@ if (recipeName === "" || ingredientsList.length === 0) {
     setShowTable(false);
 
   }
+
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getmateriallist();
+      setData(response.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -405,14 +420,96 @@ if (recipeName === "" || ingredientsList.length === 0) {
                 </tr>
               </tbody>
             </table>
-            <div id="tabel_controllers">
-              <div id="recipebutton_close" onClick={() => setShowTable(false)}>
-                cancel
-              </div>
-              <div id="recipebutton_save" onClick={handelIngredientProfileSubmit} >Submit</div>
-            </div>
           </div>
         )}
+
+        {MaterialListTable && (
+
+          <div className="table-container" id="showtablermi" >
+          <h2>Malterial List</h2>
+          <br />
+          <table className="recipe_table" >
+            <thead>
+              <tr>
+                {/* <th>Ingredient</th> */}
+                <th>Energy (kcal/100g)</th>
+        <th>Proteins (g/100g)</th>
+        <th>Carbohydrates (g/100g)</th>
+        <th>Fats (g/100g)</th>
+        <th>Dietary Fibre (g/100g)</th>
+        <th>Calcium (mg/100g)</th>
+        <th>Vitamin B9 (mcg/100g)</th>
+        <th>Potassium (mg/100g)</th>
+        <th>Vitamin B5 (mg/100g)</th>
+        <th>Vitamin B6 (mg/100g)</th>
+        <th>Sodium (mg/100g)</th>
+        <th>Vitamin B1 (mg/100g)</th>
+        <th>Vitamin B2 (mg/100g)</th>
+        <th>Vitamin B3 (mg/100g)</th>
+        <th>Manganese (mg/100g)</th>
+        <th>Iron (mg/100g)</th>
+        <th>Vitamin E (mg/100g)</th>
+        <th>Phosphorous (mg/100g)</th>
+        <th>Vitamin A (mcg/100g)</th>
+        <th>Vitamin C (mg/100g)</th>
+        <th>Vitamin K (mcg/100g)</th>
+        <th>Copper (mg/100g)</th>
+        <th>Magnesium (mg/100g)</th>
+        <th>Zinc (mg/100g)</th>
+              </tr>
+            </thead>
+            <tbody>
+
+  {data.map((item, index) => {
+    const ingredient = ingredientsList.find(
+    (ingredient) => ingredient.ingredientName === item.Ingredients
+  );
+  if (ingredient) {
+      return (
+        <tr key={index}>
+          <td>{item.Energy}</td>
+          <td>{item.Proteins}</td>
+          <td>{item.Carbohydrates}</td>
+          <td>{item.Fats}</td>
+          <td>{item.DietaryFibre}</td>
+          <td>{item.Calcium}</td>
+          <td>{item.VitaminB9}</td>
+          <td>{item.Potassium}</td>
+          <td>{item.VitaminB5}</td>
+          <td>{item.VitaminB6}</td>
+          <td>{item.Sodium}</td>
+          <td>{item.VitaminB1}</td>
+          <td>{item.VitaminB2}</td>
+          <td>{item.VitaminB3}</td>
+          <td>{item.Manganese}</td>
+          <td>{item.Iron}</td>
+          <td>{item.VitaminE}</td>
+          <td>{item.Phosphorous}</td>
+          <td>{item.VitaminA}</td>
+          <td>{item.VitaminC}</td>
+          <td>{item.VitaminK}</td>
+          <td>{item.Copper}</td>
+          <td>{item.Magnesium}</td>
+          <td>{item.Zinc}</td>
+        </tr>
+      );
+    } else {
+      return null;
+    }
+  })}
+</tbody>
+
+          </table>
+          <div id="tabel_controllers">
+            <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
+              cancel
+            </div>
+            <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div>
+          </div>
+        </div>
+        )}
+
+
 
     </>
   )

@@ -148,7 +148,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           <li>
             <div className="iocn-link" onClick={() => handleProducts()}>
               <a>
-                <span className="link_name">Product & Research</span>
+                <span className="link_name">Product R&D</span>
                 {showProducts ? (
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="></img>
               ) : (
