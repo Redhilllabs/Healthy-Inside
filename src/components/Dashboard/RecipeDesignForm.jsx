@@ -4,7 +4,7 @@ import {AddToIngredentProfile ,getmateriallist,} from '../../utils/mongodbFuncti
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
     const [recipeName, setRecipeName] = useState("");
-    const [_recipe_ingredient_name, set_recipe_ingredient_name] = useState("Anise, Fennel (सौंफ़/Saunf)");
+    const [_recipe_ingredient_name, set_recipe_ingredient_name] = useState("");
     const [recipequantity, setrecipequantity] = useState("1");
     const [recipeunit, setrecipeunit] = useState("gram");
     const [showTable, setShowTable] = useState(false);
@@ -30,6 +30,96 @@ const RecipeForm = () => {
     setrecipeunit(e.target.value);
   };
 
+  const calculateTotalVal = (nutrient) => {
+    let totalNutrient = 0;
+    data.forEach((item, index) => {
+      const ingredient = ingredientsList.find(
+        (ingredient) => ingredient.ingredientName === item.Ingredients
+      );
+      if (ingredient) {
+        let unitConversion = 1;
+        switch (recipeunit) {
+          case "millilitre":
+            if (ingredient.unit === "cup") {
+              unitConversion = 236.588;
+            } else if (ingredient.unit === "tablespoon") {
+              unitConversion = 14.787;
+            } else if (ingredient.unit === "teaspoon") {
+              unitConversion = 4.929;
+            } else if (ingredient.unit === "millilitre") {
+              unitConversion = 1;
+            } else {
+              unitConversion = 0;
+            }
+            break;
+          case "gram":
+            if (ingredient.unit === "cup") {
+              unitConversion = 128;
+            } else if (ingredient.unit === "tablespoon") {
+              unitConversion = 7.9;
+            } else if (ingredient.unit === "teaspoon") {
+              unitConversion = 2.63;
+            } else if (ingredient.unit === "gram") {
+              unitConversion = 1;
+            } else {
+              unitConversion = 0;
+            }
+            break;
+          case "microgram":
+            if (ingredient.unit === "microgram") {
+              unitConversion = 1;
+            } else {
+              unitConversion = 0;
+            }
+            break;
+          case "tablespoon":
+            if (ingredient.unit === "cup") {
+              unitConversion = 16;
+            } else if (ingredient.unit === "tablespoon") {
+              unitConversion = 1;
+            } else if (ingredient.unit === "teaspoon") {
+              unitConversion = 1 / 3;
+            } else if (ingredient.unit === "millilitre") {
+              unitConversion = 1.35;
+            } else {
+              unitConversion = 0;
+            }
+            break;
+          case "teaspoon":
+            if (ingredient.unit === "cup") {
+              unitConversion = 48;
+            } else if (ingredient.unit === "tablespoon") {
+              unitConversion = 3;
+            } else if (ingredient.unit === "teaspoon") {
+              unitConversion = 1;
+            } else if (ingredient.unit === "millilitre") {
+              unitConversion = 4.93;
+            } else {
+              unitConversion = 0;
+            }
+            break;
+          case "cup":
+            if (ingredient.unit === "cup") {
+              unitConversion = 1;
+            } else if (ingredient.unit === "tablespoon") {
+              unitConversion = 1 / 16;
+            } else if (ingredient.unit === "teaspoon") {
+              unitConversion = 1 / 48;
+            } else if (ingredient.unit === "millilitre") {
+              unitConversion = 1 / 236.588;
+            } else {
+              unitConversion = 0;
+            }
+            break;
+          default:
+            unitConversion = 0;
+        }
+        totalNutrient += (item[nutrient] * ingredient.quantity * unitConversion * recipequantity) / 100;
+      }
+    });
+    return totalNutrient;
+  };
+  
     const handeladdmore = (event) => {
     const newIngredient = {
       ingredientName : _recipe_ingredient_name,
@@ -42,6 +132,7 @@ const RecipeForm = () => {
     setrecipequantity("1");
     setrecipeunit("gram");
     setMaterialListTable(true);
+    // calculateTotalVal('Energy')
 
     };
 
@@ -77,6 +168,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
     const fetchData = async () => {
       const response = await getmateriallist();
       setData(response.data);
+
     };
     fetchData();
   }, []);
@@ -117,238 +209,10 @@ if (recipeName === "" || ingredientsList.length === 0) {
                         value={_recipe_ingredient_name}
                         onChange={handleIngredientChange}
                       >
-                        <option value="Anise, Fennel (सौंफ़/Saunf)">
-                          Anise, Fennel (सौंफ़/Saunf)
-                        </option>
-                        <option value="Asafoetida (हींग/Heeng)">
-                          Asafoetida (हींग/Heeng)
-                        </option>
-                        <option value="Baking Soda (बेकिंग सोडा/Baking Soda/ENO)">
-                          Baking Soda (बेकिंग सोडा/Baking Soda/ENO)
-                        </option>
-                        <option value="Beans (फलिया/Beans)">
-                          Beans (फलिया/Beans)
-                        </option>
-                        <option value="Beetroot (चुकंदर/Chukander)">
-                          Beetroot (चुकंदर/Chukander)
-                        </option>
-                        <option value="Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)">
-                          Black Pepper Powder(काली मिर्च पाउडर/Kali Mirch
-                          Powder)
-                        </option>
-                        <option value="Black Salt (काला नमक/Kala Namak)">
-                          Black Salt (काला नमक/Kala Namak)
-                        </option>
-                        <option value="Bottle Gourd (लौकी/Lauki)">
-                          Bottle Gourd (लौकी/Lauki)
-                        </option>
-                        <option value="Broken Wheat (दलिया/Dalia)">
-                          Broken Wheat (दलिया/Dalia)
-                        </option>
-                        <option value="Brown Rice (ब्राउन राइस/Brown Rice)">
-                          Brown Rice (ब्राउन राइस/Brown Rice)
-                        </option>
-                        <option value="Capsicum (शिमला मिर्च/Shimla Mirch)">
-                          Capsicum (शिमला मिर्च/Shimla Mirch)
-                        </option>
-                        <option value="Carrot (गाजर/Gazar)">
-                          Carrot (गाजर/Gazar)
-                        </option>
-                        <option value="Cashew Nuts (काजू/Kajju)">
-                          Cashew Nuts (काजू/Kajju)
-                        </option>
-                        <option value="Cauliflower (फूल गोभी/Phool Gobhee)">
-                          Cauliflower (फूल गोभी/Phool Gobhee)
-                        </option>
-                        <option value="Celery Seeds (अजवाइन के बीज/Ajwain k beej)">
-                          Celery Seeds (अजवाइन के बीज/Ajwain k beej)
-                        </option>
-                        <option value="Chaat Masala (चाट मसाला/Chaat Masala)">
-                          Chaat Masala (चाट मसाला/Chaat Masala)
-                        </option>
-                        <option value="Coconut (नारियल/Nariyal)">
-                          Coconut (नारियल/Nariyal)
-                        </option>
-                        <option value="Common Salt (सादा नमक/Saada Namak)">
-                          Common Salt (सादा नमक/Saada Namak)
-                        </option>
-                        <option value="Coriander Leaves (धनिया/Dhaniya)">
-                          Coriander Leaves (धनिया/Dhaniya)
-                        </option>
-                        <option value="Coriander Powder (धनिया पाउडर/Dhaniya Powder)">
-                          Coriander Powder (धनिया पाउडर/Dhaniya Powder)
-                        </option>
-                        <option value="Cucumber (खीरा/Kheera)">
-                          Cucumber (खीरा/Kheera)
-                        </option>
-                        <option value="Cumin Seed Powder (जीरा पाउडर/Jeera Powder)">
-                          Cumin Seed Powder (जीरा पाउडर/Jeera Powder)
-                        </option>
-                        <option value="Cumin Seeds (जीरा/Jeera)">
-                          Cumin Seeds (जीरा/Jeera)
-                        </option>
-                        <option value="Curd (दही/Dahi)">
-                          Curd (दही/Dahi){" "}
-                        </option>
-                        <option value="Curry Leaves (कड़ी पत्ता/Kadi Patta)">
-                          Curry Leaves (कड़ी पत्ता/Kadi Patta)
-                        </option>
-                        <option value="Egg Plant (बैंगन/Baigan)">
-                          Egg Plant (बैंगन/Baigan)
-                        </option>
-                        <option value="Ekgaon Moth Beans (रामास/Ramaas)">
-                          Ekgaon Moth Beans (रामास/Ramaas)
-                        </option>
-                        <option value="Fenugreek (मेंथी/Meethi)">
-                          Fenugreek (मेंथी/Meethi)
-                        </option>
-                        <option value="Fenugreek seeds (मेथी के बीज/Meethi ke Beej)">
-                          Fenugreek seeds (मेथी के बीज/Meethi ke Beej)
-                        </option>
-                        <option value="Flattened Rice (पोहा/Poha)">
-                          Flattened Rice (पोहा/Poha)
-                        </option>
-                        <option value="Garlic (लहसुन/Lehsun)">
-                          Garlic (लहसुन/Lehsun)
-                        </option>
-                        <option value="Ginger (अदरक/Adrak)">
-                          Ginger (अदरक/Adrak)
-                        </option>
-                        <option value="Gram Flour (बेसन/Besan)">
-                          Gram Flour (बेसन/Besan)
-                        </option>
-                        <option value="Green Peas (हरी मटर/Hari Matar)">
-                          Green Peas (हरी मटर/Hari Matar)
-                        </option>
-                        <option value="Idli Batter (इडली बैटर/Idli Batter)">
-                          Idli Batter (इडली बैटर/Idli Batter)
-                        </option>
-                        <option value="Jaggery (गूढ़/Gud)">
-                          Jaggery (गूढ़/Gud)
-                        </option>
-                        <option value="Kashmiri Red Chilli Powder (कश्मीरी लाल मिर्च पाउडर/Kasmiri Lal Mirch Powder)">
-                          Kashmiri Red Chilli Powder ,(कश्मीरी लाल मिर्च
-                          पाउडर/Kasmiri Lal Mirch Powder)
-                        </option>
-                        <option value="Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri Lal Mirch Sabut)">
-                          Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च
-                          साबुत/Kasmiri Lal Mirch Sabut)
-                        </option>
-                        <option value="Large Green Chilli (बड़ी हरी मिर्च/Badee Haree Mirch)">
-                          Large Green Chilli (बड़ी हरी मिर्च/Badee Haree Mirch)
-                        </option>
-                        <option value="Lemon Juice (नींबू का रस/Nimbu ka Ras)">
-                          Lemon Juice (नींबू का रस/Nimbu ka Ras)
-                        </option>
-                        <option value="Lettuce (सलाद पत्ता/Salaad Patta)">
-                          Lettuce (सलाद पत्ता/Salaad Patta)
-                        </option>
-                        <option value="Millet Flour (बाजरे का आटा/Baajaree Ka Atta)">
-                          Millet Flour (बाजरे का आटा/Baajaree Ka Atta)
-                        </option>
-                        <option value="Moringa (मोरिंगा/Drumstick)">
-                          Moringa (मोरिंगा/Drumstick)
-                        </option>
-                        <option value="Mustard (सरसों/Sarsoo)">
-                          Mustard (सरसों/Sarsoo)
-                        </option>
-                        <option value="Mustard Seeds (राई/Rai)">
-                          Mustard Seeds (राई/Rai)
-                        </option>
-                        <option value="Olive Oil (जैतून का तेल/Jaitun ka Tel)">
-                          Olive Oil (जैतून का तेल/Jaitun ka Tel)
-                        </option>
-                        <option value="Onion (प्याज/Pyaaj)">
-                          Onion (प्याज/Pyaaj)
-                        </option>
-                        <option value="Oregano (ओरिगैनो/Oregano)">
-                          Oregano (ओरिगैनो/Oregano)
-                        </option>
-                        <option value="Peppermint (पुदीना/Pudeena)">
-                          Peppermint (पुदीना/Pudeena)
-                        </option>
-                        <option value="Petite Yellow Lentils (पीली मूंग दाल/Peelee Moong Daal)">
-                          Petite Yellow Lentils (पीली मूंग दाल/Peelee Moong
-                          Daal)
-                        </option>
-                        <option value="Pigeon Peas (अरहर दाल/Arhar daal)">
-                          Pigeon Peas (अरहर दाल/Arhar daal)
-                        </option>
-                        <option value="Pumpkin (कद्दू/Kaddu)">
-                          Pumpkin (कद्दू/Kaddu)
-                        </option>
-                        <option value="Ragi Flour (रागी का आटा?Ragee Ka Atta)">
-                          Ragi Flour (रागी का आटा?Ragee Ka Atta)
-                        </option>
-                        <option value="Red Bell Pepper (लाल शिमला मिर्च/Lal Shimla Mirch)">
-                          Red Bell Pepper (लाल शिमला मिर्च/Lal Shimla Mirch)
-                        </option>
-                        <option value="Red Chilli Powder (लाल मिर्च पाउडर/Lal Mirch Powder)">
-                          Red Chilli Powder (लाल मिर्च पाउडर/Lal Mirch Powder)
-                        </option>
-                        <option value="Rock Salt (सेंधा नमक/Sendha Namak)">
-                          Rock Salt (सेंधा नमक/Sendha Namak)
-                        </option>
-                        <option value="Sambhar Masala Powder (सांभर मसाला पाउडर/Sambhar Masala Powder)">
-                          Sambhar Masala Powder (सांभर मसाला पाउडर/Sambhar
-                          Masala Powder)
-                        </option>
-                        <option value="Semolina (सूजी/Suji)">
-                          Semolina (सूजी/Suji)
-                        </option>
-                        <option value="Sesame Seeds (तिल के बीज/Til Ke Beej)">
-                          Sesame Seeds (तिल के बीज/Til Ke Beej)
-                        </option>
-                        <option value="Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree Mirch)">
-                          Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree
-                          Mirch)
-                        </option>
-                        <option value="Soybean Seeds (सोयाबीन के बीज/soyaabeen ke beej)">
-                          Soybean Seeds (सोयाबीन के बीज/soyaabeen ke beej)
-                        </option>
-                        <option value="Spinach (पालक/Paalak)">
-                          Spinach (पालक/Paalak)
-                        </option>
-                        <option value="Split Chickpeas (चना दाल/Channa Daal)">
-                          Split Chickpeas (चना दाल/Channa Daal)
-                        </option>
-                        <option value="Split Washed Vigna Mungo (उड़द दाल/Urad Daal)">
-                          Split Washed Vigna Mungo (उड़द दाल/Urad Daal)
-                        </option>
-                        <option value="Spring Onion (प्याज पत्ता/Pyaz Patta)">
-                          Spring Onion (प्याज पत्ता/Pyaz Patta)
-                        </option>
-                        <option value="Sprouts (अंकुरित/Ankurit)">
-                          Sprouts (अंकुरित/Ankurit)
-                        </option>
-                        <option value="Sweet Corn (स्वीट कॉर्न/Sveet Korn)">
-                          Sweet Corn (स्वीट कॉर्न/Sveet Korn)
-                        </option>
-                        <option value="Sweet Potato (शकरकंद/Shakarakand)">
-                          Sweet Potato (शकरकंद/Shakarakand)
-                        </option>
-                        <option value="Tamarind (इमली/Imalee)">
-                          Tamarind (इमली/Imalee)
-                        </option>
-                        <option value="Tofu (टोफू/Tofu)">
-                          Tofu (टोफू/Tofu)
-                        </option>
-                        <option value="Tomato (टमाटर/Tamatar)">
-                          Tomato (टमाटर/Tamatar)
-                        </option>
-                        <option value="Turmeric Powder (हल्दी पाउडर/Haldi Powder)">
-                          Turmeric Powder (हल्दी पाउडर/Haldi Powder)
-                        </option>
-                        <option value="Vinegar (सिरका/Siraka)">
-                          Vinegar (सिरका/Siraka)
-                        </option>
-                        <option value="Wheat Flour (गेहूं का आटा/Gehun Ka Atta)">
-                          Wheat Flour (गेहूं का आटा/Gehun Ka Atta)
-                        </option>
-                        <option value="Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala Mirch)">
-                          Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala
-                          Mirch)
-                        </option>
+                        <option value="">Select Option</option>
+                        {data.map((item, index) => (
+                        <option value={item.Ingredients}>{item.Ingredients}</option>
+                        ))}
                       </select>
                     </div>
 
@@ -426,7 +290,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
         {MaterialListTable && (
 
           <div className="table-container" id="showtablermi" >
-          <h2>Malterial List</h2>
+          <h2>Recipe Profile</h2>
           <br />
           <table className="recipe_table" >
             <thead>
@@ -460,43 +324,44 @@ if (recipeName === "" || ingredientsList.length === 0) {
             </thead>
             <tbody>
 
-  {data.map((item, index) => {
+  {/* {data.map((item, index) => {
     const ingredient = ingredientsList.find(
-    (ingredient) => ingredient.ingredientName === item.Ingredients
+    (ingredient) => ingredient.ingredientName == item.Ingredients
   );
   if (ingredient) {
-      return (
-        <tr key={index}>
-          <td>{item.Energy}</td>
-          <td>{item.Proteins}</td>
-          <td>{item.Carbohydrates}</td>
-          <td>{item.Fats}</td>
-          <td>{item.DietaryFibre}</td>
-          <td>{item.Calcium}</td>
-          <td>{item.VitaminB9}</td>
-          <td>{item.Potassium}</td>
-          <td>{item.VitaminB5}</td>
-          <td>{item.VitaminB6}</td>
-          <td>{item.Sodium}</td>
-          <td>{item.VitaminB1}</td>
-          <td>{item.VitaminB2}</td>
-          <td>{item.VitaminB3}</td>
-          <td>{item.Manganese}</td>
-          <td>{item.Iron}</td>
-          <td>{item.VitaminE}</td>
-          <td>{item.Phosphorous}</td>
-          <td>{item.VitaminA}</td>
-          <td>{item.VitaminC}</td>
-          <td>{item.VitaminK}</td>
-          <td>{item.Copper}</td>
-          <td>{item.Magnesium}</td>
-          <td>{item.Zinc}</td>
+      return ( */}
+        <tr >
+        <td>{calculateTotalVal('Energy')}</td>
+<td>{calculateTotalVal('Proteins')}</td>
+<td>{calculateTotalVal('Carbohydrates')}</td>
+<td>{calculateTotalVal('Fats')}</td>
+<td>{calculateTotalVal('DietaryFibre')}</td>
+<td>{calculateTotalVal('Calcium')}</td>
+<td>{calculateTotalVal('VitaminB9')}</td>
+<td>{calculateTotalVal('Potassium')}</td>
+<td>{calculateTotalVal('VitaminB5')}</td>
+<td>{calculateTotalVal('VitaminB6')}</td>
+<td>{calculateTotalVal('Sodium')}</td>
+<td>{calculateTotalVal('VitaminB1')}</td>
+<td>{calculateTotalVal('VitaminB2')}</td>
+<td>{calculateTotalVal('VitaminB3')}</td>
+<td>{calculateTotalVal('Manganese')}</td>
+<td>{calculateTotalVal('Iron')}</td>
+<td>{calculateTotalVal('VitaminE')}</td>
+<td>{calculateTotalVal('Phosphorous')}</td>
+<td>{calculateTotalVal('VitaminA')}</td>
+<td>{calculateTotalVal('VitaminC')}</td>
+<td>{calculateTotalVal('VitaminK')}</td>
+<td>{calculateTotalVal('Copper')}</td>
+<td>{calculateTotalVal('Magnesium')}</td>
+<td>{calculateTotalVal('Zinc')}</td>
+
         </tr>
-      );
+      {/* );
     } else {
       return null;
     }
-  })}
+  })} */}
 </tbody>
 
           </table>
@@ -508,9 +373,6 @@ if (recipeName === "" || ingredientsList.length === 0) {
           </div>
         </div>
         )}
-
-
-
     </>
   )
 }
