@@ -312,9 +312,9 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
                             onClick={() => handleFormToggle("OrderstatusForm")}
                             // onClick={handleOrderstatusForm}
                           >
-                            Order status
+                            Order Activity
                           </a>
-                          <a>Order Deilvered</a>
+                          <a>Order Completed </a>
                         </div>
                       )}
                     </ul>
@@ -405,7 +405,7 @@ const Dashboard = ( { showProfile , onProfileToggle }) => {
           <li>
             <div className="iocn-link" >
               <a>
-                <span className="link_name">Training</span>
+                <span className="link_name">Training center </span>
               </a>
               
             </div>

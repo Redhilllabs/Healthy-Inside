@@ -1,5 +1,5 @@
 import React, { useState,useEffect }  from 'react'
-import {AddToIngredentProfile ,getmateriallist,AddToRecipeProfile} from '../../utils/mongodbFunctions'
+import {AddToIngredentProfile ,getmateriallist,AddToRecipeProfile} from '../../utils/ApiCall'
 
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -292,6 +292,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
             )}
           </div>
 
+<div id="Tabels_container" >
 {showTable && (
           <div className="table-container">
             <h2>Your Recipe</h2>
@@ -399,6 +400,8 @@ if (recipeName === "" || ingredientsList.length === 0) {
           </div>
         </div>
         )}
+</div>
+
     </>
   )
 }

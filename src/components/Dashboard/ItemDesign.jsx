@@ -1,5 +1,5 @@
 import React, { useState,useEffect }  from 'react';
-import {getallIngredientProfile , getallrecipeProfile} from '../../utils/mongodbFunctions';
+import {getallIngredientProfile , getallrecipeProfile} from '../../utils/ApiCall';
 
 const ItemDesignForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -120,6 +120,8 @@ const ItemDesignForm = () => {
               </form>
           </div>
 
+          <div id="Tabels_container" >
+
 {showTable && (
           <div className="table-container">
             <h2>Your Item Design</h2>
@@ -235,6 +237,7 @@ const ItemDesignForm = () => {
 </div>
 </div>
 )}
+</div>
 
     </>
   )

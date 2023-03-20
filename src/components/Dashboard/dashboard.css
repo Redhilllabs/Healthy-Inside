@@ -235,6 +235,11 @@ width: 75%;
     padding: 0rem 1.5rem;
   }
 
+  #Tabels_container{
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+  }
   #rmi_options_input{
     display: flex;
     flex-wrap: wrap;
@@ -319,6 +324,9 @@ overflow: scroll;
     text-align: left;
   }
   
+  .recipe_table td {
+    width:50px 
+  }
   .recipe_table th {
     background-color: lightgreen;
   }

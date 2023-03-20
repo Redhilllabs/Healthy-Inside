@@ -49,7 +49,6 @@ const handleFormSubmit = (e) => {
             
             )}
           </div>
-
           {kitchenOption && showTable && (
   <div className="table-container">
             <h2>{kitchenOption} Kitchen </h2>

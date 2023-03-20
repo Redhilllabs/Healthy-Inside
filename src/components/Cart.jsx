@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./cart.css";
-import { GetCart, SaveUserAddress } from "../utils/mongodbFunctions";
+import { GetCart, SaveUserAddress } from "../utils/ApiCall";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import ViewCart from "./ViewCart";
 import { useNavigate } from "react-router-dom";
-import { LoginAPi } from "../utils/mongodbFunctions";
-import loadingGif from '../images/loading.gif';
+// import { LoginAPi } from "../utils/mongodbFunctions";
+// import loadingGif from '../images/loading.gif';
 
 const Cart = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();

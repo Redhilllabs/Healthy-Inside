@@ -12,7 +12,7 @@ import menu1 from "../images/menu1.jpg";
 import menu2 from "../images/menu2.jpg";
 import { actionType } from "../context/reducer";
 import CartItem from "./CartItem";
-import { GetCart , AddToCart } from "../utils/mongodbFunctions";
+import { GetCart , AddToCart } from "../utils/ApiCall";
 import ff2 from "../images/ff2.jpeg";
 import heroimg from "../images/heroimg.jpg"
 import BhelMakhani2 from "../images/BhelMakhani2.jpg" 

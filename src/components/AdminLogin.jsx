@@ -5,7 +5,7 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
-import {LoginAdminAPi} from '../utils/mongodbFunctions'
+import {LoginAdminAPi} from '../utils/ApiCall'
 const AdminLogin = () => {
 const [username,setusername]=useState()
 const [password,setpassword]=useState()

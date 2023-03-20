@@ -5,7 +5,7 @@ import logo from "../images/logo.png";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import { useNavigate } from "react-router-dom";
-import { saveClaimKit } from "../utils/mongodbFunctions";
+import { saveClaimKit } from "../utils/ApiCall";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 const Header = ({ onProfileToggle }) => {

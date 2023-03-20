@@ -1,5 +1,5 @@
 import { fetchCart, fetchUser ,fetchAdminUser } from "../utils/fetchLocalStorageData";
-import { GetCart } from "../utils/mongodbFunctions";
+import { GetCart } from "../utils/ApiCall";
 const userInfo = fetchUser();
 const cartInfo = fetchCart();
 const adminInfo = fetchAdminUser();

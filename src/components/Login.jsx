@@ -3,71 +3,70 @@ import "./login.css";
 import GoogleButton from "./GoogleButton";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
-import axios from "axios";
 import {useNavigate} from 'react-router-dom';
-import {LoginAPi} from '../utils/mongodbFunctions'
+import {LoginAPi} from '../utils/ApiCall'
+import { useForm } from 'react-hook-form';
 const Login = () => {
-const [username,setusername]=useState()
-const [password,setpassword]=useState()
-const [{ user, cartShow, cartItems }, dispatch] = useStateValue();
+const { register, handleSubmit, formState: { errors } } = useForm();
+const [{ user}, dispatch] = useStateValue();
 const [isMenu, setIsMenu] = useState(false);
-const navigate = useNavigate();
 
-const handellogin = async (event)=>{
-  event.preventDefault();
-  // console.log("user",user)
+const onSubmit = async (data) => {
+  const { userName: username, password } = data;
   
-await LoginAPi(username,password).then((response)=>{
-  // console.log(response)
-  if(!response){
-    alert("wrong username or Password")
-  }
-  if (!user) {
-    dispatch({
-      type: actionType.SET_USER,
-      user: response.data,
-    });
-    localStorage.setItem("user", JSON.stringify(response.data));
-      // console.log(username,password)
-      navigate("/");
-  
-    }else {
-      alert("You are Alredy loggedIn")
+  try {
+    const response = await LoginAPi(username, password);
+    
+    if (response.status === 401) {
+      alert(response.message);
+      return;
+    }
+    if (!user) {
+      dispatch({
+        type: actionType.SET_USER,
+        user: response.data,
+      });
+      
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+    } else {
+      alert("You are already logged in");
       setIsMenu(!isMenu);
     }
-})
-.catch((error)=>{
-  // console.log(error.response)
-  const message = error.response.data
-  alert(message)
-  })
-  
+  } catch (error) {
+    handleError(error);
+  }
+};
 
-}
+const handleError = (error) => {
+  const message = error.response.data;
+  alert(message);
+};
+
   return (
     <div>
       <div class="login">
         <h1>Login</h1>
-        <form  >
-          <label for="userName">Email </label>
+        <form onSubmit={handleSubmit(onSubmit)}  >
+          <label htmlFor="userName">Email</label>
           <input
-          value={username}
             type="email"
             name="userName"
             id="userName"
             placeholder="someone@xyz.com"
-            onChange={(e)=>{setusername(e.target.value)}}
+            {...register('userName', { required: true })}
           />
-          <label for="password">Password</label>
+          {errors.userName && <span>Email is required</span>}
+          <label htmlFor="password">Password</label>
           <input
-          value={password}
             type="password"
             name="password"
             id="password"
             placeholder="*********"
-            onChange={(e)=>{setpassword(e.target.value)}}
+            {...register('password', { required: true })}
           />
-          <button type="submit" onClick={handellogin} name="submit">
+          {errors.password && <span>Password is required</span>}
+          <button type="submit" name="submit">
             Log In
           </button>
           <div id="continue_with_google">
