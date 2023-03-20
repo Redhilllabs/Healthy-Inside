@@ -275,6 +275,7 @@ width: 75%;
     background-color: #3e8e41;
   }
   .table-container {
+    /* width: ; */
     padding: 10px;
     border: 10px solid green;
   }
@@ -491,8 +492,13 @@ overflow: scroll;
   
 
 #showtablermi{
-  overflow: scroll;
-  width: 80%;
-
-  background-color: #f2f2f2;
+overflow: scroll;
+width: 90%;
+height: 400px;
+/* display: flex;
+flex-direction: column; */
+background-color: #f2f2f2;
+}
+#yourrecipetale{
+  width: 90%;
 }

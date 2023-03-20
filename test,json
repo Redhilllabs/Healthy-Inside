@@ -1,0 +1,1026 @@
+{
+"data": [
+    {
+        "RecipeName": "Jau Pulao",
+      "Ingredients": [
+{
+      "ingredientName": "Broken Wheat (दलिया/Dalia)",
+      "unit": "gram",
+      "quantity": "40.00"
+    },
+    {
+        "unit": "gram",
+        "ingredientName": "Carrot (गाजर/Gazar)",
+        "quantity": "10.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Capsicum (शिमला मिर्च/Shimla Mirch)",
+        "quantity": "10.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Beans (फलिया/Beans)",
+        "quantity": "5.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Green Peas (हरी मटर/Hari Matar)",
+        "quantity": "5.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Cauliflower (फूल गोभी/Phool Gobhee)",
+        "quantity": "20.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+        "quantity": "0.70"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+        "quantity": "2.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+        "quantity": "1.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)",
+        "quantity": "0.20"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Turmeric Powder (हल्दी पाउडर/Haldi Powder)",
+        "quantity": "0.67"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Cumin Seeds (जीरा/Jeera)",
+        "quantity": "1.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+        "quantity": "2.67"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Tomato (टमाटर/Tamatar)",
+        "quantity": "10.00"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Ginger (अदरक/Adrak)",
+        "quantity": "0.75"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree Mirch)",
+        "quantity": "1.00"
+      }
+      ]
+    },
+
+    { "RecipeName": "Tomato Dip",
+    "Ingredients": [
+        {
+            "unit": "gram",
+            "ingredientName": "Onion (प्याज/Pyaaj)",
+            "quantity": "7.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Tomato (टमाटर/Tamatar)",
+            "quantity": "16.5"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Split Chickpeas (चना दाल/Channa Daal)",
+            "quantity": "0.9"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Split Washed Vigna Mungo (उड़द दाल/Urad Daal)",
+            "quantity": "0.9"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Cumin Seeds (जीरा/Jeera)",
+            "quantity": "0.3"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Ginger (अदरक/Adrak)",
+            "quantity": "0.3"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Garlic (लहसुन/Lehsun)",
+            "quantity": "0.6"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri Lal Mirch Sabut)",
+            "quantity": "0.372"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.42"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Turmeric Powder (हल्दी पाउडर/Haldi Powder)",
+            "quantity": "0.198"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+            "quantity": "0.1488"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+            "quantity": "0.3"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "0.636"
+          }
+    ]
+    },
+
+    { 
+        "RecipeName": "Veggie Mix Dip",
+        "Ingredients": [
+            {
+                "unit": "gram",
+                "ingredientName": "Red Capsicum (लाल शिमला मिर्च/ Lal Shimla Mirch)",
+                "quantity": "12.8"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Spring Onion (हरी प्याज/Hari Pyaaj)",
+                "quantity": "2.8"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Badi Mirch(बड़ी मिर्च/Badi Mirch)",
+                "quantity": "4.2"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Garlic (लहसुन/Lehsun)",
+                "quantity": "1.4"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Tomato (टमाटर/Tamatar)",
+                "quantity": "18"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+                "quantity": "0.424"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Himalayan Pink Salt (सेंधा नमक/Sendha  Namak)",
+                "quantity": "0.5"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Sesame Seed (तिल के बीज/Til Ke Beej)",
+                "quantity": "3.332"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+                "quantity": "1.6"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Cumin Seed Powder (जीरा पाउडर/Jeera Powder)",
+                "quantity": "0.272"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+                "quantity": "0.28"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Coriander Leaves (धनिया/Dhaniya)",
+                "quantity": "1.6"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+                "quantity": "0.4"
+              },
+              {
+                "unit": "gram",
+                "ingredientName": "Brinjal (बैंगन/baigan)",
+                "quantity": "4"
+              }
+        ]
+    },
+
+    {"RecipeName": "Roti Tacos",
+    "Ingredients": [
+        {
+            "unit": "gram",
+            "ingredientName": "Beetroot (चुकंदर/Chukander)",
+            "quantity": "3.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Capsicum (शिमला मिर्च/Shimla Mirch)",
+            "quantity": "10.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Carrot (गाजर/Gazar)",
+            "quantity": "6.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Chaat Masala (चाट मसाला/Chaat Masala)",
+            "quantity": "0.83"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Cumin Seed Powder (जीरा पाउडर/Jeera Powder)",
+            "quantity": "0.50"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Garlic (लहसुन/Lehsun)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Kashmiri Red Chilli Powder (कश्मीरी लाल मिर्च पाउडर/Kasmiri Lal Mirch Powder)",
+            "quantity": "0.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri Lal Mirch Sabut)",
+            "quantity": "0.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+            "quantity": "3.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Onion (प्याज/Pyaaj)",
+            "quantity": "10.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Oregano (ओरिगैनो/Oregano)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Red Bell Pepper (लाल शिमला मिर्च/Lal Shimla Mirch)",
+            "quantity": "10.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree Mirch)",
+            "quantity": "0.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Spring Onion (प्याज पत्ता/Pyaz Patta)",
+            "quantity": "3.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Sweet Corn (स्वीट कॉर्न/Sveet Korn)",
+            "quantity": "10.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Sweet Potato (शकरकंद/Shakarakand)",
+            "quantity": "33.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Wheat Flour (गेहूं का आटा/Gehun Ka Atta)",
+            "quantity": "13.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Yellow Bell Pepper (पीली शिमला मिर्च/Peelee Shimala Mirch)",
+            "quantity": "10.00"
+          }
+    ]
+    },
+    
+{
+    "RecipeName": "Mint Dip",
+    "Ingredients": [
+        {
+      "unit": "gram",
+      "ingredientName": "Mint (पुदीना/Pudeena)",
+      "quantity": "4.469273743"
+    },
+
+    {
+      "unit": "gram",
+      "ingredientName": "Coriander Leaves (धनिया/Dhaniya)",
+      "quantity": "7.82122905"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+      "quantity": "0.279329609"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Ginger (अदरक/Adrak)",
+      "quantity": "0.837988827"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Garlic (लहसुन/Lehsun)",
+      "quantity": "0.837988827"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Himalayan Pink Salt (सेंधा नमक/Sendha  Namak)",
+      "quantity": "0.709497207"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+      "quantity": "0.138547486"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)",
+      "quantity": "0.193575419"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Chaat Masaala (चाट मसाला/Chaat Masaala) ",
+      "quantity": "0.229050279"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Curd (दही/Dahi) ",
+      "quantity": "8.379888268"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+      "quantity": "0.391061453"
+    },
+    {
+      "unit": "gram",
+      "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+      "quantity": "2.793296089"
+    }]
+},
+
+{
+    "RecipeName": "Cashew Mayos",
+    "Ingredients": [
+        {
+            "unit": "gram",
+            "ingredientName": "Cashew (काजू/Kaju)",
+            "quantity": "15"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Garlic (लहसुन/Lehsun)",
+            "quantity": "0.6"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.14"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+            "quantity": "1.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)",
+            "quantity": "0.0693"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Vinegar (सिरका/Sirka)",
+            "quantity": "1.033"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Water (पानी/Paani)",
+            "quantity": "9.4"
+          }
+    ]
+},
+   
+{
+    "RecipeName": "Ramas Dal Moth",
+    "Ingredients": [
+        {
+            "unit": "gram",
+            "ingredientName": "Moth Bean (रमास/Ramaas)",
+            "quantity": "12.84796574"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Water (पानी/Paani)",
+            "quantity": "74.94646681"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Onion (प्याज/Pyaaj)",
+            "quantity": "7.494646681"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Tomato (टमाटर/Tamatar)",
+            "quantity": "10.92077088"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Cucumber (खीरा/Kheera)",
+            "quantity": "12.20556745"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.601713062"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+            "quantity": "1.713062099"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Himalayan Pink Salt (सेंधा नमक/Sendha  Namak)",
+            "quantity": "0.543897216"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Chaat Masaala (चाट मसाला/Chaat Masaala) ",
+            "quantity": "0.338329764"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+            "quantity": "0.21627409"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)",
+            "quantity": "0.148394004"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+            "quantity": "0.428265525"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Leaves (धनिया/Dhaniya)",
+            "quantity": "2.141327623"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Whole Green Gram Sprouted (साबुत हरी मूंग दाल अंकुरित/Sabut Hari Mung Daal Ankurit)",
+            "quantity": "28.69379015"
+          }
+    ]
+},
+    
+    
+{
+    "RecipeName": "Palak Meethi Cutlets",
+    "Ingredients": [
+        {
+            "unit": "gram",
+            "ingredientName": "Anise, Fennel (सौंफ़/Saunf)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Asafoetida (हींग/Heeng)",
+            "quantity": "0.33"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Celery Seeds (अजवाइन के बीज/Ajwain k beej)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Chaat Masala (चाट मसाला/Chaat Masala)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "1.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+            "quantity": "0.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Curry Leaves (कड़ी पत्ता/Kadi Patta)",
+            "quantity": "0.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Fenugreek (मेंथी/Meethi)",
+            "quantity": "16.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Garlic (लहसुन/Lehsun)",
+            "quantity": "1.11"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Ginger (अदरक/Adrak)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Gram Flour (बेसन/Besan)",
+            "quantity": "25.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Small Green Chilli (छोटी हरी मिर्च/Chhotee Haree Mirch)",
+            "quantity": "1.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Jaggery (गूढ़/Gud)",
+            "quantity": "4.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Millet Flour (बाजरे का आटा/Baajaree Ka Atta)",
+            "quantity": "25.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "1.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Sesame Seeds (तिल के बीज/Til Ke Beej)",
+            "quantity": "5.67"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Spinach (पालक/Paalak)",
+            "quantity": "50.00"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Wheat Flour (गेहूं का आटा/Gehun Ka Atta)",
+            "quantity": "25.00"
+          }
+    ]
+},
+    
+{
+    "RecipeName": "Tofu Parantha",
+    "Ingredients": [
+
+        {
+            "unit": "gram",
+            "ingredientName": "Sweet Potato (शकरकंद/Shakarkand)",
+            "quantity": "34.6"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Wheat Flour (गेहूं का आटा/Gehun Ka Atta)",
+            "quantity": "15"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Gram Flour (बेसन/Besan)",
+            "quantity": "6"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.28"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "0.228"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+            "quantity": "0.05952"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.336"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Leaves (धनिया/Dhaniya)",
+            "quantity": "1.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)",
+            "quantity": "0.0876"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Chaat Masaala (चाट मसाला/Chaat Masaala) ",
+            "quantity": "0.18"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+            "quantity": "0.24"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Tofu (टोफू/Tofu)",
+            "quantity": "18"
+          }
+
+    ]
+},
+   
+{
+    "RecipeName": "Brown Rice Idli",
+    "Ingredients": [
+        {
+            "unit": "gram",
+            "ingredientName": "Baking Soda (बेकिंग सोडा/Baking Soda/ENO)",
+            "quantity": "0.375"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Urad Dal (उड़द दाल/Urad Dal)",
+            "quantity": "18.75"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Poha (पोहा/Poha)",
+            "quantity": "9.375"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "0.1875"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Brown rice",
+            "quantity": "56.25"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "water",
+            "quantity": "9.375"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.28125"
+          }
+    ]
+},
+  
+{
+    "RecipeName": "Rasam Sambhar",
+    "Ingredients": [
+        {
+        "unit": "gram",
+        "ingredientName": "Pigeon Peas (अरहर दाल/Arhar daal)",
+        "quantity": "45"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+        "quantity": "2"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Turmeric Powder (हल्दी पाउडर/Haldi Powder)",
+        "quantity": "0.1375"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+        "quantity": "1.8625"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Mustard Small Seeds (छोटी राई/Choti Rai)",
+        "quantity": "0.36375"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Cumin Seeds (जीरा/Jeera)",
+        "quantity": "0.3"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Fenugreek Seeds (मेथी के बीज/Methi Ke Beej)",
+        "quantity": "0.427083333"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Asafoetida (हींग/Heeng)",
+        "quantity": "0.22625"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+        "quantity": "0.416666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Ginger (अदरक/Adrak)",
+        "quantity": "0.416666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Curry Leaves (कड़ी पत्ता/Kadi Patta)",
+        "quantity": "0.059583333"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri Lal Mirch Sabut)",
+        "quantity": "0.53125"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Onion (प्याज/Pyaaj)",
+        "quantity": "10.41666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Tomato (टमाटर/Tamatar)",
+        "quantity": "15.01666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Egg Plant (बैंगन/Baigan)",
+        "quantity": "20.83333333"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Drumstick (सहजन/Sahajan)",
+        "quantity": "10.41666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Bottle Gourd (लौकी/Lauki)",
+        "quantity": "10.41666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Carrot (गाजर/Gazar)",
+        "quantity": "10.41666667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+        "quantity": "0.585416667"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Turmeric Powder (हल्दी पाउडर/Haldi Powder)",
+        "quantity": "0.1375"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Kashmiri Red Chilli Powder (कश्मीरी लाल मिर्च पाउडर/Kasmiri Lal Mirch Sabut Powder)",
+        "quantity": "0.245833333"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Water (पानी/Paani)",
+        "quantity": "98.75"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Onion (प्याज/Pyaaj)",
+        "quantity": "20.83333333"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Tamarind (इमली/Imli)",
+        "quantity": "50"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Jaggery (गूढ़/Gud)",
+        "quantity": "3.125"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Sambhar Masala Powder (सांभर मसाला पाउडर/Sambhar Masala Powder)",
+        "quantity": "2"
+      },
+      {
+        "unit": "gram",
+        "ingredientName": "Pumkin(Kashifal)",
+        "quantity": "15"
+      }
+    ]
+},
+    
+    
+{
+    "RecipeName": "Coconut Dip",
+    "Ingredients": [
+
+        {
+            "unit": "gram",
+            "ingredientName": "Coconut (नारियल/Nariyal)",
+            "quantity": "16.66666667"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+            "quantity": "0.333333333"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Ginger (अदरक/Adrak)",
+            "quantity": "0.666666667"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Leaves (धनिया/Dhaniya)",
+            "quantity": "0.666666667"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Tamarind (इमली/Imli)",
+            "quantity": "0.333333333"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Split Chickpeas (चना दाल/Channa Daal)",
+            "quantity": "0.606666667"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "0.936666667"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Water (पानी/Paani)",
+            "quantity": "32.33333333"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Lemon Juice (नींबू का रस/Nimbu ka Ras)",
+            "quantity": "0.5"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Curry Leaves (कड़ी पत्ता/Kadi Patta)",
+            "quantity": "0.333333333"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Mustard Seeds (राई/Rai)",
+            "quantity": "0.333333333"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Kashmiri Red Chilli Whole (कश्मीरी लाल मिर्च साबुत/Kasmiri Lal Mirch Sabut)",
+            "quantity": "0.85"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "0.706666667"
+          }
+    ]
+},
+    
+{
+    "RecipeName": "Minty Appe",
+    "Ingredients": [
+
+        {
+            "unit": "gram",
+            "ingredientName": "Carrot (गाजर/Gazar)",
+            "quantity": "7.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Capsicum (शिमला मिर्च/Shimla Mirch)",
+            "quantity": "4.8"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Beans (फलिया/Beans)",
+            "quantity": "6.4"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Onion (प्याज/Pyaaj)",
+            "quantity": "8"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Green Chilli (हरी मिर्च/Hari Mirch)",
+            "quantity": "1.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Semolina (सूजी/Suji)",
+            "quantity": "32"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Curd (दही/Dahi) ",
+            "quantity": "26"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Mint (पुदीना/Pudeena)",
+            "quantity": "1.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Water (पानी/Paani)",
+            "quantity": "26"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)",
+            "quantity": "0.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Common Salt (सादा नमक/Saada Namak)",
+            "quantity": "1.2"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Coriander Powder (धनिया पाउडर/Dhaniya Powder)",
+            "quantity": "0.8"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Baking Soda (बेकिंग सोडा/Baking Soda/ENO)",
+            "quantity": "0.4"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Mustard Seeds (राई/Rai)",
+            "quantity": "0.12"
+          },
+          {
+            "unit": "gram",
+            "ingredientName": "Olive Oil (जैतून का तेल/Jaitun ka Tel)",
+            "quantity": "0.56"
+          }
+    ]
+} 
+
+   ]
+}
