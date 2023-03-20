@@ -123,7 +123,7 @@ const ItemDesignForm = () => {
           <div id="Tabels_container" >
 
 {showTable && (
-          <div className="table-container">
+          <div className="table-container"  id='yourrecipetale'>
             <h2>Your Item Design</h2>
             <br />
             <table className="recipe_table">
@@ -169,66 +169,118 @@ const ItemDesignForm = () => {
 <h2>Item Profile</h2>
 <br />
 <table className="recipe_table" >
-  <thead>
-    <tr>
-      {/* <th>Ingredient</th> */}
-      <th>Energy (kcal/100g)</th>
-<th>Proteins (g/100g)</th>
-<th>Carbohydrates (g/100g)</th>
-<th>Fats (g/100g)</th>
-<th>Dietary Fibre (g/100g)</th>
-<th>Calcium (mg/100g)</th>
-<th>Vitamin B9 (mcg/100g)</th>
-<th>Potassium (mg/100g)</th>
-<th>Vitamin B5 (mg/100g)</th>
-<th>Vitamin B6 (mg/100g)</th>
-<th>Sodium (mg/100g)</th>
-<th>Vitamin B1 (mg/100g)</th>
-<th>Vitamin B2 (mg/100g)</th>
-<th>Vitamin B3 (mg/100g)</th>
-<th>Manganese (mg/100g)</th>
-<th>Iron (mg/100g)</th>
-<th>Vitamin E (mg/100g)</th>
-<th>Phosphorous (mg/100g)</th>
-<th>Vitamin A (mcg/100g)</th>
-<th>Vitamin C (mg/100g)</th>
-<th>Vitamin K (mcg/100g)</th>
-<th>Copper (mg/100g)</th>
-<th>Magnesium (mg/100g)</th>
-<th>Zinc (mg/100g)</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr >
-<td>{calculateTotalVal('Energy')}</td>
-<td>{calculateTotalVal('Proteins')}</td>
-<td>{calculateTotalVal('Carbohydrates')}</td>
-<td>{calculateTotalVal('Fats')}</td>
-<td>{calculateTotalVal('DietaryFibre')}</td>
-<td>{calculateTotalVal('Calcium')}</td>
-<td>{calculateTotalVal('VitaminB9')}</td>
-<td>{calculateTotalVal('Potassium')}</td>
-<td>{calculateTotalVal('VitaminB5')}</td>
-<td>{calculateTotalVal('VitaminB6')}</td>
-<td>{calculateTotalVal('Sodium')}</td>
-<td>{calculateTotalVal('VitaminB1')}</td>
-<td>{calculateTotalVal('VitaminB2')}</td>
-<td>{calculateTotalVal('VitaminB3')}</td>
-<td>{calculateTotalVal('Manganese')}</td>
-<td>{calculateTotalVal('Iron')}</td>
-<td>{calculateTotalVal('VitaminE')}</td>
-<td>{calculateTotalVal('Phosphorous')}</td>
-<td>{calculateTotalVal('VitaminA')}</td>
-<td>{calculateTotalVal('VitaminC')}</td>
-<td>{calculateTotalVal('VitaminK')}</td>
-<td>{calculateTotalVal('Copper')}</td>
-<td>{calculateTotalVal('Magnesium')}</td>
-<td>{calculateTotalVal('Zinc')}</td>
+            <thead>
+              <tr>
+                <th>Energy (kcal/100g)</th>
+                <td>{calculateTotalVal('Energy')}</td>
+              </tr>
+              <tr>
+               <th>Proteins (g/100g)</th>
+      
+              <td>{calculateTotalVal('Proteins')}</td>
+              </tr>
 
+<tr>
+<th>Carbohydrates (g/100g)</th>
+<td> {calculateTotalVal('Carbohydrates')}</td>
 </tr>
+
+<tr>
+
+<th>Fats (g/100g)</th>
+<td>{calculateTotalVal('Fats')}</td>
+</tr>
+
+<tr>
+ 
+<th>Dietary Fibre (g/100g)</th>     
+<td>
+{calculateTotalVal('DietaryFibre')}</td>
+</tr>
+
+<tr>
+<th>Calcium (mg/100g)</th>
+<td>
+
+
+        
+{calculateTotalVal('Calcium')}</td>
+</tr>
+
+<tr>
+<th>Vitamin B9 (mcg/100g)</th>
+<td>{calculateTotalVal('VitaminB9')}</td>
+</tr>
+
+<tr>
+<th>Potassium (mg/100g)</th>
+<td>
+
+{calculateTotalVal('Potassium')}</td>
+</tr>
+<tr>
+<th>Vitamin B5 (mg/100g)</th>
+<td>{calculateTotalVal('VitaminB5')}</td></tr>
+<tr>
+<th>Vitamin B6 (mg/100g)</th>
+<td>{calculateTotalVal('VitaminB6')}</td></tr>
+<tr>
+<th>Sodium (mg/100g)</th>
+<td>{calculateTotalVal('Sodium')}</td></tr>
+<tr>
+<th>Vitamin B1 (mg/100g)</th>
+<td>{calculateTotalVal('VitaminB1')}</td></tr>
+<tr>
+<th>Vitamin B2 (mg/100g)</th>
+
+<td>{calculateTotalVal('VitaminB2')}</td></tr>
+<tr>
+<th>Vitamin B3 (mg/100g)</th>
+<td>{calculateTotalVal('VitaminB3')}</td></tr>
+<tr></tr>
+
+<tr>
+<th>Iron (mg/100g)</th>
+<td>{calculateTotalVal('Iron')}</td></tr>
+<tr>
+<th>Vitamin E (mg/100g)</th>
+<td>{calculateTotalVal('VitaminE')}</td></tr>
+<tr>
+
+<th>Phosphorous (mg/100g)</th>
+<td>{calculateTotalVal('Phosphorous')}</td></tr>
+<tr>
+<th>Vitamin A (mcg/100g)</th>
+<td>{calculateTotalVal('VitaminA')}</td></tr>
+<tr>
+
+<th>Vitamin C (mg/100g)</th>
+<td>{calculateTotalVal('VitaminC')}</td></tr>
+<tr>
+<th>Vitamin K (mcg/100g)</th>
+<td>{calculateTotalVal('VitaminK')}</td></tr>
+<tr>
+<th>Copper (mg/100g)</th>
+<td>{calculateTotalVal('Copper')}</td></tr>
+<tr>
+<th>Magnesium (mg/100g)</th>
+<td>{calculateTotalVal('Magnesium')}</td></tr>
+<tr>
+<th>Zinc (mg/100g)</th>
+<td>{calculateTotalVal('Zinc')}</td></tr>
+<tr>
+<th>Manganese (mg/100g)</th>
+<td>{calculateTotalVal('Manganese')}</td></tr>
+
+            </thead>
+            <tbody>
+        <tr >
+       
+
+        </tr>
 </tbody>
 
-</table>
+          </table>
 <div id="tabel_controllers">
   <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
     cancel
