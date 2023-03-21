@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import TimePicker from 'react-time-picker';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
+import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
+import dayjs from 'dayjs';
 
 const ItemmanufacPlaner = () => {
 
@@ -94,13 +101,14 @@ const handeladdtoplanner =()=>{
                 </div>
 
                 <div  id='timeitem'>
+                
                 <label htmlFor="">Time Slot</label>
-                  <div className="time_slot">
+                  <div id='timeslot'>
 
-                    <div>
                       <label htmlFor="salesForcast">
                         From
                       </label>
+                      
                       <input
                         type="time"
                         name="salesForcast"
@@ -109,20 +117,57 @@ const handeladdtoplanner =()=>{
                         onChange={(e)=>setTimeSlot_From(e.target.value)}
                         required
                       />
-                   
-                    </div>
 
-                    <div >
+                      
+{/* import * as React from 'react';
+;
+
+
+export default function ResponsiveTimePickers() {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer
+        components={[
+          'TimePicker',
+          'MobileTimePicker',
+          'DesktopTimePicker',
+          'StaticTimePicker',
+        ]}
+      >
+        <DemoItem label="Desktop variant">
+          <DesktopTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
+        </DemoItem>
+        <DemoItem label="Mobile variant">
+          <MobileTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
+        </DemoItem>
+        <DemoItem label="Responsive variant">
+          <TimePicker defaultValue={dayjs('2022-04-17T15:30')} />
+        </DemoItem>
+        <DemoItem label="Static variant">
+          <StaticTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
+        </DemoItem>
+      </DemoContainer>
+    </LocalizationProvider>
+  );
+} */}
+
+
+                   
+                   <br />
+
+                    
                       <label htmlFor="salesplandate">
                       To
                       </label>
+                      
+
                       <input
                         type="time"
                         value={TimeSlot_To}
                         onChange={(e)=>setTimeSlot_To(e.target.value)}
                         required
                       />
-                    </div>
+                    
                   </div>
                 </div>
                 <div  className='containee'>
@@ -152,7 +197,7 @@ const handeladdtoplanner =()=>{
 )}
 
         {table&&(
-            <div className="table-container">
+            <div className="table-container"   id='yourrecipetale'>
             <h2>Item Manufacturing</h2>
             <br />
             <table className="recipe_table">
@@ -170,10 +215,10 @@ const handeladdtoplanner =()=>{
     <tr key={index}>
       <td>{service.selectday}</td>
       <td>
-      <tr> From :-
-      {service.Time.TimeSlot_From}
+      <tr> 
+      {service.Time.TimeSlot_From} / {service.Time.TimeSlot_To}
       </tr>
-      <tr> To :- {service.Time.TimeSlot_To}</tr>
+      <tr>  </tr>
       </td>
       <td>{service.Task}</td>
       <td>{service.section}</td>

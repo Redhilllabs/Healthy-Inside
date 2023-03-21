@@ -184,9 +184,7 @@ width: 75%;
     width: 30rem;
     height: 4rem;
   }
-  #viewform .contain  label{
-    /* margin: 3rem; */
-  } 
+ 
   #viewform .contain {
     margin: 2rem;
     display: flex;
@@ -393,6 +391,9 @@ overflow: scroll;
     background-color: lightgreen;
   }
   
+  #timeslot {
+    width: 2rem;
+  }
 
   @media only screen and (max-width: 768px) {
 
@@ -436,10 +437,9 @@ overflow: scroll;
     background: red;
     padding: 1px;
   }
-.time_slot{
-  display:flex;
-  flex-direction: column;  
-}
+
+
+  
 
 .formcontains {
     overflow-y: scroll;

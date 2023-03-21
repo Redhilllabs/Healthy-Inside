@@ -256,7 +256,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
         <a id={Showdailysalesmatricsform ? "active" : ""} onClick={() => handleFormToggle("dailySalesMatricsForm")}>Daily Sales Matrics</a>
         <a id={showSalesPlanForm ? "active" : ""} onClick={() => handleFormToggle("salesPlanForm")}>Sale Forecast Planner</a>
         <a id={ShowViewSalesPlanform ? "active" : ""} onClick={() => handleFormToggle("viewSalesPlanForm")}>View Sales Plan</a>
-        <a id={ShowPackingPlanner ? "active" : ""} onClick={() => handleFormToggle("packingPlannerForm")}>Packing Planner</a>
+        <a id={ShowPackingPlanner ? "active" : ""} onClick={() => handleFormToggle("packingPlannerForm")}>Packaging Planner</a>
       </div>
     )}
   </ul>
