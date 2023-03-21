@@ -29,7 +29,12 @@ const handleItemNameChange = (e)=>{
     setItemName(e.target.value)
 }
 const handeladdmore = () =>{
-  setviewform(true)
+  if(ItemName ){
+    setviewform(true)
+  }else{
+    alert("choose Item Name")
+  }
+  
     
 }
 const handeladdtoplanner =()=>{
@@ -50,6 +55,7 @@ const handeladdtoplanner =()=>{
     setTimeSlot_From('');
     setTimeSlot_To('');
     setsection('');
+    setassign('');
   } else {
     alert('fill all field');
   }
