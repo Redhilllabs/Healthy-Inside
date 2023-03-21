@@ -161,11 +161,11 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
   <ul className="sub-menu">
     {showProducts && (
       <div id="product-dash">
-        <a id={showrecipeform ? "active" : ""} onClick={() => handleFormToggle("recipeForm")}>Receipe Designing</a>
+        <a id={showrecipeform ? "active" : ""} onClick={() => handleFormToggle("recipeForm")}>Recipe Designing</a>
         <a id={showItemDesignForm ? "active" : ""} onClick={() => handleFormToggle("itemDesignForm")}>Item Design</a>
         <a>Recipe Profile</a>
         <a>Item Profile</a>
-        <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profileing</a>
+        <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profiling</a>
       </div>
     )}
   </ul>
@@ -183,7 +183,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                 <div id="multisubmenu">
                   <li>
                     <div  className="iocn-link" onClick={() => setOprationsOption1(!OprationsOption1)}>
-                      <a>Invetory Management</a>
+                      <a>Inventory Management</a>
                       {OprationsOption1 ? (<img src={imgsrc1}></img>) : (<img id="arrow4" src={imgsrc2} />)}
                     </div>
                     <ul className="sub-menu">
@@ -210,6 +210,8 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
       <div id="product-dash">
         <a id={ShowItemmanufacturingPlannerForm ? "active" : ""} onClick={() => handleFormToggle("itemManufacturingPlannerForm")}>Item manufacturing Planner</a>
         <a id={ShowImportandExportLogForm ? "active" : ""} onClick={() => handleFormToggle("importAndExportLogForm")}>Import and Export Log</a>
+        <a id={showTaskSheetForm ? "active" : ""} onClick={() => handleFormToggle("taskSheetForm")}>Task Sheet </a>
+        
       </div>
     )}
   </ul>

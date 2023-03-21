@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 const Login = () => {
 const { register, handleSubmit, formState: { errors } } = useForm();
 const [{ user}, dispatch] = useStateValue();
-const [isMenu, setIsMenu] = useState(false);
+// const [isMenu, setIsMenu] = useState(false);
 
 const onSubmit = async (data) => {
   const { userName: username, password } = data;
@@ -31,7 +31,8 @@ const onSubmit = async (data) => {
 
     } else {
       alert("You are already logged in");
-      setIsMenu(!isMenu);
+      // setIsMenu(!isMenu);
+      return
     }
   } catch (error) {
     handleError(error);

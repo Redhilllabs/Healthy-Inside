@@ -27,10 +27,9 @@ const Footer = () => {
                 <ul>
                   <li>Connect</li>
                   <li>Blog</li>
-                  <li>Merch</li>
-                  <li>Partnerhips</li>
+                  <li>Partnerships</li>
                   <li>Affiliate Program</li>
-                  <li>Carrers</li>
+                  <li>Carriers</li>
                 </ul>
              
             </div>
@@ -57,10 +56,6 @@ const Footer = () => {
             <a href="/accessibility">Accessibility Statement</a> |
             <a href="/sitemap">Site Map</a>
           </div>
-          {/* <h4>Red Hill Labs</h4>
-             <h4>Contact</h4>
-             <p><strong>Adress:</strong>285 G, Nyay Khand 1, Indrapuram, Ghaziabad</p>
-            <p><strong>Phone:</strong> +919456051975</p> */}
         </div>
       </footer>
     </div>

@@ -16,6 +16,8 @@ const urls = {
   login: `${produrl}/signin`,
   loginAdmin: `${produrl}/adminlogin`,
   saveUserAddress: `${produrl}/saveaddress`,
+  getUserapi: `${produrl}/getuser`,
+  Signup: `${produrl}/signup`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -133,3 +135,11 @@ export const LoginAdminAPi = async (username, password) => {
 export const SaveUserAddress = async (data) => {
   return makeRequest(urls.saveUserAddress, "POST", data);
 };
+
+export const getUser = async(data) =>{
+  return makeRequest(urls.getUserapi, "POST", data);
+}
+
+export const signup = async(data) =>{
+  return makeRequest(urls.Signup, "POST", data);
+}
