@@ -236,7 +236,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
                     required
                   />
                 </div>
-                <div id="addmore">
+                <div >
                   <div className="addmoreitems">
                     <div>
                       <label htmlFor="Ingredient Name">Ingredient</label>
@@ -444,15 +444,19 @@ if (recipeName === "" || ingredientsList.length === 0) {
 </tbody>
 
           </table>
-          <div id="tabel_controllers">
+          
+        </div>
+        )}
+</div>
+
+{MaterialListTable && (
+  <div id="tabel_controllers">
             <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
               cancel
             </div>
             <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div>
           </div>
-        </div>
-        )}
-</div>
+)}
 
     </>
   )

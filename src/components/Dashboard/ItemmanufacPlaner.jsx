@@ -12,6 +12,7 @@ const [TimeSlot_To,setTimeSlot_To] = useState('')
 const [task,settask] = useState('')
 const [section, setsection] = useState('')
 const [tableList,settableList] = useState([])
+const [assign,setassign] = useState('')
 const options = [];
 for(let i=0; i<4; i++){
   options.push(<option value={`Day${i}`}>Day{i}</option>);
@@ -73,14 +74,13 @@ const handeladdtoplanner =()=>{
 
 {viewform &&(
   <form  id="viewform">
-<div>
+<div   id="viewformtask" >
 <label htmlFor="">Task</label>
 <textarea name="" value={task} onChange={(e)=>settask(e.target.value)} id="" ></textarea>
 </div>
 
-
 <div className='contain' >
-<div>
+<div className='containee' >
                   <label for="saleplanItemname">Select Day</label>
                   <select
                     name="saleplanItemname"
@@ -93,9 +93,9 @@ const handeladdtoplanner =()=>{
                   </select>
                 </div>
 
-                <div>
+                <div  id='timeitem'>
                 <label htmlFor="">Time Slot</label>
-                  <div className="addmoreitems">
+                  <div className="time_slot">
 
                     <div>
                       <label htmlFor="salesForcast">
@@ -109,20 +109,23 @@ const handeladdtoplanner =()=>{
                         onChange={(e)=>setTimeSlot_From(e.target.value)}
                         required
                       />
-                      {/* <TimePicker onChange={(e)=>setTimeSlot_From(e.target.value)} value={TimeSlot_From} /> */}
+                   
                     </div>
 
-                    <div id="recipequantity">
-                      <label htmlFor="salesplandate">To</label>
+                    <div >
+                      <label htmlFor="salesplandate">
+                      To
+                      </label>
                       <input
                         type="time"
                         value={TimeSlot_To}
                         onChange={(e)=>setTimeSlot_To(e.target.value)}
+                        required
                       />
                     </div>
                   </div>
                 </div>
-                <div>
+                <div  className='containee'>
                   <label htmlFor="">Section</label>
                   <select name="" value={section} onChange={(e)=>setsection(e.target.value)} id="">
 <option value="">Select Option</option>
@@ -132,12 +135,19 @@ const handeladdtoplanner =()=>{
                     <option value="opk">OPK</option>
                   </select>
                 </div>
+                <div className='containee'>
+                  <label htmlFor="">Assigned To</label>
+                  <input type="text" value={assign} onChange={(e)=>{setassign(e.target.value)}} />
+                </div>
 </div>
-                
+                <center>
 
-                <div id="addmoreingredients" onClick={handeladdtoplanner}>
+                <div id="addtoplaner" onClick={handeladdtoplanner}>
                   Add To Planner
                 </div>
+
+                </center>
+
               </form>
 )}
 
