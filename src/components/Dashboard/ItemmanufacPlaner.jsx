@@ -117,42 +117,6 @@ const handeladdtoplanner =()=>{
                         onChange={(e)=>setTimeSlot_From(e.target.value)}
                         required
                       />
-
-                      
-{/* import * as React from 'react';
-;
-
-
-export default function ResponsiveTimePickers() {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer
-        components={[
-          'TimePicker',
-          'MobileTimePicker',
-          'DesktopTimePicker',
-          'StaticTimePicker',
-        ]}
-      >
-        <DemoItem label="Desktop variant">
-          <DesktopTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
-        </DemoItem>
-        <DemoItem label="Mobile variant">
-          <MobileTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
-        </DemoItem>
-        <DemoItem label="Responsive variant">
-          <TimePicker defaultValue={dayjs('2022-04-17T15:30')} />
-        </DemoItem>
-        <DemoItem label="Static variant">
-          <StaticTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
-        </DemoItem>
-      </DemoContainer>
-    </LocalizationProvider>
-  );
-} */}
-
-
-                   
                    <br />
 
                     
@@ -211,7 +175,14 @@ export default function ResponsiveTimePickers() {
     </tr>
   </thead>
   <tbody>
-  {tableList.map((service, index) => (
+  {tableList.sort((a, b) => {
+    const dayComparison = a.selectday.localeCompare(b.selectday);
+    if (dayComparison !== 0) {
+      return dayComparison;
+    } else {
+      return a.Time.TimeSlot_From.localeCompare(b.Time.TimeSlot_From);
+    }
+  }).map((service, index) => (
     <tr key={index}>
       <td>{service.selectday}</td>
       <td>
