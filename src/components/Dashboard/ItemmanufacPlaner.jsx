@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import TimePicker from 'react-time-picker';
 
 const ItemmanufacPlaner = () => {
 
@@ -33,13 +34,17 @@ const handeladdtoplanner =()=>{
     Task:task,
     section:section
   }
-  settableList((previtem)=>[...previtem,newitem])
-settable(true)
-settask('')
-setselectday('')
-setTimeSlot_From('')
-setTimeSlot_To('')
-setsection('')
+  if (task && selectday && TimeSlot_From && TimeSlot_To && section) {
+    settableList((previtem) => [...previtem, newitem]);
+    settable(true);
+    settask('');
+    setselectday('');
+    setTimeSlot_From('');
+    setTimeSlot_To('');
+    setsection('');
+  } else {
+    alert('fill all field');
+  }
 
 }
   return (
@@ -66,18 +71,16 @@ setsection('')
             </form>
         </div>
 
-
-
 {viewform &&(
-  <form className="form" id="recipe-designing">
-
-
-  <div>
+  <form  id="viewform">
+<div>
 <label htmlFor="">Task</label>
-<textarea name="" value={task} onChange={(e)=>settask(e.target.value)} id="" cols="30" rows="10"></textarea>
+<textarea name="" value={task} onChange={(e)=>settask(e.target.value)} id="" ></textarea>
+</div>
 
-  </div>
-                <div>
+
+<div className='contain' >
+<div>
                   <label for="saleplanItemname">Select Day</label>
                   <select
                     name="saleplanItemname"
@@ -85,11 +88,12 @@ setsection('')
                     value={selectday}
                     onChange={(e)=>setselectday(e.target.value)}
                   >
+                  <option value="">Select Option</option>
 {options}
                   </select>
                 </div>
 
-                <div id="addmore">
+                <div>
                 <label htmlFor="">Time Slot</label>
                   <div className="addmoreitems">
 
@@ -105,6 +109,7 @@ setsection('')
                         onChange={(e)=>setTimeSlot_From(e.target.value)}
                         required
                       />
+                      {/* <TimePicker onChange={(e)=>setTimeSlot_From(e.target.value)} value={TimeSlot_From} /> */}
                     </div>
 
                     <div id="recipequantity">
@@ -120,13 +125,16 @@ setsection('')
                 <div>
                   <label htmlFor="">Section</label>
                   <select name="" value={section} onChange={(e)=>setsection(e.target.value)} id="">
-
+<option value="">Select Option</option>
                     <option value="inventory">Inventory</option>
                     <option value="master">Master</option>
                     <option value="seed">Seed</option>
                     <option value="opk">OPK</option>
                   </select>
                 </div>
+</div>
+                
+
                 <div id="addmoreingredients" onClick={handeladdtoplanner}>
                   Add To Planner
                 </div>
@@ -152,10 +160,10 @@ setsection('')
     <tr key={index}>
       <td>{service.selectday}</td>
       <td>
-      <tr>
+      <tr> From :-
       {service.Time.TimeSlot_From}
       </tr>
-      <tr>{service.Time.TimeSlot_To}</tr>
+      <tr> To :- {service.Time.TimeSlot_To}</tr>
       </td>
       <td>{service.Task}</td>
       <td>{service.section}</td>
