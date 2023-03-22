@@ -217,7 +217,7 @@ const Header = ({ onProfileToggle }) => {
                 </li>
               ) : (<>
 
-                {admin?(<Link  id="header_login_admin" onClick={onProfileToggle} >{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
+                {admin?(<Link  to="/urvi" id="header_login_admin" onClick={onProfileToggle} >{admin.email.split("@")[0].replace("hi", "")}</Link>):(<>
                 <Link id="header_login" to="/login">
                   Log In
                 </Link>

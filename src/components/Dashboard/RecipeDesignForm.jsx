@@ -298,31 +298,27 @@ if (recipeName === "" || ingredientsList.length === 0) {
             <h2>Your Recipe</h2>
             <br />
             <table className="recipe_table">
-              <thead>
-                <tr>
-                  <th>Recipe Name</th>
-                  <th>Ingredients</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{recipeName}</td>
-                  <td>
-                    <table>
-                      <tbody>
-                        {ingredientsList.map((service, index) => (
-                          <tr key={index}>
-                            <td>{service.ingredientName}</td>
-                            <td>{service.quantity}</td>
-                            <td>{service.unit}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+  <thead>
+    <tr>
+      <th>Recipe Name</th>
+      <th>Ingredient Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {ingredientsList.map((service, index) => (
+      <tr key={index}>
+        {index === 0 && (
+          <td rowSpan={ingredientsList.length}>{recipeName}</td>
+        )}
+        <td>{service.ingredientName}</td>
+        <td>{service.quantity}</td>
+        <td>{service.unit}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
           </div>
         )}
 
