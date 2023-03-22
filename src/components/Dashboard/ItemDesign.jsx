@@ -63,8 +63,8 @@ const handelIngredientProfileSubmit= async()=>{
   });
   
   const response = await addItemList(bodyContent);
-    if (response.status === 401) {
-      alert("This Ingredient already exists");
+    if (response.status === 404) {
+      alert("This planer at this date already exists");
       return;
     }
     setrecipeunit("1");

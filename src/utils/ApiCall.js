@@ -19,7 +19,8 @@ const urls = {
   getUserapi: `${produrl}/getuser`,
   Signup: `${produrl}/signup`,
   addItemListapi: `${produrl}/additemlist`,
-  getitemlistapi:`${produrl}/getitemlist`
+  getitemlistapi:`${produrl}/getitemlist`,
+  addSalesPlanapi: `${produrl}/addtosalesplan`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -151,4 +152,7 @@ export const addItemList = async(data) =>{
 }
 export const getitemlist  = async() =>{
   return makeRequest(urls.getitemlistapi, "GET")
+}
+export const addSalesPlan = async(data) =>{
+  return makeRequest(urls.addSalesPlanapi, "POST", data);
 }

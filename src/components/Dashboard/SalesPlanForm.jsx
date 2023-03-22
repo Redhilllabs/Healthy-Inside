@@ -1,46 +1,55 @@
 import React, { useState ,useEffect }  from 'react';
-import {getitemlist} from '../../utils/ApiCall';
+import {getitemlist ,addSalesPlan} from '../../utils/ApiCall';
 
 // sales Forecast Planner Option in Business & Branding
 
 const SalesPlanForm = () => {
     const [DaysPlan, setDaysPlan] = useState(false);
-    const [saleplanItemname, setsaleplanItemname] = useState("item1");
+    const [saleplanItemname, setsaleplanItemname] = useState("");
     const [salesForecast, setsalesForecast] = useState("1");
-    const [salesplandate, setsalesplandate] = useState("2023-03-16");
+    const [salesplandate, setsalesplandate] = useState("");
     const [showSalesPlanTable, setshowSalesPlanTable] = useState(false);
     const [plannerList, setplannerList] = useState([]);
     const [data ,setData]=useState('')
 
+    const handelsubmit = async()=>{
+      let bodyContent = JSON.stringify({
+        "Date": salesplandate,
+        "SalesPlanList": plannerList
+      });
+      const response = await addSalesPlan(bodyContent)
+      if (response.status === 404) {
+        alert("This Ingredient already exists");
+        return;
+      }
+      setsaleplanItemname("")
+      setsalesForecast("1")
+      setsalesplandate("")
+      setplannerList([]);
+    }
+
+    const handeldatechange = (e) =>{
+      setsalesplandate(e.target.value)
+      // console.log(plannerList)
+    }
 
     const handeladdtoplanner = () => {
         const newplaner = {
           iTem_name: saleplanItemname,
           salesforecast: salesForecast,
-          saledate: salesplandate,
+          // saledate: salesplandate,
         };
         setplannerList((prevList) => [...prevList, newplaner]);
         setshowSalesPlanTable(true);
-        setsaleplanItemname("item1");
+        setsaleplanItemname("");
         setsalesForecast("1");
-        setsalesplandate("2023-03-16");
-      };
-      const handlesaleplanItemnameChange = (e) => {
-        setsaleplanItemname(e.target.value);
-      };
-      const handlesalesForecastChange = (e) => {
-        setsalesForecast(e.target.value);
-      };
-      const handlesalesplandateChange = (e) => {
-        setsalesplandate(e.target.value);
+        setsalesplandate(salesplandate);
       };
       
       useEffect(() => {
         const fetchData = async () => {
           const response = await getitemlist();
-
           setData(response.data);
-
         };
         fetchData();
       }, []);
@@ -68,12 +77,13 @@ const SalesPlanForm = () => {
                     name="saleplanItemname"
                     id="saleplanItemname"
                     value={saleplanItemname}
-                    onChange={handlesaleplanItemnameChange}
+                    onChange={(e)=>{setsaleplanItemname(e.target.value)}}
                   >
                     <option value="">Select option</option>
-                    {data.map((item, index) => (
+                    {
+                      data?data.map((item, index) => (
                         <option value={item.ItemName}>{item.ItemName}</option>
-                        ))}
+                        )):<></>}
                   </select>
                 </div>
                 <div id="addmore">
@@ -87,7 +97,7 @@ const SalesPlanForm = () => {
                         name="salesForcast"
                         id="salesForcast"
                         value={salesForecast}
-                        onChange={handlesalesForecastChange}
+                        onChange={(e)=>setsalesForecast(e.target.value)}
                         required
                       />
                     </div>
@@ -97,7 +107,7 @@ const SalesPlanForm = () => {
                       <input
                         type="date"
                         value={salesplandate}
-                        onChange={handlesalesplandateChange}
+                        onChange={handeldatechange}
                       />
                     </div>
                   </div>
@@ -126,7 +136,10 @@ const SalesPlanForm = () => {
               <tbody>
                 {plannerList.map((service, index) => (
                   <tr key={index}>
-                    <td>{service.saledate}</td>
+                  {index === 0 && (
+                    <td rowSpan={plannerList.length}>{salesplandate}</td>
+        )}
+                  
                     <td>{service.iTem_name}</td>
                     <td>{service.salesforecast}</td>
                   </tr>
@@ -141,7 +154,7 @@ const SalesPlanForm = () => {
               >
                 cancel
               </div>
-              <div id="recipebutton_save">Submit</div>
+              <div id="recipebutton_save" onClick={handelsubmit} >Submit</div>
             </div>
           </div>
         )}
