@@ -1,5 +1,5 @@
 import React, { useState,useEffect }  from 'react'
-import {AddToIngredentProfile ,getmateriallist,AddToRecipeProfile} from '../../utils/ApiCall'
+import {AddToIngredentProfile ,getmateriallist, AddToRecipeProfile} from '../../utils/ApiCall'
 
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);

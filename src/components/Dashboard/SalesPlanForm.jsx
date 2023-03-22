@@ -1,4 +1,5 @@
-import React, { useState }  from 'react'
+import React, { useState ,useEffect }  from 'react';
+import {getitemlist} from '../../utils/ApiCall';
 
 // sales Forecast Planner Option in Business & Branding
 
@@ -9,6 +10,7 @@ const SalesPlanForm = () => {
     const [salesplandate, setsalesplandate] = useState("2023-03-16");
     const [showSalesPlanTable, setshowSalesPlanTable] = useState(false);
     const [plannerList, setplannerList] = useState([]);
+    const [data ,setData]=useState('')
 
 
     const handeladdtoplanner = () => {
@@ -32,7 +34,16 @@ const SalesPlanForm = () => {
       const handlesalesplandateChange = (e) => {
         setsalesplandate(e.target.value);
       };
+      
+      useEffect(() => {
+        const fetchData = async () => {
+          const response = await getitemlist();
 
+          setData(response.data);
+
+        };
+        fetchData();
+      }, []);
   return (
     <>
 
@@ -59,13 +70,10 @@ const SalesPlanForm = () => {
                     value={saleplanItemname}
                     onChange={handlesaleplanItemnameChange}
                   >
-                    <option value="item1">item1</option>
-                    <option value="item2">item2</option>
-                    <option value="item3">item3</option>
-                    <option value="item4">item4</option>
-                    <option value="item5">item5</option>
-                    <option value="item6">item6</option>
-                    <option value="item7">item7</option>
+                    <option value="">Select option</option>
+                    {data.map((item, index) => (
+                        <option value={item.ItemName}>{item.ItemName}</option>
+                        ))}
                   </select>
                 </div>
                 <div id="addmore">

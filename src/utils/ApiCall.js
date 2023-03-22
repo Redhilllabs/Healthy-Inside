@@ -18,7 +18,8 @@ const urls = {
   saveUserAddress: `${produrl}/saveaddress`,
   getUserapi: `${produrl}/getuser`,
   Signup: `${produrl}/signup`,
-  addItemListapi: `${produrl}/additemlist`
+  addItemListapi: `${produrl}/additemlist`,
+  getitemlistapi:`${produrl}/getitemlist`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -147,4 +148,7 @@ export const signup = async(data) =>{
 
 export const addItemList = async(data) =>{
   return makeRequest(urls.addItemListapi, "POST", data);
+}
+export const getitemlist  = async() =>{
+  return makeRequest(urls.getitemlistapi, "GET")
 }
