@@ -1,5 +1,5 @@
 import React, { useState,useEffect }  from 'react';
-import {getallIngredientProfile , getallrecipeProfile} from '../../utils/ApiCall';
+import {getallIngredientProfile , getallrecipeProfile ,addItemList} from '../../utils/ApiCall';
 
 const ItemDesignForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -46,8 +46,7 @@ const ItemDesignForm = () => {
 
     const handeladdmore = (event) => {
     const newIngredient = {
-      ingredient_name: _recipe_ingredient_name,
-      quantity: recipequantity,
+      Constituent_Recipe: _recipe_ingredient_name,
       unit: recipeunit,
     };
     setIngredientsList((prevList) => [...prevList, newIngredient]);
@@ -56,7 +55,25 @@ const ItemDesignForm = () => {
     setrecipeunit("1");
     setMaterialListTable(true)
     };
+const handelIngredientProfileSubmit= async()=>{
 
+  let bodyContent = JSON.stringify({
+    "ItemName":recipeName,
+    "ItemList" : ingredientsList
+  });
+  
+  const response = await addItemList(bodyContent);
+    if (response.status === 401) {
+      alert("This Ingredient already exists");
+      return;
+    }
+    setrecipeunit("1");
+    set_recipe_ingredient_name("");
+    setRecipeName('');
+    setIngredientsList([]);
+    setMaterialListTable(false);
+
+}
     const [itemProfile ,setitemProfileData] = useState({});
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -130,35 +147,23 @@ const ItemDesignForm = () => {
               <thead>
                 <tr>
                   <th>Item Name</th>
-                  <th>Ingredients</th>
+                  <th>Constituent Recipe</th>
+                  <th>Unit</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{recipeName}</td>
-                  <td>
-                    <table>
-                      <tbody>
-                        {ingredientsList.map((service, index) => (
-                          <tr key={index}>
-                            <td>{service.ingredient_name}</td>
-                            {/* <td>{service.quantity}</td> */}
-                            <td>{service.unit}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </td>
-                  {/* <td>{procedure}</td> */}
-                </tr>
+              {ingredientsList.map((service, index) => (
+      <tr key={index}>
+        {index === 0 && (
+          <td rowSpan={ingredientsList.length}>{recipeName}</td>
+        )}
+        <td>{service.Constituent_Recipe}</td>
+        <td>{service.unit}</td>
+      </tr>
+    ))}
               </tbody>
             </table>
-            <div id="tabel_controllers">
-              <div id="recipebutton_close" onClick={() => setShowTable(false)}>
-                cancel
-              </div>
-              <div id="recipebutton_save">Submit</div>
-            </div>
+            
           </div>
         )}
 
@@ -281,15 +286,19 @@ const ItemDesignForm = () => {
 </tbody>
 
           </table>
-<div id="tabel_controllers">
-  <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
-    cancel
-  </div>
-  {/* <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div> */}
-</div>
+
 </div>
 )}
 </div>
+
+{MaterialListTable && (
+  <div id="tabel_controllers">
+            <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
+              cancel
+            </div>
+            <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div>
+          </div>
+)}
 
     </>
   )

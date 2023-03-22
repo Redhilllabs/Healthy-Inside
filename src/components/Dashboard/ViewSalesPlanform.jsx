@@ -25,7 +25,7 @@ const ViewSalesPlanform = () => {
         method="post"
       >
         <div className="option_container">
-          <label htmlFor="start-date-input">Start Date:</label>
+          <label htmlFor="start-date-input">Select Date:</label>
           <input
             type="date"
             id="start-date-input"
@@ -34,7 +34,7 @@ const ViewSalesPlanform = () => {
           />
         </div>
 
-        <div className="option_container">
+        {/* <div className="option_container">
           <label htmlFor="end-date-input">End Date:</label>
           <input
             type="date"
@@ -42,7 +42,7 @@ const ViewSalesPlanform = () => {
             value={endDate}
             onChange={handleEndDateChange}
           />
-        </div>
+        </div> */}
 
         <div className="button-container">
           <div onClick={handleSubmit} id="recipebutton" type="submit" name="submit">
