@@ -45,33 +45,39 @@ const ItemDesignForm = () => {
   };
 
     const handeladdmore = (event) => {
+      event.preventDefault()
     const newIngredient = {
       Constituent_Recipe: _recipe_ingredient_name,
       unit: recipeunit,
     };
     setIngredientsList((prevList) => [...prevList, newIngredient]);
     set_recipe_ingredient_name("");
-    // setrecipequantity("1");
     setrecipeunit("1");
     setMaterialListTable(true)
     };
+
 const handelIngredientProfileSubmit= async()=>{
 
   let bodyContent = JSON.stringify({
     "ItemName":recipeName,
     "ItemList" : ingredientsList
   });
-  
-  const response = await addItemList(bodyContent);
+  if(recipeName&& ingredientsList !==[]){
+    const response = await addItemList(bodyContent);
     if (response.status === 404) {
       alert("This planer at this date already exists");
       return;
+    }else{
+      alert("Saved TO ItemList");
     }
+  }
+  
     setrecipeunit("1");
     set_recipe_ingredient_name("");
     setRecipeName('');
     setIngredientsList([]);
     setMaterialListTable(false);
+    setShowTable(false);
 
 }
     const [itemProfile ,setitemProfileData] = useState({});
@@ -92,7 +98,7 @@ const handelIngredientProfileSubmit= async()=>{
   return (
     <>
 <div className="formcontains">
-              <form class="form" id="recipe-designing">
+              <form class="form" id="recipe-designing"  onSubmit={handeladdmore}>
                 <div>
                   <label for="Receipe Name">Item Name</label>
                   <input
@@ -108,7 +114,7 @@ const handelIngredientProfileSubmit= async()=>{
                   <div className="addmoreitems">
                     <div>
                       <label htmlFor="Ingredient Name">Select Constituent Recipes </label>
-                      <select name="" id="" value={_recipe_ingredient_name} onChange={handleIngredientChange}>
+                      <select name="" id="" value={_recipe_ingredient_name} onChange={handleIngredientChange} required >
                       <option value="">Select Option</option>
                       {data.map((item, index) => (
                         <option value={item.RecipeName}>{item.RecipeName}</option>
@@ -122,6 +128,7 @@ const handelIngredientProfileSubmit= async()=>{
                         type="number"
                         id="unitRD"
                         value={recipeunit}
+                         required
                         onChange={handleRecipeunitChange}
                       >
                         
@@ -131,9 +138,8 @@ const handelIngredientProfileSubmit= async()=>{
                   </div>
                 </div>
 
-                <div id="addmoreingredients" onClick={handeladdmore}>
-                  Add
-                </div>
+                <input type="submit" Value={"Add"} id="addmoreingredients" />
+                  
               </form>
           </div>
 

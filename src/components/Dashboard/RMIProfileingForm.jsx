@@ -37,7 +37,8 @@ const RMIProfileingForm = () => {
   const handleOptionClick = (option) => {
     setKitchenOption(option);
   };
-const handelrmisubmit = async ()=>{
+const handelrmisubmit = async (event)=>{
+  event.preventDefault();
   const bodyContent = {
     Ingredients: ingredient,
     Energy: energy || 0,
@@ -73,35 +74,37 @@ const handelrmisubmit = async ()=>{
     if (response.status === 401) {
       alert("This Ingredient already exists");
       return;
+    }else{
+      alert("Saved to Material List")
     }
     setupdatelist(response);
 
     // Set state variables to empty strings
     setIngredient("");
-    setEnergy("");
-    setProteins("");
-    setCarbohydrates("");
-    setFats("");
-    setDietaryFibre("");
-    setCalcium("");
-    setVitaminB9("");
-    setPotassium("");
-    setVitaminB5("");
-    setVitaminB6("");
-    setSodium("");
-    setVitaminB1("");
-    setVitaminB2("");
-    setVitaminB3("");
-    setManganese("");
-    setIron("");
-    setVitaminE("");
-    setPhosphorous("");
-    setVitaminA("");
-    setVitaminC("");
-    setVitaminK("");
-    setCopper("");
-    setMagnesium("");
-    setZinc("");
+    setEnergy("0");
+    setProteins("0");
+    setCarbohydrates("0");
+    setFats("0");
+    setDietaryFibre("0");
+    setCalcium("0");
+    setVitaminB9("0");
+    setPotassium("0");
+    setVitaminB5("0");
+    setVitaminB6("0");
+    setSodium("0");
+    setVitaminB1("0");
+    setVitaminB2("0");
+    setVitaminB3("0");
+    setManganese("0");
+    setIron("0");
+    setVitaminE("0");
+    setPhosphorous("0");
+    setVitaminA("0");
+    setVitaminC("0");
+    setVitaminK("0");
+    setCopper("0");
+    setMagnesium("0");
+    setZinc("0");
   }
 }
 
@@ -130,7 +133,7 @@ const handelrmisubmit = async ()=>{
             Raw Material Master List
           </button>
           <button
-            id={kitchenOption === "AddToList" ? "active" : ""}
+                   id={kitchenOption === "AddToList" ? "active" : ""}
             onClick={() => handleOptionClick("AddToList")}
           >
             Add New Ingredient
@@ -206,12 +209,13 @@ const handelrmisubmit = async ()=>{
         )}
 
         {kitchenOption === "AddToList" && (
-          <form class="form" id="RMIform-designing">
+          <form class="form" id="RMIform-designing"  onSubmit={handelrmisubmit}>
           <div id="rmi_ingredient_style">
           <h4>Ingredient:</h4>
             <input
               type="text"
               value={ingredient}
+              required
               onChange={(e) => setIngredient(e.target.value)}
             />
           </div>
@@ -222,6 +226,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={proteins}
+              required
               onChange={(e) => setProteins(e.target.value)}
             />
 
@@ -229,12 +234,14 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={carbohydrates}
+              required
               onChange={(e) => setCarbohydrates(e.target.value)}
             />
 
             <label>Dietary Fibre:</label>
             <input
               type="number"
+              required
               value={dietaryFibre}
               onChange={(e) => setDietaryFibre(e.target.value)}
             />
@@ -243,6 +250,7 @@ const handelrmisubmit = async ()=>{
             <input
               id="calcium-input"
               type="number"
+              required
               value={calcium}
               onChange={(e) => setCalcium(e.target.value)}
             />
@@ -252,6 +260,7 @@ const handelrmisubmit = async ()=>{
               id="vitaminB9-input"
               type="number"
               value={vitaminB9}
+              required
               onChange={(e) => setVitaminB9(e.target.value)}
             />
 
@@ -259,6 +268,7 @@ const handelrmisubmit = async ()=>{
             <input
               id="potassium-input"
               type="number"
+              required
               value={potassium}
               onChange={(e) => setPotassium(e.target.value)}
             />
@@ -268,6 +278,7 @@ const handelrmisubmit = async ()=>{
               id="vitaminB5-input"
               type="number"
               value={vitaminB5}
+              required
               onChange={(e) => setVitaminB5(e.target.value)}
             />
 
@@ -276,6 +287,7 @@ const handelrmisubmit = async ()=>{
               id="vitaminB6-input"
               type="number"
               value={vitaminB6}
+              required
               onChange={(e) => setVitaminB6(e.target.value)}
             />
 
@@ -284,6 +296,7 @@ const handelrmisubmit = async ()=>{
               id="sodium-input"
               type="number"
               value={sodium}
+              required
               onChange={(e) => setSodium(e.target.value)}
             />
 
@@ -291,12 +304,14 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={vitaminB1}
+              required
               onChange={(e) => setVitaminB1(e.target.value)}
             />
 
             <label>Vitamin B2:</label>
             <input
               type="number"
+              required
               value={vitaminB2}
               onChange={(e) => setVitaminB2(e.target.value)}
             />
@@ -305,6 +320,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={vitaminB3}
+              required
               onChange={(e) => setVitaminB3(e.target.value)}
             />
 
@@ -312,6 +328,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={manganese}
+              required
               onChange={(e) => setManganese(e.target.value)}
             />
 
@@ -319,6 +336,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={vitaminE}
+              required
               onChange={(e) => setVitaminE(e.target.value)}
             />
 
@@ -326,6 +344,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={phosphorous}
+              required
               onChange={(e) => setPhosphorous(e.target.value)}
             />
 
@@ -333,6 +352,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={vitaminA}
+              required
               onChange={(e) => setVitaminA(e.target.value)}
             />
 
@@ -340,6 +360,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={vitaminC}
+              required
               onChange={(e) => setVitaminC(e.target.value)}
             />
 
@@ -347,6 +368,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={vitaminK}
+              required
               onChange={(e) => setVitaminK(e.target.value)}
             />
 
@@ -354,6 +376,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={magnesium}
+              required
               onChange={(e) => setMagnesium(e.target.value)}
             />
 
@@ -361,6 +384,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={zinc}
+              required
               onChange={(e) => setZinc(e.target.value)}
             />
 
@@ -368,6 +392,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={copper}
+              required
               onChange={(e) => setCopper(e.target.value)}
             />
 
@@ -375,6 +400,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={iron}
+              required
               onChange={(e) => setIron(e.target.value)}
             />
 
@@ -382,6 +408,7 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={fats}
+              required
               onChange={(e) => setFats(e.target.value)}
             />
 
@@ -389,13 +416,14 @@ const handelrmisubmit = async ()=>{
             <input
               type="number"
               value={energy}
+              required
               onChange={(e) => setEnergy(e.target.value)}
             />
             </div>
 
-            <div id="rmiaddtolist" onClick={handeladdToList}>
-              Add to List
-            </div>
+            <input id="rmiaddtolist" type="submit" value="Add to List" >
+              
+            </input>
           </form>
         )}
       </div>

@@ -60,6 +60,7 @@ const RecordForwardLossesForm = () => {
               name="inventory-purchase-log"
               id="inventory-purchase-log"
               method="post"
+              onSubmit={handleRecordForwardLossesSubmit}
             >
               <div className="option_container">
                 <label>Date:</label>
@@ -67,6 +68,7 @@ const RecordForwardLossesForm = () => {
                   type="date"
                   value={RecordForwardLossesdate}
                   onChange={handleRecordForwardLossesDateChange}
+                  required
                 />
               </div>
               <div className="option_container">
@@ -74,6 +76,7 @@ const RecordForwardLossesForm = () => {
                 <select
                   value={RecordForwardLossesitemName}
                   onChange={handleRecordForwardLossesItemNameChange}
+                  required
                 >
                   <option value="">Select an item</option>
                   <option value="Brown Rice Idli">Brown Rice Idli</option>
@@ -96,6 +99,7 @@ const RecordForwardLossesForm = () => {
                   type="text"
                   value={RecordForwardLossesunits}
                   onChange={handleRecordForwardLossesUnitsChange}
+                  required
                 />
               </div>
               <div className="option_container">
@@ -104,6 +108,7 @@ const RecordForwardLossesForm = () => {
                   type="number"
                   value={RecordForwardLossesestimatedValue}
                   onChange={handleRecordForwardLossesEstimatedValueChange}
+                  required
                 />
               </div>
               <div className="option_container">
@@ -112,6 +117,7 @@ const RecordForwardLossesForm = () => {
                   type="number"
                   value={RecordForwardLossesquantity}
                   onChange={handleRecordForwardLossesQuantityChange}
+                  required
                 />
               </div>
               <div className="option_container">
@@ -120,18 +126,20 @@ const RecordForwardLossesForm = () => {
                   type="text"
                   value={RecordForwardLossesspecification}
                   onChange={handleRecordForwardLossesSpecificationChange}
+                  required
                 />
               </div>
 
               <div class="button-container">
-                <div
-                  onClick={handleRecordForwardLossesSubmit}
+                <input
+                  
                   id="recipebutton"
                   type="submit"
                   name="submit"
+                  value={"Submit"}
                 >
-                  Submit
-                </div>
+                  
+                </input>
               </div>
             </form>
           </div>
@@ -170,7 +178,7 @@ const RecordForwardLossesForm = () => {
               >
                 cancel
               </div>
-              <div id="recipebutton_save">Save</div>
+              <div id="recipebutton_save" onClick={(e)=>alert("Not Saving To DB")} >Save</div>
             </div>
           </div>
         )}

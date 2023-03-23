@@ -11,22 +11,26 @@ const ViewSalesPlanform = () => {
 
 
 
-  const handleSubmit = async() => {
+  const handleSubmit = async(e) => {
+    e.preventDefault()
 console.log(startDate)
     let bodyContent = JSON.stringify({
       "Date":startDate
     });
 
     const response = await getsalesplan(bodyContent);
-    console.log(response)
-    if (response.status === 401) {
-      alert("Not in Sales Plan");
+    // console.log(response)
+    if (response.status === 404) {
+      alert("Date is Not in Sales Plan");
       return;
     }
+    else{
+      setdata(response);
+      // console.log(data)
+      setShowTable(true);
+    }
 
-    setdata(response);
-    console.log(data)
-    setShowTable(true);
+    
 
   };
 
@@ -40,6 +44,7 @@ console.log(startDate)
         name="inventory-purchase-log"
         id="inventory-purchase-log"
         method="post"
+        onSubmit={handleSubmit}
       >
         <div className="option_container">
           <label htmlFor="start-date-input">Select Date:</label>
@@ -48,13 +53,14 @@ console.log(startDate)
             id="start-date-input"
             value={startDate}
             onChange={handleStartDateChange}
+            required
           />
         </div>
 
         <div className="button-container">
-          <div onClick={handleSubmit} id="recipebutton" type="submit" name="submit">
-            View Sales plan
-          </div>
+          <input  id="recipebutton" value={"View Sales plan"} type="submit" name="submit">
+            
+          </input>
         </div>
       </form>
     </div>
@@ -73,7 +79,7 @@ console.log(startDate)
       </tr>
     </thead>
     <tbody>
-      {data.Item.SalesPlanList.map((item, index) => (
+      {data&& data.Item && data.Item.SalesPlanList.map((item, index) => (
         <tr key={index}>
           {index === 0 && (
             <td rowSpan={data.Item.SalesPlanList.length}>

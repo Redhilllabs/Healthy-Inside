@@ -1,12 +1,5 @@
-import React, { useState } from 'react'
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
-import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
-import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
-import dayjs from 'dayjs';
+import React, { useState,useEffect } from 'react'
+import {getitemlist} from '../../utils/ApiCall'
 
 const ItemmanufacPlaner = () => {
 
@@ -20,6 +13,10 @@ const [task,settask] = useState('')
 const [section, setsection] = useState('')
 const [tableList,settableList] = useState([])
 const [assign,setassign] = useState('')
+const [data, setData] = useState("");
+
+
+
 const options = [];
 for(let i=0; i<4; i++){
   options.push(<option value={`Day${i}`}>Day{i}</option>);
@@ -45,7 +42,9 @@ const handeladdtoplanner =()=>{
       TimeSlot_To,TimeSlot_To
     },
     Task:task,
-    section:section
+    section:section,
+    assigned: assign
+
   }
   if (task && selectday && TimeSlot_From && TimeSlot_To && section) {
     settableList((previtem) => [...previtem, newitem]);
@@ -61,6 +60,16 @@ const handeladdtoplanner =()=>{
   }
 
 }
+
+useEffect(() => {
+  const fetchData = async () => {
+    const response = await getitemlist();
+    setData(response);
+  };
+  fetchData();
+}, []);
+
+
   return (
     <>
 <div className="formcontains">
@@ -70,11 +79,12 @@ const handeladdtoplanner =()=>{
                 <select name="" id="" value={ItemName} onChange={handleItemNameChange}>
 
                   <option value="">Select Option</option>
-                  <option value="item1"> Item 1</option>
-                  <option value="item2"> Item 2</option>
-                  <option value="item3"> Item 3</option>
-                  <option value="item4"> Item 4</option>
-                  <option value="item5"> Item 5</option>
+                  {data && data.data && data.data.map((item, index) => (
+  <option key={index} value={item.ItemName}>
+    {item.ItemName}
+  </option>
+))}
+
                 </select>
               
               </div>
@@ -87,11 +97,24 @@ const handeladdtoplanner =()=>{
 
 {viewform &&(
   <form  id="viewform">
+  
 <div   id="viewformtask" >
+<div  className='containee'>
+                  <label htmlFor="">Section</label>
+                  <select name="" value={section} onChange={(e)=>setsection(e.target.value)} id="">
+<option value="">Select Option</option>
+                    <option value="inventory">Inventory</option>
+                    <option value="master">Master</option>
+                    <option value="seed">Seed</option>
+                    <option value="opk">OPK</option>
+                  </select>
+                </div>
+                <div className='containee'>
+                  <label htmlFor="">Assigned To</label>
+                  <input type="text" value={assign} onChange={(e)=>{setassign(e.target.value)}} />
+                </div>
 <label htmlFor="">Task</label>
 <textarea name="" value={task} onChange={(e)=>settask(e.target.value)} id="" ></textarea>
-</div>
-
 <div className='contain' >
 <div className='containee' >
                   <label for="saleplanItemname">Select Day</label>
@@ -140,21 +163,11 @@ const handeladdtoplanner =()=>{
                     
                   </div>
                 </div>
-                <div  className='containee'>
-                  <label htmlFor="">Section</label>
-                  <select name="" value={section} onChange={(e)=>setsection(e.target.value)} id="">
-<option value="">Select Option</option>
-                    <option value="inventory">Inventory</option>
-                    <option value="master">Master</option>
-                    <option value="seed">Seed</option>
-                    <option value="opk">OPK</option>
-                  </select>
-                </div>
-                <div className='containee'>
-                  <label htmlFor="">Assigned To</label>
-                  <input type="text" value={assign} onChange={(e)=>{setassign(e.target.value)}} />
-                </div>
+                
 </div>
+</div>
+
+
                 <center>
 
                 <div id="addtoplaner" onClick={handeladdtoplanner}>
@@ -177,6 +190,7 @@ const handeladdtoplanner =()=>{
       <th>Time</th>
       <th>Task</th>
       <th>Section</th>
+      <th> Assigned To </th>
 
     </tr>
   </thead>
@@ -192,13 +206,11 @@ const handeladdtoplanner =()=>{
     <tr key={index}>
       <td>{service.selectday}</td>
       <td>
-      <tr> 
-      {service.Time.TimeSlot_From} / {service.Time.TimeSlot_To}
-      </tr>
-      <tr>  </tr>
+      {service.Time.TimeSlot_From} - {service.Time.TimeSlot_To}
       </td>
       <td>{service.Task}</td>
       <td>{service.section}</td>
+      <td>{service.assigned}</td>
     </tr>
   ))}
 
@@ -209,7 +221,7 @@ const handeladdtoplanner =()=>{
               <div id="recipebutton_close" onClick={() => settable(false)}>
                 cancel
               </div>
-              <div id="recipebutton_save">Submit</div>
+              <div id="recipebutton_save" onClick={(e)=>alert("Not Sving To Db")}  >Submit</div>
             </div>
           </div>
         )}

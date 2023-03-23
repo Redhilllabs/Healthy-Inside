@@ -121,6 +121,7 @@ const RecipeForm = () => {
   };
   
     const handeladdmore = (event) => {
+      event.preventDefault()
     const newIngredient = {
       ingredientName : _recipe_ingredient_name,
         quantity: recipequantity,
@@ -180,8 +181,10 @@ if (recipeName === "" || ingredientsList.length === 0) {
 }
     const response = await AddToIngredentProfile(bodyContent);
     if (response.status === 401) {
-      alert("This Ingredient already exists");
+      alert("This Ingredient already exists Change Ingredient Name");
       return;
+    }else{
+      alert("Saved")
     }
     set_recipe_ingredient_name("Anise, Fennel (सौंफ़/Saunf)");
     setrecipequantity("1");
@@ -224,7 +227,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
               <button>Labels</button>
             </div>
             {ingredientProfile ? (
-              <form className="form" id="recipe-designing">
+              <form className="form" id="recipe-designing" onSubmit={handeladdmore} >
                 <div>
                   <label for="Receipe Name">Recipe Name</label>
                   <input
@@ -259,6 +262,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
                       <input
                         type="number"
                         value={recipequantity}
+                        required
                         onChange={handleRecipequantityChange}
                       />
                     </div>
@@ -269,6 +273,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
                         name="unitRD"
                         id="unitRD"
                         value={recipeunit}
+                        required
                         onChange={handleRecipeunitChange}
                       >
                         <option value="gram">g (gram)</option>
@@ -282,10 +287,10 @@ if (recipeName === "" || ingredientsList.length === 0) {
                   </div>
                 </div>
 
-                <div id="addmoreingredients" onClick={handeladdmore}>
+                <input value={"Add to Recipe"} id="addmoreingredients" type="submit" />
 
-                  Add to Recipe
-                </div>
+                  
+               
               </form>
             ) : (
               <></>

@@ -33,7 +33,8 @@ const InventoryForm = () => {
       const handleAmountChange = (event) => {
         setAmount(parseFloat(event.target.value));
       };
-      const handleInventorySubmitForm = () => {
+      const handleInventorySubmitForm = (event) => {
+        event.preventDefault()
         setShowInventoryTable(true);
       };
 
@@ -48,6 +49,7 @@ const InventoryForm = () => {
               name="inventory-purchase-log"
               id="inventory-purchase-log"
               method="post"
+              onSubmit={handleInventorySubmitForm}
             >
               <div className="option_container">
                 <label for="Name">Date</label>
@@ -70,6 +72,7 @@ const InventoryForm = () => {
                   onChange={handleItemNameChange}
                   required
                 >
+                <option value="">Select Option</option>
                   <option value="Anise, Fennel (सौंफ़/Saunf)">
                     Anise, Fennel (सौंफ़/Saunf)
                   </option>
@@ -344,14 +347,15 @@ const InventoryForm = () => {
               </div>
 
               <div class="button-container">
-                <div
-                  onClick={handleInventorySubmitForm}
+                <input
+                 
                   id="recipebutton"
                   type="submit"
                   name="submit"
-                >
-                  Submit
-                </div>
+                  value={ "Submit"}
+                />
+                 
+                
               </div>
             </form>
           </div>
@@ -389,7 +393,7 @@ const InventoryForm = () => {
               >
                 cancel
               </div>
-              <div id="recipebutton_save">Save</div>
+              <div id="recipebutton_save" onClick={()=>alert("Not Saving To Db")}  >Save</div>
             </div>
           </div>
         )}
