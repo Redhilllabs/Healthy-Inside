@@ -89,7 +89,7 @@ const PurchaseOrderForm = () => {
           </div>
 
           {showTable && (
-          <div className="table-container"  id='yourrecipetale'>
+          <div className="table-container"  id='yourpurchaseorder'>
             <h2>Your Sales Plan</h2>
             <br />
             {/* {data && ( */}
@@ -98,27 +98,25 @@ const PurchaseOrderForm = () => {
     <tr>
       <th>Date</th>
       <th>Ingredients</th>
+      <th>Quantity</th>
+      <th>Unit</th>
     </tr>
   </thead>
-  <tbody>
-    {sortedData.map((order, index) => (
-      <tr key={index}>
-        <td>{order.Date.toISOString().split('T')[0]}</td>
-        <td>
-          <table >
-            <tbody  id='purchaseorder_table'>
-              {order.ingredients.map((ingredient, index) => (
-                <tr key={index}>
-                  <td>{Object.keys(ingredient)[0]}</td>
-                  <td>{Object.values(ingredient)[0]}</td>
-                  <td>{order.unit}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    ))}
+  <tbody id="purchaseorder_table">
+  {sortedData.map((order) =>
+      order.ingredients.map((ingredient, index) => (
+        <tr key={index}>
+          {index === 0 && (
+            <td rowSpan={order.ingredients.length}>
+              {order.Date.toISOString().split("T")[0]}
+            </td>
+          )}
+          <td>{Object.keys(ingredient)[0]}</td>
+          <td>{Object.values(ingredient)[0]}</td>
+          <td>{order.unit}</td>
+        </tr>
+      ))
+    )}
   </tbody>
 </table>
 

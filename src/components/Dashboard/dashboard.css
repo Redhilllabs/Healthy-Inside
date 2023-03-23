@@ -150,13 +150,13 @@ width: 75%;
     
   }
 
-.recipe_table td table {
+/* .recipe_table td table {
   max-height: 4em;
   overflow-y: auto;
-}
-#purchaseorder_table{
+} */
+#purchaseorder_table {
   height: 50px;
-  overflow:scroll;
+  overflow: auto;
 }
 
 
@@ -364,6 +364,11 @@ width: 75%;
 overflow: scroll;
   }
   
+  #yourpurchaseorder{
+    overflow: scroll;
+    width: 90%;
+    /* height: 3%; */
+  }
   .recipe_table {
     border-collapse: collapse;
     width: 100%;
