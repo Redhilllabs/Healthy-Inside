@@ -19,7 +19,7 @@ const SalesPlanForm = () => {
       });
       const response = await addSalesPlan(bodyContent)
       if (response.status === 404) {
-        alert("This Ingredient already exists");
+        alert("This Date already exists");
         return;
       }
       setsaleplanItemname("")
@@ -35,7 +35,7 @@ const SalesPlanForm = () => {
 
     const handeladdtoplanner = () => {
         const newplaner = {
-          iTem_name: saleplanItemname,
+          itemName: saleplanItemname,
           salesforecast: salesForecast,
           // saledate: salesplandate,
         };
@@ -140,7 +140,7 @@ const SalesPlanForm = () => {
                     <td rowSpan={plannerList.length}>{salesplandate}</td>
         )}
                   
-                    <td>{service.iTem_name}</td>
+                    <td>{service.itemName}</td>
                     <td>{service.salesforecast}</td>
                   </tr>
                 ))}

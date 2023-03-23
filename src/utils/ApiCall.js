@@ -20,7 +20,8 @@ const urls = {
   Signup: `${produrl}/signup`,
   addItemListapi: `${produrl}/additemlist`,
   getitemlistapi:`${produrl}/getitemlist`,
-  addSalesPlanapi: `${produrl}/addtosalesplan`
+  addSalesPlanapi: `${produrl}/addtosalesplan`,
+  getsalesplanapi: `${produrl}/getsalesplan`,
 };
 
 const makeRequest = async (url, method, data) => {
@@ -155,4 +156,8 @@ export const getitemlist  = async() =>{
 }
 export const addSalesPlan = async(data) =>{
   return makeRequest(urls.addSalesPlanapi, "POST", data);
+}
+
+export const getsalesplan = async(data) =>{
+  return makeRequest(urls.getsalesplanapi, "POST", data);
 }

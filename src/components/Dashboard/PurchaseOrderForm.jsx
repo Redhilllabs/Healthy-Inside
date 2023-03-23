@@ -15,6 +15,8 @@ const PurchaseOrderForm = () => {
       };
       const handleViewPurchaseOrder = () => {
         setShowViewPurchaseOrderTable(true);
+
+        
       };
 
   return (
