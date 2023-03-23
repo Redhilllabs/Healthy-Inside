@@ -97,32 +97,31 @@ const PurchaseOrderForm = () => {
   <thead>
     <tr>
       <th>Date</th>
-      <th>Ingredient</th>
-      <th>Quantity</th>
-      <th>Unit</th>
+      <th>Ingredients</th>
     </tr>
   </thead>
   <tbody>
     {sortedData.map((order, index) => (
       <tr key={index}>
-        <td>{order.Date.toString()}</td>
+        <td>{order.Date.toISOString().split('T')[0]}</td>
         <td>
-          <table>
-            <tbody>
+          <table >
+            <tbody  id='purchaseorder_table'>
               {order.ingredients.map((ingredient, index) => (
                 <tr key={index}>
                   <td>{Object.keys(ingredient)[0]}</td>
                   <td>{Object.values(ingredient)[0]}</td>
+                  <td>{order.unit}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </td>
-        <td>{order.unit}</td>
       </tr>
     ))}
   </tbody>
 </table>
+
 
 
 {/* )} */}

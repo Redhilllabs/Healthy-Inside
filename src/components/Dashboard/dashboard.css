@@ -154,7 +154,10 @@ width: 75%;
   max-height: 4em;
   overflow-y: auto;
 }
-
+#purchaseorder_table{
+  height: 50px;
+  overflow:scroll;
+}
 
 
   #addmore{
