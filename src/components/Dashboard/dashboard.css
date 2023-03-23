@@ -149,6 +149,14 @@
 width: 75%;
     
   }
+
+.recipe_table td table {
+  max-height: 4em;
+  overflow-y: auto;
+}
+
+
+
   #addmore{
     display: flex;
     /* height: 200px ; */

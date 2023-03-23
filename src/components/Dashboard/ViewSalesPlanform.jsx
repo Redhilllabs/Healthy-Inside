@@ -16,9 +16,6 @@ console.log(startDate)
     let bodyContent = JSON.stringify({
       "Date":startDate
     });
-    // let bodyContent = JSON.stringify({
-    //   "Date":"2023-03-27"
-    // });
 
     const response = await getsalesplan(bodyContent);
     console.log(response)

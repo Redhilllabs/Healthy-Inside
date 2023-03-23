@@ -22,6 +22,7 @@ const urls = {
   getitemlistapi:`${produrl}/getitemlist`,
   addSalesPlanapi: `${produrl}/addtosalesplan`,
   getsalesplanapi: `${produrl}/getsalesplan`,
+  searchPurchaseOrderapi: `${produrl}/searchpurchaseorder`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -160,4 +161,8 @@ export const addSalesPlan = async(data) =>{
 
 export const getsalesplan = async(data) =>{
   return makeRequest(urls.getsalesplanapi, "POST", data);
+}
+
+export const searchPurchaseOrder = async(data)=>{
+  return makeRequest(urls.searchPurchaseOrderapi, "POST", data);
 }
