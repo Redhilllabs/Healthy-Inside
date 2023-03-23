@@ -102,9 +102,10 @@ const PurchaseOrderForm = () => {
               <div class="button-container">
                 <input
                   
-                  id="recipebutton"
+                  id="addmoreingredients"
                   type="submit"
                   name="submit"
+
                   value={"View Purchase Order"}
                 >
                  

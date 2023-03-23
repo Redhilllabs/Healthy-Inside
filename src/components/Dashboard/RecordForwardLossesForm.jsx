@@ -133,7 +133,7 @@ const RecordForwardLossesForm = () => {
               <div class="button-container">
                 <input
                   
-                  id="recipebutton"
+                  id="addmoreingredients"
                   type="submit"
                   name="submit"
                   value={"Submit"}

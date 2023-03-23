@@ -29,9 +29,6 @@ console.log(startDate)
       // console.log(data)
       setShowTable(true);
     }
-
-    
-
   };
 
   return (
@@ -58,7 +55,7 @@ console.log(startDate)
         </div>
 
         <div className="button-container">
-          <input  id="recipebutton" value={"View Sales plan"} type="submit" name="submit">
+          <input  id="addmoreingredients" value={"View Sale plan"} type="submit" name="submit">
             
           </input>
         </div>

@@ -17,15 +17,26 @@ const SalesPlanForm = () => {
         "Date": salesplandate,
         "SalesPlanList": plannerList
       });
-      const response = await addSalesPlan(bodyContent)
-      if (response.status === 404) {
-        alert("This Date already exists");
-        return;
+      if(salesplandate && plannerList ){
+        const response = await addSalesPlan(bodyContent)
+        if (response.status === 500) {
+          alert("An Error Saving Data");
+          return;
+        }else{
+          alert(`${response.operation} into Sales Plan Db`)
+          setsaleplanItemname("")
+          setsalesForecast("1")
+          setsalesplandate("")
+          setplannerList([]);
+          setshowSalesPlanTable(false)
+        }
+        
+        
       }
-      setsaleplanItemname("")
-      setsalesForecast("1")
-      setsalesplandate("")
-      setplannerList([]);
+      
+
+      
+      
     }
 
     const handeldatechange = (e) =>{
@@ -33,11 +44,11 @@ const SalesPlanForm = () => {
       // console.log(plannerList)
     }
 
-    const handeladdtoplanner = () => {
+    const handeladdtoplanner = (e) => {
+      e.preventDefault()
         const newplaner = {
           itemName: saleplanItemname,
           salesforecast: salesForecast,
-          // saledate: salesplandate,
         };
         setplannerList((prevList) => [...prevList, newplaner]);
         setshowSalesPlanTable(true);
@@ -70,7 +81,7 @@ const SalesPlanForm = () => {
               <button >Custom Plan</button>
             </div>
             {DaysPlan ? (
-              <form className="form" id="recipe-designing">
+              <form className="form" id="recipe-designing" onSubmit={handeladdtoplanner} >
                 <div>
                   <label for="saleplanItemname">Item Name</label>
                   <select
@@ -78,6 +89,7 @@ const SalesPlanForm = () => {
                     id="saleplanItemname"
                     value={saleplanItemname}
                     onChange={(e)=>{setsaleplanItemname(e.target.value)}}
+                    required
                   >
                     <option value="">Select option</option>
                     {
@@ -108,13 +120,14 @@ const SalesPlanForm = () => {
                         type="date"
                         value={salesplandate}
                         onChange={handeldatechange}
+                        required
                       />
                     </div>
                   </div>
                 </div>
-                <div id="addmoreingredients" onClick={handeladdtoplanner}>
-                  Add To Planner
-                </div>
+                <input value="AddToPlanner" type="submit" id="addmoreingredients" />
+                  
+                
               </form>
             ) : (
               <></>

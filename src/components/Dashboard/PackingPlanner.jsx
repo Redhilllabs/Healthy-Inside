@@ -25,10 +25,9 @@ const PackingPlanner = () => {
                 />
               </div>
 
-              <div id="addmoreingredients">Add To Package</div>
+              <input type="submit" id="addmoreingredients" value="Add Package" />
             </form>
           </div>
-          
     </>
   )
 }
