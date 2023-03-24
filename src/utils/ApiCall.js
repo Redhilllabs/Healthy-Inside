@@ -24,7 +24,8 @@ const urls = {
   getsalesplanapi: `${produrl}/getsalesplan`,
   searchPurchaseOrderapi: `${produrl}/searchpurchaseorder`,
   addpurcaselogentryapi:`${produrl}/addpurcaselogentry`,
-  AddtoInventoryapi: `${produrl}/addtoinventory`
+  AddtoInventoryapi: `${produrl}/addtoinventory`,
+  dailySalesMetricapi: `${produrl}/adddailysalesmetric`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -176,4 +177,8 @@ export const AddPurcaselogEntry = async(data)=>{
 
 export const AddtoInventory = async(data)=>{
   return makeRequest(urls.AddtoInventoryapi, "POST", data);
+}
+
+export const  AdddailySalesMetric = async(data)=>{
+  return makeRequest(urls.dailySalesMetricapi, "POST", data);
 }

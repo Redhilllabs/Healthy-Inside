@@ -1,17 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState ,useEffect }  from 'react';
+import {getitemlist ,AdddailySalesMetric} from '../../utils/ApiCall';
 
 const Dailysalesmatricsform = () => {
 
-    const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
-    const [showdailysalesmatricstable, setshowdailysalesmatricstable] =
-      useState(false);
-      // const handledailysalesmatricsDateChange = (event) => {
-      //   setdailysalesmatricsdate(event.target.value);
-      // };
-    
-      // const handledailysalesmatricssubmit = () => {
-      //   setshowdailysalesmatricstable(true);
-      // };
+    // const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
+    // const [showdailysalesmatricstable, setshowdailysalesmatricstable] = useState(false);
 
       const [DaysPlan, setDaysPlan] = useState(false);
       const [saleplanItemname, setsaleplanItemname] = useState("");
@@ -22,24 +15,25 @@ const Dailysalesmatricsform = () => {
       const [data ,setData]=useState('')
   
       const handelsubmit = async()=>{
-        // let bodyContent = JSON.stringify({
-        //   "Date": salesplandate,
-        //   "SalesPlanList": plannerList
-        // });
-        // if(salesplandate && plannerList ){
-        //   const response = await addSalesPlan(bodyContent)
-        //   if (response.status === 500) {
-        //     alert("An Error Saving Data");
-        //     return;
-        //   }else{
-        //     alert(`${response.operation} into Sales Plan Db`)
-        //     setsaleplanItemname("")
-        //     setsalesForecast("1")
-        //     setsalesplandate("")
-        //     setplannerList([]);
-        //     setshowSalesPlanTable(false)
-        //   } 
-        // } 
+        let bodyContent = JSON.stringify({
+          "Date": salesplandate,
+          "SalesPlanList": plannerList
+        });
+        if(salesplandate && plannerList ){
+
+          const response = await AdddailySalesMetric(bodyContent)
+          if (response.status === 404) {
+            alert("An Error Saving Data");
+            return;
+          }else{
+            alert(`${response.operation} into Sales Plan Db`)
+            setsaleplanItemname("")
+            setsalesForecast("1")
+            setsalesplandate("")
+            setplannerList([]);
+            setshowSalesPlanTable(false)
+          } 
+        } 
       }
       const handeldatechange = (e) =>{
         setsalesplandate(e.target.value)
@@ -58,6 +52,13 @@ const Dailysalesmatricsform = () => {
           setsalesForecast("1");
           setsalesplandate(salesplandate);
         };
+        useEffect(() => {
+          const fetchData = async () => {
+            const response = await getitemlist();
+            setData(response.data);
+          };
+          fetchData();
+        }, []);
 
   return (
     <>
@@ -142,9 +143,46 @@ const Dailysalesmatricsform = () => {
             </form> */}
           </div>
 
+          {showSalesPlanTable && (
+          <div className="table-container">
+            <h2>Your Sales Metrics  </h2>
+            <br />
+            <table className="recipe_table">
+              <thead>
+                <tr>
+                  <th>Date</th>
 
+                  <th>Item Name</th>
+                  <th>Sales Forecast</th>
+                </tr>
+              </thead>
+              <tbody>
+                {plannerList.map((service, index) => (
+                  <tr key={index}>
+                  {index === 0 && (
+                    <td rowSpan={plannerList.length}>{salesplandate}</td>
+        )}
+                  
+                    <td>{service.itemName}</td>
+                    <td>{service.salesforecast}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div id="tabel_controllers">
+              <div
+                id="recipebutton_close"
+                onClick={() => setshowSalesPlanTable(false)}
+              >
+                cancel
+              </div>
+              <div id="recipebutton_save" onClick={handelsubmit} >Submit</div>
+            </div>
+          </div>
+        )}
           
-          {showdailysalesmatricstable && (
+          {/* {showdailysalesmatricstable && (
           <div className="table-container">
             <h2>Daily Sales</h2>
             <br />
@@ -170,7 +208,7 @@ const Dailysalesmatricsform = () => {
               <div id="recipebutton_save">Save</div>
             </div>
           </div>
-        )}
+        )} */}
 
     </>
   )
