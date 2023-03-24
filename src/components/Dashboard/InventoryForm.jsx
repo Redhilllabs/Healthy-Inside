@@ -63,8 +63,8 @@ const InventoryForm = () => {
           "Ingredients":itemName,
           "quantity":quantity,
           "unit":unit,
-          "unitPrice":unitPrice,
-          "Amount":amount
+          // "unitPrice":unitPrice,
+          // "Amount":amount
           
       });
         const response  = await AddPurcaselogEntry(bodyContent)

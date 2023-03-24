@@ -22,46 +22,42 @@ const PurchaseOrderForm = () => {
         setIsLoading(true)
         let bodyContent = JSON.stringify({
           "startDate": startDate,
-          "endDate": endDate
         });
     
         const response = await searchPurchaseOrder(bodyContent);
+        console.log(response)
+
         if(response){
           setIsLoading(false)
         }
     
         if (response.status === 401) {
-          alert("Not in Sales Plan");
+          alert("Date Not Present ");
           return;
         }
     
+        setShowTable(true);
         setData(response);
       };
 
-      useEffect(() => {
-        if (data) {
-          // const sortedOrders = data.data.map(order => ({
-          //   ...order,
-          //   Date: new Date(order.Date)
-          // })).sort((a, b) => a.Date - b.Date);
-
-          const result = data.data.reduce((acc, curr) => {
-            curr.ingredients.forEach(ingredient => {
-              const name = Object.keys(ingredient)[0];
-              const value = Object.values(ingredient)[0];
-              if (!acc[name]) {
-                acc[name] = { unit: curr.unit, total: 0 };
-              }
-              acc[name].total += value;
-            });
-            return acc;
-          }, {});
-          
-            // console.log(result)
-          setSortedData(result);
-          setShowTable(true);
-        }
-      }, [data]);
+      // useEffect(() => {
+      //   if (data) {
+      //     const result = data.ingredients?.reduce((acc, curr) => {
+      //       curr.ingredients.forEach((ingredient) => {
+      //         const name = Object.keys(ingredient)[0];
+      //         const value = Object.values(ingredient)[0];
+      //         if (!acc[name]) {
+      //           acc[name] = { unit: curr.unit, total: 0 };
+      //         }
+      //         acc[name].total += value;
+      //       });
+      //       return acc;
+      //     }, {});
+      
+      //     setSortedData(result);
+      //     setShowTable(true);
+      //   }
+      // }, [data]);
       
 
       
@@ -78,7 +74,7 @@ const PurchaseOrderForm = () => {
               onSubmit={handleViewPurchaseOrder}
             >
               <div className="option_container">
-                <label htmlFor="start-date-input">Start Date:</label>
+                <label htmlFor="start-date-input">Select Date:</label>
                 <input
                   type="date"
                   id="start-date-input"
@@ -88,7 +84,7 @@ const PurchaseOrderForm = () => {
                 />
               </div>
 
-              <div className="option_container">
+              {/* <div className="option_container">
                 <label htmlFor="end-date-input">End Date:</label>
                 <input
                   type="date"
@@ -97,7 +93,7 @@ const PurchaseOrderForm = () => {
                   onChange={handleEndDateChange}
                   required
                 />
-              </div>
+              </div> */}
 
               <div class="button-container">
                 <input
@@ -130,16 +126,16 @@ const PurchaseOrderForm = () => {
     </tr>
   </thead>
   <tbody id="purchaseorder_table">
-  
-    {Object.keys(sortedData).sort()
-.map((name, index) => (
-      <tr key={index}>
-        <td>{name}</td>
-        <td>{sortedData[name].total}</td>
-        <td>{sortedData[name].unit}</td>
-      </tr>
-    ))}
-  </tbody>
+  {Array.isArray(data.data) && data.data.map((item, index) => (
+    <tr key={index}>
+      <td>{item.ingredient}</td>
+      <td>{item.quantity}</td>
+      <td>{item.unit}</td>
+    </tr>
+  ))}
+</tbody>
+
+
 </table>
 
 

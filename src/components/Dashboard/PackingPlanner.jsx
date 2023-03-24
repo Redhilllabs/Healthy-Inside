@@ -1,11 +1,15 @@
 import React from 'react'
 
 const PackingPlanner = () => {
+const handelpackageplanner = ()=>{
+  
+}
+
   return (
     <>
 <div className="formcontains">
             <h1>Packing Planner</h1>
-            <form class="form" id="recipe-designing">
+            <form class="form" id="recipe-designing" onSubmit={handelpackageplanner}>
               <div>
                 <label for="Receipe Name">Select Item Name</label>
                 <input
@@ -25,7 +29,7 @@ const PackingPlanner = () => {
                 />
               </div>
 
-              <input type="submit" id="addmoreingredients" value="Add Package" />
+              <input type="submit" id="addmoreingredients" value="Add Package"  />
             </form>
           </div>
     </>
