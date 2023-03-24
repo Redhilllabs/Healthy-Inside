@@ -22,7 +22,9 @@ const urls = {
   getitemlistapi:`${produrl}/getitemlist`,
   addSalesPlanapi: `${produrl}/addtosalesplan`,
   getsalesplanapi: `${produrl}/getsalesplan`,
-  searchPurchaseOrderapi: `${produrl}/searchpurchaseorder`
+  searchPurchaseOrderapi: `${produrl}/searchpurchaseorder`,
+  addpurcaselogentryapi:`${produrl}/addpurcaselogentry`,
+  AddtoInventoryapi: `${produrl}/addtoinventory`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -165,4 +167,13 @@ export const getsalesplan = async(data) =>{
 
 export const searchPurchaseOrder = async(data)=>{
   return makeRequest(urls.searchPurchaseOrderapi, "POST", data);
+}
+
+export const AddPurcaselogEntry = async(data)=>{
+  return makeRequest(urls.addpurcaselogentryapi, "POST", data);
+}
+
+
+export const AddtoInventory = async(data)=>{
+  return makeRequest(urls.AddtoInventoryapi, "POST", data);
 }

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import {AddPurcaselogEntry , AddtoInventory} from '../../utils/ApiCall';
 
 const InventoryForm = () => {
     const [date, setDate] = useState("");
@@ -26,17 +27,71 @@ const InventoryForm = () => {
         setUnit(event.target.value);
       };
     
-      const handleUnitPriceChange = (event) => {
-        setUnitPrice(parseFloat(event.target.value));
-      };
+      // const handleUnitPriceChange = (event) => {
+      //   setUnitPrice(parseFloat(event.target.value));
+      // };
     
       const handleAmountChange = (event) => {
         setAmount(parseFloat(event.target.value));
       };
       const handleInventorySubmitForm = (event) => {
         event.preventDefault()
+        if (Number(amount) === 0) {
+          // Handle the case where amount is zero
+          setUnitPrice(0)
+        } else {
+          setUnitPrice(Number(quantity) / Number(amount));
+        }
+
         setShowInventoryTable(true);
       };
+
+      const handelsave = async() =>{
+        let bodyContent = JSON.stringify({
+          "Date": date,
+          "ingredients":[
+            {
+            "name": itemName,
+            "quantity": quantity,
+            "unit":unit,
+            "unitPrice":unitPrice,
+            "Amount":amount
+            }
+            ]
+        });
+        let bodyContent2 = JSON.stringify({
+          "Ingredients":itemName,
+          "quantity":quantity,
+          "unit":unit,
+          "unitPrice":unitPrice,
+          "Amount":amount
+          
+      });
+        const response  = await AddPurcaselogEntry(bodyContent)
+        const response2  = await AddtoInventory(bodyContent2)
+        
+        if (response.status === 401) {
+          alert(`Some Error Occured`);
+          return;
+        }else{
+          alert(`${response.operation}  saved in Purchase Log Entry`)
+          setAmount(0)
+          setDate("")
+          setItemName("")
+          setQuantity(0)
+          setUnit("")
+          setUnitPrice(0)
+          setShowInventoryTable(false)
+        }
+        if (response2.status === 401) {
+          alert(`Error Occured`);
+          return;
+        }else{
+          alert(`${response2.operation}  saved in Inventory`)
+          
+        }
+
+      }
 
   return (
     <>
@@ -64,7 +119,7 @@ const InventoryForm = () => {
               </div>
 
               <div className="option_container">
-                <label for="Item">Item Name</label>
+                <label for="Item">Ingredients</label>
                 <select
                   id="itemIPL"
                   name="Item"
@@ -312,14 +367,21 @@ const InventoryForm = () => {
 
               <div className="option_container">
                 <label for="Unit">Unit </label>
-                <input
-                  type="number"
-                  name="Unit"
-                  id="unitIPL"
-                  value={unit}
-                  onChange={handleUnitChange}
-                  required
-                />
+                <select
+                        name="unitRD"
+                        id="unitRD"
+                        value={unit}
+                        required
+                        onChange={handleUnitChange}
+                      >
+                      <option value="">Select Option</option>
+                        <option value="gram">g (gram)</option>
+                        <option value="millilitre">ml (millilitre)</option>
+                        <option value="microgram">mcg (microgram)</option>
+                        <option value="tablespoon">tbsp (tablespoon)</option>
+                        <option value="teaspoon">teaspoon</option>
+                        <option value="cup">cup</option>
+                      </select>
               </div>
 
               <div className="option_container">
@@ -334,17 +396,6 @@ const InventoryForm = () => {
                 />{" "}
               </div>
 
-              <div className="option_container">
-                <label for="Unit-Price">Unit Price</label>
-                <input
-                  type="number"
-                  name="Unit-Price"
-                  id="unitPriceIPL"
-                  value={unitPrice}
-                  onChange={handleUnitPriceChange}
-                  required
-                />{" "}
-              </div>
 
               <div class="button-container">
                 <input
@@ -359,7 +410,7 @@ const InventoryForm = () => {
               </div>
             </form>
           </div>
-
+<br />
           {showInventoryTable && (
           <div className="table-container">
             <h2>Purchase Log</h2>
@@ -368,7 +419,7 @@ const InventoryForm = () => {
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Item Name</th>
+                  <th>Ingredient </th>
                   <th>Quantity</th>
                   <th>Unit</th>
                   <th>Unit Price</th>
@@ -393,7 +444,7 @@ const InventoryForm = () => {
               >
                 cancel
               </div>
-              <div id="recipebutton_save" onClick={()=>alert("Not Saving To Db")}  >Save</div>
+              <div id="recipebutton_save" onClick={handelsave}  >Save</div>
             </div>
           </div>
         )}

@@ -29,14 +29,8 @@ const SalesPlanForm = () => {
           setsalesplandate("")
           setplannerList([]);
           setshowSalesPlanTable(false)
-        }
-        
-        
-      }
-      
-
-      
-      
+        } 
+      } 
     }
 
     const handeldatechange = (e) =>{

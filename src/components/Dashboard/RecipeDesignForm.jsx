@@ -185,13 +185,14 @@ if (recipeName === "" || ingredientsList.length === 0) {
       return;
     }else{
       alert("Saved")
-    }
-    set_recipe_ingredient_name("Anise, Fennel (सौंफ़/Saunf)");
+      set_recipe_ingredient_name("");
     setrecipequantity("1");
     setrecipeunit("gram");
     setRecipeName("");
     setIngredientsList([]);
     setShowTable(false);
+    }
+    
 
     const response2 = await AddToRecipeProfile(bodyContent2)
     if (response2.status === 401) {
