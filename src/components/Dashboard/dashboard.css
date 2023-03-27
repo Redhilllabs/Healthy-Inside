@@ -136,9 +136,6 @@
   transition: all 0.4s ease;
 }
 
-.dashboard_sidebar .nav-links li .sub-menu{
-  /* padding: 15px; */
-}
 
 .dashboard_sidebar .nav-links li .sub-menu a{
   color: #fff;

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import {searchPurchaseOrder} from '../../utils/ApiCall'
+import {searchPurchaseOrder ,AddtoInventory} from '../../utils/ApiCall'
 const PurchaseOrderForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -25,8 +25,18 @@ const PurchaseOrderForm = () => {
         });
     
         const response = await searchPurchaseOrder(bodyContent);
-        console.log(response)
-
+        console.log(response.data)
+        // const promises = response.data.map((item) => {
+        //   let bodyContent2 = JSON.stringify({
+        //     "Ingredients":item.ingredient,
+        //     "quantity":item.quantity,
+        //     "unit":item.unit, 
+        //   });
+        //   return AddtoInventory(bodyContent2);
+        // });
+        
+        // const results = await Promise.all(promises);
+        // console.log(results);
         if(response){
           setIsLoading(false)
         }
