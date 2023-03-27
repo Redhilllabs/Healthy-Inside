@@ -202,14 +202,14 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
             </div>
             <ul className="sub-menu">
               {showOperations && (
-                <div id="multisubmenu">
+                <>
                   <li>
                     <div  className="iocn-link" onClick={() => handleOperations("OprationsOption1")}>
                       <a> <span className="link_name">Inventory Management</span>
                       {OprationsOption1 ? (<img src={imgsrc1}></img>) : (<img id="arrow4" src={imgsrc2} />)}
                       </a>
                     </div>
-                    <ul className="sub-menu">
+                    {/* <ul className="sub-menu"> */}
                       {OprationsOption1 && (
                         <div id="product-dash">
                           <a id={ShowPurchaseOrderForm ? "active" : ""} onClick={() => handleFormToggle("purchaseOrderForm")}>View Purchase Order</a>
@@ -217,7 +217,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                           <a id={ShowinventoryForm ? "active" : ""} onClick={() => handleFormToggle("inventoryForm")}> Purchase Log Entry</a>
                         </div>
                       )}
-                    </ul>
+                    {/* </ul> */}
                   </li>
                   <li>
   <div className="iocn-link" onClick={() => handleOperations("OprationsOption2")}>
@@ -229,7 +229,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
     )}
     </a>
   </div>
-  <ul className="sub-menu">
+  {/* <ul className="sub-menu"> */}
     {OprationsOption2 && (
       <div id="product-dash">
         <a id={ShowItemmanufacturingPlannerForm ? "active" : ""} onClick={() => handleFormToggle("itemManufacturingPlannerForm")}>Item manufacturing Planner</a>
@@ -238,7 +238,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
         
       </div>
     )}
-  </ul>
+  {/* </ul> */}
 </li>
                   <li>
   <div className="iocn-link" onClick={() => handleOperations("OprationsOption3")}>
@@ -250,16 +250,16 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
     )}
     </a>
   </div>
-  <ul className="sub-menu">
+  {/* <ul className="sub-menu"> */}
     {OprationsOption3 && (
       <div id="product-dash">
         <a id={ShowOrderstatusForm ? "active" : ""} onClick={() => handleFormToggle("OrderstatusForm")}>Active Orders </a>
         <a>Completed Orders </a>
       </div>
     )}
-  </ul>
+  {/* </ul> */}
 </li>
-                </div>
+                </>
               )}
             </ul>
           </li>
@@ -312,8 +312,17 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
 
 <li>
   <div className="iocn-link">
-    <a><span className="link_name">Training center</span></a>
+  <a>
+      <span className="link_name">Training center</span>
+      {showFinance ? (
+        <img  src=""/>
+      ) : (
+        <img src=""  />
+      )}
+    </a>
+
   </div>
+
 </li>
 
         </ul>

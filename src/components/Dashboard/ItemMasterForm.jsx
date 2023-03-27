@@ -69,8 +69,8 @@ const ItemMasterForm = () => {
 
       {table && (
         <div className="table-container" id="yourrecipetale">
-          <h2>Item Master</h2>
-          <br />
+          {/* <h2>Item Master</h2>
+          <br /> */}
           <table className="recipe_table">
       <thead>
         <tr>
