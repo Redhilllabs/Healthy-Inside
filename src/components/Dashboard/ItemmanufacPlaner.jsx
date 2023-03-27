@@ -95,6 +95,58 @@ const ItemmanufacPlaner = () => {
       {viewform && (
         <form id="viewform">
           <div id="viewformtask">
+          
+              <div className="containee">
+                <label for="saleplanItemname">Select Day</label>
+                <select
+                  name="saleplanItemname"
+                  id="saleplanItemname"
+                  value={selectday}
+                  onChange={(e) => setselectday(e.target.value)}
+                >
+                  <option value="">Select Option</option>
+                  {options}
+                </select>
+              </div>
+              <div className="containee">
+              <label htmlFor="">Time</label>
+                <div id="timeslot">
+                  <label htmlFor="salesForcast">From</label>
+
+                  <input
+                    type="time"
+                    name="salesForcast"
+                    id="salesForcast"
+                    value={TimeSlot_From}
+                    onChange={(e) => setTimeSlot_From(e.target.value)}
+                    required
+                  />
+                  
+                  <br />
+
+                  <label htmlFor="salesplandate">To</label>
+<br />
+                  <input
+                    type="time"
+                    value={TimeSlot_To}
+                    onChange={(e) => setTimeSlot_To(e.target.value)}
+                    required
+                  />
+
+                </div>
+              </div>
+              
+<div className="containee">
+<label htmlFor="">Task</label>
+            <textarea
+              name=""
+              value={task}
+              onChange={(e) => settask(e.target.value)}
+              id=""
+            ></textarea>
+</div>
+            
+
             <div className="containee">
               <label htmlFor="">Section</label>
               <select
@@ -120,58 +172,11 @@ const ItemmanufacPlaner = () => {
                 }}
               />
             </div>
-            <label htmlFor="">Task</label>
-            <textarea
-              name=""
-              value={task}
-              onChange={(e) => settask(e.target.value)}
-              id=""
-            ></textarea>
-            <div className="contain">
-              <div className="containee">
-                <label for="saleplanItemname">Select Day</label>
-                <select
-                  name="saleplanItemname"
-                  id="saleplanItemname"
-                  value={selectday}
-                  onChange={(e) => setselectday(e.target.value)}
-                >
-                  <option value="">Select Option</option>
-                  {options}
-                </select>
-              </div>
-
-              <div id="timeitem">
-                <label htmlFor="">Time Slot</label>
-                <div id="timeslot">
-                  <label htmlFor="salesForcast">From</label>
-
-                  <input
-                    type="time"
-                    name="salesForcast"
-                    id="salesForcast"
-                    value={TimeSlot_From}
-                    onChange={(e) => setTimeSlot_From(e.target.value)}
-                    required
-                  />
-                  <br />
-
-                  <label htmlFor="salesplandate">To</label>
-
-                  <input
-                    type="time"
-                    value={TimeSlot_To}
-                    onChange={(e) => setTimeSlot_To(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
           </div>
 
           <center>
             <div id="addtoplaner" onClick={handeladdtoplanner}>
-              Add ToPlanner
+              Add To Planner
             </div>
           </center>
         </form>

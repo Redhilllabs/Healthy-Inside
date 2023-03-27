@@ -202,7 +202,7 @@ width: 75%;
   }
 
   #viewform .contain .containee{
-    margin: 1rem;
+    margin: 2rem;
     display: flex;
     flex-direction: column;
     /* justify-content: center;
@@ -259,15 +259,16 @@ width: 75%;
     cursor: pointer;
     background-color: green;
     color: white;
+    border-radius: 15px;
     text-align: center;
-    padding: 0.5rem 1rem;
+    padding: 0rem 1.5rem;
   }
   #addtoplaner{
     cursor: pointer;
     background-color: green;
     color: white;
     border-radius: 15px;
-    margin: 0rem 9rem 0rem 13rem;
+    margin: 5rem 9rem 0rem 13rem;
     width: 100%;
     text-align: center;
     padding: 0rem 1.5rem;
@@ -406,7 +407,7 @@ overflow: scroll;
   }
   
   #timeslot {
-    width: 2rem;
+    /* width: 2rem; */
   }
 
   @media only screen and (max-width: 768px) {

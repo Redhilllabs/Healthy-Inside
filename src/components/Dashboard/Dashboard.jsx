@@ -163,8 +163,8 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
       <div id="product-dash">
         <a id={showrecipeform ? "active" : ""} onClick={() => handleFormToggle("recipeForm")}>Recipe Designing</a>
         <a id={showItemDesignForm ? "active" : ""} onClick={() => handleFormToggle("itemDesignForm")}>Item Design</a>
-        <a>Recipe Profile</a>
-        <a>Item Profile</a>
+        <a>Recipe Master</a>
+        <a>Item Master</a>
         <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profiling</a>
       </div>
     )}
@@ -228,8 +228,8 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
   <ul className="sub-menu">
     {OprationsOption3 && (
       <div id="product-dash">
-        <a id={ShowOrderstatusForm ? "active" : ""} onClick={() => handleFormToggle("OrderstatusForm")}>Order Active</a>
-        <a>Order Completed</a>
+        <a id={ShowOrderstatusForm ? "active" : ""} onClick={() => handleFormToggle("OrderstatusForm")}>Active Order </a>
+        <a>Completed Order </a>
       </div>
     )}
   </ul>

@@ -40,27 +40,6 @@ const PurchaseOrderForm = () => {
         setData(response);
       };
 
-      // useEffect(() => {
-      //   if (data) {
-      //     const result = data.ingredients?.reduce((acc, curr) => {
-      //       curr.ingredients.forEach((ingredient) => {
-      //         const name = Object.keys(ingredient)[0];
-      //         const value = Object.values(ingredient)[0];
-      //         if (!acc[name]) {
-      //           acc[name] = { unit: curr.unit, total: 0 };
-      //         }
-      //         acc[name].total += value;
-      //       });
-      //       return acc;
-      //     }, {});
-      
-      //     setSortedData(result);
-      //     setShowTable(true);
-      //   }
-      // }, [data]);
-      
-
-      
   return (
     <>
 <div className="formcontains">
@@ -83,17 +62,6 @@ const PurchaseOrderForm = () => {
                   required
                 />
               </div>
-
-              {/* <div className="option_container">
-                <label htmlFor="end-date-input">End Date:</label>
-                <input
-                  type="date"
-                  id="end-date-input"
-                  value={endDate}
-                  onChange={handleEndDateChange}
-                  required
-                />
-              </div> */}
 
               <div class="button-container">
                 <input
@@ -126,7 +94,7 @@ const PurchaseOrderForm = () => {
     </tr>
   </thead>
   <tbody id="purchaseorder_table">
-  {Array.isArray(data.data) && data.data.map((item, index) => (
+  {Array.isArray(data.data) && data.data.sort((a, b) => a.ingredient.localeCompare(b.ingredient)).map((item, index) => (
     <tr key={index}>
       <td>{item.ingredient}</td>
       <td>{item.quantity}</td>
