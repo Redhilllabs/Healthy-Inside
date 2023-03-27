@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getitemlist } from "../../utils/ApiCall";
+import { getallIngredientProfile } from "../../utils/ApiCall";
 
-const ItemMasterForm = () => {
+const RecipeMasterForm = () => {
   const [ItemName, setItemName] = useState("");
   const [table, settable] = useState(false);
   const [ AlltableItem ,setAlltableItem] = useState(false);
   const [data, setData] = useState([]);
-
 
   const handleItemNameChange = (e) => {
     setItemName(e.target.value);
@@ -27,9 +26,9 @@ const ItemMasterForm = () => {
   }
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getitemlist();
-      setData(response);
-    //   console.log(response);
+      const response = await getallIngredientProfile();
+      setData(response.data);
+      console.log(response.data);
     };
     fetchData();
   }, []);
@@ -39,7 +38,7 @@ const ItemMasterForm = () => {
       <div className="formcontains">
         <form class="form" id="recipe-designing">
           <div>
-            <label for="Receipe Name">Item Name</label>
+            <label for="Receipe Name">Recipe Name</label>
             <select
               name=""
               id=""
@@ -47,13 +46,10 @@ const ItemMasterForm = () => {
               onChange={handleItemNameChange}
             >
               <option value="">Select Option</option>
-              {data &&
-                data.data &&
-                data.data.map((item, index) => (
-                  <option key={index} value={item.ItemName}>
-                    {item.ItemName}
-                  </option>
-                ))}
+
+              {data.map((item, index) => (
+                        <option value={item.RecipeName}>{item.RecipeName}</option>
+                        ))}
             </select>
           </div>
 
@@ -62,7 +58,7 @@ const ItemMasterForm = () => {
           </div>
           {"  "}
           <div id="addmoreingredients" onClick={handelAllItems}>
-           All Items
+           All Recipes 
           </div>
         </form>
       </div>
@@ -74,36 +70,34 @@ const ItemMasterForm = () => {
           <table className="recipe_table">
       <thead>
         <tr>
-          <th>Item Name</th>
-          <th>Constituent Recipes</th>
+          <th>Recipe Name</th>
+          <th>Ingredients</th>
           <th>Unit</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        {data.data.map((item, index) => (
-          <React.Fragment key={index}>
-          {item.ItemName === ItemName && (
-            <>
-          
-
-            {item.ItemList.map((subItem, subIndex) => (
-              <tr key={subIndex}>
-              {subIndex === 0 && (
-                  <td rowSpan={item.ItemList.length}>{item.ItemName}</td>
-                )}
-                <td>{subItem.Constituent_Recipe}</td>
-                <td>{subItem.unit}</td>
-                {subIndex === 0 && (
-                  <td rowSpan={item.ItemList.length}></td>
-                )}
-              </tr>
-            ))}
-            
-            </> )}
-
-          </React.Fragment>
+      {data.map((item, index) => (
+  <React.Fragment key={index}>
+    {item.RecipeName === ItemName && (
+      <>
+        {item.Ingredients.map((ingredient, subIndex) => (
+          <tr key={subIndex}>
+            {subIndex === 0 && (
+              <td rowSpan={item.Ingredients.length}>{item.RecipeName}</td>
+            )}
+            <td>{ingredient.ingredientName}</td>
+            <td>{ingredient.unit}</td>
+            {subIndex === 0 && (
+              <td rowSpan={item.Ingredients.length}></td>
+            )}
+          </tr>
         ))}
+      </>
+    )}
+  </React.Fragment>
+))}
+
       </tbody>
     </table>
 
@@ -135,21 +129,21 @@ const ItemMasterForm = () => {
         </tr>
       </thead>
       <tbody>
-        {data.data.map((item, index) => (
+        {data.map((item, index) => (
           <React.Fragment key={index}>
             
-            {item.ItemList.map((subItem, subIndex) => (
-              <tr key={subIndex}>
-              {subIndex === 0 && (
-                  <td rowSpan={item.ItemList.length}>{item.ItemName}</td>
-                )}
-                <td>{subItem.Constituent_Recipe}</td>
-                <td>{subItem.unit}</td>
-                {subIndex === 0 && (
-                  <td rowSpan={item.ItemList.length}></td>
-                )}
-              </tr>
-            ))}
+          {item.Ingredients.map((ingredient, subIndex) => (
+          <tr key={subIndex}>
+            {subIndex === 0 && (
+              <td rowSpan={item.Ingredients.length}>{item.RecipeName}</td>
+            )}
+            <td>{ingredient.ingredientName}</td>
+            <td>{ingredient.unit}</td>
+            {subIndex === 0 && (
+              <td rowSpan={item.Ingredients.length}></td>
+            )}
+          </tr>
+        ))}
           </React.Fragment>
         ))}
       </tbody>
@@ -173,4 +167,4 @@ const ItemMasterForm = () => {
   );
 };
 
-export default ItemMasterForm;
+export default RecipeMasterForm;

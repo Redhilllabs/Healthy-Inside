@@ -18,6 +18,7 @@ import Dailysalesmatricsform from "./Dailysalesmatricsform";
 import ViewSalesPlanform from "./ViewSalesPlanform";
 import PackingPlanner from "./PackingPlanner";
 import ItemMasterForm from "./ItemMasterForm";
+import RecipeMasterForm from "./RecipeMasterForm";
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
@@ -44,8 +45,10 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [ShowOrderstatusForm, setShowOrderstatusForm] = useState(false);
   const [showRMIProfileingForm, setshowRMIProfileingForm] = useState(false);
   const [showItemMasterForm, setShowItemMasterForm] = useState(false);
+  const [showRecipeMasterForm ,setshowRecipeMasterForm] = useState(false);
 
   const handleFormToggle = (formName) => {
+    setshowRecipeMasterForm(formName === "RecipeMasterForm"?!showRecipeMasterForm:false);
     setShowItemMasterForm(formName === "ItemMasterForm" ?!showItemMasterForm:false);
     setshowRMIProfileingForm(
       formName === "RMIProfileingForm" ? !showRMIProfileingForm : false
@@ -114,6 +117,9 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
     setShowMarketing(optionName ==="showMarketing"?!showMarketing:false)
     setShowOperations(optionName ==="showOperations"?!showOperations:false);
     setShowFinance(optionName ==="showFinance"?!showFinance:false)
+    setOprationsOption1(false);
+    setOprationsOption2(false);
+    setOprationsOption3(false);
   }
   
   const handleOperations = (opt) => {
@@ -134,6 +140,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   };
 
   const forms = [
+    {show:showRecipeMasterForm, component:RecipeMasterForm},
     {show:showItemMasterForm,component:ItemMasterForm},
     { show: showItemDesignForm, component: ItemDesignForm },
     { show: showrecipeform, component: RecipeForm },
@@ -178,7 +185,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
       <div id="product-dash">
         <a id={showrecipeform ? "active" : ""} onClick={() => handleFormToggle("recipeForm")}>Recipe Designing</a>
         <a id={showItemDesignForm ? "active" : ""} onClick={() => handleFormToggle("itemDesignForm")}>Item Design</a>
-        <a>Recipe Master</a>
+        <a id={showRecipeMasterForm? "active" : ""} onClick={() => handleFormToggle("RecipeMasterForm")} >Recipe Master</a>
         <a id={showItemMasterForm ? "active" : ""} onClick={() => handleFormToggle("ItemMasterForm")}>Item Master</a>
         <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profiling</a>
       </div>
@@ -198,8 +205,9 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                 <div id="multisubmenu">
                   <li>
                     <div  className="iocn-link" onClick={() => handleOperations("OprationsOption1")}>
-                      <a>Inventory Management</a>
+                      <a> <span className="link_name">Inventory Management</span>
                       {OprationsOption1 ? (<img src={imgsrc1}></img>) : (<img id="arrow4" src={imgsrc2} />)}
+                      </a>
                     </div>
                     <ul className="sub-menu">
                       {OprationsOption1 && (
@@ -213,12 +221,13 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                   </li>
                   <li>
   <div className="iocn-link" onClick={() => handleOperations("OprationsOption2")}>
-    <a>Manufacturing</a>
+    <a> <span className="link_name"> Manufacturing </span>
     {OprationsOption2 ? (
       <img src={imgsrc1} />
     ) : (
       <img id="arrow4" src={imgsrc2} />
     )}
+    </a>
   </div>
   <ul className="sub-menu">
     {OprationsOption2 && (
@@ -233,12 +242,13 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
 </li>
                   <li>
   <div className="iocn-link" onClick={() => handleOperations("OprationsOption3")}>
-    <a>Order Tracking & Delivery</a>
+    <a> <span className="link_name">Order Tracking & Delivery</span> 
     {OprationsOption3 ? (
       <img src={imgsrc1} />
     ) : (
       <img id="arrow4" src={imgsrc2} />
     )}
+    </a>
   </div>
   <ul className="sub-menu">
     {OprationsOption3 && (

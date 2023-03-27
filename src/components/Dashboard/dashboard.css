@@ -4,8 +4,7 @@
   width: 100%;
   display: flex;
   height: fit-content;
-  /* height: 500px; */
-  /* position: fixed; */
+  font-size: small;
   box-sizing: border-box;
   background: lightgreen;
   font-family: 'Poppins', sans-serif;
@@ -54,8 +53,8 @@
 }
 
 .dashboard_sidebar .nav-links{
-  height: 100%;
-  padding: 20px;
+  /* height: 100%;
+  padding: 20px; */
 }
 
 .dashboard_sidebar .nav-links li{
@@ -65,7 +64,7 @@
 
 }
 .iocn-link {
-  display: flex;
+  /* display: flex; */
 }
 .dashboard_sidebar .nav-links li a:hover{
   background: var(--primary);
@@ -86,10 +85,11 @@
 .dashboard_sidebar .nav-links li a{
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 0px 5px ;
   border-radius: 15px;
   cursor: pointer;
   text-decoration: none;
+  justify-content: space-between;
 }
 
 .recipeform_buttons_options {
@@ -123,13 +123,13 @@
 }
 
 .dashboard_sidebar .nav-links li .sub-menu{
-  padding: 15px;
+  /* padding: 15px; */
 }
 
 .dashboard_sidebar .nav-links li .sub-menu a{
   color: #fff;
-  font-size: 15px;
-  padding: 9px ;
+  font-size: 13px;
+  /* padding: 9px ; */
   white-space: nowrap;
   opacity: 0.6;
   transition: all 0.3s ease;
@@ -379,7 +379,7 @@ overflow: scroll;
   .recipe_table th,
   .recipe_table td {
     border: 1px solid green;
-    padding: 8px;
+    /* padding: 8px; */
     text-align: left;
   }
   
