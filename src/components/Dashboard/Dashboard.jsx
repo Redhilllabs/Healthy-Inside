@@ -17,6 +17,7 @@ import InventoryForm from "./InventoryForm";
 import Dailysalesmatricsform from "./Dailysalesmatricsform";
 import ViewSalesPlanform from "./ViewSalesPlanform";
 import PackingPlanner from "./PackingPlanner";
+import ItemMasterForm from "./ItemMasterForm";
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
@@ -42,8 +43,10 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [OprationsOption2, setOprationsOption2] = useState(false);
   const [ShowOrderstatusForm, setShowOrderstatusForm] = useState(false);
   const [showRMIProfileingForm, setshowRMIProfileingForm] = useState(false);
+  const [showItemMasterForm, setShowItemMasterForm] = useState(false);
 
   const handleFormToggle = (formName) => {
+    setShowItemMasterForm(formName === "ItemMasterForm" ?!showItemMasterForm:false);
     setshowRMIProfileingForm(
       formName === "RMIProfileingForm" ? !showRMIProfileingForm : false
     );
@@ -101,14 +104,24 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
     setShowOrderstatusForm(
       formName === "OrderstatusForm" ? !ShowOrderstatusForm : false
     );
+
+    
+
   };
+
+  const handleOptionButton = (optionName) =>{
+    setShowProducts(optionName ==="showProducts"?!showProducts:false);
+    setShowMarketing(optionName ==="showMarketing"?!showMarketing:false)
+    setShowOperations(optionName ==="showOperations"?!showOperations:false);
+    setShowFinance(optionName ==="showFinance"?!showFinance:false)
+  }
   
-  const handleOperations = () => {
-    setShowOperations(!showOperations);
-    setOprationsOption1(false);
-    setOprationsOption2(false);
-    setOprationsOption3(false);
+  const handleOperations = (opt) => {
+    setOprationsOption1(opt==="OprationsOption1"?!OprationsOption1:false);
+    setOprationsOption2(opt==="OprationsOption2"?!OprationsOption2:false);
+    setOprationsOption3(opt==="OprationsOption3"?!OprationsOption3:false);
   };
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -121,6 +134,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   };
 
   const forms = [
+    {show:showItemMasterForm,component:ItemMasterForm},
     { show: showItemDesignForm, component: ItemDesignForm },
     { show: showrecipeform, component: RecipeForm },
     { show: showRMIProfileingForm, component: RMIProfileingForm },
@@ -136,7 +150,8 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
     { show: ShowViewSalesPlanform, component:ViewSalesPlanform }, 
     { show :ShowPackingPlanner,component:PackingPlanner }
   ];
-  const imgsrc1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="
+
+const imgsrc1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgklEQVR4nO3UOw5AQBRG4ZN4xGotgo51UKBRWYF1EcktJiQe45co5jQ3RuKb24BQ6C/FQG7zkyKgARagBxI1sN28M2C22Sk3cjeo7Kyw50GxkQvUu3elAjoDJNAd4BX0BPCCfIBH0Aa0nsAtSAFcQikwCgAXmoCMXer/USz+XijEsRUb0yyhQVIxNQAAAABJRU5ErkJggg=="
 const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
 
   return (
@@ -148,7 +163,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
         <ul className="nav-links">
 
         <li>
-  <div className="iocn-link" onClick={() => setShowProducts(!showProducts)}>
+  <div className="iocn-link" onClick={() => handleOptionButton("showProducts")}>
     <a>
       <span className="link_name">Product R&D</span>
       {showProducts ? (
@@ -164,14 +179,14 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
         <a id={showrecipeform ? "active" : ""} onClick={() => handleFormToggle("recipeForm")}>Recipe Designing</a>
         <a id={showItemDesignForm ? "active" : ""} onClick={() => handleFormToggle("itemDesignForm")}>Item Design</a>
         <a>Recipe Master</a>
-        <a>Item Master</a>
+        <a id={showItemMasterForm ? "active" : ""} onClick={() => handleFormToggle("ItemMasterForm")}>Item Master</a>
         <a id={showRMIProfileingForm ? "active" : ""} onClick={() => handleFormToggle("RMIProfileingForm")}>Raw Material Profiling</a>
       </div>
     )}
   </ul>
 </li>
           <li>
-            <div className="iocn-link" onClick={() => handleOperations()}>
+            <div className="iocn-link" onClick={() => handleOptionButton("showOperations")}>
               <a>
                 <span className="link_name">Operations & Supply Chain</span>
                 {showOperations ? (
@@ -182,7 +197,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
               {showOperations && (
                 <div id="multisubmenu">
                   <li>
-                    <div  className="iocn-link" onClick={() => setOprationsOption1(!OprationsOption1)}>
+                    <div  className="iocn-link" onClick={() => handleOperations("OprationsOption1")}>
                       <a>Inventory Management</a>
                       {OprationsOption1 ? (<img src={imgsrc1}></img>) : (<img id="arrow4" src={imgsrc2} />)}
                     </div>
@@ -197,7 +212,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                     </ul>
                   </li>
                   <li>
-  <div className="iocn-link" onClick={() => setOprationsOption2(!OprationsOption2)}>
+  <div className="iocn-link" onClick={() => handleOperations("OprationsOption2")}>
     <a>Manufacturing</a>
     {OprationsOption2 ? (
       <img src={imgsrc1} />
@@ -217,8 +232,8 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
   </ul>
 </li>
                   <li>
-  <div className="iocn-link" onClick={() => setOprationsOption3(!OprationsOption3)}>
-    <a>Order Tracking Delivery</a>
+  <div className="iocn-link" onClick={() => handleOperations("OprationsOption3")}>
+    <a>Order Tracking & Delivery</a>
     {OprationsOption3 ? (
       <img src={imgsrc1} />
     ) : (
@@ -228,8 +243,8 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
   <ul className="sub-menu">
     {OprationsOption3 && (
       <div id="product-dash">
-        <a id={ShowOrderstatusForm ? "active" : ""} onClick={() => handleFormToggle("OrderstatusForm")}>Active Order </a>
-        <a>Completed Order </a>
+        <a id={ShowOrderstatusForm ? "active" : ""} onClick={() => handleFormToggle("OrderstatusForm")}>Active Orders </a>
+        <a>Completed Orders </a>
       </div>
     )}
   </ul>
@@ -239,7 +254,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
             </ul>
           </li>
 <li>
-  <div className="iocn-link" onClick={() => setShowMarketing(!showMarketing)}>
+  <div className="iocn-link" onClick={() => handleOptionButton("showMarketing")}>
     <a>
       <span className="link_name">Business & Branding</span>
       {showMarketing ? (
@@ -263,7 +278,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
 </li>
 
 <li>
-  <div className="iocn-link" onClick={() => setShowFinance(!showFinance)}>
+  <div className="iocn-link" onClick={() => handleOptionButton("showFinance")}>
     <a>
       <span className="link_name">Finance & Metrics</span>
       {showFinance ? (
@@ -279,6 +294,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
         <a>MRP Calculator</a>
         <a>Glance</a>
         <a>Budget</a>
+        <a> Rate List </a>
       </div>
     )}
   </ul>
