@@ -25,7 +25,9 @@ const urls = {
   searchPurchaseOrderapi: `${produrl}/searchpurchaseorder`,
   addpurcaselogentryapi:`${produrl}/addpurcaselogentry`,
   AddtoInventoryapi: `${produrl}/addtoinventory`,
-  dailySalesMetricapi: `${produrl}/adddailysalesmetric`
+  dailySalesMetricapi: `${produrl}/adddailysalesmetric`,
+  AddToJobFlowapi:`${produrl}/jobflow/AddjobFlow`,
+  GetAllJobFlowapi: `${produrl}/jobflow/getjobflow`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -181,4 +183,11 @@ export const AddtoInventory = async(data)=>{
 
 export const  AdddailySalesMetric = async(data)=>{
   return makeRequest(urls.dailySalesMetricapi, "POST", data);
+}
+
+export const AddToJobFlow = async(data)=>{
+  return makeRequest(urls.AddToJobFlowapi, "POST", data);
+}
+export const GetAllJobFlow = async()=>{
+  return makeRequest(urls.GetAllJobFlowapi, "GET");
 }

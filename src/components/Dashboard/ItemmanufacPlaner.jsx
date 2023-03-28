@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getitemlist } from "../../utils/ApiCall";
+import { getitemlist ,AddToJobFlow ,GetAllJobFlow} from "../../utils/ApiCall";
 
 const ItemmanufacPlaner = () => {
   const [ItemName, setItemName] = useState("");
@@ -24,10 +24,19 @@ const ItemmanufacPlaner = () => {
   const [EquipmentFlowform,setEquipmentFlowform] = useState(false);
   const [ProcessFlowform,setProcessFlowform] = useState(false);
   const [IngredientsFlowform,setIngredientsFlowform] = useState(false);
+  const [jobflowtable,setjobflowtable] = useState(false);
+  const [ProcessCode,setProcessCode]  = useState("");
+  const [EquipmentFlowtable,setEquipmentFlowtable] = useState(false);
+  const [jobflowData,setJobFlowData] = useState([]);
+
 
   const options = [];
   for (let i = 0; i < 4; i++) {
     options.push(<option value={`Day${i}`}>Day{i}</option>);
+  }
+  const equipment = [];
+  for (let i = 0; i < 4; i++) {
+    equipment.push(<option value={`Equipment${i}`}>Equipment{i}</option>);
   }
 
   const handleItemNameChange = (e) => {
@@ -56,7 +65,7 @@ const ItemmanufacPlaner = () => {
   };
   const handelEquipmentFlow = () => {
     if (ItemName) {
-      setEquipmentFlowform(true);
+      setEquipmentFlowtable(true);
     } else {
       alert("choose Item Name");
     }
@@ -69,12 +78,38 @@ const ItemmanufacPlaner = () => {
     }
   };
   const handeladdtoplanner = () => {
+    // const newitem = {
+    //   selectday: selectday,
+    //   Time: {
+    //     TimeSlot_From: TimeSlot_From,
+    //     TimeSlot_To,
+    //     TimeSlot_To,
+    //   },
+    //   Task: task,
+    //   section: section,
+    //   assigned: assign,
+    // };
+    // if (task && selectday && TimeSlot_From && TimeSlot_To && section) {
+    //   settableList((previtem) => [...previtem, newitem]);
+    //   settable(true);
+    //   settask("");
+    //   setselectday("");
+    //   setTimeSlot_From("");
+    //   setTimeSlot_To("");
+    //   setsection("");
+    //   setassign("");
+    // } else {
+    //   alert("fill all field");
+    // }
+  };
+  const handeljobflowtable = (e) =>{
+    e.preventDefault()
+
     const newitem = {
       selectday: selectday,
       Time: {
         TimeSlot_From: TimeSlot_From,
-        TimeSlot_To,
-        TimeSlot_To,
+        TimeSlot_To: TimeSlot_To,
       },
       Task: task,
       section: section,
@@ -82,7 +117,7 @@ const ItemmanufacPlaner = () => {
     };
     if (task && selectday && TimeSlot_From && TimeSlot_To && section) {
       settableList((previtem) => [...previtem, newitem]);
-      settable(true);
+      setjobflowtable(true)
       settask("");
       setselectday("");
       setTimeSlot_From("");
@@ -92,8 +127,39 @@ const ItemmanufacPlaner = () => {
     } else {
       alert("fill all field");
     }
-  };
+    
+  }
+  const handelsubmitjobflow = async()=>{
 
+    let bodyContent = JSON.stringify({
+      "ItemName":ItemName,
+      "JobFlow": tableList
+    });
+
+    const response = await AddToJobFlow(bodyContent)
+    console.log(response)
+    if(response.status === 401){
+      alert(response.message)
+      
+    }else{
+      alert(response.operation)
+      settableList([])
+      setJobFlow(false);
+      setjobflowtable(false)
+      setJobFlowform(false)
+        settask("");
+        setselectday("");
+        setTimeSlot_From("");
+        setTimeSlot_To("");
+        setsection("");
+        setassign("");
+        setItemName("")
+      
+    }
+
+   
+
+  }
 
   const handeltoggelbutton = (formName)=>{
     setJobFlow(formName==="JobFlow"?!JobFlow:false);
@@ -106,17 +172,28 @@ const ItemmanufacPlaner = () => {
     setEquipmentFlowform(false)
     setLabFlowform(false)
     setIngredientsFlowform(false)
+    setItemName("")
 
 
   }
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getitemlist();
-      setData(response);
+      try {
+        const itemListResponse = await getitemlist();
+        setData(itemListResponse);
+        
+        const jobFlowResponse = await GetAllJobFlow();
+        setJobFlowData(jobFlowResponse.data);
+      } catch (error) {
+        console.error(error);
+        // Handle error state
+      }
     };
     fetchData();
   }, []);
+  
+  
 
   return (
     <>
@@ -268,7 +345,7 @@ const ItemmanufacPlaner = () => {
       </div>
 
       {JobFlowform && (
-        <form id="viewform">
+        <form id="viewform" onSubmit={handeljobflowtable}>
           <div id="viewformtask">
           
               <div className="containee">
@@ -318,6 +395,7 @@ const ItemmanufacPlaner = () => {
               value={task}
               onChange={(e) => settask(e.target.value)}
               id=""
+              required
             ></textarea>
 </div>
             
@@ -329,6 +407,7 @@ const ItemmanufacPlaner = () => {
                 value={section}
                 onChange={(e) => setsection(e.target.value)}
                 id=""
+                required
               >
                 <option value="">Select Option</option>
                 <option value="inventory">Inventory</option>
@@ -342,6 +421,7 @@ const ItemmanufacPlaner = () => {
               <input
                 type="text"
                 value={assign}
+                required
                 onChange={(e) => {
                   setassign(e.target.value);
                 }}
@@ -352,16 +432,16 @@ const ItemmanufacPlaner = () => {
           
           <div id="addtoplaner">
 
-          <div id="add_planerbtn" onClick={handeladdtoplanner}>
-              Add To Planner
-            </div>
+          <input  id="add_planerbtn" type="submit" value={"Add To Planner"}>
+              
+            </input>
           </div>
             
           
         </form>
       )}
       {ProcessFlowform && (
-        <form id="viewform">
+        <form id="viewform" onSubmit={handeljobflowtable}>
           <div id="viewformtask">
           
               <div className="containee">
@@ -376,53 +456,31 @@ const ItemmanufacPlaner = () => {
                   {options}
                 </select>
               </div>
-              <div className="containee">
+              <div >
               <label htmlFor="">Process Code</label>
-                <div id="timeslot">
-                  <label htmlFor="salesForcast">From</label>
-<br />
-                  <input
-                    type="time"
-                    name="salesForcast"
-                    id="salesForcast"
-                    value={TimeSlot_From}
-                    onChange={(e) => setTimeSlot_From(e.target.value)}
-                    required
-                  />
-                  
-                  <br />
-
-                  <label htmlFor="salesplandate">To</label>
-<br />
-                  <input
-                    type="time"
-                    id="salesForcast"
-                    value={TimeSlot_To}
-                    onChange={(e) => setTimeSlot_To(e.target.value)}
-                    required
-                  />
-
-                </div>
+                <input type="text" value={ProcessCode} onChange={(e)=> setProcessCode(e.target.value)} />
               </div>
               
-<div className="containee" id="process_description">
-<label htmlFor=""> Process Description</label>
+<div >
+<label htmlFor="">Process description</label>
             <textarea
               name=""
               value={task}
               onChange={(e) => settask(e.target.value)}
               id=""
+              required
             ></textarea>
 </div>
             
 
-            <div className="containee">
+            <div >
               <label htmlFor="">Section</label>
               <select
                 name=""
                 value={section}
                 onChange={(e) => setsection(e.target.value)}
                 id=""
+                required
               >
                 <option value="">Select Option</option>
                 <option value="inventory">Inventory</option>
@@ -431,18 +489,32 @@ const ItemmanufacPlaner = () => {
                 <option value="opk">OPK</option>
               </select>
             </div>
-            
+            {/* <div className="containee">
+              <label htmlFor="">Assigned To</label>
+              <input
+                type="text"
+                value={assign}
+                required
+                onChange={(e) => {
+                  setassign(e.target.value);
+                }}
+              />
+            </div> */}
           </div>
 
+          
           <div id="addtoplaner">
 
-          <div id="add_planerbtn" onClick={handeladdtoplanner}>
-              Add To Planner
-            </div>
+          <input  id="add_planerbtn" type="submit" value={"Add To Planner"}>
+              
+            </input>
           </div>
+            
+          
         </form>
       )}
-      {EquipmentFlowform && (
+
+      {/* {EquipmentFlowform && (
         <form id="viewform">
           <div id="viewformtask">
           
@@ -531,7 +603,7 @@ const ItemmanufacPlaner = () => {
   </div>
 </div>
         </form>
-      )}
+      )} */}
       {LabFlowform && (
         <form id="viewform">
           <div id="viewformtask">
@@ -712,18 +784,19 @@ const ItemmanufacPlaner = () => {
         </form>
       )}
 
-      {table && (
+      {jobflowtable && (
         <div className="table-container" id="yourrecipetale">
-          <h2>Item Manufacturing</h2>
+          <h2>Job Flow</h2>
           <br />
           <table className="recipe_table">
             <thead>
               <tr>
+              <th>Item Name</th>
                 <th>Day</th>
                 <th>Time</th>
-                <th>Task</th>
+                <th>Job</th>
                 <th>Section</th>
-                <th> Assigned To </th>
+                <th>Assigned To</th>
               </tr>
             </thead>
             <tbody>
@@ -739,7 +812,13 @@ const ItemmanufacPlaner = () => {
                   }
                 })
                 .map((service, index) => (
+                  
                   <tr key={index}>
+                  {index === 0 && (
+                  <td rowSpan={tableList.length}>{ItemName}</td>
+                )}
+                  {/* <td>{ItemName}</td> */}
+                
                     <td>{service.selectday}</td>
                     <td>
                       {service.Time.TimeSlot_From} - {service.Time.TimeSlot_To}
@@ -758,13 +837,81 @@ const ItemmanufacPlaner = () => {
             </div>
             <div
               id="recipebutton_save"
-              onClick={(e) => alert("Not Sving To Db")}
+              onClick={handelsubmitjobflow}
             >
               Submit
             </div>
           </div>
         </div>
       )}
+      {EquipmentFlowtable && (
+        <div className="table-container" id="yourrecipetale">
+          <h2>Equipment Flow</h2>
+          <br />
+          <table className="recipe_table">
+            <thead>
+              <tr>
+              <th>Item Name</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Job</th>
+                <th>Section</th>
+                <th>Assigned To</th>
+                <th>Assigned Equipment</th>
+              </tr>
+            </thead>
+            <tbody>
+            {jobflowData.map((service, index) => (
+  <React.Fragment key={index}>
+    {service.ItemName === ItemName && (
+      <>
+        {service.JobFlow.map((job, jobIndex) => (
+          <tr key={`${index}-${jobIndex}`}>
+            {jobIndex === 0 && (
+              <td rowSpan={service.JobFlow.length}>{ItemName}</td>
+            )}
+            <td>{job.selectday}</td>
+            <td>{job.Time.TimeSlot_From} - {job.Time.TimeSlot_To}</td>
+            <td>{job.Task}</td>
+            <td>{job.section}</td>
+            <td>{job.assigned}</td>
+            {jobIndex === 0 && (
+              <td rowSpan={service.JobFlow.length}>
+              <select
+                  name="saleplanItemname"
+                  id="saleplanItemname"
+                  // value={selectday}
+                  // onChange={(e) => setselectday(e.target.value)}
+                >
+                  <option value="">Select Option</option>
+                  {equipment}
+                </select></td>
+            )}
+          </tr>
+        ))}
+      </>
+    )}
+  </React.Fragment>
+))}
+
+
+            </tbody>
+          </table>
+
+          {/* <div id="tabel_controllers">
+            <div id="recipebutton_close" onClick={() => settable(false)}>
+              cancel
+            </div>
+            <div
+              id="recipebutton_save"
+              onClick={handelsubmitjobflow}
+            >
+              Submit
+            </div>
+          </div> */}
+        </div>
+      )}
+
     </>
   );
 };
