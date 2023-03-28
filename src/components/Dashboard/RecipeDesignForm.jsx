@@ -334,35 +334,35 @@ if (recipeName === "" || ingredientsList.length === 0) {
           <table className="recipe_table" >
             <thead>
               <tr>
-                <th>Energy (kcal/100g)</th>
+                <th>Energy (kcal)</th>
                 <td>{calculateTotalVal('Energy')}</td>
               </tr>
               <tr>
-               <th>Proteins (g/100g)</th>
+               <th>Proteins (g)</th>
       
               <td>{calculateTotalVal('Proteins')}</td>
               </tr>
 
 <tr>
-<th>Carbohydrates (g/100g)</th>
+<th>Carbohydrates (g)</th>
 <td> {calculateTotalVal('Carbohydrates')}</td>
 </tr>
 
 <tr>
 
-<th>Fats (g/100g)</th>
+<th>Fats (g)</th>
 <td>{calculateTotalVal('Fats')}</td>
 </tr>
 
 <tr>
  
-<th>Dietary Fibre (g/100g)</th>     
+<th>Dietary Fibre (g)</th>     
 <td>
 {calculateTotalVal('DietaryFibre')}</td>
 </tr>
 
 <tr>
-<th>Calcium (mg/100g)</th>
+<th>Calcium (mg)</th>
 <td>
 
 
@@ -371,68 +371,68 @@ if (recipeName === "" || ingredientsList.length === 0) {
 </tr>
 
 <tr>
-<th>Vitamin B9 (mcg/100g)</th>
+<th>Vitamin B9 (mcg)</th>
 <td>{calculateTotalVal('VitaminB9')}</td>
 </tr>
 
 <tr>
-<th>Potassium (mg/100g)</th>
+<th>Potassium (mg)</th>
 <td>
 
 {calculateTotalVal('Potassium')}</td>
 </tr>
 <tr>
-<th>Vitamin B5 (mg/100g)</th>
+<th>Vitamin B5 (mg)</th>
 <td>{calculateTotalVal('VitaminB5')}</td></tr>
 <tr>
-<th>Vitamin B6 (mg/100g)</th>
+<th>Vitamin B6 (mg)</th>
 <td>{calculateTotalVal('VitaminB6')}</td></tr>
 <tr>
-<th>Sodium (mg/100g)</th>
+<th>Sodium (mg)</th>
 <td>{calculateTotalVal('Sodium')}</td></tr>
 <tr>
-<th>Vitamin B1 (mg/100g)</th>
+<th>Vitamin B1 (mg)</th>
 <td>{calculateTotalVal('VitaminB1')}</td></tr>
 <tr>
-<th>Vitamin B2 (mg/100g)</th>
+<th>Vitamin B2 (mg)</th>
 
 <td>{calculateTotalVal('VitaminB2')}</td></tr>
 <tr>
-<th>Vitamin B3 (mg/100g)</th>
+<th>Vitamin B3 (mg)</th>
 <td>{calculateTotalVal('VitaminB3')}</td></tr>
 <tr></tr>
 
 <tr>
-<th>Iron (mg/100g)</th>
+<th>Iron (mg)</th>
 <td>{calculateTotalVal('Iron')}</td></tr>
 <tr>
-<th>Vitamin E (mg/100g)</th>
+<th>Vitamin E (mg)</th>
 <td>{calculateTotalVal('VitaminE')}</td></tr>
 <tr>
 
-<th>Phosphorous (mg/100g)</th>
+<th>Phosphorous (mg)</th>
 <td>{calculateTotalVal('Phosphorous')}</td></tr>
 <tr>
-<th>Vitamin A (mcg/100g)</th>
+<th>Vitamin A (mcg)</th>
 <td>{calculateTotalVal('VitaminA')}</td></tr>
 <tr>
 
-<th>Vitamin C (mg/100g)</th>
+<th>Vitamin C (mg)</th>
 <td>{calculateTotalVal('VitaminC')}</td></tr>
 <tr>
-<th>Vitamin K (mcg/100g)</th>
+<th>Vitamin K (mcg)</th>
 <td>{calculateTotalVal('VitaminK')}</td></tr>
 <tr>
-<th>Copper (mg/100g)</th>
+<th>Copper (mg)</th>
 <td>{calculateTotalVal('Copper')}</td></tr>
 <tr>
-<th>Magnesium (mg/100g)</th>
+<th>Magnesium (mg)</th>
 <td>{calculateTotalVal('Magnesium')}</td></tr>
 <tr>
-<th>Zinc (mg/100g)</th>
+<th>Zinc (mg)</th>
 <td>{calculateTotalVal('Zinc')}</td></tr>
 <tr>
-<th>Manganese (mg/100g)</th>
+<th>Manganese (mg)</th>
 <td>{calculateTotalVal('Manganese')}</td></tr>
 
             </thead>
