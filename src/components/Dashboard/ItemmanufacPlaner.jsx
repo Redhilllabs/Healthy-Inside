@@ -173,6 +173,8 @@ const ItemmanufacPlaner = () => {
     setLabFlowform(false)
     setIngredientsFlowform(false)
     setItemName("")
+    setEquipmentFlowtable(false)
+    setjobflowtable(false)
 
 
   }
