@@ -33,6 +33,7 @@ const RMIProfileingForm = () => {
   const [zinc, setZinc] = useState("0");
   const [updatelist, setupdatelist] = useState("");
   const [showtable, setshowtable] = useState(false);
+  const [UPRatio,setUPRatio] = useState("0")
 
   const handleOptionClick = (option) => {
     setKitchenOption(option);
@@ -41,6 +42,7 @@ const handelrmisubmit = async (event)=>{
   event.preventDefault();
   const bodyContent = {
     Ingredients: ingredient,
+    Upratio: UPRatio || 1,
     Energy: energy || 0,
     Proteins: proteins || 0,
     Carbohydrates: carbohydrates || 0,
@@ -105,6 +107,7 @@ const handelrmisubmit = async (event)=>{
     setCopper("0");
     setMagnesium("0");
     setZinc("0");
+    setUPRatio("1");
   }
 }
 
@@ -141,8 +144,8 @@ const handelrmisubmit = async (event)=>{
         </div>
         {kitchenOption === "MaterialList" && (
           <div className="table-container" id="materiallisttable">
-            <h2>Material List</h2>
-            <br />
+            {/* <h2>Material List</h2>
+            <br /> */}
             <table className="recipe_table" id="materiallisttable_main">
               <thead>
                 <tr>
@@ -224,30 +227,36 @@ const handelrmisubmit = async (event)=>{
             
 
 <div id="rmi_options_input">
-            <label>Proteins:</label>
+<div>
+<label>Proteins:</label>
             <input
               type="number"
               value={proteins}
               required
               onChange={(e) => setProteins(e.target.value)}
             />
-
-            <label>Carbohydrates:</label>
+</div>
+            
+<div>
+<label>Carbohydrates:</label>
             <input
               type="number"
               value={carbohydrates}
               required
               onChange={(e) => setCarbohydrates(e.target.value)}
             />
-
-            <label>Dietary Fibre:</label>
+</div>
+            <div>
+            <label>Dietary Fiber</label>
             <input
               type="number"
               required
               value={dietaryFibre}
               onChange={(e) => setDietaryFibre(e.target.value)}
             />
+            </div>
 
+            <div>
             <label for="calcium-input">Calcium:</label>
             <input
               id="calcium-input"
@@ -256,8 +265,11 @@ const handelrmisubmit = async (event)=>{
               value={calcium}
               onChange={(e) => setCalcium(e.target.value)}
             />
+            </div>
 
-            <label for="vitaminB9-input">Vitamin B9:</label>
+            
+<div>
+<label for="vitaminB9-input">Vitamin B9:</label>
             <input
               id="vitaminB9-input"
               type="number"
@@ -265,7 +277,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setVitaminB9(e.target.value)}
             />
-
+</div>
+            
+            <div>
             <label for="potassium-input">Potassium:</label>
             <input
               id="potassium-input"
@@ -274,7 +288,9 @@ const handelrmisubmit = async (event)=>{
               value={potassium}
               onChange={(e) => setPotassium(e.target.value)}
             />
+            </div>
 
+            <div>
             <label for="vitaminB5-input">Vitamin B5:</label>
             <input
               id="vitaminB5-input"
@@ -283,7 +299,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setVitaminB5(e.target.value)}
             />
+            </div>
 
+            <div>
             <label for="vitaminB6-input">Vitamin B6:</label>
             <input
               id="vitaminB6-input"
@@ -292,8 +310,10 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setVitaminB6(e.target.value)}
             />
+            </div>
 
-            <label for="sodium-input">Sodium:</label>
+           <div>
+           <label for="sodium-input">Sodium:</label>
             <input
               id="sodium-input"
               type="number"
@@ -301,7 +321,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setSodium(e.target.value)}
             />
+           </div>
 
+            <div>
             <label>Vitamin B1:</label>
             <input
               type="number"
@@ -309,7 +331,11 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setVitaminB1(e.target.value)}
             />
+            </div>
 
+            
+
+            <div>
             <label>Vitamin B2:</label>
             <input
               type="number"
@@ -317,23 +343,29 @@ const handelrmisubmit = async (event)=>{
               value={vitaminB2}
               onChange={(e) => setVitaminB2(e.target.value)}
             />
+            </div>
 
-            <label>Vitamin B3:</label>
+<div>
+<label>Vitamin B3:</label>
             <input
               type="number"
               value={vitaminB3}
               required
               onChange={(e) => setVitaminB3(e.target.value)}
             />
-
-            <label>Manganese:</label>
+</div>
+            
+<div>
+<label>Manganese:</label>
             <input
               type="number"
               value={manganese}
               required
               onChange={(e) => setManganese(e.target.value)}
             />
-
+</div>
+            
+            <div>
             <label>vitaminE:</label>
             <input
               type="number"
@@ -341,8 +373,11 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setVitaminE(e.target.value)}
             />
+            </div>
 
-            <label>phosphorous:</label>
+            
+<div>
+<label>phosphorous:</label>
             <input
               type="number"
               value={phosphorous}
@@ -350,22 +385,31 @@ const handelrmisubmit = async (event)=>{
               onChange={(e) => setPhosphorous(e.target.value)}
             />
 
-            <label>vitaminA:</label>
+</div>
+            
+
+<div>
+<label>vitaminA:</label>
             <input
               type="number"
               value={vitaminA}
               required
               onChange={(e) => setVitaminA(e.target.value)}
             />
+</div>
+            
+<div>
 
-            <label>vitaminC:</label>
+<label>vitaminC:</label>
             <input
               type="number"
               value={vitaminC}
               required
               onChange={(e) => setVitaminC(e.target.value)}
             />
-
+</div>
+            
+            <div>
             <label>vitaminK:</label>
             <input
               type="number"
@@ -374,6 +418,9 @@ const handelrmisubmit = async (event)=>{
               onChange={(e) => setVitaminK(e.target.value)}
             />
 
+            </div>
+
+            <div>
             <label>magnesium:</label>
             <input
               type="number"
@@ -381,7 +428,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setMagnesium(e.target.value)}
             />
+            </div>
 
+            <div>
             <label>zinc:</label>
             <input
               type="number"
@@ -389,7 +438,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setZinc(e.target.value)}
             />
+            </div>
 
+            <div>
             <label>copper:</label>
             <input
               type="number"
@@ -397,7 +448,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setCopper(e.target.value)}
             />
+            </div>
 
+            <div>
             <label>Iron:</label>
             <input
               type="number"
@@ -405,7 +458,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setIron(e.target.value)}
             />
+            </div>
 
+            <div>
             <label>Fats:</label>
             <input
               type="number"
@@ -413,7 +468,9 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setFats(e.target.value)}
             />
+            </div>
 
+            <div>
             <label>Energy:</label>
             <input
               type="number"
@@ -421,6 +478,19 @@ const handelrmisubmit = async (event)=>{
               required
               onChange={(e) => setEnergy(e.target.value)}
             />
+            </div>
+
+            <div>
+            <label>UP Ratio</label>
+            <input
+              type="number"
+              required
+              value={UPRatio}
+              onChange={(e) => setUPRatio(e.target.value)}
+            />
+            </div>
+
+            
             </div>
 
             <input id="rmiaddtolist" type="submit" value="Add to List" >
