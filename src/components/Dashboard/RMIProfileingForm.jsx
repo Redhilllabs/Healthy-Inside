@@ -147,31 +147,31 @@ const handelrmisubmit = async (event)=>{
               <thead>
                 <tr>
                 <th>Ingredient</th>
-                <th>Up Ratio</th>
+                <th>Up ratio</th>
         <th>Energy (kcal)</th>
         <th>Proteins (g)</th>
-        <th>Carbohydrates (g)</th>
-        <th>Fats (g)</th>
-        <th>Dietary Fibre (g)</th>
-        <th>Calcium (mg)</th>
-        <th>Vitamin B9 (mcg)</th>
-        <th>Potassium (mg)</th>
-        <th>Vitamin B5 (mg)</th>
-        <th>Vitamin B6 (mg)</th>
-        <th>Sodium (mg)</th>
-        <th>Vitamin B1 (mg)</th>
-        <th>Vitamin B2 (mg)</th>
-        <th>Vitamin B3 (mg)</th>
-        <th>Manganese (mg)</th>
-        <th>Iron (mg)</th>
-        <th>Vitamin E (mg)</th>
-        <th>Phosphorous (mg)</th>
-        <th>Vitamin A (mcg)</th>
-        <th>Vitamin C (mg)</th>
-        <th>Vitamin K (mcg)</th>
-        <th>Copper (mg)</th>
-        <th>Magnesium (mg)</th>
-        <th>Zinc (mg)</th>
+        <th>Carbohydrates (g/100g)</th>
+        <th>Fats (g/100g)</th>
+        <th>Dietary Fibre (g/100g)</th>
+        <th>Calcium (mg/100g)</th>
+        <th>Vitamin B9 (mcg/100g)</th>
+        <th>Potassium (mg/100g)</th>
+        <th>Vitamin B5 (mg/100g)</th>
+        <th>Vitamin B6 (mg/100g)</th>
+        <th>Sodium (mg/100g)</th>
+        <th>Vitamin B1 (mg/100g)</th>
+        <th>Vitamin B2 (mg/100g)</th>
+        <th>Vitamin B3 (mg/100g)</th>
+        <th>Manganese (mg/100g)</th>
+        <th>Iron (mg/100g)</th>
+        <th>Vitamin E (mg/100g)</th>
+        <th>Phosphorous (mg/100g)</th>
+        <th>Vitamin A (mcg/100g)</th>
+        <th>Vitamin C (mg/100g)</th>
+        <th>Vitamin K (mcg/100g)</th>
+        <th>Copper (mg/100g)</th>
+        <th>Magnesium (mg/100g)</th>
+        <th>Zinc (mg/100g)</th>
                 </tr>
               </thead>
               <tbody>
@@ -438,7 +438,6 @@ const handelrmisubmit = async (event)=>{
             <thead>
               <tr>
                 <th>Ingredient</th>
-                {/* <th>Up Ratio</th> */}
                 <th>Energy</th>
                 <th>Proteins</th>
                 <th>Carbohydrates</th>
