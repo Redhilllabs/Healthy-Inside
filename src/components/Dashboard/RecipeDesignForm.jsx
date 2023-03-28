@@ -290,8 +290,6 @@ if (recipeName === "" || ingredientsList.length === 0) {
 
                 <input value={"Add to Recipe"} id="addmoreingredients" type="submit" />
 
-                  
-               
               </form>
             ) : (
               <></>
@@ -454,7 +452,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
 {MaterialListTable && (
   <div id="tabel_controllers">
             <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
-              cancel
+              Cancel
             </div>
             <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div>
           </div>

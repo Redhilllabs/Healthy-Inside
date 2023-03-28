@@ -119,7 +119,7 @@ const SalesPlanForm = () => {
                     </div>
                   </div>
                 </div>
-                <input value="AddToPlanner" type="submit" id="addmoreingredients" />
+                <input value="Add" type="submit" id="addmoreingredients" />
                   
                 
               </form>
@@ -159,7 +159,7 @@ const SalesPlanForm = () => {
                 id="recipebutton_close"
                 onClick={() => setshowSalesPlanTable(false)}
               >
-                cancel
+                Cancel
               </div>
               <div id="recipebutton_save" onClick={handelsubmit} >Submit</div>
             </div>

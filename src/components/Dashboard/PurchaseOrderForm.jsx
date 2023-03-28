@@ -80,11 +80,9 @@ const PurchaseOrderForm = () => {
                   id="addmoreingredients"
                   type="submit"
                   name="submit"
-
-                  value={"View Purchase Order"}
-                >
+                  value="View Purchase"               / >
                  
-                </input>
+               
               </div>
             </form>
           </div>

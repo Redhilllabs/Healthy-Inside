@@ -35,7 +35,7 @@ const RecipeMasterForm = () => {
 
   return (
     <>
-      <div className="formcontains">
+      <div className="Recipe_Master">
         <form class="form" id="recipe-designing">
           <div>
             <label for="Receipe Name">Recipe Name</label>
@@ -114,6 +114,7 @@ const RecipeMasterForm = () => {
         <tr>
           <th>Item</th>
           <th>Constituent Recipes</th>
+          <th>Quantity</th>
           <th>Unit</th>
           <th>Action</th>
         </tr>
@@ -128,6 +129,7 @@ const RecipeMasterForm = () => {
               <td rowSpan={item.Ingredients.length}>{item.RecipeName}</td>
             )}
             <td>{ingredient.ingredientName}</td>
+            <td>{ingredient.quantity}</td>
             <td>{ingredient.unit}</td>
             {subIndex === 0 && (
               <td rowSpan={item.Ingredients.length}></td>

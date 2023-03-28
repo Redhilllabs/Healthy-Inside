@@ -109,7 +109,7 @@ const Dailysalesmatricsform = () => {
                     </div>
                   </div>
                 </div>
-                <input value="AddToPlanner" type="submit" id="addmoreingredients" />
+                <input value="Add" type="submit" id="addmoreingredients" />
                   
                 
               </form>

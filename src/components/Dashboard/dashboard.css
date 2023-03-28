@@ -272,15 +272,18 @@ width: 75%;
     color: white;
     border-radius: 15px;
     text-align: center;
+    font-size: small;
+    font-weight:bolder;
     padding: 0rem 1.5rem;
+    width: 9rem;
   }
   #addtoplaner{
     cursor: pointer;
     background-color: green;
     color: white;
     border-radius: 15px;
-    margin: 5rem 9rem 0rem 13rem;
-    width: 100%;
+    margin: 0rem 5rem 0rem 5rem;
+    /* width: 50%; */
     text-align: center;
     padding: 0rem 1.5rem;
   }
@@ -334,6 +337,12 @@ width: 75%;
 }
   .formcontains{
     width: 100%;
+  }
+  .Recipe_Master{
+    position: sticky;
+    width: 100%;
+    top: 7rem;
+    z-index: 3;
   }
   .main_dashbord  button[type="submit"]:hover {
     background-color: #3e8e41;
@@ -467,9 +476,9 @@ overflow: scroll;
 
   
 
-.formcontains {
+/* .formcontains {
     overflow-y: scroll;
-}
+} */
 #addmore {
   height: 150px;
 }
