@@ -141,6 +141,7 @@ const handelrmisubmit = async (event)=>{
           >
             Add New Ingredient
           </button>
+          
         </div>
         {kitchenOption === "MaterialList" && (
           <div className="table-container" id="materiallisttable">
@@ -150,7 +151,8 @@ const handelrmisubmit = async (event)=>{
               <thead>
                 <tr>
                 <th>Ingredient</th>
-                <th>Up ratio</th>
+                <th>UP ratio</th>
+                
         <th>Energy (kcal)</th>
         <th>Proteins (g)</th>
         <th>Carbohydrates (g/100g)</th>
