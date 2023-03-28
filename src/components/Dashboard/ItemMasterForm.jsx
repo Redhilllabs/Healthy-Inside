@@ -69,8 +69,6 @@ const ItemMasterForm = () => {
 
       {table && (
         <div className="table-container" id="yourrecipetale">
-          {/* <h2>Item Master</h2>
-          <br /> */}
           <table className="recipe_table">
       <thead>
         <tr>
@@ -106,29 +104,15 @@ const ItemMasterForm = () => {
         ))}
       </tbody>
     </table>
-
-          <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => settable(false)}>
-              cancel
-            </div>
-            <div
-              id="recipebutton_save"
-              onClick={(e) => alert("Not Sving To Db")}
-            >
-              Submit
-            </div>
-          </div>
         </div>
       )}
 
       {AlltableItem && (
         <div className="table-container" id="yourrecipetale">
-          <h2>Item Master</h2>
-          <br />
           <table className="recipe_table">
       <thead>
         <tr>
-          <th>Item</th>
+          <th>Item Name</th>
           <th>Constituent Recipes</th>
           <th>Unit</th>
           <th>Action</th>
@@ -155,7 +139,7 @@ const ItemMasterForm = () => {
       </tbody>
     </table>
 
-          <div id="tabel_controllers">
+          {/* <div id="tabel_controllers">
             <div id="recipebutton_close" onClick={() => setAlltableItem(false)}>
               cancel
             </div>
@@ -165,7 +149,7 @@ const ItemMasterForm = () => {
             >
               Submit
             </div>
-          </div>
+          </div> */}
         </div>
       )}
 

@@ -72,6 +72,7 @@ const RecipeMasterForm = () => {
         <tr>
           <th>Recipe Name</th>
           <th>Ingredients</th>
+          <th>Quantity</th>
           <th>Unit</th>
           <th>Action</th>
         </tr>
@@ -87,6 +88,7 @@ const RecipeMasterForm = () => {
               <td rowSpan={item.Ingredients.length}>{item.RecipeName}</td>
             )}
             <td>{ingredient.ingredientName}</td>
+            <td>{ingredient.quantity}</td>
             <td>{ingredient.unit}</td>
             {subIndex === 0 && (
               <td rowSpan={item.Ingredients.length}></td>
@@ -101,24 +103,12 @@ const RecipeMasterForm = () => {
       </tbody>
     </table>
 
-          <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => settable(false)}>
-              cancel
-            </div>
-            <div
-              id="recipebutton_save"
-              onClick={(e) => alert("Not Sving To Db")}
-            >
-              Submit
-            </div>
-          </div>
+          
         </div>
       )}
 
       {AlltableItem && (
         <div className="table-container" id="yourrecipetale">
-          {/* <h2>Item Master</h2>
-          <br /> */}
           <table className="recipe_table">
       <thead>
         <tr>
@@ -149,17 +139,6 @@ const RecipeMasterForm = () => {
       </tbody>
     </table>
 
-          <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => setAlltableItem(false)}>
-              cancel
-            </div>
-            <div
-              id="recipebutton_save"
-              onClick={(e) => alert("Not Sving To Db")}
-            >
-              Submit
-            </div>
-          </div>
         </div>
       )}
 
