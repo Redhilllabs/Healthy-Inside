@@ -27,7 +27,8 @@ const urls = {
   AddtoInventoryapi: `${produrl}/addtoinventory`,
   dailySalesMetricapi: `${produrl}/adddailysalesmetric`,
   AddToJobFlowapi:`${produrl}/jobflow/AddjobFlow`,
-  GetAllJobFlowapi: `${produrl}/jobflow/getjobflow`
+  GetAllJobFlowapi: `${produrl}/jobflow/getjobflow`,
+  AddToEquipmentFlowapi:`${produrl}/equipmentflow/addtoequipmentflow`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -190,4 +191,8 @@ export const AddToJobFlow = async(data)=>{
 }
 export const GetAllJobFlow = async()=>{
   return makeRequest(urls.GetAllJobFlowapi, "GET");
+}
+
+export const AddToEquipmentflow = async(data)=>{
+  return makeRequest(urls.AddToEquipmentFlowapi, "POST", data);
 }
