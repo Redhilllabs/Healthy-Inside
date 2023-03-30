@@ -1,5 +1,5 @@
 import React, { useState ,useEffect }  from 'react';
-import {getitemlist ,addSalesPlan} from '../../utils/ApiCall';
+import {getitemlist ,addSalesPlan ,sendSNS} from '../../utils/ApiCall';
 
 // sales Forecast Planner Option in Business & Branding
 
@@ -12,26 +12,55 @@ const SalesPlanForm = () => {
     const [plannerList, setplannerList] = useState([]);
     const [data ,setData]=useState('')
 
-    const handelsubmit = async()=>{
+    const handelsubmit = async () => {
       let bodyContent = JSON.stringify({
         "Date": salesplandate,
         "SalesPlanList": plannerList
       });
-      if(salesplandate && plannerList ){
-        const response = await addSalesPlan(bodyContent)
-        if (response.status === 500) {
-          alert("An Error Saving Data");
+    
+      if (salesplandate && plannerList) {
+        const str = plannerList.map(obj => JSON.stringify(obj)).join(',  ');
+        let message = `SalesForcast Data \n\nDate: ${salesplandate}\n\nThe List Items are:\n ${str}`;
+        let SNSContent = JSON.stringify({
+          "number": "+916239413783",
+          "message": message
+        });
+    
+        // console.log(SNSContent)
+    
+        try {
+          const res = await sendSNS(SNSContent);
+          console.log(res);
+          if (res.status === 500) {
+            alert("An error occurred while sending sms . Please try again later.");
+            return;}
+        } catch (error) {
+          console.error(error);
+          alert("An error occurred while sending the SMS. Please try again later.");
           return;
-        }else{
-          alert(`${response.operation} into Sales Plan Db`)
-          setsaleplanItemname("")
-          setsalesForecast("1")
-          setsalesplandate("")
-          setplannerList([]);
-          setshowSalesPlanTable(false)
-        } 
-      } 
+        }
+    
+        try {
+          const response = await addSalesPlan(bodyContent);
+          if (response.status === 500) {
+            alert("An error occurred while saving data. Please try again later.");
+            return;
+          } else {
+            alert(`${response.operation} into Sales Plan Db`);
+            setsaleplanItemname("");
+            setsalesForecast("1");
+            setsalesplandate("");
+            setplannerList([]);
+            setshowSalesPlanTable(false);
+          }
+        } catch (error) {
+          console.error(error);
+          alert("An error occurred while saving data. Please try again later.");
+          return;
+        }
+      }
     }
+    
 
     const handeldatechange = (e) =>{
       setsalesplandate(e.target.value)

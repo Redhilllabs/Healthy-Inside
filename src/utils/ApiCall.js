@@ -1,4 +1,6 @@
 import axios from "axios";
+// import twilio from 'twilio';
+
 const produrl = process.env.REACT_APP_PROD_URL;
 
 const urls = {
@@ -28,7 +30,8 @@ const urls = {
   dailySalesMetricapi: `${produrl}/adddailysalesmetric`,
   AddToJobFlowapi:`${produrl}/jobflow/AddjobFlow`,
   GetAllJobFlowapi: `${produrl}/jobflow/getjobflow`,
-  AddToEquipmentFlowapi:`${produrl}/equipmentflow/addtoequipmentflow`
+  AddToEquipmentFlowapi:`${produrl}/equipmentflow/addtoequipmentflow`,
+  SendSNSapi:`${produrl}/sendsms`
 };
 
 const makeRequest = async (url, method, data) => {
@@ -196,3 +199,44 @@ export const GetAllJobFlow = async()=>{
 export const AddToEquipmentflow = async(data)=>{
   return makeRequest(urls.AddToEquipmentFlowapi, "POST", data);
 }
+export const sendWhatsAppMessage = async(data)=>{
+
+  let headersList = {
+   "Accept": "*/*",
+   "Authorization": "Bearer EAARUrAUHvl8BAMC7rVTRXBUDfLNtqoyZB3p6rDovP0DZCCt9QNBMlmwIRZC89pL5Vf2izQfsByMsyTtKi84wYiFEfuqZBHpxS4a3AYbBsGDPHWd9KcOSiJtmMt608X9RZBjWLHKwwYZC6VvUf5M4nUyCg3mWPqWJBEq28RR9QZA3ZBo5jW7esLUaZCvpmylhwZCRqYPoiJ7w46Jbb2Ra7QOcmL",
+   "Content-Type": "application/json" 
+  }
+  
+  let bodyContent = JSON.stringify({ "messaging_product": "whatsapp", "to": "919340015842", "type": "template", "template": { "name": "SalesForcast","language": { "code": "en_US" } } });
+  
+  let reqOptions = {
+    url: "https://graph.facebook.com/v16.0/103089946083532/messages",
+    method: "POST",
+    headers: headersList,
+    data: bodyContent,
+  }
+  
+  let response = await axios.request(reqOptions);
+  return(response.data);
+  
+
+}
+
+export const sendSMStwilio = async(data)=>{
+  // const accountSid = "ACa0a66424767d8a933a30da0e329a62960";
+  // const authToken = "19a2a67a877a90730c6d816558ce13c5";
+  // const client = require('twilio')(accountSid, authToken);
+  // client.messages
+  //   .create({
+  //      from: '+14345776606',
+  //      to: data.number,
+  //      body: data.message
+  //    })
+  //   .then(message => console.log(message.sid))
+  //   .catch((error) => console.log(error));
+}
+
+export const sendSNS = async(data)=>{
+  return makeRequest(urls.SendSNSapi, "POST", data);
+}
+

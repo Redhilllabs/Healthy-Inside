@@ -8,6 +8,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userTable = "users";
 
 
+
 const saveUserAddress = async (requestBody) => {
     const email = requestBody.email;
 
@@ -59,7 +60,6 @@ const saveUserAddress = async (requestBody) => {
         );
 };
 
-
 const saveclaimkit = async (requestBody) => {
   const mail = requestBody.email;
   const jerseySize = requestBody.jerseySize;
@@ -71,7 +71,7 @@ const saveclaimkit = async (requestBody) => {
   let claimKit = dynamoUser.claimKit || {};
 
   // Check if the kit item is already in the cart
-  if (claimKit.hasOwnProperty(NameOnKit)) {
+  if (claimKit) {
     // If the kit item is already in the cart, return an error response
     return util.buildResponse(200, {
       status:401,
@@ -117,9 +117,27 @@ const saveclaimkit = async (requestBody) => {
 };
 
 
+const getUserapi = async (requestBody) => {
+    const email = requestBody.email;
+    const params = {
+        TableName: userTable,
+        Key: { email },
+    };
+    try {
+        const response = await dynamodb.get(params).promise();
+        const body = {
+            Operation: "GetUser",
+            Message: response.Item ? "SUCCESS" : "Failed",
+            status: response.Item ? 200 : 404,
+            Item: response.Item,
+        };
+        return util.buildResponse(200, body);
+    } catch (error) {
+        console.error("There is an error getting user:", error);
+    }
+};
 
-
-  async function getUser(email) {
+async function getUser(email) {
     const params = {
       TableName: userTable,
       Key: {
@@ -139,4 +157,4 @@ const saveclaimkit = async (requestBody) => {
       );
   }
   
-  module.exports ={saveUserAddress,saveclaimkit}
+module.exports ={saveUserAddress,saveclaimkit,getUserapi}
