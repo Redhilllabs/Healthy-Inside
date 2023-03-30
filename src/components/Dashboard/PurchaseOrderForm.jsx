@@ -25,7 +25,8 @@ const PurchaseOrderForm = () => {
         });
     
         const response = await searchPurchaseOrder(bodyContent);
-        console.log("new purchase Order ",response.newActualPurchaseOrder)
+        console.log("new purchase Order ",response)
+
         // const promises = response.data.map((item) => {
         //   let bodyContent2 = JSON.stringify({
         //     "Ingredients":item.ingredient,
@@ -103,7 +104,7 @@ const PurchaseOrderForm = () => {
     </tr>
   </thead>
   <tbody id="purchaseorder_table">
-  {Array.isArray(data.newActualPurchaseOrder) && data.newActualPurchaseOrder.sort((a, b) => a.ingredient.localeCompare(b.ingredient)).map((item, index) => (
+  {Array.isArray(data.data) && data.data.sort((a, b) => a.ingredient.localeCompare(b.ingredient)).map((item, index) => (
     <tr key={index}>
       <td>{item.ingredient}</td>
       <td>{item.quantity}</td>
