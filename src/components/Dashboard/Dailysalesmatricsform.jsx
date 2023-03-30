@@ -5,7 +5,7 @@ const Dailysalesmatricsform = () => {
 
     // const [dailysalesmatricsdate, setdailysalesmatricsdate] = useState("");
     // const [showdailysalesmatricstable, setshowdailysalesmatricstable] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false);
       const [DaysPlan, setDaysPlan] = useState(false);
       const [saleplanItemname, setsaleplanItemname] = useState("");
       const [salesForecast, setsalesForecast] = useState("1");
@@ -14,7 +14,9 @@ const Dailysalesmatricsform = () => {
       const [plannerList, setplannerList] = useState([]);
       const [data ,setData]=useState('')
   
-      const handelsubmit = async()=>{
+      const handelsubmit = async(e)=>{
+e.preventDefault()
+setIsLoading(true)
         let bodyContent = JSON.stringify({
           "Date": salesplandate,
           "SalesPlanList": plannerList
@@ -22,11 +24,15 @@ const Dailysalesmatricsform = () => {
         if(salesplandate && plannerList ){
 
           const response = await AdddailySalesMetric(bodyContent)
+          if(response){
+            setIsLoading(false)
+          }
+          
           if (response.status === 404) {
             alert("An Error Saving Data");
             return;
           }else{
-            alert(`${response.operation} into Sales Plan Db`)
+            alert(`${response.operation} into DailySalesMatrics Table in  Db`)
             setsaleplanItemname("")
             setsalesForecast("1")
             setsalesplandate("")
@@ -181,6 +187,7 @@ const Dailysalesmatricsform = () => {
             </div>
           </div>
         )}
+        {isLoading?(<>Loading...</>):(<></>)}
           
           {/* {showdailysalesmatricstable && (
           <div className="table-container">

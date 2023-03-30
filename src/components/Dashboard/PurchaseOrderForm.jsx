@@ -25,20 +25,7 @@ const PurchaseOrderForm = () => {
         });
     
         const response = await searchPurchaseOrder(bodyContent);
-        console.log("new purchase Order ",response)
-
-        // const promises = response.data.map((item) => {
-        //   let bodyContent2 = JSON.stringify({
-        //     "Ingredients":item.ingredient,
-        //     "quantity":item.quantity,
-        //     "unit":item.unit, 
-        //   });
-        //   return AddtoInventory(bodyContent2);
-        // });
-        
-        // const results = await Promise.all(promises);
-        // console.log(results);
-
+        // console.log("new purchase Order ",response)
         if(response){
           setIsLoading(false)
         }
