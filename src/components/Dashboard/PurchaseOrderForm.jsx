@@ -25,7 +25,7 @@ const PurchaseOrderForm = () => {
         });
     
         const response = await searchPurchaseOrder(bodyContent);
-        console.log(response.newActualPurchaseOrder)
+        console.log("new purchase Order ",response.newActualPurchaseOrder)
         // const promises = response.data.map((item) => {
         //   let bodyContent2 = JSON.stringify({
         //     "Ingredients":item.ingredient,
@@ -108,6 +108,7 @@ const PurchaseOrderForm = () => {
       <td>{item.ingredient}</td>
       <td>{item.quantity}</td>
       <td>{item.unit}</td>
+
     </tr>
   ))}
 </tbody>
