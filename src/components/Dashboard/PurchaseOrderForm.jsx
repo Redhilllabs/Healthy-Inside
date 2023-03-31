@@ -1,12 +1,16 @@
 import React, { useState,useEffect } from 'react'
-import {searchPurchaseOrder ,AddtoInventory} from '../../utils/ApiCall'
+import {searchPurchaseOrder ,AddtoInventory,SearchIntermediatePurchaseOrder2} from '../../utils/ApiCall'
 const PurchaseOrderForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [data, setData] = useState("");
   const [showTable, setShowTable] = useState(false);
+  const [showTable2, setShowTable2] = useState(false);
   const [sortedData, setSortedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [CountExistingProfile,setCountExistingProfile] = useState(false);
+  const [DropExistingProfile,setDropExistingProfile] = useState(false);
+
 
     const handleStartDateChange = (event) => {
         setStartDate(event.target.value);
@@ -17,32 +21,55 @@ const PurchaseOrderForm = () => {
       };
 
       const handleViewPurchaseOrder = async (event) => {
-
-        event.preventDefault()
-        setIsLoading(true)
+        event.preventDefault();
+        setIsLoading(true);
         let bodyContent = JSON.stringify({
           "startDate": startDate,
         });
-    
-        const response = await searchPurchaseOrder(bodyContent);
-        // console.log("new purchase Order ",response)
-        if(response){
-          setIsLoading(false)
+      
+        if (CountExistingProfile && !DropExistingProfile) {
+          setDropExistingProfile(false);
+          setShowTable2(false)
+          const response = await searchPurchaseOrder(bodyContent);
+      
+          if (response.status === 401) {
+            alert("Date not present.");
+            setIsLoading(false);
+            return;
+          }
+      
+          setShowTable(true);
+          setData(response);
+          setStartDate('');
+          console.log("Count Existing inventory submitted!");
+        } else if (DropExistingProfile && !CountExistingProfile) {
+          setCountExistingProfile(false);
+          setShowTable(false);
+          const response = await SearchIntermediatePurchaseOrder2(bodyContent);
+          // console.log("SearchIntermediatePurchaseOrder2", response.data.ingredients);
+      
+          if (response.status === 401) {
+            alert("Date not present.");
+            setIsLoading(false);
+            return;
+          }
+      
+          setShowTable2(true);
+          setData(response.data.ingredients);
+          setStartDate('');
+          console.log("Drop Existing inventory submitted!");
         }
-    
-        if (response.status === 401) {
-          alert("Date Not Present ");
-          return;
-        }
-    
-        setShowTable(true);
-        setData(response);
+      
+        setIsLoading(false);
       };
+      
 
-  return (
-    <>
-<div className="formcontains">
-            <h1>View Purchase Order</h1>
+      let form = null;
+
+      // Conditionally render the form based on which button was clicked
+      if (CountExistingProfile || DropExistingProfile) {
+        form = (
+          <div>
             <form
               action=""
               class="form"
@@ -51,6 +78,8 @@ const PurchaseOrderForm = () => {
               method="post"
               onSubmit={handleViewPurchaseOrder}
             >
+            {CountExistingProfile?"CountExistingProfile":""}
+            {DropExistingProfile?"DropExistingProfile":""}
               <div className="option_container">
                 <label htmlFor="start-date-input">Select Date:</label>
                 <input
@@ -68,11 +97,48 @@ const PurchaseOrderForm = () => {
                   id="addmoreingredients"
                   type="submit"
                   name="submit"
-                  value="View Purchase"               / >
-                 
-               
-              </div>
+                  value="View Purchase Order"               / >
+
+                 </div>
             </form>
+          </div>
+        );
+      }
+
+      function printTable() {
+  const table = document.getElementById('yourpurchaseorder');
+  const newWin = window.open('');
+  newWin.document.write(table.outerHTML);
+  newWin.print();
+  newWin.close();
+}
+
+
+  return (
+    <>
+
+
+<div className="formcontains">
+<div className="recipeform_buttons_options">
+  <button id={CountExistingProfile ? "active" : ""} onClick={() => {
+      setCountExistingProfile(!CountExistingProfile)
+      setDropExistingProfile(false)
+      setShowTable2(false);
+    }}>
+    Count Existing inventory
+  </button>
+  <button id={DropExistingProfile ? "active" : ""} onClick={() => {
+      setDropExistingProfile(!DropExistingProfile)
+      setCountExistingProfile(false)
+      setShowTable(false);
+    }}>
+    Drop Existing inventory
+  </button>
+</div>
+
+
+            {form}
+
           </div>
 {isLoading?(<>Loading...</>):(<></>)}
 <br />
@@ -107,6 +173,37 @@ const PurchaseOrderForm = () => {
 
           </div>
         )}
+        {showTable2 && (
+          <div className="table-container"  id='yourpurchaseorder'>
+            <h2>Purchase Order</h2>
+            <br />
+            
+            <table className="recipe_table">
+  <thead>
+    <tr>
+      <th>Ingredients</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+  </thead>
+  <tbody id="purchaseorder_table">
+    {Array.isArray(data) && data.sort((a, b) => a.ingredient.localeCompare(b.ingredient)).map((item, index) => (
+      <tr key={index}>
+        <td>{item.ingredient}</td>
+        <td>{item.quantity}</td>
+        <td>gram</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+
+
+
+          </div>
+        )}
+        {showTable||showTable2?<button onClick={printTable}>Print Table</button>:<></>}
+        
 
     </>
   )

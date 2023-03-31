@@ -11,8 +11,10 @@ const SalesPlanForm = () => {
     const [showSalesPlanTable, setshowSalesPlanTable] = useState(false);
     const [plannerList, setplannerList] = useState([]);
     const [data ,setData]=useState('')
+    const [isLoading, setIsLoading] = useState(false);
 
     const handelsubmit = async () => {
+      setIsLoading(true)
       let bodyContent = JSON.stringify({
         "Date": salesplandate,
         "SalesPlanList": plannerList
@@ -47,6 +49,8 @@ const SalesPlanForm = () => {
             alert("An error occurred while saving data. Please try again later.");
             return;
           } else {
+            setIsLoading(false)
+            
             alert(`${response.operation} into Sales Plan Db`);
             setsaleplanItemname("");
             setsalesForecast("1");
@@ -191,7 +195,7 @@ const SalesPlanForm = () => {
               >
                 Cancel
               </div>
-              <div id="recipebutton_save" onClick={handelsubmit} >Submit</div>
+              <div id="recipebutton_save" onClick={handelsubmit} > {isLoading?(<>Loading...</>):(<></>)} Submit</div>
             </div>
           </div>
         )}

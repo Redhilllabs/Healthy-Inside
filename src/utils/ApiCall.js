@@ -31,7 +31,8 @@ const urls = {
   AddToJobFlowapi:`${produrl}/jobflow/AddjobFlow`,
   GetAllJobFlowapi: `${produrl}/jobflow/getjobflow`,
   AddToEquipmentFlowapi:`${produrl}/equipmentflow/addtoequipmentflow`,
-  SendSNSapi:`${produrl}/sendsms`
+  SendSNSapi:`${produrl}/sendsms`,
+  SearchIntermediatePurchaseOrder2api: `${produrl}/searchintermediatepurchaseorder2`,
 };
 
 const makeRequest = async (url, method, data) => {
@@ -238,5 +239,9 @@ export const sendSMStwilio = async(data)=>{
 
 export const sendSNS = async(data)=>{
   return makeRequest(urls.SendSNSapi, "POST", data);
+}
+
+export const SearchIntermediatePurchaseOrder2 = async(data)=>{
+  return makeRequest(urls.SearchIntermediatePurchaseOrder2api, "POST", data);
 }
 
