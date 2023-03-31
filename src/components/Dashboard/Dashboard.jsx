@@ -335,9 +335,9 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
   <div className="formcontains">
     <form id="profile_form_dashboard">
       <h2>Profile</h2>
-      <label>Name: {admin.email.split("@")[0].replace("hi", "")}</label>
+      <label>Name: {admin.name}</label>
       <label>Email: {admin.email}</label>
-      <label>Company's mail id: <input type="email" /></label>
+      <label>Company Email: <input type="email" /></label>
       <label>Mobile no.: {admin.contact}</label>
       <div class="button-container">
         <div onClick={logout} id="recipebutton" type="submit" name="submit">Log out</div>
