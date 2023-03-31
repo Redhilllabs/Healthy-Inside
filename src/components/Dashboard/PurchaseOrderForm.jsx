@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import {searchPurchaseOrder ,AddtoInventory,SearchIntermediatePurchaseOrder2} from '../../utils/ApiCall'
+import * as XLSX from 'xlsx';
+
 const PurchaseOrderForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -78,8 +80,8 @@ const PurchaseOrderForm = () => {
               method="post"
               onSubmit={handleViewPurchaseOrder}
             >
-            {CountExistingProfile?"CountExistingProfile":""}
-            {DropExistingProfile?"DropExistingProfile":""}
+            {/* {CountExistingProfile?"CountExistingProfile":""}
+            {DropExistingProfile?"DropExistingProfile":""} */}
               <div className="option_container">
                 <label htmlFor="start-date-input">Select Date:</label>
                 <input
@@ -105,8 +107,21 @@ const PurchaseOrderForm = () => {
         );
       }
 
-      function printTable() {
+      function printAndExportTable() {
+  // Get the table element
   const table = document.getElementById('yourpurchaseorder');
+
+  // Convert the table to a worksheet
+  const worksheet = XLSX.utils.table_to_sheet(table);
+
+  // Create a new workbook and add the worksheet
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Purchase Order');
+
+  // Export the workbook to a file
+  XLSX.writeFile(workbook, 'purchase_order.xlsx');
+
+  // Print the table
   const newWin = window.open('');
   newWin.document.write(table.outerHTML);
   newWin.print();
@@ -202,7 +217,8 @@ const PurchaseOrderForm = () => {
 
           </div>
         )}
-        {showTable||showTable2?<button onClick={printTable}>Print Table</button>:<></>}
+        {showTable||showTable2?<button onClick={printAndExportTable}>Print and Export to Excel</button>
+:<></>}
         
 
     </>

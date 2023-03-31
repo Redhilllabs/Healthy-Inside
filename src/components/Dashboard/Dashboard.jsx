@@ -19,6 +19,7 @@ import ViewSalesPlanform from "./ViewSalesPlanform";
 import PackingPlanner from "./PackingPlanner";
 import ItemMasterForm from "./ItemMasterForm";
 import RecipeMasterForm from "./RecipeMasterForm";
+import ManufacturingLogEntryForm from "./ManufacturingLogEntryForm"
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
@@ -46,8 +47,11 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [showRMIProfileingForm, setshowRMIProfileingForm] = useState(false);
   const [showItemMasterForm, setShowItemMasterForm] = useState(false);
   const [showRecipeMasterForm ,setshowRecipeMasterForm] = useState(false);
+  const [showManufacturingLogEntryForm,setshowManufacturingLogEntryForm] = useState(false); 
 
   const handleFormToggle = (formName) => {
+    setshowManufacturingLogEntryForm(formName === "ManufacturingLogEntryForm"?!showManufacturingLogEntryForm:false)
+
     setshowRecipeMasterForm(formName === "RecipeMasterForm"?!showRecipeMasterForm:false);
     setShowItemMasterForm(formName === "ItemMasterForm" ?!showItemMasterForm:false);
     setshowRMIProfileingForm(
@@ -140,6 +144,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   };
 
   const forms = [
+    {show:showManufacturingLogEntryForm, component:ManufacturingLogEntryForm},
     {show:showRecipeMasterForm, component:RecipeMasterForm},
     {show:showItemMasterForm,component:ItemMasterForm},
     { show: showItemDesignForm, component: ItemDesignForm },
@@ -213,7 +218,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
                       {OprationsOption1 && (
                         <div id="product-dash">
                           <a id={ShowPurchaseOrderForm ? "active" : ""} onClick={() => handleFormToggle("purchaseOrderForm")}>View Purchase Order</a>
-                          <a  id={ShowRecordForwardLossesForm ? "active" : ""} onClick={() => handleFormToggle("recordForwardLossesForm")}> Record Forward & Losses</a>
+                          <a  id={ShowRecordForwardLossesForm ? "active" : ""} onClick={() => handleFormToggle("recordForwardLossesForm")}>Forward & Losses</a>
                           <a id={ShowinventoryForm ? "active" : ""} onClick={() => handleFormToggle("inventoryForm")}> Purchase Log Entry</a>
                         </div>
                       )}
@@ -235,6 +240,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
         <a id={ShowItemmanufacturingPlannerForm ? "active" : ""} onClick={() => handleFormToggle("itemManufacturingPlannerForm")}>Item manufacturing Planner</a>
         <a id={ShowImportandExportLogForm ? "active" : ""} onClick={() => handleFormToggle("importAndExportLogForm")}>Import and Export Log</a>
         <a id={showTaskSheetForm ? "active" : ""} onClick={() => handleFormToggle("taskSheetForm")}>Task Sheet </a>
+        <a id={showManufacturingLogEntryForm ? "active" : ""} onClick={() => handleFormToggle("ManufacturingLogEntryForm")}>Manufacturing Log Entry</a>
         
       </div>
     )}
@@ -278,7 +284,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
     {showMarketing && (
       <div id="product-dash">
         <a>Upload File</a>
-        <a id={Showdailysalesmatricsform ? "active" : ""} onClick={() => handleFormToggle("dailySalesMatricsForm")}>Daily Sales Matrics</a>
+        <a id={Showdailysalesmatricsform ? "active" : ""} onClick={() => handleFormToggle("dailySalesMatricsForm")}>Sales Matrics</a>
         <a id={showSalesPlanForm ? "active" : ""} onClick={() => handleFormToggle("salesPlanForm")}>Sale Forecast Planner</a>
         <a id={ShowViewSalesPlanform ? "active" : ""} onClick={() => handleFormToggle("viewSalesPlanForm")}>View Sales Plan</a>
         <a id={ShowPackingPlanner ? "active" : ""} onClick={() => handleFormToggle("packingPlannerForm")}>Packaging Planner</a>
