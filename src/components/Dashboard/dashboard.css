@@ -248,6 +248,7 @@ width: 75%;
     display: flex;
     justify-content: center;
     margin: 30px;
+    align-items: center;
   }
   
   #recipebutton{
@@ -277,7 +278,7 @@ width: 75%;
     font-size: small;
     font-weight:bolder;
     padding: 0rem 1.5rem;
-    width: 9rem;
+    width: 11rem;
   }
   #addtoplaner{
     display: flex;

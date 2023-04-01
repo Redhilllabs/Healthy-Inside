@@ -33,6 +33,8 @@ const urls = {
   AddToEquipmentFlowapi:`${produrl}/equipmentflow/addtoequipmentflow`,
   SendSNSapi:`${produrl}/sendsms`,
   SearchIntermediatePurchaseOrder2api: `${produrl}/searchintermediatepurchaseorder2`,
+  AddToactualmanufacturingapi:`${produrl}/addactualmanufacturing`
+
 };
 
 const makeRequest = async (url, method, data) => {
@@ -243,5 +245,9 @@ export const sendSNS = async(data)=>{
 
 export const SearchIntermediatePurchaseOrder2 = async(data)=>{
   return makeRequest(urls.SearchIntermediatePurchaseOrder2api, "POST", data);
+}
+
+export const AddToactualmanufacturing = async(data)=>{
+  return makeRequest(urls.AddToactualmanufacturingapi,"POST",data);
 }
 

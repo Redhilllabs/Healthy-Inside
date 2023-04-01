@@ -72,6 +72,7 @@ const PurchaseOrderForm = () => {
       if (CountExistingProfile || DropExistingProfile) {
         form = (
           <div>
+
             <form
               action=""
               class="form"
@@ -80,26 +81,26 @@ const PurchaseOrderForm = () => {
               method="post"
               onSubmit={handleViewPurchaseOrder}
             >
-            {/* {CountExistingProfile?"CountExistingProfile":""}
-            {DropExistingProfile?"DropExistingProfile":""} */}
-              <div className="option_container">
-                <label htmlFor="start-date-input">Select Date:</label>
-                <input
+
+              <div class="button-container">
+
+              <label htmlFor="start-date-input">Select Date:</label>
+
+                <input               
                   type="date"
                   id="start-date-input"
                   value={startDate}
                   onChange={handleStartDateChange}
                   required
                 />
-              </div>
 
-              <div class="button-container">
                 <input
-                  
                   id="addmoreingredients"
                   type="submit"
                   name="submit"
-                  value="View Purchase Order"               / >
+                  value="View Purchase Order"   
+
+                          / >
 
                  </div>
             </form>
@@ -128,13 +129,13 @@ const PurchaseOrderForm = () => {
   newWin.close();
 }
 
-
   return (
     <>
 
-
 <div className="formcontains">
+
 <div className="recipeform_buttons_options">
+
   <button id={CountExistingProfile ? "active" : ""} onClick={() => {
       setCountExistingProfile(!CountExistingProfile)
       setDropExistingProfile(false)
@@ -142,6 +143,7 @@ const PurchaseOrderForm = () => {
     }}>
     Count Existing inventory
   </button>
+
   <button id={DropExistingProfile ? "active" : ""} onClick={() => {
       setDropExistingProfile(!DropExistingProfile)
       setCountExistingProfile(false)
