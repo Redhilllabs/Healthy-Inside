@@ -77,18 +77,27 @@ const handleManufacturingHistory = async(e)=>{
     "Date": searchDate,
   });
    const sp = await getsalesplan(bodyContent)
-   console.log("salesplan",sp.Item.SalesPlanList)
+   console.log(sp)
+
+   if (sp.status === 404) {
+    alert("date is not present");
+    return;
+  }else {
+  //  console.log("salesplan",sp.Item.SalesPlanList)
    setsalesplan(sp.Item.SalesPlanList)
    const am = await getactualManufacturing(bodyContent)
-   console.log("actualmanufacturing",am.Item.SalesPlanList)
-   setactualmanufacturing(am.Item.SalesPlanList)
+   console.log(am)
 
-   const Items = salesplan
-  .filter((item) => actualmanufacturing.map((x) => x.itemName).includes(item.itemName))
-  .map((item) => item.itemName)
-  .filter((value, index, self) => self.indexOf(value) === index);
-  setcommonItems(Items)
-  setShowTable(!showTable);
+   if (am.status === 404) {
+    setShowTable(true);
+    // alert("am is not present");
+    // return;
+  }else{
+    setactualmanufacturing(am.Item.SalesPlanList)
+   setShowTable(!showTable);
+   }
+   
+  }
 }
 
 let form = null;
@@ -164,33 +173,43 @@ if (ManufacturingHistoryProfile ) {
             <br />
             
             <table className="recipe_table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Item Name</th>
-            <th>Planned</th>
-            <th>Actual</th>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Item Name</th>
+      <th>Planned</th>
+      <th>Actual</th>
+    </tr>
+  </thead>
+  <tbody id="purchaseorder_table">
+    {actualmanufacturing.length > 0
+      ? [...new Set(salesplan.concat(actualmanufacturing).map(item => item.itemName))].map((itemName, index) => {
+          const salesPlanItem = salesplan.find(item => item.itemName === itemName);
+          const actualItem = actualmanufacturing.find(item => item.itemName === itemName);
+          const planned = salesPlanItem ? salesPlanItem.salesforecast : "0";
+          const actual = actualItem ? actualItem.salesforecast : "0";
+          return (
+            <tr key={index}>
+              {index === 0 && (
+                <td rowSpan={salesplan.length + actualmanufacturing.length}>{searchDate}</td>
+              )}
+              <td>{itemName}</td>
+              <td>{planned}</td>
+              <td>{actual}</td>
+            </tr>
+          );
+        })
+      : salesplan.map((item, index) => (
+          <tr key={index}>
+            {index === 0 && <td rowSpan={salesplan.length}>{searchDate}</td>}
+            <td>{item.itemName}</td>
+            <td>{item.salesforecast}</td>
+            <td>0</td>
           </tr>
-        </thead>
-        <tbody id="purchaseorder_table">
-    {[...new Set(salesplan.concat(actualmanufacturing).map(item => item.itemName))].map((itemName, index) => {
-      const salesPlanItem = salesplan.find(item => item.itemName === itemName);
-      const actualItem = actualmanufacturing.find(item => item.itemName === itemName);
-      const planned = salesPlanItem ? salesPlanItem.salesforecast : "0";
-      const actual = actualItem ? actualItem.salesforecast : "0";
-      return (
-        <tr key={index}>
-          {index === 0 && (
-            <td rowSpan={salesplan.length + actualmanufacturing.length}>{searchDate}</td>
-          )}
-          <td>{itemName}</td>
-          <td>{planned}</td>
-          <td>{actual}</td>
-        </tr>
-      );
-    })}
+        ))}
   </tbody>
-      </table>
+</table>
+
 
 
           </div>
