@@ -1,5 +1,5 @@
 import React, { useState ,useEffect }  from 'react';
-import {getitemlist ,AddToactualmanufacturing} from '../../utils/ApiCall';
+import {getitemlist ,AddToactualmanufacturing,getsalesplan ,getactualManufacturing} from '../../utils/ApiCall';
 
 const ManufacturingLogEntryForm = () => {
 
@@ -15,6 +15,10 @@ const [salesForecast, setsalesForecast] = useState("1");
 const [salesplandate, setsalesplandate] = useState("");
 const [showSalesPlanTable, setshowSalesPlanTable] = useState(false);
 const [plannerList, setplannerList] = useState([]);
+const [searchDate,setsearchDate] = useState('');
+const [commonItems,setcommonItems] = useState([]);
+const [salesplan,setsalesplan] = useState([]);
+const [actualmanufacturing,setactualmanufacturing] =  useState([]);
 
 const handeladdtoActualmanufacturing = (e)=>{
   e.preventDefault()
@@ -61,9 +65,73 @@ useEffect(() => {
   const fetchData = async () => {
     const response = await getitemlist();
     setData(response.data);
+   
   };
   fetchData();
 }, []);
+
+const handleManufacturingHistory = async(e)=>{
+  e.preventDefault()
+  console.log(searchDate)
+  let bodyContent = JSON.stringify({
+    "Date": searchDate,
+  });
+   const sp = await getsalesplan(bodyContent)
+   console.log("salesplan",sp.Item.SalesPlanList)
+   setsalesplan(sp.Item.SalesPlanList)
+   const am = await getactualManufacturing(bodyContent)
+   console.log("actualmanufacturing",am.Item.SalesPlanList)
+   setactualmanufacturing(am.Item.SalesPlanList)
+
+   const Items = salesplan
+  .filter((item) => actualmanufacturing.map((x) => x.itemName).includes(item.itemName))
+  .map((item) => item.itemName)
+  .filter((value, index, self) => self.indexOf(value) === index);
+  setcommonItems(Items)
+  setShowTable(!showTable);
+}
+
+let form = null;
+
+if (ManufacturingHistoryProfile ) {
+  form = (
+    <div>
+
+      <form
+        action=""
+        class="form"
+        name="inventory-purchase-log"
+        id="inventory-purchase-log"
+        method="post"
+        onSubmit={handleManufacturingHistory}
+      >
+
+        <div class="button-container">
+
+        <label htmlFor="start-date-input">Select Date:</label>
+
+          <input               
+            type="date"
+            id="start-date-input"
+            value={searchDate}
+            onChange={(e)=>setsearchDate(e.target.value)}
+            required
+          />
+
+          <input
+            id="addmoreingredients"
+            type="submit"
+            name="submit"
+            value="View History"   
+
+                    / >
+
+           </div>
+      </form>
+    </div>
+  );
+}
+
 
   return (
     <>
@@ -73,7 +141,7 @@ useEffect(() => {
   <button id={ManufacturingHistoryProfile ? "active" : ""} onClick={() => {
       setManufacturingHistoryProfile(!ManufacturingHistoryProfile)
       setActualManufacturingProfile(false)
-      setShowTable(!showTable);
+      
     }}>
     Manufacturing History
   </button>
@@ -85,7 +153,7 @@ useEffect(() => {
    Actual Manufacturing 
   </button>
 </div>
-
+{form}
           </div>
 
 <br />
@@ -96,27 +164,33 @@ useEffect(() => {
             <br />
             
             <table className="recipe_table">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Item Name</th>
-      <th>Planned</th>
-      <th>Actual</th>
-    </tr>
-  </thead>
-  <tbody id="purchaseorder_table">
-  {Array.isArray(data.data) && data.data.sort((a, b) => a.ingredient.localeCompare(b.ingredient)).map((item, index) => (
-    <tr key={index}>
-      <td>{item.ingredient}</td>
-      <td>{item.quantity}</td>
-      <td>{item.unit}</td>
-
-    </tr>
-  ))}
-</tbody>
-
-
-</table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Item Name</th>
+            <th>Planned</th>
+            <th>Actual</th>
+          </tr>
+        </thead>
+        <tbody id="purchaseorder_table">
+    {[...new Set(salesplan.concat(actualmanufacturing).map(item => item.itemName))].map((itemName, index) => {
+      const salesPlanItem = salesplan.find(item => item.itemName === itemName);
+      const actualItem = actualmanufacturing.find(item => item.itemName === itemName);
+      const planned = salesPlanItem ? salesPlanItem.salesforecast : "0";
+      const actual = actualItem ? actualItem.salesforecast : "0";
+      return (
+        <tr key={index}>
+          {index === 0 && (
+            <td rowSpan={salesplan.length + actualmanufacturing.length}>{searchDate}</td>
+          )}
+          <td>{itemName}</td>
+          <td>{planned}</td>
+          <td>{actual}</td>
+        </tr>
+      );
+    })}
+  </tbody>
+      </table>
 
 
           </div>

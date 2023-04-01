@@ -33,7 +33,8 @@ const urls = {
   AddToEquipmentFlowapi:`${produrl}/equipmentflow/addtoequipmentflow`,
   SendSNSapi:`${produrl}/sendsms`,
   SearchIntermediatePurchaseOrder2api: `${produrl}/searchintermediatepurchaseorder2`,
-  AddToactualmanufacturingapi:`${produrl}/addactualmanufacturing`
+  AddToactualmanufacturingapi:`${produrl}/addactualmanufacturing`,
+  getactualManufacturingapi: `${produrl}/getactualmanufacturing`
 
 };
 
@@ -173,6 +174,10 @@ export const addSalesPlan = async(data) =>{
 
 export const getsalesplan = async(data) =>{
   return makeRequest(urls.getsalesplanapi, "POST", data);
+}
+
+export const getactualManufacturing = async(data) =>{
+  return makeRequest(urls.getactualManufacturingapi, "POST", data);
 }
 
 export const searchPurchaseOrder = async(data)=>{

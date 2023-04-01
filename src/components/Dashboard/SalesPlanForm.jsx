@@ -32,7 +32,7 @@ const SalesPlanForm = () => {
     
         try {
           const res = await sendSNS(SNSContent);
-          console.log(res);
+          // console.log(res);
           if (res.status === 500) {
             alert("An error occurred while sending sms . Please try again later.");
             return;}

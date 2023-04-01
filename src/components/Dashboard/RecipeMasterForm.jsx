@@ -28,7 +28,7 @@ const RecipeMasterForm = () => {
     const fetchData = async () => {
       const response = await getallIngredientProfile();
       setData(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     };
     fetchData();
   }, []);
