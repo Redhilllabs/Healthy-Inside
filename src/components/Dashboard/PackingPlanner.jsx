@@ -1,10 +1,7 @@
 import React from 'react'
 
 const PackingPlanner = () => {
-const handelpackageplanner = ()=>{
-  
-}
-
+const handelpackageplanner = ()=>{}
   return (
     <>
 <div className="formcontains">

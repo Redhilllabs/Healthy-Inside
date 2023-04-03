@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { getitemlist ,AddToJobFlow ,GetAllJobFlow ,AddToEquipmentflow} from "../../utils/ApiCall";
+import load2 from '../../images/load2.gif'
 
 const ItemmanufacPlaner = () => {
   const [ItemName, setItemName] = useState("");
   const [table, settable] = useState(false);
-  // const [viewform, setviewform] = useState(false);
   const [selectday, setselectday] = useState("");
   const [TimeSlot_From, setTimeSlot_From] = useState("");
   const [TimeSlot_To, setTimeSlot_To] = useState("");
@@ -13,7 +13,6 @@ const ItemmanufacPlaner = () => {
   const [tableList, settableList] = useState([]);
   const [assign, setassign] = useState("");
   const [data, setData] = useState("");
-
   const [IngredientsFlow,setIngredientsFlow] = useState(false);
   const [ProcessFlow,setProcessFlow] = useState(false);
   const [EquipmentFlow,setEquipmentFlow] = useState(false);
@@ -29,6 +28,7 @@ const ItemmanufacPlaner = () => {
   const [EquipmentFlowtable,setEquipmentFlowtable] = useState(false);
   const [jobflowData,setJobFlowData] = useState([]);
   const [assignedequipment,setassignedequipment] =  useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const options = [];
@@ -43,6 +43,7 @@ const ItemmanufacPlaner = () => {
   const handleItemNameChange = (e) => {
     setItemName(e.target.value);
   };
+
   const handelJobFlow= () => {
     if (ItemName) {
       setJobFlowform(true);
@@ -50,6 +51,7 @@ const ItemmanufacPlaner = () => {
       alert("choose Item Name");
     }
   };
+
   const handelIngredientsFlow = () => {
     if (ItemName) {
       setIngredientsFlowform(true);
@@ -57,6 +59,7 @@ const ItemmanufacPlaner = () => {
       alert("choose Item Name");
     }
   };
+
   const handelProcessFlow = () => {
     if (ItemName) {
       setProcessFlowform(true);
@@ -64,6 +67,7 @@ const ItemmanufacPlaner = () => {
       alert("choose Item Name");
     }
   };
+
   const handelEquipmentFlow = () => {
     if (ItemName) {
       setEquipmentFlowtable(true);
@@ -71,6 +75,7 @@ const ItemmanufacPlaner = () => {
       alert("choose Item Name");
     }
   };
+
   const handelLabFlow = () => {
     if (ItemName) {
       setLabFlowform(true);
@@ -78,6 +83,7 @@ const ItemmanufacPlaner = () => {
       alert("choose Item Name");
     }
   };
+
   const handeladdtoplanner = () => {
     // const newitem = {
     //   selectday: selectday,
@@ -103,6 +109,7 @@ const ItemmanufacPlaner = () => {
     //   alert("fill all field");
     // }
   };
+
   const handeljobflowtable = (e) =>{
     e.preventDefault()
 
@@ -130,20 +137,22 @@ const ItemmanufacPlaner = () => {
     }
     
   }
-  const handelsubmitjobflow = async()=>{
 
+  const handelsubmitjobflow = async()=>{
+    setIsLoading(true)
     let bodyContent = JSON.stringify({
       "ItemName":ItemName,
       "JobFlow": tableList
     });
 
     const response = await AddToJobFlow(bodyContent)
-    console.log(response)
+    // console.log(response)
     if(response.status === 401){
       alert(response.message)
       
     }else{
-      alert(response.operation)
+      // alert(response.operation)
+      setIsLoading(false)
       settableList([])
       setJobFlow(false);
       setjobflowtable(false)
@@ -182,11 +191,13 @@ const ItemmanufacPlaner = () => {
 
   const handelsubmitequipmentflow = async() => {
     let bodyc;
+    
     if (!ItemName) {
       alert("Item name is required");
     } else if (!assignedequipment) {
       alert("Assigned equipment is required");
     } else {
+      setIsLoading(true)
       jobflowData.map((service, index) => {
         if (service.ItemName === ItemName) {
           bodyc = JSON.stringify({
@@ -197,12 +208,13 @@ const ItemmanufacPlaner = () => {
         }
       });
       const res = await AddToEquipmentflow(bodyc);
-      console.log(res)
+      // console.log(res)
     if(res.status === 401){
       alert(res.message)
       
     }else{
-      alert(res.operation)
+      // alert(res.operation)
+      setIsLoading(false)
       settableList([])
       setJobFlow(false);
       setjobflowtable(false)
@@ -258,8 +270,6 @@ if(jobflowData){
 
   return (
     <>
-
-
 
       <div className="formcontains">
 
@@ -502,6 +512,7 @@ if(jobflowData){
           
         </form>
       )}
+
       {ProcessFlowform && (
         <form id="viewform" onSubmit={handeljobflowtable}>
           <div id="viewformtask">
@@ -575,7 +586,6 @@ if(jobflowData){
           
         </form>
       )}
-
 
       {LabFlowform && (
         <form id="viewform">
@@ -667,6 +677,7 @@ if(jobflowData){
 </div>
         </form>
       )}
+
       {IngredientsFlowform && (
         <form id="viewform">
           <div id="viewformtask">
@@ -757,6 +768,7 @@ if(jobflowData){
         </form>
       )}
 
+
       {jobflowtable && (
         <div className="table-container" id="yourrecipetale">
           <h2>Job Flow</h2>
@@ -790,7 +802,6 @@ if(jobflowData){
                   {index === 0 && (
                   <td rowSpan={tableList.length}>{ItemName}</td>
                 )}
-                  {/* <td>{ItemName}</td> */}
                 
                     <td>{service.selectday}</td>
                     <td>
@@ -805,18 +816,27 @@ if(jobflowData){
           </table>
 
           <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => settable(false)}>
-              cancel
+              <div
+                id="recipebutton_close"
+                onClick={() => settable(false)}
+              >
+                cancel
+              </div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handelsubmitjobflow}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
+
             </div>
-            <div
-              id="recipebutton_save"
-              onClick={handelsubmitjobflow}
-            >
-              Submit
-            </div>
-          </div>
         </div>
       )}
+
       {EquipmentFlowtable && (
         <div className="table-container" id="yourrecipetale">
           <h2>Equipment Flow</h2>
@@ -871,18 +891,25 @@ if(jobflowData){
 
             </tbody>
           </table>
-
           <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => settable(false)}>
-              cancel
+              <div
+                id="recipebutton_close"
+                onClick={() => settable(false)}
+              >
+                cancel
+              </div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handelsubmitequipmentflow}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
+
             </div>
-            <div
-              id="recipebutton_save"
-              onClick={handelsubmitequipmentflow}
-            >
-              Submit
-            </div>
-          </div>
         </div>
       )}
 

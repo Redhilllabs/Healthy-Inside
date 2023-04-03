@@ -4,23 +4,12 @@ import * as XLSX from 'xlsx';
 
 const PurchaseOrderForm = () => {
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [data, setData] = useState("");
   const [showTable, setShowTable] = useState(false);
   const [showTable2, setShowTable2] = useState(false);
-  const [sortedData, setSortedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [CountExistingProfile,setCountExistingProfile] = useState(false);
   const [DropExistingProfile,setDropExistingProfile] = useState(false);
-
-
-    const handleStartDateChange = (event) => {
-        setStartDate(event.target.value);
-      };
-    
-      const handleEndDateChange = (event) => {
-        setEndDate(event.target.value);
-      };
 
       const handleViewPurchaseOrder = async (event) => {
         event.preventDefault();
@@ -64,8 +53,7 @@ const PurchaseOrderForm = () => {
       
         setIsLoading(false);
       };
-      
-
+    
       let form = null;
 
       // Conditionally render the form based on which button was clicked
@@ -90,7 +78,7 @@ const PurchaseOrderForm = () => {
                   type="date"
                   id="start-date-input"
                   value={startDate}
-                  onChange={handleStartDateChange}
+                  onChange={(e)=>setStartDate(e.target.value)}
                   required
                 />
 
@@ -152,22 +140,18 @@ const PurchaseOrderForm = () => {
     Drop Existing inventory
   </button>
 </div>
-
-
             {form}
-
           </div>
+
 {isLoading?(<>Loading...</>):(<></>)}
 <br />
           {showTable && (
           <div className="table-container"  id='yourpurchaseorder'>
             <h2>Purchase Order</h2>
             <br />
-            
             <table className="recipe_table">
   <thead>
     <tr>
-      {/* <th>Date</th> */}
       <th>Ingredients</th>
       <th>Quantity</th>
       <th>Unit</th>
@@ -183,18 +167,14 @@ const PurchaseOrderForm = () => {
     </tr>
   ))}
 </tbody>
-
-
 </table>
-
-
           </div>
         )}
+
         {showTable2 && (
           <div className="table-container"  id='yourpurchaseorder'>
             <h2>Purchase Order</h2>
             <br />
-            
             <table className="recipe_table">
   <thead>
     <tr>
@@ -213,14 +193,11 @@ const PurchaseOrderForm = () => {
     ))}
   </tbody>
 </table>
-
-
-
-
           </div>
         )}
+
         {showTable||showTable2?<button onClick={printAndExportTable}>Print and Export to Excel</button>
-:<></>}
+: <></> }
         
 
     </>

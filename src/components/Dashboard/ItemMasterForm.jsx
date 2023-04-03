@@ -7,11 +7,6 @@ const ItemMasterForm = () => {
   const [ AlltableItem ,setAlltableItem] = useState(false);
   const [data, setData] = useState([]);
 
-
-  const handleItemNameChange = (e) => {
-    setItemName(e.target.value);
-  };
-
   const handeladdmore = () => {
     if (ItemName) {
         settable(true);
@@ -29,13 +24,13 @@ const ItemMasterForm = () => {
     const fetchData = async () => {
       const response = await getitemlist();
       setData(response);
-    //   console.log(response);
     };
     fetchData();
   }, []);
 
   return (
     <>
+
       <div className="formcontains">
         <form class="form" id="recipe-designing">
           <div>
@@ -44,7 +39,7 @@ const ItemMasterForm = () => {
               name=""
               id=""
               value={ItemName}
-              onChange={handleItemNameChange}
+              onChange={(e)=>setItemName(e.target.value)}
             >
               <option value="">Select Option</option>
               {data &&
@@ -138,18 +133,6 @@ const ItemMasterForm = () => {
         ))}
       </tbody>
     </table>
-
-          {/* <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => setAlltableItem(false)}>
-              cancel
-            </div>
-            <div
-              id="recipebutton_save"
-              onClick={(e) => alert("Not Sving To Db")}
-            >
-              Submit
-            </div>
-          </div> */}
         </div>
       )}
 

@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import {AddPurcaselogEntry , AddtoInventory} from '../../utils/ApiCall';
+import load2 from '../../images/load2.gif'
+
 
 const InventoryForm = () => {
+
+    const [isLoading, setIsLoading] = useState(false);
     const [date, setDate] = useState("");
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState(0);
@@ -9,31 +13,7 @@ const InventoryForm = () => {
     const [unitPrice, setUnitPrice] = useState(0);
     const [amount, setAmount] = useState(0);
     const [showInventoryTable, setShowInventoryTable] = useState(false);
-    
 
-    const handleDateChange = (event) => {
-        setDate(event.target.value);
-      };
-    
-      const handleItemNameChange = (event) => {
-        setItemName(event.target.value);
-      };
-    
-      const handleQuantityChange = (event) => {
-        setQuantity(parseInt(event.target.value));
-      };
-    
-      const handleUnitChange = (event) => {
-        setUnit(event.target.value);
-      };
-    
-      // const handleUnitPriceChange = (event) => {
-      //   setUnitPrice(parseFloat(event.target.value));
-      // };
-    
-      const handleAmountChange = (event) => {
-        setAmount(parseFloat(event.target.value));
-      };
       const handleInventorySubmitForm = (event) => {
         event.preventDefault()
         if (Number(amount) === 0) {
@@ -46,7 +26,7 @@ const InventoryForm = () => {
         setShowInventoryTable(true);
       };
 
-      const handelsave = async() =>{
+      const handlesave = async() =>{
         let bodyContent = JSON.stringify({
           "Date": date,
           "ingredients":[
@@ -72,7 +52,7 @@ const InventoryForm = () => {
           alert(`Some Error Occured`);
           return;
         }else{
-          alert(`${response.operation}  saved in Purchase Log Entry`)
+          // alert(`${response.operation}  saved in Purchase Log Entry`)
           setAmount(0)
           setDate("")
           setItemName("")
@@ -85,7 +65,7 @@ const InventoryForm = () => {
           alert(`Error Occured`);
           return;
         }else{
-          alert(`${response2.operation}  saved in Inventory`)
+          // alert(`${response2.operation}  saved in Inventory`)
           
         }
 
@@ -111,7 +91,7 @@ const InventoryForm = () => {
                   name="Date"
                   id="dateIPL"
                   value={date}
-                  onChange={handleDateChange}
+                  onChange={(e)=>setDate(e.target.value)}
                   required
                 />
               </div>
@@ -122,7 +102,7 @@ const InventoryForm = () => {
                   id="itemIPL"
                   name="Item"
                   value={itemName}
-                  onChange={handleItemNameChange}
+                  onChange={(e)=>setItemName(e.target.value)}
                   required
                 >
                 <option value="">Select Option</option>
@@ -358,7 +338,7 @@ const InventoryForm = () => {
                   name="Quantity"
                   id="quantityIPL"
                   value={quantity}
-                  onChange={handleQuantityChange}
+                  onChange={(e)=>setQuantity(parseInt(e.target.value))}
                   required
                 />{" "}
               </div>
@@ -370,7 +350,7 @@ const InventoryForm = () => {
                         id="unitRD"
                         value={unit}
                         required
-                        onChange={handleUnitChange}
+                        onChange={(e)=>setUnit(e.target.value)}
                       >
                       <option value="">Select Option</option>
                         <option value="gram">g (gram)</option>
@@ -389,7 +369,7 @@ const InventoryForm = () => {
                   name="Amount"
                   id="amountIPL"
                   value={amount}
-                  onChange={handleAmountChange}
+                  onChange={(e)=>setAmount(parseFloat(e.target.value))}
                   required
                 />{" "}
               </div>
@@ -438,11 +418,21 @@ const InventoryForm = () => {
             <div id="tabel_controllers">
               <div
                 id="recipebutton_close"
-                onClick={() => setShowInventoryTable(false)}
+                onClick={() => showInventoryTable(false)}
               >
                 cancel
               </div>
-              <div id="recipebutton_save" onClick={handelsave}  >Save</div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handlesave}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
+
             </div>
           </div>
         )}

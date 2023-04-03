@@ -1,5 +1,6 @@
 import React, { useState ,useEffect }  from 'react';
 import {getitemlist ,addSalesPlan ,sendSNS} from '../../utils/ApiCall';
+import load2 from '../../images/load2.gif'
 
 // sales Forecast Planner Option in Business & Branding
 
@@ -13,7 +14,7 @@ const SalesPlanForm = () => {
     const [data ,setData]=useState('')
     const [isLoading, setIsLoading] = useState(false);
 
-    const handelsubmit = async () => {
+    const handlesubmit = async () => {
       setIsLoading(true)
       let bodyContent = JSON.stringify({
         "Date": salesplandate,
@@ -24,15 +25,12 @@ const SalesPlanForm = () => {
         const str = plannerList.map(obj => JSON.stringify(obj)).join(',  ');
         let message = `SalesForcast Data \n\nDate: ${salesplandate}\n\nThe List Items are:\n ${str}`;
         let SNSContent = JSON.stringify({
-          "number": "+916239413783",
+          "number": "+917838247507",
           "message": message
         });
     
-        // console.log(SNSContent)
-    
         try {
           const res = await sendSNS(SNSContent);
-          // console.log(res);
           if (res.status === 500) {
             alert("An error occurred while sending sms . Please try again later.");
             return;}
@@ -51,7 +49,7 @@ const SalesPlanForm = () => {
           } else {
             setIsLoading(false)
             
-            alert(`${response.operation} into Sales Plan Db`);
+            // alert(`${response.operation} into Sales Plan Db`);
             setsaleplanItemname("");
             setsalesForecast("1");
             setsalesplandate("");
@@ -188,7 +186,7 @@ const SalesPlanForm = () => {
               </tbody>
             </table>
 
-            <div id="tabel_controllers">
+            {/* <div id="tabel_controllers">
               <div
                 id="recipebutton_close"
                 onClick={() => setshowSalesPlanTable(false)}
@@ -196,11 +194,32 @@ const SalesPlanForm = () => {
                 Cancel
               </div>
               <div id="recipebutton_save" onClick={handelsubmit} > {isLoading?(<>Loading...</>):(<></>)} Submit</div>
+            </div> */}
+
+            <div id="tabel_controllers">
+              <div
+                id="recipebutton_close"
+                onClick={() => setshowSalesPlanTable(false)}
+              >
+                cancel
+              </div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handlesubmit}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
+
             </div>
+
           </div>
         )}
     </>
   )
 }
 
-export default SalesPlanForm
+export default SalesPlanForm;

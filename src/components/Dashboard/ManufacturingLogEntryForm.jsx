@@ -1,10 +1,8 @@
 import React, { useState ,useEffect }  from 'react';
 import {getitemlist ,AddToactualmanufacturing,getsalesplan ,getactualManufacturing} from '../../utils/ApiCall';
+import load2 from '../../images/load2.gif'
 
 const ManufacturingLogEntryForm = () => {
-
-
-
 const [ManufacturingHistoryProfile,setManufacturingHistoryProfile] = useState(false)
 const [ActualManufacturingProfile,setActualManufacturingProfile] = useState(false)
 const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +14,6 @@ const [salesplandate, setsalesplandate] = useState("");
 const [showSalesPlanTable, setshowSalesPlanTable] = useState(false);
 const [plannerList, setplannerList] = useState([]);
 const [searchDate,setsearchDate] = useState('');
-const [commonItems,setcommonItems] = useState([]);
 const [salesplan,setsalesplan] = useState([]);
 const [actualmanufacturing,setactualmanufacturing] =  useState([]);
 
@@ -33,7 +30,7 @@ const handeladdtoActualmanufacturing = (e)=>{
   setsalesplandate(salesplandate);
 }
 
-const handelsubmit = async(e)=>{
+const handlesubmit = async(e)=>{
   e.preventDefault()
   setIsLoading(true)
           let bodyContent = JSON.stringify({
@@ -43,15 +40,13 @@ const handelsubmit = async(e)=>{
           if(salesplandate && plannerList ){
   
             const response = await AddToactualmanufacturing(bodyContent)
-            if(response){
-              setIsLoading(false)
-            }
             
             if (response.status === 404) {
               alert("An Error Saving Data");
               return;
             }else{
-              alert(`${response.operation} into ActualManufacturingTable in  Db`)
+              // alert(`${response.operation} into ActualManufacturingTable in  Db`)
+              setIsLoading(false)
               setsaleplanItemname("")
               setsalesForecast("1")
               setsalesplandate("")
@@ -65,7 +60,6 @@ useEffect(() => {
   const fetchData = async () => {
     const response = await getitemlist();
     setData(response.data);
-   
   };
   fetchData();
 }, []);
@@ -83,15 +77,10 @@ const handleManufacturingHistory = async(e)=>{
     alert("date is not present");
     return;
   }else {
-  //  console.log("salesplan",sp.Item.SalesPlanList)
    setsalesplan(sp.Item.SalesPlanList)
    const am = await getactualManufacturing(bodyContent)
-   console.log(am)
-
    if (am.status === 404) {
     setShowTable(true);
-    // alert("am is not present");
-    // return;
   }else{
     setactualmanufacturing(am.Item.SalesPlanList)
    setShowTable(!showTable);
@@ -140,8 +129,6 @@ if (ManufacturingHistoryProfile ) {
     </div>
   );
 }
-
-
   return (
     <>
 
@@ -215,9 +202,7 @@ if (ManufacturingHistoryProfile ) {
           </div>
         )}
 
-
-
-{ActualManufacturingProfile?<div className="formcontains">
+{ActualManufacturingProfile ? <div className="formcontains">
             <form className="form" id="recipe-designing" onSubmit={handeladdtoActualmanufacturing} >
                 <div>
                   <label for="saleplanItemname">Item Name</label>
@@ -266,8 +251,7 @@ if (ManufacturingHistoryProfile ) {
                   
                 
               </form>
-          </div>:<></>}
-
+          </div>: <></> }
 
           {showSalesPlanTable && (
           <div className="table-container">
@@ -303,7 +287,17 @@ if (ManufacturingHistoryProfile ) {
               >
                 cancel
               </div>
-              <div id="recipebutton_save" onClick={handelsubmit} >{isLoading?(<>Loading...</>):(<>Submit</>)}</div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handlesubmit}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
+
             </div>
           </div>
         )}

@@ -538,6 +538,9 @@ overflow: scroll;
 #tabel_controllers {
   font-size: xx-small;
 }
+/* #tabel_controllers img{
+width: 2px;
+} */
 
 .recipe_table th, .recipe_table td {
   font-size: xx-small;

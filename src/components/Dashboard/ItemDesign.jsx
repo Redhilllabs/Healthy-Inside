@@ -1,28 +1,23 @@
 import React, { useState,useEffect }  from 'react';
 import {getallIngredientProfile , getallrecipeProfile ,addItemList} from '../../utils/ApiCall';
+import load2 from '../../images/load2.gif'
 
 const ItemDesignForm = () => {
-    const [ingredientProfile, setIngredientProfile] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [recipeName, setRecipeName] = useState("");
     const [_recipe_ingredient_name, set_recipe_ingredient_name] = useState("");
-    const [recipequantity, setrecipequantity] = useState("1");
     const [recipeunit, setrecipeunit] = useState("1");
     const [showTable, setShowTable] = useState(false);
     const [ingredientsList, setIngredientsList] = useState([]);
     const [MaterialListTable, setMaterialListTable] = useState(false)
+    const [itemProfile ,setitemProfileData] = useState({});
+    const [data, setData] = useState([]);
 
     
     const handleRecipeNameChange = (event) => {
         setRecipeName(event.target.value);
         setShowTable(true);
       };
-       function handleIngredientChange(e) {
-    set_recipe_ingredient_name(e.target.value);
-  } 
-
-  const handleRecipequantityChange = (e) => {
-    setrecipequantity(e.target.value);
-  };
  
   const calculateTotalVal = (nutrient) => {
     let totalNutrient = 0;
@@ -39,11 +34,6 @@ const ItemDesignForm = () => {
     return totalNutrient;
   };
   
-  
-  const handleRecipeunitChange = (e) => {
-    setrecipeunit(e.target.value);
-  };
-
     const handeladdmore = (event) => {
       event.preventDefault()
     const newIngredient = {
@@ -54,9 +44,10 @@ const ItemDesignForm = () => {
     set_recipe_ingredient_name("");
     setrecipeunit("1");
     setMaterialListTable(true)
+
     };
 
-const handelIngredientProfileSubmit= async()=>{
+const handlesubmit= async()=>{
 
   let bodyContent = JSON.stringify({
     "ItemName":recipeName,
@@ -80,8 +71,7 @@ const handelIngredientProfileSubmit= async()=>{
     setShowTable(false);
 
 }
-    const [itemProfile ,setitemProfileData] = useState({});
-    const [data, setData] = useState([]);
+    
     useEffect(() => {
       const fetchData = async () => {
         const response = await getallIngredientProfile();
@@ -93,7 +83,6 @@ const handelIngredientProfileSubmit= async()=>{
       };
       fetchData();
     }, []);
-
 
   return (
     <>
@@ -114,7 +103,7 @@ const handelIngredientProfileSubmit= async()=>{
                   <div className="addmoreitems">
                     <div>
                       <label htmlFor="Ingredient Name">Select Constituent Recipes </label>
-                      <select name="" id="" value={_recipe_ingredient_name} onChange={handleIngredientChange} required >
+                      <select name="" id="" value={_recipe_ingredient_name} onChange={(e)=>set_recipe_ingredient_name(e.target.value)} required >
                       <option value="">Select Option</option>
                       {data.map((item, index) => (
                         <option value={item.RecipeName}>{item.RecipeName}</option>
@@ -129,7 +118,7 @@ const handelIngredientProfileSubmit= async()=>{
                         id="unitRD"
                         value={recipeunit}
                          required
-                        onChange={handleRecipeunitChange}
+                        onChange={(e)=>setrecipeunit(e.target.value)}
                       >
                         
                       </input>
@@ -298,12 +287,26 @@ const handelIngredientProfileSubmit= async()=>{
 </div>
 
 {MaterialListTable && (
+
+
   <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
-              cancel
+              <div
+                id="recipebutton_close"
+                onClick={() => setMaterialListTable(false)}
+              >
+                cancel
+              </div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handlesubmit}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
             </div>
-            <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div>
-          </div>
 )}
 
     </>

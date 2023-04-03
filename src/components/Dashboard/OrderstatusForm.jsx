@@ -16,14 +16,7 @@ settable(true)
   return (
     <>
 <div className="formcontains">
-            {/* <div className="recipeform_buttons_options">
-              <button onClick={() => setIngredientProfile(!ingredientProfile)}>
-                Seed Kitchen
-              </button>
-              <button>Master Kitchen</button>
-              <button>Op Kitchen</button>
-            </div> */}
-            {/* {ingredientProfile ? ( */}
+
               <form className="form" id="recipe-designing">
                 <div>
                   <label for="Receipe Name">date</label>
@@ -41,9 +34,6 @@ settable(true)
                   select
                 </div>
               </form>
-            {/* ) : (
-              <></>
-            )} */}
           </div>
 
 {table && (
@@ -53,22 +43,12 @@ settable(true)
             <table className="recipe_table">
   <thead>
     <tr>
-      {/* <th rowspan="2">Time</th> */}
       <th >Order No.</th>
       <th >Order Summary</th>
       <th >Order Status</th>
     </tr>
-    {/* <tr>
-      <th>Import</th>
-      <th>Export</th>
-      <th>Import</th>
-      <th>Export</th>
-      <th>Import</th>
-      <th>Export</th>
-    </tr> */}
   </thead>
   <tr>
-      {/* <th>12-1</th> */}
       <td>Value 1</td>
       <td>Value 2</td>
       <td>Value 3</td>
@@ -82,7 +62,7 @@ settable(true)
               <div id="recipebutton_close" onClick={() => settable(false)}>
                 cancel
               </div>
-              <div id="recipebutton_save">Submit</div>
+              <div id="recipebutton_save" onClick={() => alert("button not working")}>Submit</div>
             </div>
           </div>
 )}
