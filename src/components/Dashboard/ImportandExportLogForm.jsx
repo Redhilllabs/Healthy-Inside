@@ -1,88 +1,70 @@
 import React, { useState } from 'react'
+import BatchingForm from "./BatchingForm";
+import SeedKitchenForm from "./SeedKitchenForm";
 
 const ImportandExportLogForm = () => {
   const [kitchenOption, setKitchenOption] = useState("");
   const [showTable, setShowTable] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
 
   const handleOptionClick = (option) => {
+    if (selectedDate) {
+      setSelectedDate('');
+    }
     setKitchenOption(option);
     setShowTable(false);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setShowTable(true);
+    if (selectedDate) {
+      setShowTable(true);
+    } else {
+      alert("Please select a date.");
+    }
   };
-    const [seedkitchendate,setseedkitchendate] = useState('')
 
-    const handleseedkitchendateChange = (e)=>{
-        setseedkitchendate(e.target.value)
-}
-
-
-
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+    setShowTable(false);
+  }
 
   return (
     <>
+      <div className="formcontains">
+        <div className="recipeform_buttons_options">
+        <button id={kitchenOption === "seed" ? "active" : ""} onClick={() => handleOptionClick("seed")}>Seed Kitchen</button>
+<button id={kitchenOption === "master" ? "active" : ""} onClick={() => handleOptionClick("master")}>Master Kitchen</button>
+<button id={kitchenOption === "op" ? "active" : ""} onClick={() => handleOptionClick("op")}>Op Kitchen</button>
+<button id={kitchenOption === "batching" ? "active" : ""} onClick={() => handleOptionClick("batching")}>Batching</button>
 
-<div className="formcontains">
-            <div className="recipeform_buttons_options">
-            <button onClick={() => handleOptionClick("seed")}>Seed Kitchen</button>
-        <button onClick={() => handleOptionClick("master")}>Master Kitchen</button>
-        <button onClick={() => handleOptionClick("op")}>Op Kitchen</button>
+        </div>
+        <br />
+        {kitchenOption && (
+          <form className="form" id="recipe-designing" onSubmit={handleFormSubmit}>
+            <div>
+              <label htmlFor="Receipe Name">Date:</label>
+              <input
+                type="date"
+                name="reciepeNameRD"
+                id="reciepeNameRD"
+                value={selectedDate}
+                onChange={handleDateChange}
+                required
+              />
             </div>
-            {kitchenOption && !showTable && (
-              <form className="form" id="recipe-designing">
-                <div>
-                  <label for="Receipe Name">date</label>
-                  <input
-                    type="date"
-                    name="reciepeNameRD"
-                    id="reciepeNameRD"
-                    value={seedkitchendate}
-                    onChange={handleseedkitchendateChange}
-                    required
-                  />
-                </div>
 
-                <div id="addmoreingredients" onClick={handleFormSubmit}>
-                  select
-                </div>
-              </form>
-            )}
-          </div>
+            <input id="addmoreingredients" type='submit' value={"Select"} />
 
-          {kitchenOption && showTable && (
-  <div className="table-container">
-            <h2>{kitchenOption}Kitchen </h2>
-            <br />
-            <table className="recipe_table">
-  <thead>
-   
-    <tr>
-      <th>Import</th>
-      <th>Export</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Value 1</td>
-      <td>Value 2</td>
-    </tr>
-  </tbody>
-</table>
+          </form>
+        )}
 
-
-            <div id="tabel_controllers">
-              <div id="recipebutton_close" onClick={() => setShowTable(false)}>
-                cancel
-              </div>
-              <div id="recipebutton_save" onClick={() => alert("not saving into database")} >Submit</div>
-            </div>
-          </div>
-)}
+        {kitchenOption === "seed" && showTable && <SeedKitchenForm date={selectedDate} />}
+        {kitchenOption === "batching" && showTable && <BatchingForm date={selectedDate} />}
+      </div>
+      
     </>
   )
 }
 
-export default ImportandExportLogForm
+export default ImportandExportLogForm;

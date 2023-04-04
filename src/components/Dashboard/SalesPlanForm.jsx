@@ -63,13 +63,6 @@ const SalesPlanForm = () => {
         }
       }
     }
-    
-
-    const handeldatechange = (e) =>{
-      setsalesplandate(e.target.value)
-      // console.log(plannerList)
-    }
-
     const handeladdtoplanner = (e) => {
       e.preventDefault()
         const newplaner = {
@@ -145,7 +138,7 @@ const SalesPlanForm = () => {
                       <input
                         type="date"
                         value={salesplandate}
-                        onChange={handeldatechange}
+                        onChange={(e)=>setsalesplandate(e.target.value)}
                         required
                       />
                     </div>
