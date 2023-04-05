@@ -17,13 +17,13 @@ if(date){
       });
 
 const response = await SearchBatchingImportAndexport(bodyContent)
-
+console.log(response)
       
       if(response.status === 500){
 alert("date not present ")
       }
       else{
-      setData(response.data);
+      setData(response);
     }
 
 
@@ -39,8 +39,8 @@ alert("date not present ")
 
       {date && (
         <div id="Tabels_container" >
-        <div className="table-container">
-  <table className="recipe_table" id='yourrecipetale'>
+        <div className="table-container" id="showtablermi">
+        <table className="recipe_table" id='yourrecipetale'>
   <thead>
     <tr>
       <th>Root Item</th>
@@ -50,7 +50,7 @@ alert("date not present ")
     </tr>
   </thead>
   <tbody>
-    {data.map((item) => (
+  {(data.data || []).concat(data.ExtrabatchingUser || []).map((item) => (
       <tr key={item.id}>
         <td>{item.rootItem}</td>
         <td>
@@ -95,6 +95,7 @@ alert("date not present ")
   </tbody>
 </table>
 
+
 </div>
 
 
@@ -107,24 +108,25 @@ alert("date not present ")
     </tr>
   </thead>
   <tbody>
-  {data.reduce((accumulator, item) => {
-  item.importSupply.forEach((supply) => {
-    const index = accumulator.findIndex((obj) => obj.particulars === supply.particulars);
-    if (index !== -1) {
-      accumulator[index].quantity += supply.quantity;
-    } else {
-      accumulator.push(supply);
-    }
-  });
-  return accumulator;
-}, []).map((supply, index) => (
-  <tr key={index}>
-    <td>{supply.particulars}</td>
-    <td>{supply.quantity}</td>
-  </tr>
-))}
+    {(data.data || []).concat(data.ExtrabatchingUser || []).reduce((accumulator, item) => {
+      item.importSupply.forEach((supply) => {
+        const index = accumulator.findIndex((obj) => obj.particulars === supply.particulars);
+        if (index !== -1) {
+          accumulator[index].quantity += supply.quantity;
+        } else {
+          accumulator.push(supply);
+        }
+      });
+      return accumulator;
+    }, []).map((supply, index) => (
+      <tr key={index}>
+        <td>{supply.particulars}</td>
+        <td>{supply.quantity}</td>
+      </tr>
+    ))}
   </tbody>
 </table>
+
 
 
 </div>

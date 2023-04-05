@@ -33,10 +33,11 @@ const ImportandExportLogForm = () => {
     <>
       <div className="formcontains">
         <div className="recipeform_buttons_options">
+        <button id={kitchenOption === "batching" ? "active" : ""} onClick={() => handleOptionClick("batching")}>Batching</button>
         <button id={kitchenOption === "seed" ? "active" : ""} onClick={() => handleOptionClick("seed")}>Seed Kitchen</button>
 <button id={kitchenOption === "master" ? "active" : ""} onClick={() => handleOptionClick("master")}>Master Kitchen</button>
 <button id={kitchenOption === "op" ? "active" : ""} onClick={() => handleOptionClick("op")}>Op Kitchen</button>
-<button id={kitchenOption === "batching" ? "active" : ""} onClick={() => handleOptionClick("batching")}>Batching</button>
+
 
         </div>
         <br />
