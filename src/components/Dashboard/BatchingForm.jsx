@@ -1,47 +1,32 @@
 import { useState, useEffect } from "react";
-
+import { SearchBatchingImportAndexport } from "../../utils/ApiCall";
 function BatchingForm({ date }) {
-  const [data, setData] = useState([{
-    id: 1,
-    rootItem: "Jau Pulao",
-    importSupply: [
-      { particulars: "Broken Wheat (दलिया/Dalia)", quantity: 400 },
-      { particulars: "Common Salt (सादा नमक/Saada Namak)", quantity: 7 },
-      { particulars: "Coriander Powder (धनिया पाउडर/Dhaniya Powder)", quantity: 20 },
-      { particulars: "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)", quantity: 2 },
-      { particulars: "Turmeric Powder (हल्दी पाउडर/Haldi Powder)", quantity: 6.666666667 },
-      { particulars: "Cumin Seeds (जीरा/Jeera)", quantity: 10 }
-    ],
-    exportSupply: [{ particulars: "JP 10 U (M)", quantity: 1 }],
-    headedFor: "Master"
-  }
-]);
+  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    if (date) {
-      fetchData();
-    }
-  }, [date]);
+
+  useEffect(()=>{
+if(date){
+  fetchData()
+}
+  },[date])
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`https://example.com/api/batching?date=${date}`);
-      const data = await response.json();
-      setData(    {
-        id: 1,
-        rootItem: "Jau Pulao",
-        importSupply: [
-          { particulars: "Broken Wheat (दलिया/Dalia)", quantity: 400 },
-          { particulars: "Common Salt (सादा नमक/Saada Namak)", quantity: 7 },
-          { particulars: "Coriander Powder (धनिया पाउडर/Dhaniya Powder)", quantity: 20 },
-          { particulars: "Black Pepper Powder (काली मिर्च पाउडर/Kali Mirch Powder)", quantity: 2 },
-          { particulars: "Turmeric Powder (हल्दी पाउडर/Haldi Powder)", quantity: 6.666666667 },
-          { particulars: "Cumin Seeds (जीरा/Jeera)", quantity: 10 }
-        ],
-        exportSupply: [],
-        headedFor: "JP 10 U (M)	1	Master"
+
+      let bodyContent = JSON.stringify({
+        "Date":date
+      });
+
+const response = await SearchBatchingImportAndexport(bodyContent)
+
+      
+      if(response.status === 500){
+alert("date not present ")
       }
-      );
+      else{
+        setData(response.data);
+      }
+
     } catch (error) {
       console.log(error);
     }

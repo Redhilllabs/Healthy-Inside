@@ -34,7 +34,8 @@ const urls = {
   SendSNSapi:`${produrl}/sendsms`,
   SearchIntermediatePurchaseOrder2api: `${produrl}/searchintermediatepurchaseorder2`,
   AddToactualmanufacturingapi:`${produrl}/addactualmanufacturing`,
-  getactualManufacturingapi: `${produrl}/getactualmanufacturing`
+  getactualManufacturingapi: `${produrl}/getactualmanufacturing`,
+  SearchBatchingImportAndexportapi:`${produrl}/branchingimportexport`
 
 };
 
@@ -254,5 +255,9 @@ export const SearchIntermediatePurchaseOrder2 = async(data)=>{
 
 export const AddToactualmanufacturing = async(data)=>{
   return makeRequest(urls.AddToactualmanufacturingapi,"POST",data);
+}
+
+export const SearchBatchingImportAndexport = async(data)=>{
+  return makeRequest(urls.SearchBatchingImportAndexportapi,"POST",data);
 }
 
