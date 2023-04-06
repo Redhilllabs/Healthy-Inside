@@ -1,10 +1,10 @@
 import React, { useState,useEffect , useRef} from 'react'
 import {searchPurchaseOrder ,AddtoInventory,SearchIntermediatePurchaseOrder2} from '../../utils/ApiCall'
-import { saveAs } from 'file-saver';
-import * as XLSX from 'xlsx';
-import jsPDF from 'jspdf';
+// import { saveAs } from 'file-saver';
+// import * as XLSX from 'xlsx';
+// import jsPDF from 'jspdf';
 // import printJS from 'print-js';
-import 'jspdf-autotable';
+// import 'jspdf-autotable';
 // import { print } from "pdf-to-printer";
 import ReactToPrint from 'react-to-print';
 
@@ -160,10 +160,10 @@ function printAndExportTable() {
 {isLoading?(<>Loading...</>):(<></>)}
 <br />
           {showTable && (
-          <div className="table-container"  id='yourpurchaseorder' ref={tableRef}>
+          <div className="table-container"  id='yourpurchaseorder' >
             <h2>Purchase Order</h2>
             <br />
-            <table className="recipe_table" id="tableee">
+            <table className="recipe_table" id="tableee" ref={tableRef}>
   <thead>
     <tr>
       <th>Ingredients</th>

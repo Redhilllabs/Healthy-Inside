@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SearchBatchingImportAndexport } from "../../utils/ApiCall";
+import ReactToPrint from 'react-to-print';
+
 function BatchingForm({ date }) {
   const [data, setData] = useState([]);
-
+  const tableRef = useRef();
   useEffect(()=>{
 if(date){
   fetchData()
@@ -40,7 +42,7 @@ alert("date not present ")
       {date && (
         <div id="Tabels_container" >
         <div className="table-container" id="showtablermi">
-        <table className="recipe_table" id='yourrecipetale'>
+        <table className="recipe_table" id='yourrecipetale'  ref={tableRef}>
   <thead>
     <tr>
       <th>Root Item</th>
@@ -95,6 +97,11 @@ alert("date not present ")
   </tbody>
 </table>
 
+<br />
+<ReactToPrint
+        trigger={() => <button>Print</button>}
+        content={() => tableRef.current}
+      />
 
 </div>
 
