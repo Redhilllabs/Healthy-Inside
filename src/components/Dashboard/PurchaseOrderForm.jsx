@@ -1,10 +1,12 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect , useRef} from 'react'
 import {searchPurchaseOrder ,AddtoInventory,SearchIntermediatePurchaseOrder2} from '../../utils/ApiCall'
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
+// import printJS from 'print-js';
 import 'jspdf-autotable';
-
+// import { print } from "pdf-to-printer";
+import ReactToPrint from 'react-to-print';
 
 
 const PurchaseOrderForm = () => {
@@ -15,7 +17,7 @@ const PurchaseOrderForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [CountExistingProfile,setCountExistingProfile] = useState(false);
   const [DropExistingProfile,setDropExistingProfile] = useState(false);
-  
+  const tableRef = useRef();
       const handleViewPurchaseOrder = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -37,7 +39,7 @@ const PurchaseOrderForm = () => {
           setShowTable(true);
           setData(response);
           setStartDate('');
-          console.log("Count Existing inventory submitted!");
+          console.log("Count Existing inventory submitted!",response);
         } else if (DropExistingProfile && !CountExistingProfile) {
           setCountExistingProfile(false);
           setShowTable(false);
@@ -53,14 +55,13 @@ const PurchaseOrderForm = () => {
           setShowTable2(true);
           setData(response.data.ingredients);
           setStartDate('');
-          console.log("Drop Existing inventory submitted!");
+          console.log("Drop Existing inventory submitted!",response);
         }
       
         setIsLoading(false);
       };
     
       let form = null;
-
       // Conditionally render the form based on which button was clicked
       if (CountExistingProfile || DropExistingProfile) {
         form = (
@@ -106,26 +107,27 @@ function printAndExportTable() {
   const table = document.getElementById('yourpurchaseorder');
 
   // Convert the table to a worksheet
-  const worksheet = XLSX.utils.table_to_sheet(table);
+  {/* const worksheet = XLSX.utils.table_to_sheet(table); */}
 
   // Create a new workbook and add the worksheet
-  const workbook = XLSX.utils.book_new();
+  {/* const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Purchase Order');
 
   // Export the workbook to a file
   const xlsxOutput = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
   const blob = new Blob([xlsxOutput], { type: 'application/octet-stream' });
-  saveAs(blob, 'purchase_order.xlsx');
+  saveAs(blob, 'purchase_order.xlsx'); */}
 
   // Print the table
-  const newWin = window.open('');
+  {/* const newWin = window.open('');
   newWin.document.write(table.outerHTML);
   newWin.print();
   newWin.close();
+
   const pdf = new jsPDF();
   pdf.autoTable({ html: '#tableee' });
-  pdf.save('purchase_order.pdf');
+  pdf.save('purchase_order.pdf'); */}
 
 }
 
@@ -158,7 +160,7 @@ function printAndExportTable() {
 {isLoading?(<>Loading...</>):(<></>)}
 <br />
           {showTable && (
-          <div className="table-container"  id='yourpurchaseorder'>
+          <div className="table-container"  id='yourpurchaseorder' ref={tableRef}>
             <h2>Purchase Order</h2>
             <br />
             <table className="recipe_table" id="tableee">
@@ -181,6 +183,11 @@ function printAndExportTable() {
   ))}
 </tbody>
 </table>
+<br />
+<ReactToPrint
+        trigger={() => <button>Print</button>}
+        content={() => tableRef.current}
+      />
           </div>
         )}
 
@@ -209,8 +216,6 @@ function printAndExportTable() {
           </div>
         )}
 
-        {showTable||showTable2?<button onClick={printAndExportTable}>Print and Export to Excel</button>
-: <></> }
         
 
     </>
