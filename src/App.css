@@ -5,6 +5,9 @@
 	--color1:#ffffff;
   --color2:rgb(161, 158, 158);
   --color3:black;
+  --dashboard:lightgreen;
+  --active-button:rgb(181, 255, 9);
+  --error:red;
 
   }
 

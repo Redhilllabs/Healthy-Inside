@@ -1,12 +1,13 @@
   /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .dashboard{
   width: 100%;
   display: flex;
   height: fit-content;
   font-size: small;
   box-sizing: border-box;
-  background: lightgreen;
+  background: var(--dashboard);
   font-family: 'Poppins', sans-serif;
 }
 .dashboard_sidebar{
@@ -26,14 +27,11 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  /* border-radius: 10px; */
+  box-shadow: inset 0 0 5px var(--color2);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(148, 148, 148);
-  /* border-radius: 10px; */
+  background: var(--color2);
 }
 .dashboard_sidebar.close{
   width: 78px;
@@ -68,10 +66,7 @@
   pointer-events: none;
 }
 
-.dashboard_sidebar .nav-links{
-  /* height: 100%;
-  padding: 20px; */
-}
+
 
 .dashboard_sidebar .nav-links li{
   position: relative;
@@ -79,9 +74,7 @@
   transition: all 0.4s ease;
 
 }
-.iocn-link {
-  /* display: flex; */
-}
+
 .dashboard_sidebar .nav-links li a:hover{
   background: var(--primary);
 }
@@ -95,8 +88,8 @@
 }
 
 #active{
-  background-color: rgb(181, 255, 9);
-  color: rgb(10, 10, 10);
+  background-color: var(--active-button);
+  color: var(--color3);
 }
 .dashboard_sidebar .nav-links li a{
   display: flex;
@@ -118,7 +111,7 @@
 .recipeform_buttons_options button {
   font-size: 16px;
   font-weight: bold;
-  background-color: #fff;
+  background-color: var(--color1);
   border: 2px solid #ccc;
   border-radius: 5px;
   padding: 10px 20px;
@@ -128,21 +121,20 @@
 
 .recipeform_buttons_options button:hover {
   background-color: #ccc;
-  color: #fff;
+  color: var(--color1);
 }
 
 .dashboard_sidebar .nav-links li a .link_name{
   font-size: 15px;
   font-weight: 400;
-  color: #fff;
+  color: var(--color1);
   transition: all 0.4s ease;
 }
 
 
 .dashboard_sidebar .nav-links li .sub-menu a{
-  color: #fff;
+  color: var(--color1);
   font-size: 13px;
-  /* padding: 9px ; */
   white-space: nowrap;
   opacity: 0.6;
   transition: all 0.3s ease;
@@ -151,7 +143,6 @@
 .dashboard_sidebar .nav-links li .sub-menu a:hover{
   opacity: 1;
 }
-
 
 .main_dashbord {
     display: flex;
@@ -163,19 +154,13 @@ width: 75%;
     
   }
 
-/* .recipe_table td table {
-  max-height: 4em;
-  overflow-y: auto;
-} */
 #purchaseorder_table {
   height: 50px;
   overflow: auto;
 }
 
-
   #addmore{
     display: flex;
-    /* height: 200px ; */
     flex-direction: column;
     align-items: self-end;
     margin: 1rem;
@@ -188,9 +173,9 @@ width: 75%;
     align-items: baseline;
     justify-content: center;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: var(--color1);
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    box-shadow: 0px 0px 10px var(--color3);
   }
   #viewform{
     display: flex; 
@@ -200,9 +185,9 @@ width: 75%;
     margin: 2rem;
     width: 100%;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: var(--color1);
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    box-shadow: 0px 0px 10px var(--color3);
   }
   #viewform textarea{
     width: 30rem;
@@ -210,13 +195,11 @@ width: 75%;
   }
  
   #viewform .contain {
-    /* margin: 2rem; */
     display: flex;
   }
 #process_description {
   display: flex;
   margin-left: 16px;
-  /* padding: 4px; */
   flex-direction: column;
 }
 
@@ -238,7 +221,7 @@ width: 75%;
   .main_dashbord  .form select {
     border-radius: 5px;
     width:  110px;
-    border: 1px solid green;
+    border: 1px solid var(--secondary);
     height: 30px;
     margin: 5px;
   }
@@ -252,8 +235,8 @@ width: 75%;
   }
   
   #recipebutton{
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--primary);
+    color: var(--color1);
     font-size: 10px;
     padding: 10px 20px;
     border-radius: 5px;
@@ -261,8 +244,8 @@ width: 75%;
     cursor: pointer;
   }
   .main_dashbord  button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--primary);
+    color: var(--color1);
     font-size: 10px;
     padding: 10px 20px;
     border-radius: 5px;
@@ -271,8 +254,8 @@ width: 75%;
   }
   #addmoreingredients {
     cursor: pointer;
-    background-color: green;
-    color: white;
+    background-color: var(--secondary);
+    color: var(--color1);
     border-radius: 15px;
     text-align: center;
     font-size: small;
@@ -284,7 +267,7 @@ width: 75%;
     display: flex;
     cursor: pointer;
     width: 100%;
-    color: white;
+    color: var(--color1);
     justify-content: center;
     align-items: center;
     
@@ -293,7 +276,7 @@ width: 75%;
     
   }
   #add_planerbtn{
-    background-color: green;
+    background-color: var(--secondary);
     border-radius: 15px;
      padding: 0rem 1.5rem;
     margin: 0rem 5rem 0rem 5rem;
@@ -301,8 +284,8 @@ width: 75%;
   }
   #rmiaddtolist{
     cursor: pointer;
-    background-color: green;
-    color: white;
+    background-color: var(--secondary);
+    color: var(--color1);
     border-radius: 15px;
     margin: 2rem;
     text-align: center;
@@ -317,7 +300,6 @@ width: 75%;
   #Tabels_container{
     display: flex;
     width: 100%;
-    /* overflow: scroll; */
   }
   #rmi_options_input{
     display: flex;
@@ -339,7 +321,7 @@ width: 75%;
   }
   .option_container input, select,textarea{
     width:  70px;
-    border: 1px solid green;
+    border: 1px solid var(--secondary);
     height: 30px;
     margin: 5px;
   }
@@ -362,35 +344,27 @@ width: 75%;
     z-index: 3;
   }
   .main_dashbord  button[type="submit"]:hover {
-    background-color: #3e8e41;
+    background-color: var(--secondary);
   }
   .table-container {
-    /* width: ; */
     padding: 5px;
-    border: 3px solid green;
+    border: 3px solid var(--secondary);
   }
 
 #multisubmenu li .iocn-link{
   padding: 9px;
-  /* background-color: rgb(92, 40, 40); */
 }
 #multisubmenu li .iocn-link a{
   padding: 5px;
-  /* background-color: rgb(92, 40, 40); */
 }
 
 #RMIform-designing{
   display: flex;
-  /* flex-wrap: wrap; */
   overflow: scroll;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
-/* #RMIform-designing div {
-  width: 11rem;
-  height: fit-content;
-} */
 #rmi_ingredient_style{
   display: flex;
 }
@@ -403,7 +377,6 @@ overflow: scroll;
   #yourpurchaseorder{
     overflow: scroll;
     width: 90%;
-    /* height: 3%; */
   }
   .recipe_table {
     border-collapse: collapse;
@@ -415,8 +388,7 @@ overflow: scroll;
   
   .recipe_table th,
   .recipe_table td {
-    border: 1px solid green;
-    /* padding: 8px; */
+    border: 1px solid var(--secondary);
     text-align: left;
   }
   
@@ -424,7 +396,7 @@ overflow: scroll;
     width:50px 
   }
   .recipe_table th {
-    background-color: lightgreen;
+    background-color: var(--dashboard);
   }
   
   .showInventoryTable{
@@ -434,18 +406,15 @@ overflow: scroll;
   
   .showInventoryTable th,
   .showInventoryTable td {
-    border: 1px solid green;
+    border: 1px solid var(--secondary);
     padding: 8px;
     text-align: left;
   }
   
   .showInventoryTable th {
-    background-color: lightgreen;
+    background-color: var(--dashboard);
   }
   
-  #timeslot {
-    /* width: 2rem; */
-  }
 
   @media only screen and (max-width: 768px) {
 
@@ -480,22 +449,16 @@ overflow: scroll;
     flex-direction: column;  
     align-items: flex-start;
     padding: 6px;
-    border: 1px solid black;
+    border: 1px solid var(--color3);
     margin: 2px;
   }
   .addmoreitems i {
-    color: white;
+    color: var(--color1);
     font-weight: 900;
-    background: red;
+    background: var(--error);
     padding: 1px;
   }
 
-
-  
-
-/* .formcontains {
-    overflow-y: scroll;
-} */
 #addmore {
   height: 150px;
 }
@@ -510,12 +473,10 @@ overflow: scroll;
   display: flex;
 }
 
-
 .option_container input, select, textarea {
   width: 81px;
   height: 16px;
 }
-
 
 #inventory-purchase-log {
  
@@ -538,9 +499,6 @@ overflow: scroll;
 #tabel_controllers {
   font-size: xx-small;
 }
-/* #tabel_controllers img{
-width: 2px;
-} */
 
 .recipe_table th, .recipe_table td {
   font-size: xx-small;
@@ -550,7 +508,7 @@ width: 2px;
   
   #profile_form_dashboard{
     border-radius: 20px;
-    background-color: #f2f2f2;
+    background-color: var(--color1);
   padding: 23px;}
   
   #profile_form_dashboard label {
@@ -573,8 +531,8 @@ width: 2px;
   }
   
   #recipebutton_close {
-    background-color: red;
-    color: white;
+    background-color: var(--error);
+    color: var(--color1);
     margin-right: 10px;
     padding: 0rem 1rem;
     cursor: pointer;
@@ -582,8 +540,8 @@ width: 2px;
   }
   
   #recipebutton_save {
-    background-color: green;
-    color: white;
+    background-color: var(--secondary);
+    color: var(--color1);
     padding: 0rem 1rem;
     border-radius: 20px;
     cursor: pointer;
@@ -594,7 +552,7 @@ overflow: scroll;
 width: 90%;
 height: 400px;
 
-background-color: #f2f2f2;
+background-color: var(--color1);
 }
 #yourrecipetale{
   width: 90%;
