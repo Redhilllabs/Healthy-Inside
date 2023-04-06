@@ -76,6 +76,12 @@ const SalesPlanForm = () => {
         setsalesplandate(salesplandate);
       };
       
+      const handelcancel = ()=>{
+        setshowSalesPlanTable(false)
+        setsaleplanItemname("");
+        setsalesForecast("1");
+        setsalesplandate("");
+      }
       useEffect(() => {
         const fetchData = async () => {
           const response = await getitemlist();
@@ -179,20 +185,10 @@ const SalesPlanForm = () => {
               </tbody>
             </table>
 
-            {/* <div id="tabel_controllers">
-              <div
-                id="recipebutton_close"
-                onClick={() => setshowSalesPlanTable(false)}
-              >
-                Cancel
-              </div>
-              <div id="recipebutton_save" onClick={handelsubmit} > {isLoading?(<>Loading...</>):(<></>)} Submit</div>
-            </div> */}
-
             <div id="tabel_controllers">
               <div
                 id="recipebutton_close"
-                onClick={() => setshowSalesPlanTable(false)}
+                onClick={ handelcancel}
               >
                 cancel
               </div>

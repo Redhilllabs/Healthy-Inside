@@ -18,6 +18,10 @@ const SeedKitchenForm = (props) => {
     fetchData();
   }, [props.date]);
 
+  const handlecancel = ()=>{
+    props.setShowTable(false)
+    props.setSelectedDate("")
+  }
   return (
     <div>
       <div className="table-container">
@@ -47,7 +51,7 @@ const SeedKitchenForm = (props) => {
         </table>
 
         <div id="tabel_controllers">
-          <div id="recipebutton_close" onClick={() => props.setShowTable(false)}>
+          <div id="recipebutton_close" onClick={handlecancel}>
             cancel
           </div>
           <div id="recipebutton_save" onClick={() => alert("not saving into database")}>Submit</div>

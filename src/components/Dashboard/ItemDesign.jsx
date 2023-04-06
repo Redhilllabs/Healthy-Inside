@@ -71,6 +71,15 @@ const handlesubmit= async()=>{
     setShowTable(false);
 
 }
+const handlecancle = async()=>{
+ setMaterialListTable(false)
+ set_recipe_ingredient_name("");
+    setrecipeunit("1");
+    setRecipeName("");
+    setShowTable(false);
+    setIngredientsList([]);
+
+}
     
     useEffect(() => {
       const fetchData = async () => {
@@ -292,7 +301,7 @@ const handlesubmit= async()=>{
   <div id="tabel_controllers">
               <div
                 id="recipebutton_close"
-                onClick={() => setMaterialListTable(false)}
+                onClick={handlecancle}
               >
                 cancel
               </div>

@@ -66,7 +66,6 @@ console.log(startDate)
           <div className="table-container"  id='yourrecipetale'>
             <h2>Your Sales Plan</h2>
             <br />
-            {/* {data && ( */}
   <table className="recipe_table">
     <thead>
       <tr>
@@ -89,8 +88,6 @@ console.log(startDate)
       ))}
     </tbody>
   </table>
-{/* )} */}
-
           </div>
         )}
         </>

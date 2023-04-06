@@ -1,5 +1,6 @@
 import React, { useState,useEffect }  from 'react'
 import {AddToIngredentProfile ,getmateriallist, AddToRecipeProfile} from '../../utils/ApiCall'
+import load2 from '../../images/load2.gif' ;
 
 const RecipeForm = () => {
     const [ingredientProfile, setIngredientProfile] = useState(false);
@@ -10,26 +11,13 @@ const RecipeForm = () => {
     const [showTable, setShowTable] = useState(false);
     const [ingredientsList, setIngredientsList] = useState([]);
     const [MaterialListTable, setMaterialListTable] = useState(false)
-
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     
     const handleRecipeNameChange = (event) => {
         setRecipeName(event.target.value);
         setShowTable(true);
-        // setIngredientsList([])
       };
-       function handleIngredientChange(e) {
-    set_recipe_ingredient_name(e.target.value);
-  } 
-
-  const handleRecipequantityChange = (e) => {
-    setrecipequantity(e.target.value);
-  };
- 
-
-  const handleRecipeunitChange = (e) => {
-    setrecipeunit(e.target.value);
-  };
-
   const calculateTotalVal = (nutrient) => {
     let totalNutrient = 0;
     data.forEach((item, index) => {
@@ -137,7 +125,8 @@ const RecipeForm = () => {
 
     };
 
-  const handelIngredientProfileSubmit = async ()=>{
+  const handlesubmit = async ()=>{
+    setIsLoading(true)
     let bodyContent = JSON.stringify({
       RecipeName : recipeName,
       Ingredients :ingredientsList
@@ -172,8 +161,8 @@ const RecipeForm = () => {
     'Zinc':calculateTotalVal('Zinc')
       }
       }
+      
     ); 
-console.log(ingredientsList)
 
 if (recipeName === "" || ingredientsList.length === 0) {
   alert("Fill All The Fields!");
@@ -184,7 +173,8 @@ if (recipeName === "" || ingredientsList.length === 0) {
       alert("This Ingredient already exists Change Ingredient Name");
       return;
     }else{
-      alert("Saved")
+      // alert("Saved")
+      setIsLoading(false)
       set_recipe_ingredient_name("");
     setrecipequantity("1");
     setrecipeunit("gram");
@@ -203,8 +193,16 @@ if (recipeName === "" || ingredientsList.length === 0) {
 
   }
 
+const handlecancel = ()=>{
+  setMaterialListTable(false)
+  set_recipe_ingredient_name("");
+    setrecipequantity("1");
+    setrecipeunit("gram");
+    setRecipeName("");
+    setIngredientsList([]);
+    setShowTable(false);
+}
 
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -249,7 +247,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
                         name="ingredient_name"
                         required
                         value={_recipe_ingredient_name}
-                        onChange={handleIngredientChange}
+                        onChange={(e)=>set_recipe_ingredient_name(e.target.value)}
                       >
                         <option value="">Select Option</option>
                         {data.map((item, index) => (
@@ -264,7 +262,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
                         type="number"
                         value={recipequantity}
                         required
-                        onChange={handleRecipequantityChange}
+                        onChange={(e)=>setrecipequantity(e.target.value)}
                       />
                     </div>
 
@@ -275,7 +273,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
                         id="unitRD"
                         value={recipeunit}
                         required
-                        onChange={handleRecipeunitChange}
+                        onChange={(e)=>setrecipeunit(e.target.value)}
                       >
                         <option value="gram">g (gram)</option>
                         <option value="millilitre">ml (millilitre)</option>
@@ -295,7 +293,7 @@ if (recipeName === "" || ingredientsList.length === 0) {
               <></>
             )}
           </div>
-
+<br />
 <div id="Tabels_container" >
 {showTable && (
           <div className="table-container"  id='yourrecipetale'>
@@ -450,12 +448,26 @@ if (recipeName === "" || ingredientsList.length === 0) {
 </div>
 
 {MaterialListTable && (
-  <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={() => setMaterialListTable(false)}>
-              Cancel
+
+          <div id="tabel_controllers">
+              <div
+                id="recipebutton_close"
+                onClick={ handlecancel}
+              >
+                cancel
+              </div>
+              <div id="recipebutton_save" onClick={isLoading ? null : handlesubmit}>
+  {isLoading ? (
+    <>
+    <button disabled>Submit</button>
+    <img src={load2} alt="" srcset=""  style={{ width: '30px', height: '30px' }} />
+</>
+  ) : (
+    <>Submit</>
+  )}
+</div>
+
             </div>
-            <div id="recipebutton_save"  onClick={handelIngredientProfileSubmit} >Submit</div>
-          </div>
 )}
 
     </>
