@@ -13,7 +13,7 @@ if(date){
     try {
 
       let bodyContent = JSON.stringify({
-        "Date":date
+        "Date": date
       });
 
 const response = await SearchBatchingImportAndexport(bodyContent)
@@ -50,7 +50,34 @@ alert("date not present ")
     </tr>
   </thead>
   <tbody>
-  {(data.data || []).concat(data.ExtrabatchingUser || []).map((item) => (
+  {(data.data || []).concat(data.ExtrabatchingUser || []).reduce((accumulator, item) => {
+      const existingItem = accumulator.find((accItem) => accItem.rootItem === item.rootItem);
+      if (existingItem) {
+        existingItem.importSupply = existingItem.importSupply.concat(item.importSupply);
+        existingItem.exportSupply = existingItem.exportSupply.concat(item.exportSupply);
+        existingItem.importSupply = existingItem.importSupply.reduce((acc, curr) => {
+          const existingParticular = acc.find((accItem) => accItem.particulars === curr.particulars);
+          if (existingParticular) {
+            existingParticular.quantity += curr.quantity;
+          } else {
+            acc.push(curr);
+          }
+          return acc;
+        }, []);
+        existingItem.exportSupply = existingItem.exportSupply.reduce((acc, curr) => {
+          const existingParticular = acc.find((accItem) => accItem.particulars === curr.particulars);
+          if (existingParticular) {
+            existingParticular.quantity += curr.quantity;
+          } else {
+            acc.push(curr);
+          }
+          return acc;
+        }, []);
+      } else {
+        accumulator.push(item);
+      }
+      return accumulator;
+    }, []).map((item) => (
       <tr key={item.id}>
         <td>{item.rootItem}</td>
         <td>
@@ -94,6 +121,10 @@ alert("date not present ")
     ))}
   </tbody>
 </table>
+
+
+
+
 
 
 </div>
