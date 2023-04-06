@@ -1,6 +1,11 @@
 import React, { useState,useEffect } from 'react'
 import {searchPurchaseOrder ,AddtoInventory,SearchIntermediatePurchaseOrder2} from '../../utils/ApiCall'
+import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+
 
 const PurchaseOrderForm = () => {
   const [startDate, setStartDate] = useState("");
@@ -10,7 +15,7 @@ const PurchaseOrderForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [CountExistingProfile,setCountExistingProfile] = useState(false);
   const [DropExistingProfile,setDropExistingProfile] = useState(false);
-
+  
       const handleViewPurchaseOrder = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -96,7 +101,7 @@ const PurchaseOrderForm = () => {
         );
       }
 
-      function printAndExportTable() {
+function printAndExportTable() {
   // Get the table element
   const table = document.getElementById('yourpurchaseorder');
 
@@ -108,13 +113,20 @@ const PurchaseOrderForm = () => {
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Purchase Order');
 
   // Export the workbook to a file
-  XLSX.writeFile(workbook, 'purchase_order.xlsx');
+  const xlsxOutput = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+  const blob = new Blob([xlsxOutput], { type: 'application/octet-stream' });
+  saveAs(blob, 'purchase_order.xlsx');
 
   // Print the table
   const newWin = window.open('');
   newWin.document.write(table.outerHTML);
   newWin.print();
   newWin.close();
+  const pdf = new jsPDF();
+  pdf.autoTable({ html: '#tableee' });
+  pdf.save('purchase_order.pdf');
+
 }
 
   return (
@@ -149,7 +161,7 @@ const PurchaseOrderForm = () => {
           <div className="table-container"  id='yourpurchaseorder'>
             <h2>Purchase Order</h2>
             <br />
-            <table className="recipe_table">
+            <table className="recipe_table" id="tableee">
   <thead>
     <tr>
       <th>Ingredients</th>
@@ -159,6 +171,7 @@ const PurchaseOrderForm = () => {
   </thead>
   <tbody id="purchaseorder_table">
   {Array.isArray(data.data) && data.data.sort((a, b) => a.ingredient.localeCompare(b.ingredient)).map((item, index) => (
+   
     <tr key={index}>
       <td>{item.ingredient}</td>
       <td>{item.quantity}</td>
