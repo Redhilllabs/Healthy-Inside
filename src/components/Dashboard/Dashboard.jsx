@@ -335,7 +335,8 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
       </div>
 
       <div className="main_dashbord">
-      {forms.map(({show ,component}) => (show ? React.createElement(component) : null))}
+      {forms.map(({show ,component}, index) => (show ? React.createElement(component, { key: index }) : null))}
+
         {/* profile Form */}
         {showProfile && (
   <div className="formcontains">
@@ -345,7 +346,7 @@ const imgsrc2 = "https://img.icons8.com/ios-glyphs/30/null/expand-arrow--v1.png"
       <label>Email: {admin.email}</label>
       <label>Company Email: <input type="email" /></label>
       <label>Mobile no.: {admin.contact}</label>
-      <div class="button-container">
+      <div className="button-container">
         <div onClick={logout} id="recipebutton" type="submit" name="submit">Log out</div>
       </div>
     </form>
