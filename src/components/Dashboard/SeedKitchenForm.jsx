@@ -1,62 +1,147 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
+import {  SearchSeedImportAndexport} from "../../utils/ApiCall";
+import ReactToPrint from 'react-to-print';
 
-const SeedKitchenForm = (props) => {
-  const [importData, setImportData] = useState([]);
-  const [exportData, setExportData] = useState([]);
+const SeedKitchenForm = ({ date }) => {
+  const [data, setData] = useState([]);
+  const containerRef = useRef(null);
+  const table1Ref = useRef(null);
+  const table2Ref = useRef(null);
+  
+  useEffect(()=>{
+if(date){
+  fetchData()
+}
+  },[date])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const importResponse = await fetch(`https://example.com/api/import?date=${props.date}`);
-      const importJson = await importResponse.json();
-      setImportData(importJson.data);
+  const fetchData = async () => {
+    try {
 
-      const exportResponse = await fetch(`https://example.com/api/export?date=${props.date}`);
-      const exportJson = await exportResponse.json();
-      setExportData(exportJson.data);
-    };
+      let bodyContent = JSON.stringify({
+        "Date": date
+      });
 
-    fetchData();
-  }, [props.date]);
+const response = await SearchSeedImportAndexport(bodyContent)
+console.log(response)
+      
+      if(response.status === 500){
+alert("date not present ")
+      }
+      else{
+      setData(response);
+    }
 
-  const handlecancel = ()=>{
-    props.setShowTable(false)
-    props.setSelectedDate("")
-  }
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div>
-      <div className="table-container">
-        <h2>Seed Kitchen</h2>
-        <br />
-        <table className="recipe_table">
-          <thead>
-            <tr>
-              <th>Import</th>
-              <th>Export</th>
-            </tr>
-          </thead>
-          <tbody>
-            {importData.map((row, index) => (
-              <tr key={`import-row-${index}`}>
-                <td>{row.value1}</td>
-                <td>{row.value2}</td>
-              </tr>
-            ))}
-            {exportData.map((row, index) => (
-              <tr key={`export-row-${index}`}>
-                <td>{row.value1}</td>
-                <td>{row.value2}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+<div>
+<br />
 
-        <div id="tabel_controllers">
-          <div id="recipebutton_close" onClick={handlecancel}>
-            cancel
-          </div>
-          <div id="recipebutton_save" onClick={() => alert("not saving into database")}>Submit</div>
-        </div>
-      </div>
+      {date && (
+        <div id="Tabels_container" ref={containerRef}>
+        <table className="recipe_table"  ref={table1Ref}>
+  <thead>
+    <tr>
+      <th>Root Item</th>
+      <th>Import supply</th>
+      <th>Export supply</th>
+      <th>Headed For</th>
+    </tr>
+  </thead>
+  <tbody>
+  {(data.data || []).concat(data.ExtrabatchingUser || []).map((item) => (
+      <tr key={item.id}>
+        <td>{item.rootItem}</td>
+        <td>
+          <table>
+            <thead>
+              <tr>
+                <th>Particulars</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {item.importSupply.map((supply, index) => (
+                <tr key={index}>
+                  <td>{supply.particulars}</td>
+                  <td>{supply.quantity}</td>
+                  <td>{supply.unit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table>
+            <thead>
+              <tr>
+                <th>Particulars</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {item.exportSupply.map((supply, index) => (
+                <tr key={index}>
+                  <td>{supply.particulars}</td>
+                  <td>{supply.quantity}</td>
+                  <td>{supply.unit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </td>
+        <td>{item.headedFor}</td>
+      </tr>
+    ))} 
+  </tbody>
+</table>
+<hr />
+<table className="recipe_table" ref={table2Ref}>
+  <thead>
+    <tr>
+      <th>Particulars</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {(data.data || []).concat(data.ExtrabatchingUser || []).reduce((accumulator, item) => {
+      item.importSupply.forEach((supply) => {
+        const index = accumulator.findIndex((obj) => obj.particulars === supply.particulars);
+        if (index !== -1) {
+          accumulator[index].quantity += supply.quantity;
+        } else {
+          accumulator.push(supply);
+        }
+      });
+      return accumulator;
+    }, []).map((supply, index) => (
+      <tr key={index}>
+        <td>{supply.particulars}</td>
+        <td>{supply.quantity}</td>
+        <td>{supply.unit}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<div>
+<ReactToPrint
+        trigger={() => <button>Print</button>}
+        content={() => containerRef.current}
+      />
+</div>
+</div>
+
+      )}
     </div>
   );
 };

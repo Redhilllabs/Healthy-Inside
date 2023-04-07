@@ -2,12 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { SearchBatchingImportAndexport } from "../../utils/ApiCall";
 import ReactToPrint from 'react-to-print';
 
-function BatchingForm({ date }) {
-  const [data, setData] = useState([]);
-  const tableRef = useRef();
+function BatchingForm({ date ,setSelectedDate}) {
+  const [Seeddata, setData] = useState([]);
+  const containerRef = useRef(null);
+  const table1Ref = useRef(null);
+  const table2Ref = useRef(null);
+  
   useEffect(()=>{
 if(date){
   fetchData()
+  console.log(Seeddata)
 }
   },[date])
 
@@ -26,6 +30,8 @@ alert("date not present ")
       }
       else{
       setData(response);
+      // setSelectedDate('');
+
     }
 
 
@@ -37,12 +43,11 @@ alert("date not present ")
 
   return (
     <div>
-      <h2>Batching Form</h2>
-
+    <br />
       {date && (
-        <div id="Tabels_container" >
-        <div className="table-container" id="showtablermi">
-        <table className="recipe_table" id='yourrecipetale'  ref={tableRef}>
+        <div id="Tabels_container" ref={containerRef} >
+    
+        <table className="recipe_table" id='yourrecipetale'  ref={table1Ref}>
   <thead>
     <tr>
       <th>Root Item</th>
@@ -52,7 +57,7 @@ alert("date not present ")
     </tr>
   </thead>
   <tbody>
-  {(data.data || []).concat(data.ExtrabatchingUser || []).map((item) => (
+  {(Seeddata.data || []).concat(Seeddata.ExtrabatchingUser || []).map((item) => (
       <tr key={item.id}>
         <td>{item.rootItem}</td>
         <td>
@@ -96,18 +101,8 @@ alert("date not present ")
     ))} 
   </tbody>
 </table>
-
-<br />
-<ReactToPrint
-        trigger={() => <button>Print</button>}
-        content={() => tableRef.current}
-      />
-
-</div>
-
-
-<div className="table-container" id="showtablermi" >
-<table className="recipe_table">
+<hr />
+<table className="recipe_table"  ref={table2Ref}>
   <thead>
     <tr>
       <th>Particulars</th>
@@ -115,7 +110,7 @@ alert("date not present ")
     </tr>
   </thead>
   <tbody>
-    {(data.data || []).concat(data.ExtrabatchingUser || []).reduce((accumulator, item) => {
+    {(Seeddata.data || []).concat(Seeddata.ExtrabatchingUser || []).reduce((accumulator, item) => {
       item.importSupply.forEach((supply) => {
         const index = accumulator.findIndex((obj) => obj.particulars === supply.particulars);
         if (index !== -1) {
@@ -134,11 +129,17 @@ alert("date not present ")
   </tbody>
 </table>
 
+<div>
+<ReactToPrint
+        trigger={() => <button>Print</button>}
+        content={() => containerRef.current}
+      />
+</div>
 
 
 </div>
 
-</div>
+
 
       )}
     </div>

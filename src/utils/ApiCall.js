@@ -35,7 +35,8 @@ const urls = {
   SearchIntermediatePurchaseOrder2api: `${produrl}/searchintermediatepurchaseorder2`,
   AddToactualmanufacturingapi:`${produrl}/addactualmanufacturing`,
   getactualManufacturingapi: `${produrl}/getactualmanufacturing`,
-  SearchBatchingImportAndexportapi:`${produrl}/branchingimportexport`
+  SearchBatchingImportAndexportapi:`${produrl}/branchingimportexport`,
+  SearchSeedImportAndexportapi:`${produrl}/seedimportandexport`
 
 };
 
@@ -259,5 +260,9 @@ export const AddToactualmanufacturing = async(data)=>{
 
 export const SearchBatchingImportAndexport = async(data)=>{
   return makeRequest(urls.SearchBatchingImportAndexportapi,"POST",data);
+}
+
+export const SearchSeedImportAndexport = async(data)=>{
+  return makeRequest(urls.SearchSeedImportAndexportapi,"POST",data);
 }
 

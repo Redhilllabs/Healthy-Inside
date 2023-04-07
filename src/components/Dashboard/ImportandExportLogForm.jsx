@@ -24,10 +24,6 @@ const ImportandExportLogForm = () => {
     }
   };
 
-  const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
-    setShowTable(false);
-  }
 
   return (
     <>
@@ -50,7 +46,7 @@ const ImportandExportLogForm = () => {
                 name="reciepeNameRD"
                 id="reciepeNameRD"
                 value={selectedDate}
-                onChange={handleDateChange}
+                onChange={(e)=> setSelectedDate(e.target.value)}
                 required
               />
             </div>
@@ -61,7 +57,7 @@ const ImportandExportLogForm = () => {
         )}
 
         {kitchenOption === "seed" && showTable && <SeedKitchenForm date={selectedDate} setShowTable={ setShowTable} setSelectedDate={setSelectedDate} />}
-        {kitchenOption === "batching" && showTable && <BatchingForm date={selectedDate} />}
+        {kitchenOption === "batching" && showTable && <BatchingForm date={selectedDate} setShowTable={ setShowTable} setSelectedDate={setSelectedDate} />}
       </div>
       
     </>
