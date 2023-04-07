@@ -309,6 +309,9 @@ width: 75%;
   #batchtable1{
     flex-grow: 1;
   }
+  #batchtable3{
+    margin: 20px;
+  }
   #rmi_options_input{
     display: flex;
     flex-wrap: wrap;

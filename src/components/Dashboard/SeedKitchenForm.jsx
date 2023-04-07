@@ -39,7 +39,7 @@ const SeedKitchenForm = ({ date }) => {
       {date && (
         <div className="table-container"  id='yourrecipetale'>
         <div id="Tabels_container" ref={containerRef}>
-        <table className="recipe_table" id='yourrecipetale' ref={table1Ref}>
+        <table className="recipe_table" id="batchtable1" ref={table1Ref}>
   <thead>
     <tr>
       <th>Root Item</th>
@@ -98,7 +98,8 @@ const SeedKitchenForm = ({ date }) => {
     ))} 
   </tbody>
 </table>
-<table className="recipe_table" ref={table2Ref}>
+<div id="batchtable3">  <hr /> <hr /> <hr /></div>
+<table className="recipe_table" id="batchtable2" ref={table2Ref}>
   <thead>
     <tr>
       <th>Particulars</th>
@@ -129,7 +130,7 @@ const SeedKitchenForm = ({ date }) => {
 
 
 </div>
-
+<br />
 <div>
 <ReactToPrint
         trigger={() => <button>Print</button>}

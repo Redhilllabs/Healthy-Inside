@@ -95,7 +95,8 @@ function BatchingForm ({ date ,setSelectedDate}) {
     ))} 
   </tbody>
 </table>
-<hr />
+
+<div id="batchtable3">  <hr /> <hr /> <hr /></div>
 
 <table className="recipe_table" id="batchtable2" ref={table2Ref}>
   <thead>
@@ -127,7 +128,9 @@ function BatchingForm ({ date ,setSelectedDate}) {
 
 
 </div>
+<br />
 <div>
+
 <ReactToPrint
         trigger={() => <button>Print</button>}
         content={() => containerRef.current}
