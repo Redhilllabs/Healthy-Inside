@@ -1,45 +1,38 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef ,memo} from "react";
 import { SearchBatchingImportAndexport } from "../../utils/ApiCall";
 import ReactToPrint from 'react-to-print';
+import { isEqual } from "lodash";
 
-function BatchingForm({ date ,setSelectedDate}) {
+function BatchingForm ({ date ,setSelectedDate}) {
   const [Seeddata, setData] = useState([]);
   const containerRef = useRef(null);
   const table1Ref = useRef(null);
   const table2Ref = useRef(null);
-  
-  useEffect(()=>{
-if(date){
-  fetchData()
-  console.log(Seeddata)
-}
-  },[date])
 
-  const fetchData = async () => {
-    try {
-
-      let bodyContent = JSON.stringify({
-        "Date": date
-      });
-
-const response = await SearchBatchingImportAndexport(bodyContent)
-console.log(response)
-      
-      if(response.status === 500){
-alert("date not present ")
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let bodyContent = JSON.stringify({
+          "Date": date
+        });
+        
+        const response = await SearchBatchingImportAndexport(bodyContent);
+        
+        if (response.status === 500) {
+          alert("date not present ");
+        } else {
+          setData(response);
+        }
+      } catch (error) {
+        console.log(error);
       }
-      else{
-      setData(response);
-      // setSelectedDate('');
+    };
 
+    if (date) {
+      fetchData();
     }
-
-
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  }, [date]);
+  
 
   return (
     <div>
@@ -146,4 +139,4 @@ alert("date not present ")
   );
 }
 
-export default BatchingForm;
+export default memo(BatchingForm);
