@@ -38,9 +38,10 @@ function BatchingForm ({ date ,setSelectedDate}) {
     <div>
     <br />
       {date && (
+        <div className="table-container"  id='yourrecipetale'>
         <div id="Tabels_container" ref={containerRef} >
     
-        <table className="recipe_table" id='yourrecipetale'  ref={table1Ref}>
+        <table className="recipe_table"  id="batchtable1" ref={table1Ref}>
   <thead>
     <tr>
       <th>Root Item</th>
@@ -95,7 +96,8 @@ function BatchingForm ({ date ,setSelectedDate}) {
   </tbody>
 </table>
 <hr />
-<table className="recipe_table"  ref={table2Ref}>
+
+<table className="recipe_table" id="batchtable2" ref={table2Ref}>
   <thead>
     <tr>
       <th>Particulars</th>
@@ -122,6 +124,9 @@ function BatchingForm ({ date ,setSelectedDate}) {
   </tbody>
 </table>
 
+
+
+</div>
 <div>
 <ReactToPrint
         trigger={() => <button>Print</button>}
@@ -129,9 +134,7 @@ function BatchingForm ({ date ,setSelectedDate}) {
       />
 </div>
 
-
 </div>
-
 
 
       )}

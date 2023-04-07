@@ -299,7 +299,15 @@ width: 75%;
 
   #Tabels_container{
     display: flex;
-    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: row;
+  }
+  #batchtable2{
+    flex-grow: 0;
+  }
+  #batchtable1{
+    flex-grow: 1;
   }
   #rmi_options_input{
     display: flex;
@@ -380,7 +388,7 @@ overflow: scroll;
   }
   .recipe_table {
     border-collapse: collapse;
-    width: 100%;
+    /* width: 100%; */
   }
   #materiallisttable_main{
     font-size:x-small
@@ -389,11 +397,11 @@ overflow: scroll;
   .recipe_table th,
   .recipe_table td {
     border: 1px solid var(--secondary);
-    text-align: left;
+    text-align: center;
   }
   
   .recipe_table td {
-    width:50px 
+    /* width:50px  */
   }
   .recipe_table th {
     background-color: var(--dashboard);
@@ -555,5 +563,5 @@ height: 400px;
 background-color: var(--color1);
 }
 #yourrecipetale{
-  width: 90%;
+  width: 100%;
 }

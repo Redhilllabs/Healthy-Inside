@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef ,memo} from "react";
 import {  SearchSeedImportAndexport} from "../../utils/ApiCall";
 import ReactToPrint from 'react-to-print';
 
@@ -7,44 +7,39 @@ const SeedKitchenForm = ({ date }) => {
   const containerRef = useRef(null);
   const table1Ref = useRef(null);
   const table2Ref = useRef(null);
-  
-  useEffect(()=>{
-if(date){
-  fetchData()
-}
-  },[date])
 
-  const fetchData = async () => {
-    try {
-
-      let bodyContent = JSON.stringify({
-        "Date": date
-      });
-
-const response = await SearchSeedImportAndexport(bodyContent)
-console.log(response)
-      
-      if(response.status === 500){
-alert("date not present ")
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let bodyContent = JSON.stringify({
+          "Date": date
+        });
+        
+        const response = await SearchSeedImportAndexport(bodyContent);
+        
+        if (response.status === 500) {
+          alert("date not present ");
+        } else {
+          setData(response);
+        }
+      } catch (error) {
+        console.log(error);
       }
-      else{
-      setData(response);
+    };
+
+    if (date) {
+      fetchData();
     }
-
-
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  }, [date]);
+  
   return (
 <div>
 <br />
 
       {date && (
+        <div className="table-container"  id='yourrecipetale'>
         <div id="Tabels_container" ref={containerRef}>
-        <table className="recipe_table"  ref={table1Ref}>
+        <table className="recipe_table" id='yourrecipetale' ref={table1Ref}>
   <thead>
     <tr>
       <th>Root Item</th>
@@ -103,7 +98,6 @@ alert("date not present ")
     ))} 
   </tbody>
 </table>
-<hr />
 <table className="recipe_table" ref={table2Ref}>
   <thead>
     <tr>
@@ -133,6 +127,9 @@ alert("date not present ")
   </tbody>
 </table>
 
+
+</div>
+
 <div>
 <ReactToPrint
         trigger={() => <button>Print</button>}
@@ -146,4 +143,4 @@ alert("date not present ")
   );
 };
 
-export default SeedKitchenForm;
+export default memo(SeedKitchenForm);
