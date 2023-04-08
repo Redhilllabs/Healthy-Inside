@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, memo } from "react";
-import { SearchBatchingImportAndexport } from "../../../../utils/ApiCall";
+import { SearchMasterImportAndexport } from "../../../../utils/ApiCall";
 import Message from "../../../../utils/Message";
 import load2 from '../../../../images/load2.gif'
 import ReactToPrint from "react-to-print";
 
 
-function BatchingForm({ date, setSelectedDate }) {
+function MasterForm({ date, setSelectedDate }) {
   const [Seeddata, setData] = useState([]);
   const containerRef = useRef(null);
   const table1Ref = useRef(null);
@@ -21,7 +21,7 @@ function BatchingForm({ date, setSelectedDate }) {
           Date: date,
         });
 
-        const response = await SearchBatchingImportAndexport(bodyContent);
+        const response = await SearchMasterImportAndexport(bodyContent);
 
         if (response.status === 500) {
           setResponse({ message: "Date not present", status: "error" });
@@ -50,6 +50,7 @@ function BatchingForm({ date, setSelectedDate }) {
       <br />
       <br />
       {isLoading ?<><img src={load2} alt="" srcset="" /></>:<></>}
+
       {date && (
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
@@ -173,4 +174,4 @@ function BatchingForm({ date, setSelectedDate }) {
   );
 }
 
-export default memo(BatchingForm);
+export default memo(MasterForm);

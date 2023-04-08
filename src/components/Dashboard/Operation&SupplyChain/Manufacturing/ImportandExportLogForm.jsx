@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BatchingForm from "./BatchingForm";
 import SeedKitchenForm from "./SeedKitchenForm";
+import MasterForm from "./MasterForm";
 
 const ImportandExportLogForm = () => {
   const [kitchenOption, setKitchenOption] = useState("");
@@ -40,9 +41,12 @@ const ImportandExportLogForm = () => {
           >
             Seed Kitchen
           </button>
-          <button onClick={() => handleOptionClick("master")}>
+          <button 
+          id={kitchenOption === "master" ? "active" : ""}
+          onClick={() => handleOptionClick("master")}>
             Master Kitchen
           </button>
+
           <button onClick={() => handleOptionClick("op")}>Op Kitchen</button>
         </div>
         <br />
@@ -82,6 +86,14 @@ const ImportandExportLogForm = () => {
             setSelectedDate={setSelectedDate}
           />
         )}
+        {kitchenOption === "master" && showTable && (
+          <MasterForm
+            date={selectedDate}
+            setShowTable={setShowTable}
+            setSelectedDate={setSelectedDate}
+          />
+        )}
+
       </div>
     </>
   );

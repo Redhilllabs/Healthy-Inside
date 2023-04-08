@@ -51,8 +51,23 @@ const SeedKitchenForm = ({ date }) => {
               <thead>
                 <tr>
                   <th>Root Item</th>
-                  <th>Import supply</th>
-                  <th>Export supply</th>
+                  <th>Import supply 
+                  <thead>
+                            <tr>
+                              <th>Particulars</th>
+                              <th>Quantity</th>
+                              <th>Metrics</th>
+                            </tr>
+                          </thead></th>
+                  <th>Export supply 
+                  <thead>
+                            <tr>
+                              <th>Particulars</th>
+                              <th>Quantity</th>
+                              <th>Metrics</th>
+                            </tr>
+                          </thead>
+                          </th>
                   <th>Headed For</th>
                 </tr>
               </thead>
@@ -64,13 +79,7 @@ const SeedKitchenForm = ({ date }) => {
                       <td>{item.rootItem}</td>
                       <td>
                         <table className="recipe_table">
-                          <thead>
-                            <tr>
-                              <th>Particulars</th>
-                              <th>Quantity</th>
-                              <th>Unit</th>
-                            </tr>
-                          </thead>
+                          
                           <tbody>
                             {item.importSupply.map((supply, index) => (
                               <tr key={index}>
@@ -84,13 +93,7 @@ const SeedKitchenForm = ({ date }) => {
                       </td>
                       <td>
                         <table className="recipe_table">
-                          <thead>
-                            <tr>
-                              <th>Particulars</th>
-                              <th>Quantity</th>
-                              <th>Unit</th>
-                            </tr>
-                          </thead>
+                         
                           <tbody>
                             {item.exportSupply.map((supply, index) => (
                               <tr key={index}>
