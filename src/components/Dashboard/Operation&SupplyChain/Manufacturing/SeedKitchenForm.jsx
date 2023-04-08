@@ -4,7 +4,7 @@ import Message from "../../../../utils/Message";
 import ReactToPrint from "react-to-print";
 
 const SeedKitchenForm = ({ date }) => {
-  const [data, setData] = useState([]);
+  const [Seeddata, setData] = useState([]);
   const containerRef = useRef(null);
   const table1Ref = useRef(null);
   const table2Ref = useRef(null);
@@ -43,72 +43,65 @@ const SeedKitchenForm = ({ date }) => {
     <div>
     <Message response={response} />
       <br />
-
       {date && (
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
             <table className="recipe_table" id="batchtable1" ref={table1Ref}>
-              <thead>
-                <tr>
-                  <th>Root Item</th>
-                  <th>Import supply 
-                  <thead>
-                            <tr>
-                              <th>Particulars</th>
-                              <th>Quantity</th>
-                              <th>Metrics</th>
-                            </tr>
-                          </thead></th>
-                  <th>Export supply 
-                  <thead>
-                            <tr>
-                              <th>Particulars</th>
-                              <th>Quantity</th>
-                              <th>Metrics</th>
-                            </tr>
-                          </thead>
-                          </th>
-                  <th>Headed For</th>
-                </tr>
-              </thead>
+            <thead>
+  <tr>
+    <th>Root Item</th>
+    <th colspan="3">Import supply</th>
+    <th colspan="3">Export supply</th>
+    <th>Headed For</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Particulars</th>
+    <th>Quantity</th>
+    <th>Metrics</th>
+    <th>Particulars</th>
+    <th>Quantity</th>
+    <th>Metrics</th>
+    <th></th>
+  </tr>
+</thead>
               <tbody>
-                {(data.data || [])
-                  .concat(data.ExtrabatchingUser || [])
-                  .map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.rootItem}</td>
-                      <td>
-                        <table className="recipe_table">
-                          
-                          <tbody>
-                            {item.importSupply.map((supply, index) => (
-                              <tr key={index}>
-                                <td>{supply.particulars}</td>
-                                <td>{supply.quantity}</td>
-                                <td>{supply.unit}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </td>
-                      <td>
-                        <table className="recipe_table">
-                         
-                          <tbody>
-                            {item.exportSupply.map((supply, index) => (
-                              <tr key={index}>
-                                <td>{supply.particulars}</td>
-                                <td>{supply.quantity}</td>
-                                <td>{supply.unit}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </td>
-                      <td>{item.headedFor}</td>
-                    </tr>
-                  ))}
-              </tbody>
+  {(Seeddata.data || [])
+    .concat(Seeddata.ExtrabatchingUser || [])
+    .map((item) => (
+      <tr key={item.id}>
+        <td>{item.rootItem}</td>
+        <td colSpan="3">
+          <table className="recipe_table">
+            <tbody>
+              {item.importSupply.map((supply, index) => (
+                <tr key={index}>
+                  <td>{supply.particulars}</td>
+                  <td>{supply.quantity}</td>
+                  <td>{supply.unit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </td>
+        <td colSpan="3">
+          <table className="recipe_table">
+            <tbody>
+              {item.exportSupply.map((supply, index) => (
+                <tr key={index}>
+                  <td>{supply.particulars}</td>
+                  <td>{supply.quantity}</td>
+                  <td>{supply.unit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </td>
+        <td>{item.headedFor}</td>
+      </tr>
+    ))}
+</tbody>
+
             </table>
             <div id="batchtable3">
               {" "}
@@ -123,8 +116,8 @@ const SeedKitchenForm = ({ date }) => {
                 </tr>
               </thead>
               <tbody>
-                {(data.data || [])
-                  .concat(data.ExtrabatchingUser || [])
+                {(Seeddata.data || [])
+                  .concat(Seeddata.ExtrabatchingUser || [])
                   .reduce((accumulator, item) => {
                     item.importSupply.forEach((supply) => {
                       const index = accumulator.findIndex(
@@ -157,6 +150,7 @@ const SeedKitchenForm = ({ date }) => {
           </div>
         </div>
       )}
+
     </div>
   );
 };
