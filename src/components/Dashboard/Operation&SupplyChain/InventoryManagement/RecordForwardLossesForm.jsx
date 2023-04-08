@@ -178,7 +178,7 @@ const RecordForwardLossesForm = () => {
               >
                 cancel
               </div>
-              <div id="recipebutton_save" onClick={(e)=>alert("Not Saving To DB")} >Save</div>
+              <div id="recipebutton_save" onClick={(e)=>alert("Not Doing Any Thing ")} >Save</div>
             </div>
           </div>
         )}

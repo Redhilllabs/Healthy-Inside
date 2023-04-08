@@ -62,7 +62,7 @@ settable(true)
               <div id="recipebutton_close" onClick={() => settable(false)}>
                 cancel
               </div>
-              <div id="recipebutton_save" onClick={() => alert("button not working")}>Submit</div>
+              <div id="recipebutton_save" onClick={() => alert("Not doing Any Thing")}>Submit</div>
             </div>
           </div>
 )}

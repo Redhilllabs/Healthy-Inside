@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getitemlist ,AddToJobFlow ,GetAllJobFlow ,AddToEquipmentflow} from "../../utils/ApiCall";
-import load2 from '../../images/load2.gif'
+import { getitemlist ,AddToJobFlow ,GetAllJobFlow ,AddToEquipmentflow} from "../../../../utils/ApiCall";
+import load2 from '../../../../images/load2.gif'
+import Message from "../../../../utils/Message";
 
 const ItemmanufacPlaner = () => {
   const [ItemName, setItemName] = useState("");
@@ -29,6 +30,7 @@ const ItemmanufacPlaner = () => {
   const [jobflowData,setJobFlowData] = useState([]);
   const [assignedequipment,setassignedequipment] =  useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [response, setResponse] = useState(null);
 
 
   const options = [];
@@ -44,19 +46,16 @@ const ItemmanufacPlaner = () => {
     setItemName(e.target.value);
   };
 
-  const handelJobFlow= () => {
-    if (ItemName) {
+  const handelJobFlow= (e) => {
+    e.preventDefault()
       setJobFlowform(true);
-    } else {
-      alert("choose Item Name");
-    }
   };
 
   const handelIngredientsFlow = () => {
     if (ItemName) {
       setIngredientsFlowform(true);
     } else {
-      alert("choose Item Name");
+      // alert("choose Item Name");
     }
   };
 
@@ -68,11 +67,12 @@ const ItemmanufacPlaner = () => {
     }
   };
 
-  const handelEquipmentFlow = () => {
+  const handelEquipmentFlow = (e) => {
+    e.preventDefault()
     if (ItemName) {
       setEquipmentFlowtable(true);
     } else {
-      alert("choose Item Name");
+      // alert("choose Item Name");
     }
   };
 
@@ -145,13 +145,15 @@ const ItemmanufacPlaner = () => {
       "JobFlow": tableList
     });
 
-    const response = await AddToJobFlow(bodyContent)
-    // console.log(response)
-    if(response.status === 401){
-      alert(response.message)
-      
+    const res = await AddToJobFlow(bodyContent)
+
+    if(res.status === 401){
+      setResponse({ message: res.message, status: "error" });
     }else{
-      // alert(response.operation)
+      setResponse({
+        message: "Data loaded successfully",
+        status: "success",
+      });
       setIsLoading(false)
       settableList([])
       setJobFlow(false);
@@ -193,9 +195,11 @@ const ItemmanufacPlaner = () => {
     let bodyc;
     
     if (!ItemName) {
-      alert("Item name is required");
+      // alert("Item name is required");
+      setResponse({ message: "Item name is required", status: "error" });
     } else if (!assignedequipment) {
-      alert("Assigned equipment is required");
+      // alert("Assigned equipment is required");
+      setResponse({ message: "Assigned equipment is required", status: "error" });
     } else {
       setIsLoading(true)
       jobflowData.map((service, index) => {
@@ -208,12 +212,15 @@ const ItemmanufacPlaner = () => {
         }
       });
       const res = await AddToEquipmentflow(bodyc);
-      // console.log(res)
+
     if(res.status === 401){
-      alert(res.message)
-      
+      setResponse({ message: res.message, status: "error" });
     }else{
       // alert(res.operation)
+      setResponse({
+        message: "Data loaded successfully",
+        status: "success",
+      });
       setIsLoading(false)
       settableList([])
       setJobFlow(false);
@@ -256,7 +263,7 @@ if(jobflowData){
   const jobFlowResponse = await GetAllJobFlow();
   setJobFlowData(jobFlowResponse.data);
 }else{
-  alert("jobflow table is empty")
+  setResponse({ message: "jobflow table is empty", status: "error" });
 }
         
       } catch (error) {
@@ -278,13 +285,15 @@ if(jobflowData){
               <button  id={JobFlow ? "active" : ""}  onClick={() => handeltoggelbutton("JobFlow")}>Job Flow</button>
               <button id={ProcessFlow ? "active" : ""}  onClick={() => handeltoggelbutton("ProcessFlow")} >Process Flow</button>
               <button id={EquipmentFlow ? "active" : ""}  onClick={() => handeltoggelbutton("EquipmentFlow")} >Equipment Flow</button>
-              <button id={LabFlow ? "active" : ""}  onClick={() => handeltoggelbutton("LabFlow")} >Lab Flow</button>
-              <button id={IngredientsFlow ? "active" : ""}  onClick={() => handeltoggelbutton("IngredientsFlow")} >Ingredients Flow</button>
+              <button >Lab Flow</button>
+              <button  >Ingredients Flow</button>
               <button>Import & Export </button>
             </div>
 
+            <Message response={response} />
+
 {JobFlow?
-<form class="form" id="recipe-designing">
+<form class="form" id="recipe-designing" onSubmit={handelJobFlow}>
           <div>
             <label for="Receipe Name">Item Name</label>
             <select
@@ -292,6 +301,7 @@ if(jobflowData){
               id=""
               value={ItemName}
               onChange={handleItemNameChange}
+              required
             >
               <option value="">Select Option</option>
               {data &&
@@ -304,9 +314,8 @@ if(jobflowData){
             </select>
           </div>
 
-          <div id="addmoreingredients" onClick={handelJobFlow}>
-            Plan
-          </div>
+          <input id="addmoreingredients" type="submit" value={"Plan"} />
+          
         </form>
         :<></>}
         {ProcessFlow?
@@ -336,7 +345,7 @@ if(jobflowData){
         </form>
         :<></>}
         {EquipmentFlow?
-<form class="form" id="recipe-designing">
+<form class="form" id="recipe-designing" onSubmit={handelEquipmentFlow}>
           <div>
             <label for="Receipe Name">Item Name</label>
             <select
@@ -344,6 +353,7 @@ if(jobflowData){
               id=""
               value={ItemName}
               onChange={handleItemNameChange}
+              required
             >
               <option value="">Select Option</option>
               {data &&
@@ -356,12 +366,12 @@ if(jobflowData){
             </select>
           </div>
 
-          <div id="addmoreingredients" onClick={handelEquipmentFlow}>
-            Plan
-          </div>
+          <input id="addmoreingredients" type="submit" value={"Plan"}/>
+           
+          
         </form>
         :<></>}
-        {LabFlow?
+        {/* {LabFlow?
 <form class="form" id="recipe-designing">
           <div>
             <label for="Receipe Name">Item Name</label>
@@ -412,7 +422,7 @@ if(jobflowData){
             Plan
           </div>
         </form>
-        :<></>}
+        :<></>} */}
 
       </div>
 
@@ -587,7 +597,7 @@ if(jobflowData){
         </form>
       )}
 
-      {LabFlowform && (
+      {/* {LabFlowform && (
         <form id="viewform">
           <div id="viewformtask">
           
@@ -766,7 +776,7 @@ if(jobflowData){
   </div>
 </div>
         </form>
-      )}
+      )} */}
 
 
       {jobflowtable && (

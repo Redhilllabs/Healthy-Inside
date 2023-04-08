@@ -94,7 +94,7 @@ const handleFormSubmit = (e) => {
               <div id="recipebutton_close" onClick={() => setShowTable(false)}>
                 cancel
               </div>
-              <div id="recipebutton_save" onClick={alert("not saving into db")}>Submit</div>
+              <div id="recipebutton_save" onClick={() => alert("Not doing Any thing ")}>Submit</div>
             </div>
           </div>
 )}

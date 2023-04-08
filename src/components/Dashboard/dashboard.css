@@ -404,7 +404,7 @@ overflow: scroll;
   }
   
   .recipe_table td {
-    /* width:50px  */
+    width: 100%;
   }
   .recipe_table th {
     background-color: var(--dashboard);
