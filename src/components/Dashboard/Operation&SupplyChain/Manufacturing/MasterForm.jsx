@@ -22,7 +22,7 @@ function MasterForm({ date, setSelectedDate }) {
         });
 
         const response = await SearchMasterImportAndexport(bodyContent);
-
+console.log(response)
         if (response.status === 500) {
           setResponse({ message: "Date not present", status: "error" });
           setIsLoading(false)
@@ -55,63 +55,51 @@ function MasterForm({ date, setSelectedDate }) {
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
             <table className="recipe_table" id="batchtable1" ref={table1Ref}>
-              <thead>
-                <tr>
-                  <th>Root Item</th>
-                  <th>Import supply
-                  <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead></th>
-                  <th>Export supply
-                  <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead></th>
-                  <th>Headed For</th>
-                </tr>
-              </thead>
+            <thead>
+  <tr>
+    <th>Root Item</th>
+    <th colspan="3">Import supply</th>
+    <th colspan="3">Export supply</th>
+    <th>Headed For</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Particulars</th>
+    <th>Quantity</th>
+    <th>Metrics</th>
+    <th>Particulars</th>
+    <th>Quantity</th>
+    <th>Metrics</th>
+    <th></th>
+  </tr>
+</thead>
               <tbody>
   {(Seeddata.data || [])
     .concat(Seeddata.ExtrabatchingUser || [])
     .map((item) => (
       <tr key={item.id}>
         <td>{item.rootItem}</td>
-        <td>
+        <td colSpan="3">
           <table className="recipe_table">
-            {/* <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead> */}
             <tbody>
               {item.importSupply.map((supply, index) => (
                 <tr key={index}>
                   <td>{supply.particulars}</td>
                   <td>{supply.quantity}</td>
+                  <td>{supply.unit}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </td>
-        <td>
+        <td colSpan="3">
           <table className="recipe_table">
-            {/* <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead> */}
             <tbody>
               {item.exportSupply.map((supply, index) => (
                 <tr key={index}>
                   <td>{supply.particulars}</td>
                   <td>{supply.quantity}</td>
+                  <td>{supply.unit}</td>
                 </tr>
               ))}
             </tbody>
@@ -123,17 +111,16 @@ function MasterForm({ date, setSelectedDate }) {
 </tbody>
 
             </table>
-
             <div id="batchtable3">
               {" "}
               <hr /> <hr /> <hr />
             </div>
-
             <table className="recipe_table" id="batchtable2" ref={table2Ref}>
               <thead>
                 <tr>
                   <th>Particulars</th>
                   <th>Quantity</th>
+                  <th>Unit</th>
                 </tr>
               </thead>
               <tbody>
@@ -156,6 +143,7 @@ function MasterForm({ date, setSelectedDate }) {
                     <tr key={index}>
                       <td>{supply.particulars}</td>
                       <td>{supply.quantity}</td>
+                      <td>{supply.unit}</td>
                     </tr>
                   ))}
               </tbody>
@@ -170,6 +158,7 @@ function MasterForm({ date, setSelectedDate }) {
           </div>
         </div>
       )}
+
     </div>
   );
 }

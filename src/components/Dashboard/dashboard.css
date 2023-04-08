@@ -391,6 +391,7 @@ overflow: scroll;
   }
   .recipe_table {
     border-collapse: collapse;
+    width: 100%;
   }
   #materiallisttable_main{
     font-size:x-small
@@ -400,17 +401,24 @@ overflow: scroll;
   .recipe_table th,
   .recipe_table td {
     border: 1px solid var(--secondary);
-    text-align: center;
+    text-align: left;
+  padding: 8px;
   }
   
   .recipe_table td {
-    width: 100%;
+    /* width: 100%; */
   }
   .recipe_table th {
     width: 25%;
     background-color: var(--dashboard);
+    background-color: #dddddd;
+    font-weight: bold;
+    text-align: center;
   }
-  
+
+  .recipe_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
   .showInventoryTable{
     border-collapse: collapse;
     width: 100%;
