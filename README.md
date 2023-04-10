@@ -6,7 +6,7 @@ This project is a MERN stack application that involves the integration of variou
 
 ## Getting Started
 
-To start the project on your local machine, first clone this git repository into your desired directory by using the command "git clone [http link copied from GitHub]".
+To start the project on your local machine, first clone this git repository into your desired directory by using the command "git clone [ Https link copied from GitHub ]".
 
 ## AWS Services used
 
@@ -86,13 +86,8 @@ This is the main component of the React application. It is responsible for rende
 - '/signup' - renders the <Signup /> component for unauthenticated users only.
 
 ### Usage
-# Project Name
 
 The App component is the root component of the React application. It is responsible for handling the routing of the application and rendering the header, footer, and main content of the application. The Routes component is used to define the different routes of the application and the corresponding components that should be rendered when those routes are accessed. The useState hook is used to define the showProfile state which is used to toggle the user profile dropdown menu. The useEffect hook is used to fetch the food items data from the API and set the foodItems state using the dispatch function from the useStateValue hook. The handleProfileToggle function is used to toggle the showProfile state when the user clicks on the user profile icon.
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
