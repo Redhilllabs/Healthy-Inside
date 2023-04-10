@@ -78,7 +78,7 @@ const ItemDesignForm = () => {
     setMaterialListTable(false);
     setShowTable(false);
   };
-  const handlecancle = async () => {
+  const handlecancel = async () => {
     setMaterialListTable(false);
     set_recipe_ingredient_name("");
     setrecipeunit("1");
@@ -302,7 +302,7 @@ const ItemDesignForm = () => {
 
       {MaterialListTable && (
         <div id="tabel_controllers">
-          <div id="recipebutton_close" onClick={handlecancle}>
+          <div id="recipebutton_close" onClick={handlecancel}>
             cancel
           </div>
           <div id="recipebutton_save" onClick={isLoading ? null : handlesubmit}>

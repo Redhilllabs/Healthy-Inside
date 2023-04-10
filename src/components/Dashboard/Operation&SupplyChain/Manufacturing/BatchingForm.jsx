@@ -49,7 +49,11 @@ function BatchingForm({ date, setSelectedDate }) {
       <Message response={response} />
       <br />
       <br />
+      <center>
       {isLoading ?<><img src={load2} alt="" srcset="" /></>:<></>}
+      </center>
+     
+
       {date && (
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
@@ -82,12 +86,6 @@ function BatchingForm({ date, setSelectedDate }) {
         <td>{item.rootItem}</td>
         <td>
           <table className="recipe_table">
-            {/* <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead> */}
             <tbody>
               {item.importSupply.map((supply, index) => (
                 <tr key={index}>
@@ -100,12 +98,6 @@ function BatchingForm({ date, setSelectedDate }) {
         </td>
         <td>
           <table className="recipe_table">
-            {/* <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead> */}
             <tbody>
               {item.exportSupply.map((supply, index) => (
                 <tr key={index}>
@@ -169,7 +161,9 @@ function BatchingForm({ date, setSelectedDate }) {
           </div>
         </div>
       )}
+
     </div>
+
   );
 }
 

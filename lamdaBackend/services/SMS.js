@@ -1,6 +1,8 @@
 const AWS = require('aws-sdk');
 const util = require("../utils/util");
 const region = 'us-east-1';
+const topicArn = 'arn:aws:sns:us-east-1:647331252240:salesForcastMessage';
+
 // Create SNS client
 const sns = new AWS.SNS({ region });
 
@@ -12,7 +14,6 @@ async function sendSms(event, context){
     const phone_number = event.number;
     const message = event.message;
     if (!phone_number || !message) {
-        // return { statusCode: 400, body: 'Bad Request: "number" and "message" are required' };
         const body = {
       data: 'Bad Request: "number" and "message" are required',
       status:400
@@ -21,7 +22,7 @@ async function sendSms(event, context){
     }
     const params = {
         Message: message,
-        PhoneNumber: phone_number
+        TopicArn: topicArn
     };
     try {
         const response = await sns.publish(params).promise();

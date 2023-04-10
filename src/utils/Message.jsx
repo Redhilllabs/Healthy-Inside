@@ -19,7 +19,8 @@ const Message = ({ response }) => {
           // Hide the message after 5 seconds
           setTimeout(() => {
             handleClose();
-          }, 5000);
+          }, 3000);
+          
         }
       }, [response]);
       

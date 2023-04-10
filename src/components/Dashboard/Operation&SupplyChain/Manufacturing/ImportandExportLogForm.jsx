@@ -19,7 +19,6 @@ const ImportandExportLogForm = () => {
     setKitchenOption(option);
     setShowTable(false);
   };
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
       setShowTable(true);

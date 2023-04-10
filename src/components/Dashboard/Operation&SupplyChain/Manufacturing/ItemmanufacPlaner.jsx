@@ -274,7 +274,11 @@ if(jobflowData){
     fetchData();
   }, [jobflowData]);
   
+const handlecancel = () =>{
+  settable(false)
+  setJobFlowData([])
 
+}
   return (
     <>
 
@@ -282,11 +286,11 @@ if(jobflowData){
 
 
       <div className="recipeform_buttons_options">
-              <button  id={JobFlow ? "active" : ""}  onClick={() => handeltoggelbutton("JobFlow")}>Job Flow</button>
+              <button id={JobFlow ? "active" : ""}  onClick={() => handeltoggelbutton("JobFlow")}>Job Flow</button>
               <button id={ProcessFlow ? "active" : ""}  onClick={() => handeltoggelbutton("ProcessFlow")} >Process Flow</button>
               <button id={EquipmentFlow ? "active" : ""}  onClick={() => handeltoggelbutton("EquipmentFlow")} >Equipment Flow</button>
-              <button >Lab Flow</button>
-              <button  >Ingredients Flow</button>
+              <button>Lab Flow</button>
+              <button>Ingredients Flow</button>
               <button>Import & Export </button>
             </div>
 
@@ -828,7 +832,7 @@ if(jobflowData){
           <div id="tabel_controllers">
               <div
                 id="recipebutton_close"
-                onClick={() => settable(false)}
+                onClick={handlecancel}
               >
                 cancel
               </div>

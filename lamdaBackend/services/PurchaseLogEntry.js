@@ -26,6 +26,7 @@ const AddToPurchaseLogEntry = async(requestBody) => {
         const body = {
           operation: "Saved PurchaseLogEntry",
           Message: "SUCCESS",
+          status:200,
           Item: requestBody,
           // ingredients :ingredients
         };
@@ -73,6 +74,7 @@ const AddToPurchaseLogEntry = async(requestBody) => {
         const body = {
           operation: "Updated Ingedients",
           Message: "SUCCESS",
+          status:200,
           Item: response.Attributes,
         };
         return util.buildResponse(200, body);

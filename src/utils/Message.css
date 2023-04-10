@@ -1,5 +1,6 @@
 .message {
-    position: fixed;
+    /* position: fixed; */
+    z-index: 2;
     bottom: 20px;
     right: 20px;
     width: 300px;

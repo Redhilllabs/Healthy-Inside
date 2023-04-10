@@ -49,23 +49,33 @@ async function AddtoSalesplan(data) {
     await createIntermidiatePurchaseOrder1(IntermidiatePurchaseOrder1Data);
     
     // multiplying PUratio With IntermediatepurchaseOrder1 and storeing into intermediate purchase order 2
+    
+    // getting the updated intermediate 1
+    const IntermidiatePurchaseOrder1User = await getIntermidiatePurchaseOrder1User(date);
+    const intermediatePurchaseOrder1Array = IntermidiatePurchaseOrder1User.ingredients
+    console.log("IntermidiatePurchaseOrder1User.ingredients",IntermidiatePurchaseOrder1User.ingredients)
 
-for (const item of ingredients) {
+for (const item of intermediatePurchaseOrder1Array) {
   const ingredientName = Object.keys(item)[0];
   const ingredientQuantity = item[ingredientName];
   const user = await getPUratio(ingredientName);
   if (user) {
     const newQuantity = Number(user.quantity) * Number(ingredientQuantity);
-    intermediatePurchaseOrder2Array.push({ ingredient: ingredientName, quantity: newQuantity, unit: "gram" });
+    intermediatePurchaseOrder2Array.push({ ingredient: ingredientName, quantity: newQuantity});
   } else {
-    intermediatePurchaseOrder2Array.push({ ingredient: ingredientName, quantity: ingredientQuantity, unit: "gram" });
+    intermediatePurchaseOrder2Array.push({ ingredient: ingredientName, quantity: ingredientQuantity});
   }
 }
 
-    
-    await updateIntermediatePurchaseOrder2Table(intermediatePurchaseOrder2Array)
-    
+const IntermidiatePurchaseOrder2Data = {
+      date: date,
+      ingredient: intermediatePurchaseOrder2Array,
+      unit: "gram"
+    };
 
+console.log("ingredient send into intermedate 2:- ",intermediatePurchaseOrder2Array)
+    await createIntermediatePurchaseOrder2(IntermidiatePurchaseOrder2Data)
+    
     const dynamoUser = await getSalesPlanUser(date);
 
     if (!dynamoUser) {
@@ -170,12 +180,12 @@ async function createIntermidiatePurchaseOrder1(data) {
 
       await dynamodb.put(params).promise();
 
-      const body = {
-        operation: "addPurchase oreder",
-        message: "SUCCESS",
-        status: 200,
-        item: data
-      };
+      // const body = {
+      //   operation: "addPurchase oreder",
+      //   message: "SUCCESS",
+      //   status: 200,
+      //   item: data
+      // };
 // console.log("addedd",body)
       // return util.buildResponse(200, body);
     } 
@@ -225,6 +235,54 @@ async function createIntermidiatePurchaseOrder1(data) {
   
 }
 
+
+async function createIntermediatePurchaseOrder2(data) {
+  const dynamoUser = await getIntermidiatePurchaseOrder2(data.date);
+
+  if (!dynamoUser) {
+    const params = {
+      TableName: intermediatePurchaseOrder2Table,
+      Item: {
+        Date: data.date,
+        ingredients: data.ingredient,
+        unit: data.unit,
+      },
+    };
+    await dynamodb.put(params).promise();
+  } else {
+    console.log("data.ingredients", data.ingredient);
+
+    const params = {
+      TableName: intermediatePurchaseOrder2Table,
+      Key: {
+        Date: data.date,
+      },
+      UpdateExpression: "SET ingredients = list_append(ingredients, :c)",
+      ExpressionAttributeValues: {
+        ":c": data.ingredient,
+      },
+      ReturnValues: "UPDATED_NEW",
+    };
+
+    return await dynamodb
+      .update(params)
+      .promise()
+      .then(
+        (response) => {
+          const body = {
+            operation: "Update",
+            Message: "SUCCESS",
+            Item: response.Attributes,
+          };
+          return util.buildResponse(200, body);
+        },
+        (error) => {
+          console.log("Some Error Occured", error);
+        }
+      );
+  }
+}
+
 async function getIngredientProfile(e) {
     const params = {
       TableName: IngredientProfileTable,
@@ -245,45 +303,22 @@ async function getIngredientProfile(e) {
       );
   }
   
-async function updateIntermediatePurchaseOrder2Table(ingredientsarray) {
+async function getIntermidiatePurchaseOrder1User(e) {
+  const params = {
+    TableName: newTable,
+    Key: {
+  Date: e,
+}
+  };
   try {
-    for (const item of ingredientsarray) {
-      
-      const name = item.ingredient;
-      const quantity = item.quantity;
-      const unitOfMeasurement = item.unit;
-
-      const dynamoItem = await getIntermediatePurchaseOrder2ItemByName(name);
-      if (dynamoItem) {
-        const params = {
-          TableName: intermediatePurchaseOrder2Table,
-          Key: { 'ingredient': name },
-          UpdateExpression: 'set quantity = :val, unitOfMeasurement = :unit',
-          ExpressionAttributeValues: {
-            ':val': quantity,
-            ':unit': unitOfMeasurement
-          },
-          ReturnValues: 'UPDATED_NEW'
-        };
-        await dynamodb.update(params).promise();
-      } else {
-        const putParams = {
-          TableName: intermediatePurchaseOrder2Table,
-          Item: {
-            'ingredient': name,
-            'quantity': quantity,
-            'unitOfMeasurement': unitOfMeasurement
-          }
-        };
-        await dynamodb.put(putParams).promise();
-      }
-    }
-
-    console.log('Successfully updated intermediatePurchaseOrder2Table!');
-  } catch (err) {
-    console.log('Error updating intermediatePurchaseOrder2Table:', err);
+    const response = await dynamodb.get(params).promise();
+    return response.Item;
+  } catch (error) {
+    console.error("Error getting user: ", error);
+    throw error;
   }
 }
+
 
 // getting PUratio item 
 async function getPUratio(e){
@@ -326,7 +361,7 @@ async function getitemUser(e) {
       );
   }
  
-  // to get item by name from intermediate -1
+  // to get item by date from intermediate -1
   
 async function getIntermidiatePurchaseOrder1(e) {
     const params = {
@@ -348,17 +383,17 @@ async function getIntermidiatePurchaseOrder1(e) {
       );
   }
  
-  // to get item by name from intermediate -2
+  // to get item by date from intermediate -2
 
-async function getIntermediatePurchaseOrder2ItemByName(e){
+async function getIntermidiatePurchaseOrder2(e){
   
   const params = {
-      TableName: newTable,
+      TableName: intermediatePurchaseOrder2Table,
       Key:{
-        ingredient :e
+        Date :e
       },
     };
-     return await dynamodb
+    return await dynamodb
       .get(params)
       .promise()
       .then(
@@ -370,6 +405,7 @@ async function getIntermediatePurchaseOrder2ItemByName(e){
         }
       );
 }
+
 // they are used to get item from sales plan table
 
 // for front-end 

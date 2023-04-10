@@ -80,12 +80,14 @@ const SalesPlanForm = () => {
     setsalesplandate(salesplandate);
   };
 
-  const handelcancel = () => {
+  const handlecancel = () => {
     setshowSalesPlanTable(false);
     setsaleplanItemname("");
     setsalesForecast("1");
     setsalesplandate("");
+    setplannerList([])
   };
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await getitemlist();
@@ -100,7 +102,7 @@ const SalesPlanForm = () => {
 
       <div className="formcontains">
         <div className="recipeform_buttons_options">
-          <button onClick={() => setDaysPlan(!DaysPlan)}>
+          <button  id={DaysPlan ? "active" : ""} onClick={() => setDaysPlan(!DaysPlan)}>
             Submit Days Plan
           </button>
           <button>Submit Weekly Plan</button>
@@ -194,7 +196,7 @@ const SalesPlanForm = () => {
           </table>
 
           <div id="tabel_controllers">
-            <div id="recipebutton_close" onClick={handelcancel}>
+            <div id="recipebutton_close" onClick={handlecancel}>
               cancel
             </div>
             <div

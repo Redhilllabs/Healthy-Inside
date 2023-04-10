@@ -9,10 +9,8 @@ import load2 from "../../../../images/load2.gif";
 import Message from "../../../../utils/Message";
 
 const ManufacturingLogEntryForm = () => {
-  const [ManufacturingHistoryProfile, setManufacturingHistoryProfile] =
-    useState(false);
-  const [ActualManufacturingProfile, setActualManufacturingProfile] =
-    useState(false);
+  const [ManufacturingHistoryProfile, setManufacturingHistoryProfile] = useState(false);
+  const [ActualManufacturingProfile, setActualManufacturingProfile] =  useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [data, setData] = useState("");
@@ -67,7 +65,7 @@ const ManufacturingLogEntryForm = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     const fetchData = async () => {
       const response = await getitemlist();
       setData(response.data);
@@ -75,20 +73,20 @@ const ManufacturingLogEntryForm = () => {
     };
     fetchData();
   }, []);
-const handleDateChange=(e)=>{
+
+  const handleDateChange=(e)=>{
   e.preventDefault()
   setsearchDate(e.target.value)
   setShowTable(false)
   setshowSalesPlanTable(false)
 }
-  const handleManufacturingHistory = async (e) => {
+
+const handleManufacturingHistory = async (e) => {
     e.preventDefault();
     let bodyContent = JSON.stringify({
       Date: searchDate,
     });
-    const sp = await getsalesplan(bodyContent);
-    // console.log(sp);
-  
+    const sp = await getsalesplan(bodyContent);  
     if (sp.status === 404 ) {
       setResponse({ message: "Date not present", status: "error" });
     } else if (sp.Item && sp.Item.SalesPlanList) {
@@ -108,9 +106,6 @@ const handleDateChange=(e)=>{
       console.log("Error: SalesPlanList not found in response.");
     }
   };
-  
-  
-
   let form = null;
 
   if (ManufacturingHistoryProfile) {
@@ -145,6 +140,11 @@ const handleDateChange=(e)=>{
         </form>
       </div>
     );
+  }
+  const handlecancel = () =>{
+setshowSalesPlanTable(false)
+setplannerList([])
+
   }
   return (
     <>
@@ -308,7 +308,6 @@ const handleDateChange=(e)=>{
             <thead>
               <tr>
                 <th>Date</th>
-
                 <th>Item Name</th>
                 <th>Sales Forecast</th>
               </tr>
@@ -330,7 +329,7 @@ const handleDateChange=(e)=>{
           <div id="tabel_controllers">
             <div
               id="recipebutton_close"
-              onClick={() => setshowSalesPlanTable(false)}
+              onClick={handlecancel}
             >
               cancel
             </div>

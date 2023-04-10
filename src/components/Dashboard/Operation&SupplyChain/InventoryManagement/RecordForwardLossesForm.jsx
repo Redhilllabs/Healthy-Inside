@@ -19,7 +19,9 @@ const RecordForwardLossesForm = () => {
   const [showRecordForwardLossestable, setshowRecordForwardLossestable] =
     useState(false);
 
-
+const handlecancel = ()=>{
+ setshowRecordForwardLossestable(false)
+}
 
     const handleRecordForwardLossesDateChange = (event) => {
         setRecordForwardLossesDate(event.target.value);
@@ -174,7 +176,7 @@ const RecordForwardLossesForm = () => {
             <div id="tabel_controllers">
               <div
                 id="recipebutton_close"
-                onClick={() => setshowRecordForwardLossestable(false)}
+                onClick={handlecancel}
               >
                 cancel
               </div>

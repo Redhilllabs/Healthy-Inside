@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+Project Documentation
+Introduction
+This project is a MERN stack application that involves the integration of various AWS services. The application provides a platform for online food ordering and delivery.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Getting Started
+To start the project on your local machine, first clone this git repository into your desired directory by using the command "git clone [http link copied from GitHub]".
 
-## Available Scripts
+AWS Services used
 
-In the project directory, you can run:
+S3 - used for storage
+Lambda function - used for serverless computing
+Route 53 - used for DNS management
+AWS Amplify - used for app deployment and hosting
+SNS - used for push notifications
+API Gateway - used to create, publish, and manage APIs
+DynamoDB - a NoSQL database service from AWS that may be used for storing data in this project
+CloudWatch - a monitoring and logging service from AWS that may be used for monitoring Lambda functions and API Gateway usage
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Folder Structure
+The MERN-FOOD project has the following folder structure:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+LAMBDA-BACKEND - contains the Lambda function code
+SRC - contains the React source code
+COMPONENTS - contains the React components used in the project
+CONTEXT - contains the React context files
+IMAGES - contains the image files used in the project
+ROUTES - contains the React router files
+UTILS - contains utility functions used in the project
+APP.JS - the main React component
+APP.CSS - the main CSS file
+INDEX.JS - the entry point for the React app
+INDEX.CSS - contains the global styles for the app
+.ENV - contains environment variables used in the project
+PACKAGE.JSON - contains the project dependencies and scripts
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+App.js
+This is the main component of the React application. It is responsible for rendering the UI and handling the routing of the application.
 
-### `npm run build`
+Dependencies
+react-router-dom
+react
+utils/ApiCall.js
+context/reducer.js
+context/StateProvider.js
+Routes/PrivateRoute.js
+Routes/PublicRoute.js
+Routes/AdminRoute.js
+components/Header.js
+components/Footer.js
+components/Home.js
+components/Signup.js
+components/Morninigfood.js
+components/Login.js
+components/AdminLogin.js
+components/Account.js
+components/OrderSubmit.js
+components/Dashboard/Dashboard.js
+components/Cart.js
+States
+showProfile - a boolean state that toggles the user profile dropdown menu.
+foodItems - an array of objects that contains information about the food items.
+Functions
+handleProfileToggle - a callback function that toggles the showProfile state.
+fetchData - an async function that fetches the food items data from the API and sets the foodItems state using the dispatch function from the useStateValue hook.
+Routes
+'/' - renders the <Home /> component.
+'/morninigfood' - renders the <Morninigfood /> component.
+'/urvi' - renders the <Dashboard /> component for the admin user only.
+'/account' - renders the <Account /> component for authenticated users only.
+'/cart' - renders the <Cart /> component for authenticated users only.
+'/oderSubmit' - renders the <OrderSubmit /> component for authenticated users only.
+'/login' - renders the <Login /> component for unauthenticated users only.
+'/Adminlogin' - renders the <AdminLogin /> component for unauthenticated users only.
+'/signup' - renders the <Signup /> component for unauthenticated users only.
+Usage
+The App component is the root component of the React application. It is responsible for handling the routing of the application and rendering the header, footer, and main content of the application. The Routes component is used to define the different routes of the application and the corresponding components that should be rendered when those routes are accessed. The useState hook is used to define the showProfile state which is used to toggle the user profile dropdown menu. The useEffect hook is used to fetch the food items data from the API and set the foodItems state using the dispatch function from the useStateValue hook. The handleProfileToggle function is used to toggle the showProfile state when the user clicks on the user profile icon.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Here are the extensions used for VS Code:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Prettier - used for code formatting.
+AWS Toolkit - used for managing AWS resources from within VS Code.
+ES7+ React/Redux/React-Native snippets - provides snippets for React, Redux and React Native.
+React Native Tools - provides tools for developing React Native applications.
+Thunder Client - used for testing REST APIs.
+Auto Rename Tag - automatically renames paired HTML/XML tags.
+Make sure to install these extensions to have a better development experience in VS Code.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Setup
+Set up the required AWS services by following the documentation provided by AWS.
+Configure the environment variables required for the project in the .env file.
+Usage
+Run the command npm install to install the dependencies.
+Run the command npm start to start the development server.
+Contributors
+Ketan Upadhyay 
 
-## Learn More
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We hope this README.md file helps you understand the project and how to get started with it.

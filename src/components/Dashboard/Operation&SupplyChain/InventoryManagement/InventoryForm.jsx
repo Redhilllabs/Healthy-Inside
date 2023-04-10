@@ -72,6 +72,16 @@ const InventoryForm = () => {
       setResponse({ message: "Error Occurred", status: "error" });
     }
   };
+  const handlecancel = ()=>{
+    showInventoryTable(false)
+    setItemName("")
+    setQuantity("")
+    setUnit("")
+    setUnitPrice("")
+    setAmount("")
+
+    
+  }
 
   return (
     <>
@@ -364,15 +374,12 @@ const InventoryForm = () => {
               required
             />{" "}
           </div>
-
-          {/* <div class="button-container"> */}
             <input
               id="addmoreingredients"
               type="submit"
               name="submit"
               value={"Submit"}
             />
-          {/* </div> */}
         </form>
       </div>
       <br />
@@ -405,7 +412,7 @@ const InventoryForm = () => {
           <div id="tabel_controllers">
             <div
               id="recipebutton_close"
-              onClick={() => showInventoryTable(false)}
+              onClick={handlecancel}
             >
               cancel
             </div>
@@ -417,7 +424,7 @@ const InventoryForm = () => {
                     src={load2}
                     alt=""
                     srcset=""
-                    style={{ width: "30px", height: "30px" }}
+                    style={{ width: "20px", height: "20px" }}
                   />
                 </>
               ) : (

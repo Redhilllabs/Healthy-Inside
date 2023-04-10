@@ -59,6 +59,13 @@ const Dailysalesmatricsform = () => {
     setsalesForecast("1");
     setsalesplandate(salesplandate);
   };
+  const handlecancel = ()=>{
+   setshowSalesPlanTable(false)
+   setsaleplanItemname("");
+   setsalesForecast("1");
+   setplannerList([]);
+
+  }
   useEffect(() => {
     const fetchData = async () => {
       const response = await getitemlist();
@@ -70,6 +77,7 @@ const Dailysalesmatricsform = () => {
   return (
     <>
     <Message response={response} />
+    
       <div className="formcontains">
         <h1>Daily Sales Metrics</h1>
         <form
@@ -157,7 +165,7 @@ const Dailysalesmatricsform = () => {
           <div id="tabel_controllers">
             <div
               id="recipebutton_close"
-              onClick={() => setshowSalesPlanTable(false)}
+              onClick={handlecancel}
             >
               cancel
             </div>

@@ -22,7 +22,7 @@ function MasterForm({ date, setSelectedDate }) {
         });
 
         const response = await SearchMasterImportAndexport(bodyContent);
-console.log(response)
+// console.log(response)
         if (response.status === 500) {
           setResponse({ message: "Date not present", status: "error" });
           setIsLoading(false)
