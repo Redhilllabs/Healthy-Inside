@@ -57,20 +57,20 @@ function MasterForm({ date, setSelectedDate }) {
             <table className="recipe_table" id="batchtable1" ref={table1Ref}>
             <thead>
   <tr>
-    <th>Root Item</th>
+    <th rowspan="3">Root Item</th>
     <th colspan="3">Import supply</th>
     <th colspan="3">Export supply</th>
-    <th>Headed For</th>
+    {/* <th>Headed For</th> */}
   </tr>
   <tr>
-    <th></th>
+    {/* <th></th> */}
     <th>Particulars</th>
     <th>Quantity</th>
     <th>Metrics</th>
     <th>Particulars</th>
     <th>Quantity</th>
     <th>Metrics</th>
-    <th></th>
+    {/* <th></th> */}
   </tr>
 </thead>
               <tbody>
@@ -105,7 +105,6 @@ function MasterForm({ date, setSelectedDate }) {
             </tbody>
           </table>
         </td>
-        <td>{item.headedFor}</td>
       </tr>
     ))}
 </tbody>
@@ -113,7 +112,7 @@ function MasterForm({ date, setSelectedDate }) {
             </table>
             <div id="batchtable3">
               {" "}
-              <hr /> <hr /> <hr />
+              
             </div>
             <table className="recipe_table" id="batchtable2" ref={table2Ref}>
               <thead>

@@ -301,7 +301,7 @@ width: 75%;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    flex-direction: row;
+    flex-direction:column;
   }
   #batchtable2{
     flex-grow: 0;
@@ -410,14 +410,14 @@ overflow: scroll;
   }
   .recipe_table th {
     width: 25%;
-    background-color: var(--dashboard);
-    background-color: #dddddd;
+    /* background-color: var(--dashboard); */
+    /* background-color: #dddddd; */
     font-weight: bold;
     text-align: center;
   }
 
   .recipe_table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
   }
   .showInventoryTable{
     border-collapse: collapse;

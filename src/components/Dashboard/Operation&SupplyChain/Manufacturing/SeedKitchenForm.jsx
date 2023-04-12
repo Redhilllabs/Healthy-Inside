@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, memo } from "react";
 import { SearchSeedImportAndexport } from "../../../../utils/ApiCall";
 import Message from "../../../../utils/Message";
 import ReactToPrint from "react-to-print";
+import load2 from '../../../../images/load2.gif'
 
 const SeedKitchenForm = ({ date }) => {
   const [Seeddata, setData] = useState([]);
@@ -9,10 +10,12 @@ const SeedKitchenForm = ({ date }) => {
   const table1Ref = useRef(null);
   const table2Ref = useRef(null);
   const [response, setResponse] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true)
         let bodyContent = JSON.stringify({
           Date: date,
         });
@@ -21,12 +24,14 @@ const SeedKitchenForm = ({ date }) => {
 
         if(response.status === 500) {
           setResponse({ message: "Date not present", status: "error" });
+          setIsLoading(false)
         } else {
           setData(response);
           setResponse({
             message: "Data loaded successfully",
             status: "success",
           });
+          setIsLoading(false)
         }
       } catch (error) {
         setResponse({ message: "Error loading data", status: "error" });
@@ -43,26 +48,29 @@ const SeedKitchenForm = ({ date }) => {
     <div>
     <Message response={response} />
       <br />
+      <center>
+      {isLoading ?<><img src={load2} alt="" srcset="" /></>:<></>}
+      </center>
       {date && (
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
             <table className="recipe_table" id="batchtable1" ref={table1Ref}>
             <thead>
   <tr>
-    <th>Root Item</th>
+    <th rowspan="3">Root Item</th>
     <th colspan="3">Import supply</th>
     <th colspan="3">Export supply</th>
-    <th>Headed For</th>
+    {/* <th>Headed For</th> */}
   </tr>
   <tr>
-    <th></th>
+    {/* <th></th> */}
     <th>Particulars</th>
     <th>Quantity</th>
     <th>Metrics</th>
     <th>Particulars</th>
     <th>Quantity</th>
     <th>Metrics</th>
-    <th></th>
+    {/* <th></th> */}
   </tr>
 </thead>
               <tbody>
@@ -97,7 +105,6 @@ const SeedKitchenForm = ({ date }) => {
             </tbody>
           </table>
         </td>
-        <td>{item.headedFor}</td>
       </tr>
     ))}
 </tbody>
@@ -105,7 +112,7 @@ const SeedKitchenForm = ({ date }) => {
             </table>
             <div id="batchtable3">
               {" "}
-              <hr /> <hr /> <hr />
+              
             </div>
             <table className="recipe_table" id="batchtable2" ref={table2Ref}>
               <thead>

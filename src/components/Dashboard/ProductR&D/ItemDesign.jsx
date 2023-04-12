@@ -150,7 +150,7 @@ const ItemDesignForm = () => {
           <input type="submit" Value={"Add"} id="addmoreingredients" />
         </form>
       </div>
-
+<br />
       <div id="Tabels_container">
         {showTable && (
           <div className="table-container" id="yourrecipetale">

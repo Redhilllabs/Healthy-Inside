@@ -75,7 +75,7 @@ function BatchingForm({ date, setSelectedDate }) {
                 <th>Quantity</th>
               </tr>
             </thead></th>
-                  <th>Headed For</th>
+                  {/* <th>Headed For</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -108,7 +108,7 @@ function BatchingForm({ date, setSelectedDate }) {
             </tbody>
           </table>
         </td>
-        <td>{item.headedFor}</td>
+        {/* <td>{item.headedFor}</td> */}
       </tr>
     ))}
 </tbody>
@@ -117,7 +117,7 @@ function BatchingForm({ date, setSelectedDate }) {
 
             <div id="batchtable3">
               {" "}
-              <hr /> <hr /> <hr />
+              
             </div>
 
             <table className="recipe_table" id="batchtable2" ref={table2Ref}>
