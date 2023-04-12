@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BatchingForm from "./BatchingForm";
 import SeedKitchenForm from "./SeedKitchenForm";
 import MasterForm from "./MasterForm";
+import OPKForm from "./OPkForm"
 
 const ImportandExportLogForm = () => {
   const [kitchenOption, setKitchenOption] = useState("");
@@ -46,7 +47,7 @@ const ImportandExportLogForm = () => {
             Master Kitchen
           </button>
 
-          <button onClick={() => handleOptionClick("op")}>Op Kitchen</button>
+          <button id={kitchenOption === "op" ? "active" : ""} onClick={() => handleOptionClick("op")}>OPK Kitchen</button>
         </div>
         <br />
         {kitchenOption && (
@@ -73,6 +74,13 @@ const ImportandExportLogForm = () => {
 
         {kitchenOption === "seed" && showTable && (
           <SeedKitchenForm
+            date={selectedDate}
+            setShowTable={setShowTable}
+            setSelectedDate={setSelectedDate}
+          />
+        )}
+        {kitchenOption === "op" && showTable && (
+          <OPKForm
             date={selectedDate}
             setShowTable={setShowTable}
             setSelectedDate={setSelectedDate}

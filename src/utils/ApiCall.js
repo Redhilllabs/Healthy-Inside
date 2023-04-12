@@ -37,7 +37,8 @@ const urls = {
   getactualManufacturingapi: `${produrl}/getactualmanufacturing`,
   SearchBatchingImportAndexportapi:`${produrl}/branchingimportexport`,
   SearchSeedImportAndexportapi:`${produrl}/seedimportandexport`,
-  SearchMasterImportAndexportapi:`${produrl}/masterimportandexport`
+  SearchMasterImportAndexportapi:`${produrl}/masterimportandexport`,
+  SearchOPKImportAndexportapi:`${produrl}/opkimportandexport`
 
 };
 
@@ -271,3 +272,6 @@ export const SearchMasterImportAndexport = async(data)=>{
   return makeRequest(urls.SearchMasterImportAndexportapi,"POST",data);
 }
 
+export const SearchOPKImportAndexport = async(data)=>{
+  return makeRequest(urls.SearchOPKImportAndexportapi,"POST",data);
+}
