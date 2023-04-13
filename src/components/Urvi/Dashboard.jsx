@@ -10,10 +10,10 @@ import ItemmanufacPlaner from "./Operation&SupplyChain/Manufacturing/Itemmanufac
 import ImportandExportLogForm from "./Operation&SupplyChain/Manufacturing/ImportandExportLogForm";
 import TaskSheetForm from "./Operation&SupplyChain/Manufacturing/TaskSheetForm";
 import OrderstatusForm from "./Operation&SupplyChain/OrderTrack&Delivery/OrderstatusForm";
-import PurchaseOrderForm from "./Operation&SupplyChain/InventoryManagement/PurchaseOrderForm";
+import PurchaseOrderForm from "./Operation&SupplyChain/InventoryManagement/ViewPurchaseOrderForm";
 import RMIProfileingForm from "./ProductR&D/RMIProfileingForm";
 import RecordForwardLossesForm from "./Operation&SupplyChain/InventoryManagement/RecordForwardLossesForm";
-import InventoryForm from "./Operation&SupplyChain/InventoryManagement/InventoryForm";
+import InventoryForm from "./Operation&SupplyChain/InventoryManagement/PurchaseLogEntryForm";
 import Dailysalesmatricsform from "./Business&Branding/Dailysalesmatricsform";
 import ViewSalesPlanform from "./Business&Branding/ViewSalesPlanform";
 import PackingPlanner from "./Business&Branding/PackingPlanner";

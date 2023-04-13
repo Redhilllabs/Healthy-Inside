@@ -71,6 +71,14 @@ const PurchaseOrderForm = () => {
     setIsLoading(false);
   };
 
+  const handleDateChange = async (e) =>{
+  setStartDate(e.target.value)
+    setShowTable(false)
+    setShowTable2(false)
+
+
+  }
+
   let form = null;
   // Conditionally render the form based on which button was clicked
   if (CountExistingProfile || DropExistingProfile) {
@@ -91,7 +99,7 @@ const PurchaseOrderForm = () => {
               type="date"
               id="start-date-input"
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={handleDateChange}
               required
             />
 

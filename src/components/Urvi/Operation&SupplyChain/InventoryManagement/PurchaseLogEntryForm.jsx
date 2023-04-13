@@ -13,15 +13,41 @@ const InventoryForm = () => {
   const [amount, setAmount] = useState(0);
   const [showInventoryTable, setShowInventoryTable] = useState(false);
   const [response, setResponse] = useState(null);
+  const [ingredientsList, setIngredientsList] = useState([]);
 
+
+const handelamount = (e)=>{
+  setAmount(e.target.value)
+  if(quantity>0){
+    setUnitPrice(quantity/e.target.value);
+  }else{
+    setUnitPrice(0);
+  }
+}
+
+const handelQunatity = (e)=>{
+  setQuantity(e.target.value);
+  if(amount>0){
+    setUnitPrice(quantity/e.target.value);
+  }else{
+    setUnitPrice(0);
+  }
+}
   const handleInventorySubmitForm = (event) => {
     event.preventDefault();
-    if (Number(amount) === 0) {
-      setUnitPrice(0);
-    } else {
-      setUnitPrice(Number(quantity) / Number(amount));
-    }
-
+    const newIngredient = {
+      name:itemName,
+      quantity: quantity,
+      unit: unit,
+      unitPrice:unitPrice,
+      Amount:amount
+    };
+    setIngredientsList((prevList) => [...prevList, newIngredient]);
+    setItemName("");
+    setQuantity(0);
+    setUnit("gram");
+    // setUnitPrice(0);
+    setAmount(0)
     setShowInventoryTable(true);
   };
 
@@ -29,15 +55,7 @@ const InventoryForm = () => {
     try {
       const bodyContent = JSON.stringify({
         Date: date,
-        ingredients: [
-          {
-            name: itemName,
-            quantity,
-            unit,
-            unitPrice,
-            Amount: amount,
-          },
-        ],
+        ingredients:ingredientsList
       });
       const response = await AddPurcaselogEntry(bodyContent);
   
@@ -46,9 +64,7 @@ const InventoryForm = () => {
       }
   
       const bodyContent2 = JSON.stringify({
-        Ingredients: itemName,
-        quantity,
-        unit,
+        Ingredients: ingredientsList 
       });
       const response2 = await AddtoInventory(bodyContent2);
   
@@ -66,6 +82,7 @@ const InventoryForm = () => {
       setQuantity(0);
       setUnit("");
       setUnitPrice(0);
+      setIngredientsList([]);
       setShowInventoryTable(false);
     } catch (error) {
       console.error(error);
@@ -73,16 +90,16 @@ const InventoryForm = () => {
     }
   };
   const handlecancel = ()=>{
-    showInventoryTable(false)
+    setShowInventoryTable(false)
     setItemName("")
-    setQuantity("")
-    setUnit("")
-    setUnitPrice("")
-    setAmount("")
+    setQuantity(0)
+    setUnit("gram")
+    setUnitPrice(0)
+    setAmount(0)
+    setIngredientsList([])
 
     
   }
-
   return (
     <>
       <Message response={response} />
@@ -339,7 +356,7 @@ const InventoryForm = () => {
               name="Quantity"
               id="quantityIPL"
               value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
+              onChange={handelQunatity}
               required
             />{" "}
           </div>
@@ -370,7 +387,7 @@ const InventoryForm = () => {
               name="Amount"
               id="amountIPL"
               value={amount}
-              onChange={(e) => setAmount(parseFloat(e.target.value))}
+              onChange={handelamount}
               required
             />{" "}
           </div>
@@ -378,11 +395,13 @@ const InventoryForm = () => {
               id="addmoreingredients"
               type="submit"
               name="submit"
-              value={"Submit"}
+              value={"Add"}
             />
         </form>
       </div>
+
       <br />
+
       {showInventoryTable && (
         <div className="table-container">
           <h2>Purchase Log</h2>
@@ -399,14 +418,19 @@ const InventoryForm = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{date}</td>
-                <td>{itemName}</td>
-                <td>{quantity}</td>
-                <td>{unit}</td>
-                <td>{unitPrice}</td>
-                <td>{amount}</td>
-              </tr>
+              
+              {ingredientsList.map((service, index) => (
+                  <tr key={index}>
+                    {index === 0 && (
+                      <td rowSpan={ingredientsList.length}>{date}</td>
+                    )}
+                    <td>{service.name}</td>
+                    <td>{service.quantity}</td>
+                    <td>{service.unit}</td>
+                    <td>{service.unitPrice}</td>
+                    <td>{service.Amount}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
           <div id="tabel_controllers">
@@ -434,6 +458,7 @@ const InventoryForm = () => {
           </div>
         </div>
       )}
+
     </>
   );
 };
