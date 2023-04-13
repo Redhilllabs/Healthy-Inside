@@ -235,6 +235,8 @@ const RecipeForm = () => {
           <button>Description</button>
           <button>Mini Blog</button>
           <button>Labels</button>
+          <button>Health Benifit</button>
+          <button>Rich IN</button>
         </div>
         {ingredientProfile ? (
           <form className="form" id="recipe-designing" onSubmit={handeladdmore}>

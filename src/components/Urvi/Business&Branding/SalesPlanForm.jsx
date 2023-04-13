@@ -105,8 +105,8 @@ const SalesPlanForm = () => {
           <button  id={DaysPlan ? "active" : ""} onClick={() => setDaysPlan(!DaysPlan)}>
             Submit Days Plan
           </button>
-          <button>Submit Weekly Plan</button>
-          <button>Submit Monthly Plan</button>
+          {/* <button>Submit Weekly Plan</button>
+          <button>Submit Monthly Plan</button> */}
           <button>Custom Plan</button>
         </div>
         {DaysPlan ? (

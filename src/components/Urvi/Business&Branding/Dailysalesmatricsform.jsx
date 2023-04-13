@@ -15,33 +15,33 @@ const Dailysalesmatricsform = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    let bodyContent = JSON.stringify({
-      Date: salesplandate,
-      SalesPlanList: plannerList,
-    });
-    if (salesplandate && plannerList) {
-      const response = await AdddailySalesMetric(bodyContent);
-      if (response) {
-        setIsLoading(false);
-      }
+    // setIsLoading(true);
+    // let bodyContent = JSON.stringify({
+    //   Date: salesplandate,
+    //   SalesPlanList: plannerList,
+    // });
+    // if (salesplandate && plannerList) {
+    //   const response = await AdddailySalesMetric(bodyContent);
+    //   if (response) {
+    //     setIsLoading(false);
+    //   }
 
-      if (response.status === 404) {
-        setResponse({ message: "Error Saving data", status: "error" });
-        return;
-      } else {
-        setResponse({
-          message: "Data loaded successfully",
-          status: "success",
-        });
+    //   if (response.status === 404) {
+    //     setResponse({ message: "Error Saving data", status: "error" });
+    //     return;
+    //   } else {
+    //     setResponse({
+    //       message: "Data loaded successfully",
+    //       status: "success",
+    //     });
 
-        setsaleplanItemname("");
-        setsalesForecast("1");
-        setsalesplandate("");
-        setplannerList([]);
-        setshowSalesPlanTable(false);
-      }
-    }
+    //     setsaleplanItemname("");
+    //     setsalesForecast("1");
+    //     setsalesplandate("");
+    //     setplannerList([]);
+    //     setshowSalesPlanTable(false);
+    //   }
+    // }
   };
   const handeldatechange = (e) => {
     setsalesplandate(e.target.value);
