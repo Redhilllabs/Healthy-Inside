@@ -4,7 +4,7 @@
 }
 
 .hero_container {
-  background-image: url(../images/heroimage.jpg); /* The image used */
+  background-image: url(../../images/heroimage.jpg); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 500px; /* You must set a specified height */
   background-position: center; /* Center the image */
@@ -143,7 +143,7 @@ justify-content: center;
 } */
 
 .imggfood{
-  background-image: url(../images/imgg2.jpg);
+  background-image: url(../../images/imgg2.jpg);
   background-repeat: no-repeat;
   background-size:cover;
   background-position: center;

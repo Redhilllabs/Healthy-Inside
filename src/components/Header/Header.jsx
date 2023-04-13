@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png";
-import { useStateValue } from "../context/StateProvider";
-import { actionType } from "../context/reducer";
+import logo from "../../images/logo.png";
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
 import { useNavigate } from "react-router-dom";
-import { saveClaimKit } from "../utils/ApiCall";
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { saveClaimKit } from "../../utils/ApiCall";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 const Header = ({ onProfileToggle }) => {
-  const [{ user ,admin}, dispatch] = useStateValue();
+  const [{ user, admin }, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState(false);
   const [menu, setmenu] = useState(false);
   const [showClaimKitForm, setShowClaimKitForm] = useState(false);
@@ -98,95 +103,105 @@ const Header = ({ onProfileToggle }) => {
   return (
     <div id="header_container">
       <section id="header">
-      {admin? (
-        <Link to="/" id="header_logo_admin"><h1>Urvi</h1></Link>
-          
+        {admin ? (
+          <Link to="/" id="header_logo_admin">
+            <h1>Urvi</h1>
+          </Link>
         ) : (
-        <Link to="/" id="header_logo">
-          <h1>HEALTHY</h1>
-          <img src={logo} class="logo" alt="logo" />
-          <h1>INSIDE</h1>
-        </Link>)}
+          <Link to="/" id="header_logo">
+            <h1>HEALTHY</h1>
+            <img src={logo} class="logo" alt="logo" />
+            <h1>INSIDE</h1>
+          </Link>
+        )}
 
         <div id="navbar_container">
           <ul id="navbar">
+            {location.pathname === "/urvi" ||
+            location.pathname === "/Adminlogin" ? (
+              <></>
+            ) : (
+              <>
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a id="header_link">Bento Box</a>
 
-          {location.pathname === '/urvi' || location.pathname === '/Adminlogin' ? (
-          <></>
-        ) : (
-          <>
-          <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <a id="header_link">Bento Box</a>
+                  {showMenu && (
+                    <ul className="dropdown-menu">
+                      <li>
+                        <Link to="/morninigfood">Morning</Link>
+                      </li>
 
-              {showMenu && (
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link  to="/morninigfood">Morning</Link>
-                  </li>
+                      <li>
+                        <a>Lunch</a>
+                      </li>
+                      <li>
+                        <a>Supper</a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a id="header_link">Happy Inside</a>
 
-                  <li>
-                    <a>Lunch</a>
-                  </li>
-                  <li>
-                    <a>Supper</a>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <a id="header_link" >Happy Inside</a>
+                  {showMenu && (
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a>MindFull Game</a>
+                      </li>
 
-              {showMenu && (
-                <ul className="dropdown-menu">
-                  <li>
-                  <a>MindFull Game</a>
-                  </li>
+                      <li>
+                        <a>Challenge Game</a>
+                      </li>
+                      <li>
+                        <a>Order Game</a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a id="header_link">Cook Your Own</a>
 
-                  <li>
-                    <a>Challenge Game</a>
-                  </li>
-                  <li>
-                    <a>Order Game</a>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <a id="header_link" >Cook Your Own</a>
+                  {showMenu && (
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a>Make your own food</a>
+                      </li>
 
-              {showMenu && (
-                <ul className="dropdown-menu">
-                  <li>
-                  <a>Make your own food</a>
-                  </li>
+                      <li>
+                        <a>Heat up food</a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a id="header_link">Make SomeOne Happy</a>
 
-                  <li>
-                    <a>Heat up food</a>
-                  </li>
+                  {showMenu && (
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a>Gift</a>
+                      </li>
 
-                </ul>
-              )}
-            </li>
-            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <a id="header_link" >Make SomeOne Happy</a>
-
-              {showMenu && (
-                <ul className="dropdown-menu">
-                  <li>
-                  <a>Gift</a>
-                  </li>
-
-                  <li>
-                    <a>Free Food</a>
-                  </li>
-
-                </ul>
-              )}
-            </li>
-          </>
-        )}
-            
-            
+                      <li>
+                        <a>Free Food</a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              </>
+            )}
 
             <li>
               {isMenu ? (
@@ -215,21 +230,29 @@ const Header = ({ onProfileToggle }) => {
                     </ul>
                   )}
                 </li>
-              ) : (<>
-
-                {admin?(<Link  to="/urvi" id="header_login_admin" onClick={onProfileToggle} >{admin.name}</Link>):(<>
-                <Link id="header_login" to="/login">
-                  Log In
-                </Link>
-                <Link id="header_Signup" to="/signup">
-                  Sign Up
-                </Link>
-                </>)} 
-
+              ) : (
+                <>
+                  {admin ? (
+                    <Link
+                      to="/urvi"
+                      id="header_login_admin"
+                      onClick={onProfileToggle}
+                    >
+                      {admin.name}
+                    </Link>
+                  ) : (
+                    <>
+                      <Link id="header_login" to="/login">
+                        Log In
+                      </Link>
+                      <Link id="header_Signup" to="/signup">
+                        Sign Up
+                      </Link>
+                    </>
+                  )}
                 </>
               )}
             </li>
-
           </ul>
         </div>
 
@@ -260,34 +283,39 @@ const Header = ({ onProfileToggle }) => {
                   <></>
                 )}
 
-                <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <a id="header_link">Bento Box</a>
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a id="header_link">Bento Box</a>
 
-              {showMenu && (
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link onClick={() => setmenu(false)} to="/morninigfood">Morning</Link>
-                  </li>
+                  {showMenu && (
+                    <ul className="dropdown-menu">
+                      <li>
+                        <Link onClick={() => setmenu(false)} to="/morninigfood">
+                          Morning
+                        </Link>
+                      </li>
 
-                  <li>
-                    <a>Lunch</a>
-                  </li>
-                  <li>
-                    <a>Supper</a>
-                  </li>
-                </ul>
-              )}
-            </li>
+                      <li>
+                        <a>Lunch</a>
+                      </li>
+                      <li>
+                        <a>Supper</a>
+                      </li>
+                    </ul>
+                  )}
+                </li>
 
                 <li>
                   <Link class="active" id="header_link" to="/">
-                  Happy Inside
+                    Happy Inside
                   </Link>
                 </li>
 
                 <li>
                   <Link class="active" id="header_link" to="/">
-                  Cook Own
+                    Cook Own
                   </Link>
                 </li>
 
@@ -320,7 +348,6 @@ const Header = ({ onProfileToggle }) => {
                   </p>
                 </li>
 
-
                 <li>
                   <p>
                     {isMenu ? (
@@ -332,8 +359,6 @@ const Header = ({ onProfileToggle }) => {
                     )}
                   </p>
                 </li>
-
-
               </ul>
             </div>
           )}

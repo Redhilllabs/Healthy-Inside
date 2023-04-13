@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./cart.css";
-import { GetCart, SaveUserAddress } from "../utils/ApiCall";
-import { useStateValue } from "../context/StateProvider";
-import { actionType } from "../context/reducer";
+import { GetCart, SaveUserAddress } from "../../utils/ApiCall";
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
 import ViewCart from "./ViewCart";
 import { useNavigate } from "react-router-dom";
-// import { LoginAPi } from "../utils/mongodbFunctions";
-// import loadingGif from '../images/loading.gif';
 
 const Cart = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
   const [flag, setFlag] = useState(1);
   const [tot, setTot] = useState(0.0);
-  // const [totalPrice, setTotalPrice] = useState(0);
-  // const [cart, setCart] = useState([]);
   const [name, setName] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
@@ -22,20 +18,6 @@ const Cart = () => {
   const [zip, setZip] = useState("");
   const [ShowAddressForm, setShowAddressForm] = useState(false);
   const navigate = useNavigate();
-
-  // const [isLoading, setIsLoading] = useState(true);
-  // useEffect(() => {
-  //   // Fetch cart data and set state
-  //   if (user) {
-  //     console.log("load ho raha haii data")
-  //     GetCart(user._id).then((data) => {
-  //       console.log(data)
-  //       setCart(data.data.cart);
-  //       setIsLoading(false);
-  //     });
-  //   }
-  // }, [user]);
-
   useEffect(() => {
     let totalPrice = 0;
   if(cartItems){

@@ -6,25 +6,25 @@ import { useStateValue } from "./context/StateProvider";
 import PrivateRoutes from "./Routes/PrivateRoute";
 import PublicRoutes from "./Routes/PublicRoute";
 import AdminRoutes from "./Routes/AdminRoute";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Signup from "./components/Signup";
-import Morninigfood from "./components/Morninigfood";
-import Login from "./components/Login";
-import AdminLogin from "./components/AdminLogin";
-import Account from "./components/Account";
-import OrderSubmit from "./components/OrderSubmit";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Cart from "./components/Cart";
-import './App.css'
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
+import Signup from "./components/Auth/Signup";
+import Morninigfood from "./components/Home/Morninigfood";
+import Login from "./components/Auth/Login";
+import AdminLogin from "./components/Auth/AdminLogin";
+import Account from "./components/Home/Account";
+import OrderSubmit from "./components/Cart/OrderSubmit";
+import Dashboard from "./components/Urvi/Dashboard";
+import Cart from "./components/Cart/Cart";
+import "./App.css";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [{ foodItems }, dispatch] = useStateValue();
 
   const handleProfileToggle = useCallback(() => {
-    setShowProfile(prev => !prev);
+    setShowProfile((prev) => !prev);
   }, []);
 
   useEffect(() => {
@@ -44,7 +44,10 @@ function App() {
           <Route path="/morninigfood" element={<Morninigfood />} />
 
           <Route element={<AdminRoutes></AdminRoutes>}>
-            <Route path="/urvi" element={<Dashboard showProfile={showProfile} />} />
+            <Route
+              path="/urvi"
+              element={<Dashboard showProfile={showProfile} />}
+            />
           </Route>
 
           <Route element={<PrivateRoutes></PrivateRoutes>}>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./viewcart.css";
-import { useStateValue } from "../context/StateProvider";
-import { actionType } from "../context/reducer";
-import { AddToCart, decreaseCartItem } from "../utils/ApiCall";
+import { useStateValue } from "../../context/StateProvider";
+import { actionType } from "../../context/reducer";
+import { AddToCart, decreaseCartItem } from "../../utils/ApiCall";
 import { Buffer } from "buffer";
 
 let items = [];
