@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from "react";
+import  React,{ useState, useEffect, useRef, memo } from "react";
 import { SearchOPKImportAndexport } from "../../../../utils/ApiCall";
 import Message from "../../../../utils/Message";
 import ReactToPrint from "react-to-print";
@@ -43,7 +43,7 @@ const OPKForm = ({ date }) => {
     <div>
     <Message response={response} />
       <br />
-      {date && (
+      {date && ( 
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
             <table className="recipe_table" id="batchtable1" ref={table1Ref}>
@@ -65,41 +65,36 @@ const OPKForm = ({ date }) => {
     {/* <th></th> */}
   </tr>
 </thead>
-              <tbody>
+             <tbody>
   {(Seeddata.data || [])
     .concat(Seeddata.ExtrabatchingUser || [])
     .map((item) => (
-      <tr key={item.id}>
-        <td>{item.rootItem}</td>
-        <td colSpan="3">
-          <table className="recipe_table">
-            <tbody>
-              {item.importSupply.map((supply, index) => (
-                <tr key={index}>
-                  <td>{supply.particulars}</td>
-                  <td>{supply.quantity}</td>
-                  <td>{supply.unit}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </td>
-        <td colSpan="3">
-          <table className="recipe_table">
-            <tbody>
-              {item.exportSupply.map((supply, index) => (
-                <tr key={index}>
-                  <td>{supply.particulars}</td>
-                  <td>{supply.quantity}</td>
-                  <td>{supply.unit}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </td>
-      </tr>
+      <React.Fragment key={item.id}>
+        {item.importSupply.map((supply, index) => (
+          <tr key={index}>
+            {index === 0 && <td rowSpan={item.importSupply.length}>{item.rootItem}</td>}
+            <td>{supply.particulars}</td>
+            <td>{supply.quantity}</td>
+            <td>{supply.unit}</td>
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].particulars}</td>}
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].quantity}</td>}
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].unit}</td>}
+          </tr>
+        ))}
+        {item.exportSupply.slice(1).map((supply, index) => (
+          <tr key={index}>
+            {index === 0 && item.importSupply.length === 0 && <td rowSpan={item.exportSupply.length}>{item.rootItem}</td>}
+            {index === 0 && item.importSupply.length > 0 && <td rowSpan={item.importSupply.length}></td>}
+            {index === 0 && <td>{supply.particulars}</td>}
+            <td>{supply.quantity}</td>
+            <td>{supply.unit}</td>
+          </tr>
+        ))}
+      </React.Fragment>
     ))}
 </tbody>
+
+
 
             </table>
             <div id="batchtable3">

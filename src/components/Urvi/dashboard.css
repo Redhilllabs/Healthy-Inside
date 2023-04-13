@@ -389,6 +389,9 @@ overflow: scroll;
     overflow: scroll;
     width: 90%;
   }
+  .recipe_table tr {
+  display: table-row;
+}
   .recipe_table {
     border-collapse: collapse;
     width: 100%;
@@ -404,12 +407,18 @@ overflow: scroll;
     text-align: left;
   padding: 4px;
   }
+  #pertic{
+    width:4rem;
+  }
   
   .recipe_table td {
-    /* width: 100%; */
+    display: table-cell;
+    /* border-collapse: collapse; */
+    /* width: 30px; set the width to one-third of the container width */
+    box-sizing: border-box; /* include padding and border in the width */
   }
   .recipe_table th {
-    width: 25%;
+    /* width: 30px; */
     /* background-color: var(--dashboard); */
     /* background-color: #dddddd; */
     font-weight: bold;

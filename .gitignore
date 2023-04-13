@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/Old_Mongodb_Server
 
 # testing
 /coverage

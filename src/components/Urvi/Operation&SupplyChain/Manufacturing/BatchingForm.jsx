@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from "react";
+import React,{ useState, useEffect, useRef, memo } from "react";
 import { SearchBatchingImportAndexport } from "../../../../utils/ApiCall";
 import Message from "../../../../utils/Message";
 import load2 from '../../../../images/load2.gif'
@@ -13,6 +13,7 @@ function BatchingForm({ date, setSelectedDate }) {
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
@@ -54,77 +55,70 @@ function BatchingForm({ date, setSelectedDate }) {
       </center>
      
 
-      {date && (
+      {date && ( 
         <div className="table-container" id="yourrecipetale">
           <div id="Tabels_container" ref={containerRef}>
             <table className="recipe_table" id="batchtable1" ref={table1Ref}>
-              <thead>
-                <tr>
-                  <th>Root Item</th>
-                  <th>Import supply
-                  <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead></th>
-                  <th>Export supply
-                  <thead>
-              <tr>
-                <th>Particulars</th>
-                <th>Quantity</th>
-              </tr>
-            </thead></th>
-                  {/* <th>Headed For</th> */}
-                </tr>
-              </thead>
-              <tbody>
+            <thead>
+  <tr>
+    <th rowspan="3">Root Item</th>
+    <th colspan="3">Import supply</th>
+    <th colspan="3">Export supply</th>
+    {/* <th>Headed For</th> */}
+  </tr>
+  <tr>
+    {/* <th></th> */}
+    <th>Particulars</th>
+    <th>Quantity</th>
+    <th>Metrics</th>
+    <th>Particulars</th>
+    <th>Quantity</th>
+    <th>Metrics</th>
+    {/* <th></th> */}
+  </tr>
+</thead>
+             <tbody>
   {(Seeddata.data || [])
     .concat(Seeddata.ExtrabatchingUser || [])
     .map((item) => (
-      <tr key={item.id}>
-        <td>{item.rootItem}</td>
-        <td>
-          <table className="recipe_table">
-            <tbody>
-              {item.importSupply.map((supply, index) => (
-                <tr key={index}>
-                  <td>{supply.particulars}</td>
-                  <td>{supply.quantity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </td>
-        <td>
-          <table className="recipe_table">
-            <tbody>
-              {item.exportSupply.map((supply, index) => (
-                <tr key={index}>
-                  <td>{supply.particulars}</td>
-                  <td>{supply.quantity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </td>
-        {/* <td>{item.headedFor}</td> */}
-      </tr>
+      <React.Fragment key={item.id}>
+        {item.importSupply.map((supply, index) => (
+          <tr key={index}>
+            {index === 0 && <td rowSpan={item.importSupply.length}>{item.rootItem}</td>}
+            <td>{supply.particulars}</td>
+            <td>{supply.quantity}</td>
+            <td>{supply.unit}</td>
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].particulars}</td>}
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].quantity}</td>}
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].unit}</td>}
+          </tr>
+        ))}
+        {item.exportSupply.slice(1).map((supply, index) => (
+          <tr key={index}>
+            {index === 0 && item.importSupply.length === 0 && <td rowSpan={item.exportSupply.length}>{item.rootItem}</td>}
+            {index === 0 && item.importSupply.length > 0 && <td rowSpan={item.importSupply.length}></td>}
+            {index === 0 && <td>{supply.particulars}</td>}
+            <td>{supply.quantity}</td>
+            <td>{supply.unit}</td>
+          </tr>
+        ))}
+      </React.Fragment>
     ))}
 </tbody>
 
-            </table>
 
+
+            </table>
             <div id="batchtable3">
               {" "}
               
             </div>
-
             <table className="recipe_table" id="batchtable2" ref={table2Ref}>
               <thead>
                 <tr>
                   <th>Particulars</th>
                   <th>Quantity</th>
+                  <th>Unit</th>
                 </tr>
               </thead>
               <tbody>
@@ -147,6 +141,7 @@ function BatchingForm({ date, setSelectedDate }) {
                     <tr key={index}>
                       <td>{supply.particulars}</td>
                       <td>{supply.quantity}</td>
+                      <td>{supply.unit}</td>
                     </tr>
                   ))}
               </tbody>
