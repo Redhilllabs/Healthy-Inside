@@ -81,9 +81,8 @@ const Cart = () => {
         
         <div id="cartItem">
         <div className="cart">
-  {cartItems.length === 0 ? (
-    <p>Your cart is empty.</p>
-  ) : (
+        {cartItems ? (
+  cartItems.length > 0 ? (
     <div className="cart-items">
     {Object.keys(cartItems).map((key) => {
   const item = cartItems[key];
@@ -111,7 +110,13 @@ const Cart = () => {
 })}
 
     </div>
-  )}
+    ) : (
+    <p>Your cart is empty !</p>
+  )
+) : (
+  <p>Loading cart...</p>
+)}
+
 </div>
         </div>
         <div class="line-container">
@@ -137,7 +142,7 @@ const Cart = () => {
 <hr />
 <div className="totalprice">
         <h6>Grand Total </h6>
-          <h6 >{22+49+totalAmount.toFixed(2)}</h6>
+          <h6 >{(22 + 49 + totalAmount).toFixed(2)}</h6>
         </div>
         </div>
         {/* {cartItems.length > 0 ? ( */}
