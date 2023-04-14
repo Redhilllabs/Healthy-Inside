@@ -6,7 +6,7 @@
 .hero_container {
   background-image: url(../../images/heroimage.jpg); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
-  height: 500px; /* You must set a specified height */
+  /* height: 500px; You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
@@ -299,16 +299,8 @@ justify-content: center;
   }
 }
 
-/* shop section */
- .pro-container {
-  padding-top: 20px;
-}
 
-.card-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
+
 
 /* cart button */
 #floatingButton {

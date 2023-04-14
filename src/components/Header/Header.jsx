@@ -143,6 +143,14 @@ const Header = ({ onProfileToggle }) => {
                     </ul>
                   )}
                 </li>
+
+                <li
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <a id="header_link">Order</a>
+                  </li>
+
                 <li
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
@@ -164,6 +172,7 @@ const Header = ({ onProfileToggle }) => {
                     </ul>
                   )}
                 </li>
+
                 <li
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
@@ -182,6 +191,7 @@ const Header = ({ onProfileToggle }) => {
                     </ul>
                   )}
                 </li>
+
                 <li
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
@@ -199,6 +209,9 @@ const Header = ({ onProfileToggle }) => {
                       </li>
                     </ul>
                   )}
+                </li>
+                <li>
+                  <input id="header_search" placeholder="Search..." type="text" />
                 </li>
               </>
             )}
@@ -306,6 +319,11 @@ const Header = ({ onProfileToggle }) => {
                     </ul>
                   )}
                 </li>
+                <li
+                  
+                >
+                  <a id="header_link">Order</a>
+                  </li>
 
                 <li>
                   <Link class="active" id="header_link" to="/">
@@ -359,6 +377,10 @@ const Header = ({ onProfileToggle }) => {
                     )}
                   </p>
                 </li>
+                <li>
+                  <input id="header_search" placeholder="Search..." type="text" />
+                </li>
+                
               </ul>
             </div>
           )}
@@ -425,6 +447,7 @@ const Header = ({ onProfileToggle }) => {
           </form>
         </div>
       )}
+
     </div>
   );
 };

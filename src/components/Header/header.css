@@ -1,20 +1,8 @@
-
-
-
-/* header dropdown  */
-/* li {
-  position: relative;
-  list-style-type: none;
-  margin: 1rem;
-} */
-
 ul.dropdown-menu {
   position: absolute;
   top:69%;
-  /* left: 0; */
   background-color: var(--color1);
   border: 1px solid #ccc;
-  /* border-radius: 15px; */
   padding: 10px;
   display: none;
   z-index: 999;
@@ -73,7 +61,7 @@ li:hover ul.dropdown-menu {
   align-items: center;
   background-color: var(--color1);
   color: black;
-  padding: 0.3rem;
+  /* padding: 0.3rem; */
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
  
@@ -81,7 +69,7 @@ li:hover ul.dropdown-menu {
 
 #header_login{
 border: 1.5px solid var(--color2);
-padding:.5rem 1rem;
+padding:.2rem 1rem;
 color:var(--secondary);
 text-decoration: none;
 }
@@ -95,8 +83,8 @@ text-transform: capitalize;
 
 #header_Signup{
 margin-left: 5px;
-padding:.5rem 1rem;
-color: var(--color3);
+padding:.3rem 1rem;
+color: var(--color1);
 text-decoration: none;
 background-color: var(--secondary);
 }
@@ -109,15 +97,16 @@ background-color: var(--secondary);
 }
 #header_logo{
   text-decoration: none;
-  font-size: 1rem;
+  font-size: .9rem;
   display: flex;
+  margin-left: 5px;
   align-items: center;
   color: var(--secondary);
 }
 #header_logo_admin{
   text-decoration: none;
   margin-left: 15px;
-  font-size: 18.3px;
+  font-size: 15.3px;
   color: var(--secondary);
 
 }
@@ -163,17 +152,37 @@ background-color: var(--secondary);
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    font-size: .875rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--color3);
     text-decoration: none;
     /* margin: 1rem; */
-    padding: 4px 24px;
+    padding: 1px 12px;
 }
 
 
+#header_search{
+  border-radius: 10px;
+  /* padding: 5px; */
+  margin: 5px;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color3);
+    text-decoration: none;
+    /* margin: 1rem; */
+    padding: 3px 12px;
+}
 
-
+#header_search:hover{
+  border: 2px solid var(--secondary);
+}
 
 #close {
   margin-left: auto;
