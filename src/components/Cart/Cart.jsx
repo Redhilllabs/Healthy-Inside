@@ -7,6 +7,7 @@ const Cart = () => {
   const [{cartItems, user }, dispatch] = useStateValue();
   const [qty, setQty] = useState(0);
   const [cart, setCartItems] = useState({});
+  console.log(Object.keys(cartItems).length);
 
   const updateCart = (foodID, qty, foodUrl, foodName, price) => {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
@@ -63,10 +64,17 @@ const Cart = () => {
 };
 
 
+
   const totalAmount = Object.keys(cartItems).reduce((acc, key) => {
     const item = cartItems[key];
     return acc + parseFloat(item.price) * item.qty;
   }, 0);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("cartItems")) || {};
+    // console.log(items)
+    setCartItems(items);
+  }, []);
 
   return (
     <div className="Viewcart">
@@ -82,7 +90,7 @@ const Cart = () => {
         <div id="cartItem">
         <div className="cart">
         {cartItems ? (
-  cartItems.length > 0 ? (
+          Object.keys(cartItems).length > 0 ? (
     <div className="cart-items">
     {Object.keys(cartItems).map((key) => {
   const item = cartItems[key];

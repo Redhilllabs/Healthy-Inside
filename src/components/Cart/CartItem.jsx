@@ -58,6 +58,7 @@ const [cartItems, setCartItems] = useState({});
   
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems")) || {};
+    // console.log(items)
     setCartItems(items);
   }, []);
   

@@ -38,13 +38,25 @@ const Header = ({ onProfileToggle }) => {
   const logout = () => {
     setIsMenu(false);
     setmenu(false);
-    localStorage.clear();
+      // Retrieve the cart items before clearing localStorage
+  const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  console.log("from localstorage cartItems",cartItems)
 
+  // Remove all keys except for cartItems
+  Object.keys(localStorage).forEach((key) => {
+    if (key !== 'cartItems') {
+      localStorage.removeItem(key);
+    }
+  });
+
+  // Restore the cart items to localStorage
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartItems });
     dispatch({
       type: actionType.SET_USER,
       user: null,
     });
-    window.location.reload(true);
+    // window.location.reload(true);
     navigate("/");
   };
 
@@ -324,10 +336,8 @@ const Header = ({ onProfileToggle }) => {
                     </ul>
                   )}
                 </li>
-                <li
-                  
-                >
-                  <Link class="active" id="header_link" to="/cart">Order</Link>
+                <li>
+                  <Link  onClick={() => setmenu(false)} to="/cart">Order</Link>
                   <div id="cartquantity">{itemCount}</div>
                   </li>
 
