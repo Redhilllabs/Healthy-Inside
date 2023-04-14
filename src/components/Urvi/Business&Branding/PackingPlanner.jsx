@@ -28,6 +28,7 @@ const PackingPlanner = () => {
     backgroundColor: 'white',
     padding: '20px',
     borderRadius: '10px'
+     
   }}
 >
   <h2>Select label options:</h2>

@@ -34,7 +34,42 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
+    <script>
+      var url = 'https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?48137';
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = url;
+      var options = {
+    "enabled":true,
+    "chatButtonSetting":{
+        "backgroundColor":"#4dc247",
+        "ctaText":"Contact Us",
+        "borderRadius":"25",
+        "marginLeft":"0",
+        "marginBottom":"50",
+        "marginRight":"50",
+        "position":"right"
+    },
+    "brandSetting":{
+        "brandName":"Healthy Inside",
+        "brandSubTitle":"Reach out to us for quick reply",
+        "brandImg":"https://cdn.clare.ai/wati/images/WATI_logo_square_2.png",
+        "welcomeText":"Hi Mate’s\nHow can I help you?",
+        "messageText":"Hello, I have a question about",
+        "backgroundColor":"#76bb40",
+        "ctaText":"Start Chat",
+        "borderRadius":"25",
+        "autoShow":false,
+        "phoneNumber":"917303701019"
+    }
+  };
+      s.onload = function() {
+          CreateWhatsappChatWidget(options);
+      };
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+  </script>
     <script src="http://localhost:8097"></script>
   </body>
 </html>
