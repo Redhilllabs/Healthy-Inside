@@ -1,210 +1,155 @@
 import React, { useEffect, useState } from "react";
 import "./cart.css";
-import { GetCart, SaveUserAddress } from "../../utils/ApiCall";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import ViewCart from "./ViewCart";
-import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
-  const [flag, setFlag] = useState(1);
-  const [tot, setTot] = useState(0.0);
-  const [name, setName] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
-  const [addressLine2, setAddressLine2] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
-  const [ShowAddressForm, setShowAddressForm] = useState(false);
-  const navigate = useNavigate();
-  useEffect(() => {
-    let totalPrice = 0;
-  if(cartItems){
-    for (let i = 0; i < cartItems?.length; i++) {
-      totalPrice += cartItems[i].quantity * cartItems[i].foodPrice;
-    }
-    setTot(totalPrice);
-  }
-  
- 
-  }, [cartItems,flag ]);
-  
-  function submitOrder() {
-    // submit the order to the server (assuming this is handled by a separate function)
-    // ...
-    navigate("/oderSubmit");
-    // console.log("orderSubmited !");
-  }
-  function checkout() {
-    // check if the user's address is available
-    const userAddress = user?.addressLine1;
-    if (!userAddress) {
-      console.log("userAddress is not availabe");
-      setShowAddressForm(true);
-    } else {
-      console.log("address is availabe");
-      submitOrder();
-    }
-  }
+  const [{cartItems, user }, dispatch] = useStateValue();
+  const [qty, setQty] = useState(0);
+  const [cart, setCartItems] = useState({});
 
-  const handleUserAddressForm = async (event) => {
-    event.preventDefault();
-    console.log("coming to submit form ");
-
-    if (!addressLine1 || !addressLine2 || !city || !state || !zip ) {
-      alert("Please enter your complete address");
-      return;
-    }
-    const data = {
-      email : user.email,
-      addressLine1: addressLine1,
-      addressLine2: addressLine2,
-      city: city,
-      state: state,
-      zip: zip,
-    };
-    const res = await SaveUserAddress(data);
-    console.log(res);
-    const updatedUser = { ...user, address: data };
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-
-    dispatch({
-      type: actionType.SET_USER,
-      user: updatedUser,
-    });
-    
-    submitOrder();
-    alert("Address saved!");
+  const updateCart = (foodID, qty, foodUrl, foodName, price) => {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+    cartItems[foodID] = {qty, foodUrl, foodName, price};
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    setCartItems(cartItems);
+    dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartItems });
   };
 
-  // if (isLoading) {
-  //   return <img src={loadingGif} alt="Loading..." />;
-  // }
+ const updateCartItemQuantity = (foodID, action, qty, foodUrl, foodName, foodPrice) => {
+  const currentQty = qty;
+  let newQty;
+
+  if (action === "add") {
+    newQty = currentQty + 1;
+
+    updateCart(foodID, qty + 1, foodUrl, foodName, foodPrice);
+  } else if (action === "subtract") {
+    newQty = currentQty - 1;
+
+    updateCart(foodID, qty - 1, foodUrl, foodName, foodPrice);
+  }
+
+  // Prevent quantity from going below 0
+  if (newQty < 0) {
+    newQty = 0;
+  }
+
+  setQty(newQty);
+
+  // Remove item from cart if its quantity becomes zero
+  if (newQty === 0) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+    let updatedCartItems = { ...cartItems }; // create a new object that's a copy of the original cartItems object
+    delete updatedCartItems[foodID]; // remove the item from the new object
+
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems)); // store the new object in localStorage
+    dispatch({
+      type: actionType.SET_CARTITEMS,
+      cartItems: updatedCartItems, // pass the new object to the action
+    });
+  } else {
+    // Update the quantity of the cart item with the specified foodID
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+    let updatedCartItems = { ...cartItems }; // create a new object that's a copy of the original cartItems object
+    updatedCartItems[foodID].quantity = newQty; // update the quantity of the cart item
+
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems)); // store the new object in localStorage
+    dispatch({
+      type: actionType.SET_CARTITEMS,
+      cartItems: updatedCartItems, // pass the new object to the action
+    });
+  }
+};
+
+
+  const totalAmount = Object.keys(cartItems).reduce((acc, key) => {
+    const item = cartItems[key];
+    return acc + parseFloat(item.price) * item.qty;
+  }, 0);
 
   return (
     <div className="Viewcart">
       <div class="sidebar">
-        <div class="head">
-          <p> Cart </p>
-        </div>
+        {/* <div class="head"> */}
+        <div class="line-container">
+  <hr class="line"/>
+  <div ><h7>CART</h7></div>
+  <hr class="line"/>
+</div>
+        {/* </div> */}
+        
         <div id="cartItem">
-          {cartItems?.length>0 ?
-            cartItems.map((item) => (
-              <React.Fragment key={item.foodID}>
-                <ViewCart item={item} setFlag={setFlag} flag={flag} />
-              </React.Fragment>
-            )):(<> 
-            <div>
-           Empty Cart ! 
-            </div>
-             </>) }
+        <div className="cart">
+  {cartItems.length === 0 ? (
+    <p>Your cart is empty.</p>
+  ) : (
+    <div className="cart-items">
+    {Object.keys(cartItems).map((key) => {
+  const item = cartItems[key];
+  return (
+    <div className="viewcart" key={key}>
+      <img src={item.foodUrl} alt={item.foodName} />
+      <div className="viewcart_box">
+        <p className="viewcart_box_name">{item.foodName}</p>
+        <p className="viewcart_box_price">
+          $ {parseFloat(item.price) * item.qty}
+        </p>
+      </div>
+
+      <div className="viewcart_box_control">
+        <a onClick={() => updateCartItemQuantity(key, "subtract", item.qty, item.foodUrl, item.foodName, item.price)} >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" id="minus"><path fill="#000" d="M6 13a1 1 0 1 1 0-2h12a1 1 0 1 1 0 2H6Z"></path></svg>
+</a>
+<p>{item.qty}</p>
+<a onClick={() => updateCartItemQuantity(key, "add", item.qty, item.foodUrl, item.foodName, item.price)}>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" id="plus"><path fill="#000" d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"></path></svg>
+</a>
+      </div>
+    </div>
+  );
+})}
+
+    </div>
+  )}
+</div>
         </div>
+        <div class="line-container">
+  <hr class="line"/>
+  <div ><h7>BILL SUMMARY</h7></div>
+  <hr class="line"/>
+</div>
 
         <div class="foot">
         <div className="totalprice">
-        <h2>Total</h2>
-          <h2 id="total">${tot}</h2>
+        <h9>Subtotal </h9>
+          <h6 >{totalAmount.toFixed(2)}</h6>
         </div>
-          
-          <div className="creditsuser">
-          <h2>
-            Credit
-            </h2>
-            <h2>{user ? user?.sellingPrice : <></>}{" "}</h2> 
-          </div>
-          
+
+        <div className="totalprice">
+        <h9>GST charges</h9>
+          <h6 >Rs 49</h6>
         </div>
-        
-
-            {
-          cartItems?.length>0 ?(<a onClick={checkout} class="orderbtn">
-          Place Order
-        </a>):<></>
-            }
-        
-      </div>
-
-      {ShowAddressForm && (
-
-        <div class="modal">
-        <div class="modal-content">
-        <form id="address-form" class="address-form">
-          <div class="address-form-heading">
-            <div class="addressheading">
-              <h3>Enter Address</h3>
-            </div>
-            <div class="address-close" onClick={() => setShowAddressForm(false)}>
-            <i class="fa-solid fa-xmark"></i>
-              {/* <img id="address-close"  src="https://img.icons8.com/ios/50/null/close-window--v1.png"/>               */}
-            </div>
-          </div>
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={user.name}
-            onChange={(event) => setName(event.target.value)}
-            required
-          />
-
-          <label for="address-line1">Address Line 1:</label>
-          <input
-            type="text"
-            id="addressline1"
-            name="addressline1"
-            value={addressLine1}
-            onChange={(event) => setAddressLine1(event.target.value)}
-            required
-          />
-
-          <label for="address-line2">Address Line 2:</label>
-          <input
-            type="text"
-            id="addressline2"
-            name="addressline2"
-            value={addressLine2}
-            onChange={(event) => setAddressLine2(event.target.value)}
-          />
-
-          <label for="city">City:</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={city}
-            onChange={(event) => setCity(event.target.value)}
-            required
-          />
-
-          <label for="state">State:</label>
-          <input
-            type="text"
-            id="state"
-            name="state"
-            value={state}
-            onChange={(event) => setState(event.target.value)}
-            required
-          />
-
-          <label for="zip">Zip Code:</label>
-          <input
-            type="text"
-            id="zip"
-            name="zip"
-            value={zip}
-            onChange={(event) => setZip(event.target.value)}
-            required
-          />
-          <button type="submit" onClick={handleUserAddressForm} name="submit">
-            Checkout
-          </button>
-          {/* <button onClick={()=>handleUserAddressForm}>Checkout</button> */}
-        </form>
+        <div className="totalprice">
+        <h9>Delivery partner fee <br /> (up to 4 Km) </h9>
+          <h6 >Rs 22 </h6>
         </div>
-</div>
-      )}
+<hr />
+<div className="totalprice">
+        <h6>Grand Total </h6>
+          <h6 >{22+49+totalAmount.toFixed(2)}</h6>
+        </div>
+        </div>
+        {/* {cartItems.length > 0 ? ( */}
+        <br />
+  <a className="orderbtn">
+   Continue
+  </a>
+{/* ) : (
+  <></>
+)} */}
+
+      </div>  
     </div>
   );
 };

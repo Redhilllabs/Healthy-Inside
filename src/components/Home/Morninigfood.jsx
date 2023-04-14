@@ -19,7 +19,7 @@ const MorningFood = () => {
 </div>
 
 <div className="Morning_Food_Container">
-<div class="Foodcard" >
+<div class="Foodcard-container" >
 {foodItems && foodItems.data && Array.isArray(foodItems.data) &&
   foodItems.data
     .filter((item) => item.foodType === "breakfast")
@@ -28,10 +28,6 @@ const MorningFood = () => {
         <CartItem item={item}/>
       </React.Fragment>
     ))}
-
-
-
-
         </div>
 </div>
 

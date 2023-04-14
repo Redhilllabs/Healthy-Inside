@@ -324,21 +324,7 @@ justify-content: center;
   transform: translateY(-5px);
 }
 
-#cartquantity {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #ff1f06;
-  color: white;
-  font-size: 25px;
-  padding:6px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-}
+
 
 #floatingButton img {
   width: 50px; /* Reduce the size of the image */

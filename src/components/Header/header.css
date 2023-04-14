@@ -179,6 +179,24 @@ background-color: var(--secondary);
     /* margin: 1rem; */
     padding: 3px 12px;
 }
+#menuIcon{
+  margin-right: 3rem;
+}
+#cartquantity {
+  position: relative;
+  top: 0px;
+  right: 5px;
+  background-color: #ff1f06;
+  color: white;
+  font-size: 12px;
+  padding:3px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
 
 #header_search:hover{
   border: 2px solid var(--secondary);

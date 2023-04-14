@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       const data = await getAllFoodItems();
-      console.log("getting food Items",data)
+      // console.log("getting food Items",data)
       dispatch({ type: actionType.SET_FOOD_ITEMS, foodItems: data });
     }
     fetchData();

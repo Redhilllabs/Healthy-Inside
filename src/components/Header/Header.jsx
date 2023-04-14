@@ -14,11 +14,20 @@ import {
 } from "react-router-dom";
 
 const Header = ({ onProfileToggle }) => {
-  const [{ user, admin }, dispatch] = useStateValue();
+  
   const [isMenu, setIsMenu] = useState(false);
   const [menu, setmenu] = useState(false);
   const [showClaimKitForm, setShowClaimKitForm] = useState(false);
+  const [name, setName] = useState("");
+  const [NameOnKit, setNameOnKit] = useState("");
+  const [address, setAddress] = useState("");
+  const [jerseyNumber, setjerseyNumber] = useState("");
+  const [jerseySize, setJerseySize] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
+
+  const [{ user, admin ,cartItems }, dispatch] = useStateValue();
+  const itemCount = cartItems ? Object.keys(cartItems).length : 0;
 
   useEffect(() => {
     if (user) {
@@ -39,11 +48,7 @@ const Header = ({ onProfileToggle }) => {
     navigate("/");
   };
 
-  const [name, setName] = useState("");
-  const [NameOnKit, setNameOnKit] = useState("");
-  const [address, setAddress] = useState("");
-  const [jerseyNumber, setjerseyNumber] = useState("");
-  const [jerseySize, setJerseySize] = useState("");
+
   const showmenu = () => {
     setmenu(true);
   };
@@ -90,8 +95,6 @@ const Header = ({ onProfileToggle }) => {
       );
     }
   }
-  const [showMenu, setShowMenu] = useState(false);
-
   const handleMouseEnter = () => {
     setShowMenu(true);
   };
@@ -100,6 +103,7 @@ const Header = ({ onProfileToggle }) => {
     setShowMenu(false);
   };
   const location = useLocation();
+
   return (
     <div id="header_container">
       <section id="header">
@@ -145,10 +149,11 @@ const Header = ({ onProfileToggle }) => {
                 </li>
 
                 <li
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
                 >
-                  <a id="header_link">Order</a>
+                 
+                  <Link id="header_link" to="/cart">Order</Link>
+                  <div id="cartquantity">{itemCount}</div>
+                  
                   </li>
 
                 <li
@@ -271,7 +276,7 @@ const Header = ({ onProfileToggle }) => {
 
         <div id="mobile">
           <span onClick={showmenu}>
-            <img src="https://img.icons8.com/ios/50/null/menu--v1.png" />
+            <img  id="menuIcon" src="https://img.icons8.com/ios/50/null/menu--v1.png" />
           </span>
           {menu && (
             <div className="mobilemenu">
@@ -322,7 +327,8 @@ const Header = ({ onProfileToggle }) => {
                 <li
                   
                 >
-                  <a id="header_link">Order</a>
+                  <Link class="active" id="header_link" to="/cart">Order</Link>
+                  <div id="cartquantity">{itemCount}</div>
                   </li>
 
                 <li>
