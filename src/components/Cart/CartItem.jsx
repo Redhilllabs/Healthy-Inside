@@ -11,7 +11,7 @@ const [cartItems, setCartItems] = useState({});
 // console.log(cartItems)
 
 const updateCart = (foodID, qty, foodUrl, foodName, price) => {
-  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
   // Check if any of the parameters are null or empty before adding to the cartItems object
   if (!foodID || !qty || !foodUrl || !foodName || !price) {

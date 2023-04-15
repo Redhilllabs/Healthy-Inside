@@ -7,10 +7,13 @@ const OrderSalesForm = () => {
   const [data, setdata] = useState("");
   const [Table, setShowTable] = useState(false);
   const [response, setResponse] = useState(null);
+  const [rows,setRows] = useState("");
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
+    setShowTable(false)
   };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +21,7 @@ const OrderSalesForm = () => {
     let bodyContent = JSON.stringify({
       Date: startDate,
     });
-
+  
     const response = await SearchOrder(bodyContent);
     console.log(response)
     if (response.status === 404) {
@@ -29,16 +32,18 @@ const OrderSalesForm = () => {
         message: "Data loaded successfully",
         status: "success",
       });
-      setdata(response);
+      setdata(response.Item);
       setShowTable(true);
+      setRows(rows);
     }
   };
+  
 
   return (
     <>
     <Message response={response} />
       <div className="formcontains">
-        <h1>View Sales Plan</h1>
+        <h1>Orders</h1>
         <form
           action=""
           className="form"
@@ -61,7 +66,7 @@ const OrderSalesForm = () => {
           <div className="button-container">
             <input
               id="addmoreingredients"
-              value={"View Sale plan"}
+              value={"View Orders"}
               type="submit"
               name="submit"
             ></input>
@@ -70,35 +75,42 @@ const OrderSalesForm = () => {
       </div>
 
       {Table && (
-        <div className="table-container" id="yourrecipetale">
-          <h2>Your Sales Plan</h2>
-          <br />
-          <table className="recipe_table">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Item Name</th>
-                <th>Sales Forecast</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data &&
-                data.Item &&
-                data.Item.SalesPlanList.map((item, index) => (
-                  <tr key={index}>
-                    {index === 0 && (
-                      <td rowSpan={data.Item.SalesPlanList.length}>
-                        {data.Item.Date}
-                      </td>
-                    )}
-                    <td>{item.itemName}</td>
-                    <td>{item.salesforecast}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+  <div className="table-container" id="yourrecipetale">
+    <h2>Your Orders</h2>
+    <br />
+    <table className="recipe_table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Date Added</th>
+          <th>Food ID</th>
+          <th>Food Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+      {data?.Orders && Object.keys(data.Orders).map((userId) => {
+  const userOrders = data.Orders[userId];
+  return userOrders.map((order, index) => (
+    <tr key={`${userId}-${index}`}>
+      {index === 0 && <td rowSpan={userOrders.length}>{userId}</td>}
+      <td>{order.dateAdded}</td>
+      <td>{order.foodID}</td>
+      <td>{order.foodName}</td>
+      <td>{order.price}</td>
+      <td>{order.qty}</td>
+    </tr>
+  ));
+})}
+
+
+      </tbody>
+    </table>
+  </div>
+)}
+
+
     </>
   );
 };

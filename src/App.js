@@ -40,8 +40,8 @@ function App() {
       ]);
   
       if (userData?.Item) {
-        dispatch({ type: actionType.SET_USER, user: userData.Item });
-        localStorage.setItem('user', JSON.stringify(userData.Item));
+        // dispatch({ type: actionType.SET_USER, user: userData.Item });
+        // localStorage.setItem('user', JSON.stringify(userData.Item));
       }
     } else {
       foodItemsData = await getAllFoodItems();

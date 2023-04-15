@@ -47,13 +47,13 @@ const OrderSubmit = () => {
 
       <div class="order-summary">
         <h2>Order Summary</h2>
-        {cartItems.map((item, index) => (
+        {cartItems?.map((item, index) => (
           <div key={index}>
-            <img src={item.foodUrl} alt={item.foodName} />
-            <p>Food Name: {item.foodName}</p>
-            <p>Price: {item.price}</p>
-            <p>Quantity: {item.qty}</p>
-            <p>Date Added: {item.dateAdded}</p>
+            <img src={item?.foodUrl} alt={item?.foodName} />
+            <p>Food Name: {item?.foodName}</p>
+            <p>Price: {item?.price}</p>
+            <p>Quantity: {item?.qty}</p>
+            <p>Date Added: {item?.dateAdded}</p>
           </div>
         ))}
       </div>

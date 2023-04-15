@@ -20,14 +20,22 @@ const Cart = () => {
   const navigate = useNavigate();
 
   // console.log(Object.keys(cartItems).length);
-
   const updateCart = (foodID, qty, foodUrl, foodName, price) => {
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
-    cartItems[foodID] = {qty,foodID,foodUrl, foodName, price};
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  
+    // Check if any of the parameters are null or empty before adding to the cartItems object
+    if (!foodID || !qty || !foodUrl || !foodName || !price) {
+        console.error("Invalid input - unable to add item to cart.");
+        return;
+    }
+    const updatedCartItems = {
+      ...cartItems,
+      [foodID]: { qty, foodID, foodUrl, foodName, price },
+    };
+    // cartItems[foodID] = {qty,foodID,foodUrl, foodName, price};
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     setCartItems(cartItems);
-    dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartItems });
-    
+    dispatch({ type: actionType.SET_CARTITEMS, cartItems: updatedCartItems });
   };
   
 
@@ -113,6 +121,7 @@ const Cart = () => {
 function submitOrder() {
   // submit the order to the server (assuming this is handled by a separate function)
   // ...
+  // window.location.reload()
   navigate("/oderSubmit");
   // console.log("orderSubmited !");
 }
@@ -160,6 +169,7 @@ const totalAmount = Object.keys(cartItems).reduce((acc, key) => {
   const handleAddress = () =>{
 if(user.Address){
 // navigate to checkout
+// window.location.reload()
     navigate("/oderSubmit");
 }else{
   setShowAddressForm(true)
