@@ -1,36 +1,31 @@
-import React from 'react'
+import React from 'react';
 import RazorpayCheckout from './RazorpayCheckout';
-
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import {AddOrder} from "../../utils/ApiCall";
-import { useNavigate } from "react-router-dom"
-import './OrderSubmit.css'
+import { AddOrder } from "../../utils/ApiCall";
+import { BrowserRouter, useNavigate } from "react-router-dom";
+import './OrderSubmit.css';
+
 const OrderSubmit = () => {
   const [{cartItems, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
-  // console.log("User",user , "cartSummery", cartItems)
-
-
-  const handelCheckOut = async() =>{
+  
+  const handleCheckOut = async () => {
     const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().slice(0, 10); // get the first 10 characters of the ISO string
+    const formattedDate = currentDate.toISOString().slice(0, 10); 
 
     let bodyContent = JSON.stringify({
-
       "date": formattedDate,
       "user_email": user.email,
       "order_details": cartItems
-    }
-    );
+    });
 
-    const response = await AddOrder(bodyContent)
-    if(response.status===200){
-alert("saved data in Orders ")
-window.location.reload()
-navigate("/")
-
-
+    const response = await AddOrder(bodyContent);
+    
+    if(response.status === 200) {
+      alert("saved data in Orders ");
+      window.location.reload();
+      navigate("/");
     }
   }
 
@@ -82,7 +77,7 @@ navigate("/")
         </div>
         <div class="cash-on-delivery">
           <h3>Cash On Delivery</h3>
-          <button id="checkout-button" onClick={handelCheckOut}>Cash On Delivery</button>
+          <button id="checkout-button" onClick={handleCheckOut}>Cash On Delivery</button>
         </div>
         {/* <div id="razorpay-container">Razor Pay</div>
     

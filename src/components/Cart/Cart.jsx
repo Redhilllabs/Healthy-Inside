@@ -176,6 +176,7 @@ if(user.Address){
   <hr class="line"/>
 </div>
         <div id="cartItem">
+        <div className="date">{new Date().toISOString().slice(0, 10)}</div>
         <div className="cart">
         {cartItems ? (
           Object.keys(cartItems).length > 0 ? (
@@ -242,9 +243,10 @@ if(user.Address){
         </div>
         </div>
         <br />
+        {Object.keys(cartItems).length > 0 ?
   <a className="orderbtn" onClick={handleAddress}>
    Continue
-  </a>
+  </a>:<></>}
 
   {ShowAddressForm && (
 

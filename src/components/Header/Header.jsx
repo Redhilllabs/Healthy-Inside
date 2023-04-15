@@ -14,7 +14,6 @@ import {
 } from "react-router-dom";
 
 const Header = ({ onProfileToggle }) => {
-  
   const [isMenu, setIsMenu] = useState(false);
   const [menu, setmenu] = useState(false);
   const [showClaimKitForm, setShowClaimKitForm] = useState(false);
@@ -25,10 +24,29 @@ const Header = ({ onProfileToggle }) => {
   const [jerseySize, setJerseySize] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
+  const [showsearchResults,setshowsearchResults] = useState(false);
 
   const [{ user, admin ,foodItems, cartItems }, dispatch] = useStateValue();
   const itemCount = cartItems ? Object.keys(cartItems).length : 0;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearchTerm(value);
+  
+    if (value === '') {
+      setshowsearchResults(false);
+      setSearchResults([]);
+    } else {
+      setshowsearchResults(true);
+      const filteredItems = foodItems.data.filter(item =>
+        item.foodName.toLowerCase().includes(value)
+      );
+      setSearchResults(filteredItems);
+    }
+  };
+  
 
   useEffect(() => {
     if (user) {
@@ -146,8 +164,7 @@ const Header = ({ onProfileToggle }) => {
                   )}
                 </li>
 
-                <li
-                >
+                <li>
                  
                   <Link id="header_link" to="/cart">Order</Link>
                   <div id="cartquantity">{itemCount}</div>
@@ -214,7 +231,23 @@ const Header = ({ onProfileToggle }) => {
                   )}
                 </li>
                 <li>
-                  <input id="header_search" placeholder="Search..." type="text" />
+                  <div>
+      <input
+        id="header_search"
+        placeholder="Search Food... "
+        type="text"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+{showsearchResults?<div id="search_results">
+        {searchResults.map(item => (
+          <div key={item.foodID}>
+            <Link  id="header_link" to="/morninigfood">{item.foodName}</Link>
+          </div>
+        ))}
+      </div>:<></>}
+      
+    </div>
                 </li> 
               </>
             )}
@@ -380,7 +413,25 @@ const Header = ({ onProfileToggle }) => {
                   </p>
                 </li>
                 <li>
-                  <input id="header_search" placeholder="Search..." type="text" />
+                <div>
+
+                <input
+        id="header_search"
+        placeholder="Search Food... "
+        type="text"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+{showsearchResults?<div id="search_results">
+        {searchResults.map(item => (
+          <div key={item.foodID}>
+            <Link  onClick={() => setmenu(false)}  id="header_link" to="/morninigfood">{item.foodName}</Link>
+          </div>
+        ))}
+      </div>:<></>}
+      
+    </div>
+
                 </li>
                 
               </ul>

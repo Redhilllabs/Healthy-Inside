@@ -22,7 +22,7 @@ import "./App.css";
 function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [{ foodItems, user }, dispatch] = useStateValue();
-  // console.log("foodItems",foodItems)
+  console.log("foodItems",foodItems)
   const handleProfileToggle = useCallback(() => {
     setShowProfile((prev) => !prev);
   }, []);

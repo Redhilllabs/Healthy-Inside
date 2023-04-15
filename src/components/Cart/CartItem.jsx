@@ -8,7 +8,7 @@ const CartItem = ({ item}) => {
   const [{ user }, dispatch] = useStateValue();
 const [qty, setQty] = useState(0);
 const [cartItems, setCartItems] = useState({});
-console.log(cartItems)
+// console.log(cartItems)
 
 const updateCart = (foodID, qty, foodUrl, foodName, price) => {
   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
