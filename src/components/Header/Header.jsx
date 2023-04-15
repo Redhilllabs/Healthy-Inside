@@ -40,13 +40,14 @@ const Header = ({ onProfileToggle }) => {
       setSearchResults([]);
     } else {
       setshowsearchResults(true);
-      const filteredItems = foodItems.data.filter(item =>
+      const filteredItems = foodItems?.data.filter(item =>
         item.foodName.toLowerCase().includes(value)
       );
       setSearchResults(filteredItems);
     }
   };
   
+
 
   useEffect(() => {
     if (user) {
@@ -240,9 +241,9 @@ const Header = ({ onProfileToggle }) => {
         onChange={handleSearch}
       />
 {showsearchResults?<div id="search_results">
-        {searchResults.map(item => (
+        {searchResults?.map(item => (
           <div key={item.foodID}>
-            <Link  id="header_link" to="/morninigfood">{item.foodName}</Link>
+            <Link  onClick={()=>setshowsearchResults(false)}  id="header_link" to="/morninigfood">{item.foodName}</Link>
           </div>
         ))}
       </div>:<></>}

@@ -23,9 +23,10 @@ const OrderSubmit = () => {
     const response = await AddOrder(bodyContent);
     
     if(response.status === 200) {
+      navigate("/");
       alert("saved data in Orders ");
       window.location.reload();
-      navigate("/");
+      
     }
   }
 

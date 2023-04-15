@@ -28,30 +28,39 @@ function App() {
   }, []);
   
   const fetchData = async () => {
-    const [foodItemsData, cartData, userData] = await Promise.all([
-      getAllFoodItems(),
-      GetCart(JSON.stringify({ email: user.email })),
-      getUser(JSON.stringify({ email: user.email })),
-    ]);
+    let foodItemsData = [];
+    let cartData = null;
+    let userData = null;
+  
+    if (user?.email) {
+      [foodItemsData, cartData, userData] = await Promise.all([
+        getAllFoodItems(),
+        GetCart(JSON.stringify({ email: user.email })),
+        getUser(JSON.stringify({ email: user.email })),
+      ]);
+  
+      if (userData?.Item) {
+        dispatch({ type: actionType.SET_USER, user: userData.Item });
+        localStorage.setItem('user', JSON.stringify(userData.Item));
+      }
+    } else {
+      foodItemsData = await getAllFoodItems();
+    }
   
     dispatch({ type: actionType.SET_FOOD_ITEMS, foodItems: foodItemsData });
   
     if (cartData?.Item?.cart) {
       dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartData.Item.cart });
       localStorage.setItem('cartItems', JSON.stringify(cartData.Item.cart));
+    } else {
+      localStorage.removeItem('cartItems');
     }
-  
-    // if (userData?.Item) {
-    //   dispatch({ type: actionType.SET_USER, user: userData.Item });
-    //   localStorage.setItem('user', JSON.stringify(userData.Item));
-    // }
   };
   
   useEffect(() => {
-    if (user?.email) {
-      fetchData().catch((error) => console.error('Error fetching data:', error));
-    }
+    fetchData().catch((error) => console.error('Error fetching data:', error));
   }, [dispatch, user]);
+  
   
   
 
