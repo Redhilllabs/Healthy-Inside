@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
-import { getAllFoodItems } from "./utils/ApiCall";
+import { getAllFoodItems ,GetCart,getUser  } from "./utils/ApiCall";
 import { actionType } from "./context/reducer";
 import { useStateValue } from "./context/StateProvider";
 import PrivateRoutes from "./Routes/PrivateRoute";
@@ -21,20 +21,39 @@ import "./App.css";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
-  const [{ foodItems }, dispatch] = useStateValue();
-
+  const [{ foodItems, user }, dispatch] = useStateValue();
+  // console.log("foodItems",foodItems)
   const handleProfileToggle = useCallback(() => {
     setShowProfile((prev) => !prev);
   }, []);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getAllFoodItems();
-      // console.log("getting food Items",data)
-      dispatch({ type: actionType.SET_FOOD_ITEMS, foodItems: data });
+  
+  const fetchData = async () => {
+    const [foodItemsData, cartData, userData] = await Promise.all([
+      getAllFoodItems(),
+      GetCart(JSON.stringify({ email: user.email })),
+      getUser(JSON.stringify({ email: user.email })),
+    ]);
+  
+    dispatch({ type: actionType.SET_FOOD_ITEMS, foodItems: foodItemsData });
+  
+    if (cartData?.Item?.cart) {
+      dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartData.Item.cart });
+      localStorage.setItem('cartItems', JSON.stringify(cartData.Item.cart));
     }
-    fetchData();
-  }, [dispatch]);
+  
+    // if (userData?.Item) {
+    //   dispatch({ type: actionType.SET_USER, user: userData.Item });
+    //   localStorage.setItem('user', JSON.stringify(userData.Item));
+    // }
+  };
+  
+  useEffect(() => {
+    if (user?.email) {
+      fetchData().catch((error) => console.error('Error fetching data:', error));
+    }
+  }, [dispatch, user]);
+  
+  
 
   return (
     <>

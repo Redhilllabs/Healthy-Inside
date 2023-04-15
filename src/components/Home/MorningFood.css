@@ -52,7 +52,7 @@
   }
   @media only screen and (max-width: 600px) {
     .MorningFood {
-      padding: 2rem;
+      /* padding: 2rem; */
       flex-direction: column;
     }
     .Morning_Food_Container{

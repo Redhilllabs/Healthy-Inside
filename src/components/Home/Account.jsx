@@ -51,7 +51,7 @@ const Account = () => {
           <div className="account-section">
             <h2>Address</h2>
             <p>
-              {user.address ? (
+              {user?.Address ? (
                 <div
                   style={{
                     border: "1px solid black",
@@ -60,13 +60,13 @@ const Account = () => {
                   }}
                 >
                   <p style={{ marginBottom: "5px" }}>
-                    {user.address.addressLine1}{" "}
+                    {user.Address.addressLine1}{" "}
                   </p>
                   <p style={{ marginBottom: "5px" }}>
-                    {user.address.addressLine2}
+                    {user.Address.addressLine2}
                   </p>
                   <p style={{ marginBottom: "5px" }}>
-                    {user.address.city} {user.address.state} {user.address.zip}
+                    {user.Address.city} {user.Address.state} {user.Address.zip}
                   </p>
                 </div>
               ) : (

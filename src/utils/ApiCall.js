@@ -38,7 +38,12 @@ const urls = {
   SearchBatchingImportAndexportapi:`${produrl}/branchingimportexport`,
   SearchSeedImportAndexportapi:`${produrl}/seedimportandexport`,
   SearchMasterImportAndexportapi:`${produrl}/masterimportandexport`,
-  SearchOPKImportAndexportapi:`${produrl}/opkimportandexport`
+  SearchOPKImportAndexportapi:`${produrl}/opkimportandexport`,
+  AddtoCartapi:`${produrl}/cart`,
+  DecreaseCartapi:`${produrl}/cart`,
+  GetCartapi:`${produrl}/getcart`,
+  AddOrderapi:`${produrl}/orders`,
+  SearchOrderapi:`${produrl}/orders/searchorder`
 
 };
 
@@ -274,4 +279,27 @@ export const SearchMasterImportAndexport = async(data)=>{
 
 export const SearchOPKImportAndexport = async(data)=>{
   return makeRequest(urls.SearchOPKImportAndexportapi,"POST",data);
+}
+
+
+export const AddCart = async(data)=>{
+  return makeRequest(urls.AddtoCartapi,"POST",data);
+}
+
+export const DecreaseCart = async(data)=>{
+  return makeRequest(urls.DecreaseCartapi,"DELETE",data);
+}
+
+export const GetCart = async(data)=>{
+  return makeRequest(urls.GetCartapi,"POST",data)
+}
+
+
+export const AddOrder = async(data)=>{
+  return makeRequest(urls.AddOrderapi,"POST",data)
+}
+
+
+export const SearchOrder = async(data)=>{
+  return makeRequest(urls.SearchOrderapi,"POST",data)
 }

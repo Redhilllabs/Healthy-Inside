@@ -5,13 +5,9 @@ import { actionType } from "../../context/reducer";
 import CartItem from "../Cart/CartItem";
 
 const MorningFood = () => {
-    // add to cart funtionality
     const [{ foodItems}, dispatch] = useStateValue();
-    // console.log("foodItems",foodItems.data)
-
   return (
     <div className='MorningFood'>
-
 <div class="line-container">
   <hr class="line"/>
   <div class="text"><h1>Morning</h1></div>

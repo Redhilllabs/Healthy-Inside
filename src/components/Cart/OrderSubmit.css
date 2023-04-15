@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .checkout-form {
+    width: 100%;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  #razorpay-container {
+    margin-top: 20px;
+  }
+  
+  #checkout-button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008000;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  #gpay-button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+  
+  .summary-address {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .address, .order-summary {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  .order-summary img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .payment-options {
+    margin-top: 20px;
+  }
+  
+  .payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .payment-methods div {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  #submit-button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008000;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  @media (min-width: 768px) {
+    .checkout-form {
+      width: 60%;
+    }
+  
+    .summary-address {
+      flex-wrap: nowrap;
+    }
+  
+    .address, .order-summary {
+      width: 48%;
+      margin-top: 0;
+    }
+  
+    .payment-methods {
+      flex-wrap: nowrap;
+    }
+  
+    .payment-methods div {
+      width: 30%;
+      margin-top: 0;
+    }
+  }
+  

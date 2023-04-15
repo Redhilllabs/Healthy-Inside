@@ -2,19 +2,32 @@ import React, { useState, useEffect } from "react";
 import "./cartitem.css";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
+import {AddCart,DecreaseCart} from "../../utils/ApiCall";
 
 const CartItem = ({ item}) => {
   const [{ user }, dispatch] = useStateValue();
 const [qty, setQty] = useState(0);
 const [cartItems, setCartItems] = useState({});
+console.log(cartItems)
 
-  const updateCart = (foodID, qty, foodUrl, foodName, price) => {
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
-    cartItems[foodID] = {qty, foodUrl, foodName, price};
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    setCartItems(cartItems);
-    dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartItems });
+const updateCart = (foodID, qty, foodUrl, foodName, price) => {
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || {};
+
+  // Check if any of the parameters are null or empty before adding to the cartItems object
+  if (!foodID || !qty || !foodUrl || !foodName || !price) {
+      console.error("Invalid input - unable to add item to cart.");
+      return;
+  }
+  const updatedCartItems = {
+    ...cartItems,
+    [foodID]: { qty, foodID, foodUrl, foodName, price },
   };
+  // cartItems[foodID] = {qty,foodID,foodUrl, foodName, price};
+  localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+  setCartItems(cartItems);
+  dispatch({ type: actionType.SET_CARTITEMS, cartItems: updatedCartItems });
+};
+
   
 
   async function updateQuantity(action) {
@@ -24,19 +37,53 @@ const [cartItems, setCartItems] = useState({});
     if (action === "add") {
       newQty = currentQty + 1;
      
-      updateCart(item.foodID, qty + 1, item.foodUrl, item.foodName, item.foodPrice
-        );
-
+      updateCart(item.foodID, qty + 1, item.foodUrl, item.foodName, item.foodPrice);
+      if(user?.email){
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 10); // get the first 10 characters of the ISO string
+      
+        let bodyContent2 = JSON.stringify({
+        "email": user.email,
+        "cartDetails": 
+        {
+          "foodID": item.foodID,
+          "foodName": item.foodName,
+          "foodUrl": item.foodUrl,
+          "price": item.foodPrice,
+          "qty": 1,
+          "dateAdded": formattedDate
+        }
+      });
+      await AddCart(bodyContent2)}
+      
   
     } else if (action === "subtract") {
       newQty = currentQty - 1;
-      updateCart(item.foodID, qty - 1, item.foodUrl, item.foodName, item.foodPrice
-        );
+      updateCart(item.foodID, qty - 1, item.foodUrl, item.foodName, item.foodPrice);
+
+      if(user?.email){
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 10); // get the first 10 characters of the ISO string
+      
+      let bodyContent1 = JSON.stringify({
+        "email": user.email,
+        "cartDetails": 
+          {
+            "foodID": item.foodID,
+            "foodName": item.foodName,
+            "foodUrl": item.foodUrl,
+            "price": item.foodPrice,
+            "qty": 1,
+            "dateAdded": formattedDate
+          }
+      });
+      await DecreaseCart(bodyContent1)
+    }
 
     }
   
     // Prevent quantity from going below 0
-    if (newQty < 0) {
+    if (newQty === 0) {
       newQty = 0;
     }
   

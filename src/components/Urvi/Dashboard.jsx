@@ -20,6 +20,8 @@ import PackingPlanner from "./Business&Branding/PackingPlanner";
 import ItemMasterForm from "./ProductR&D/ItemMasterForm";
 import RecipeMasterForm from "./ProductR&D/RecipeMasterForm";
 import ManufacturingLogEntryForm from "./Operation&SupplyChain/Manufacturing/ManufacturingLogEntryForm";
+import OrderSalesForm from "./OrderSalesForm" ;
+
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
@@ -53,10 +55,13 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [showRMIProfileingForm, setshowRMIProfileingForm] = useState(false);
   const [showItemMasterForm, setShowItemMasterForm] = useState(false);
   const [showRecipeMasterForm, setshowRecipeMasterForm] = useState(false);
-  const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] =
-    useState(false);
+  const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] = useState(false);
+  const [showOderSales,setshowOderSales] = useState(false)
 
   const handleFormToggle = (formName) => {
+
+    setshowOderSales(formName === "OderSales"? !showOderSales: false)
+
     setshowManufacturingLogEntryForm(
       formName === "ManufacturingLogEntryForm"
         ? !showManufacturingLogEntryForm
@@ -159,6 +164,10 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
 
   const forms = [
     {
+      show: showOderSales,
+      component: OrderSalesForm,
+    },
+    {
       show: showManufacturingLogEntryForm,
       component: ManufacturingLogEntryForm,
     },
@@ -192,6 +201,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
           <span className="logo_name">DashBoard</span>
         </div>
         <ul className="nav-links">
+
           <li>
             <div
               className="iocn-link"
@@ -468,13 +478,27 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
           </li>
 
           <li>
-            <div className="iocn-link">
+            <div className="iocn-link" >
               <a>
                 <span className="link_name">Training center</span>
                 {showFinance ? <img src="" /> : <img src="" />}
               </a>
             </div>
           </li>
+
+<li>
+<div className="iocn-link">
+<a
+                    id={showrecipeform ? "active" : ""}
+                    onClick={() => handleFormToggle("OderSales")}
+                  >
+<span className="link_name">Order Sales</span>
+                    
+                    {showFinance ? <img src="" /> : <img src="" />}
+                  </a>
+            </div>
+</li>
+
         </ul>
       </div>
 
@@ -482,7 +506,6 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
         {forms.map(({ show, component }, index) =>
           show ? React.createElement(component, { key: index }) : null
         )}
-
         {/* profile Form */}
         {showProfile && (
           <div className="formcontains">

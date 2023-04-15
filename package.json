@@ -28,9 +28,12 @@
     "net": "^1.0.2",
     "pdf-to-printer": "^5.6.0",
     "print-js": "^1.6.0",
+    "razorpay": "^2.8.6",
+    "razorpay-checkout": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.7",
+    "react-razorpay": "^1.2.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-simple-image-slider": "^2.4.1",
@@ -66,5 +69,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2"
   }
 }

@@ -10,7 +10,7 @@ const GoogleButton = () => {
   const [{ user }, dispatch] = useStateValue();
 
   async function handleCallbackResponse(response) {
-    console.log(response);
+    // console.log(response);
     const userObject = jwt_decode(response.credential);
 
     // check if user is already registered
@@ -37,13 +37,11 @@ const GoogleButton = () => {
 
   async function registerUser(userObject) {
     // implement logic for registering a new user in your database
-    console.log(userObject);
+    // console.log(userObject);
     let bodyContent = JSON.stringify({
       email: userObject.email,
       basePrice: "600000",
-      city: "",
       contact: "123456789",
-      dob: "",
       name: userObject.name,
       profileLink: userObject.picture,
       sellingPrice: "2300000",
@@ -55,7 +53,7 @@ const GoogleButton = () => {
 
   async function signInUser(userObject) {
     const password = "123456789";
-    console.log("logged in new user");
+    // console.log("logged in new user");
     const response = await LoginAPi(userObject.email, password);
     if (response.status === 401) {
       alert(response.message);

@@ -26,8 +26,9 @@ const Header = ({ onProfileToggle }) => {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
-  const [{ user, admin ,cartItems }, dispatch] = useStateValue();
+  const [{ user, admin ,foodItems, cartItems }, dispatch] = useStateValue();
   const itemCount = cartItems ? Object.keys(cartItems).length : 0;
+
 
   useEffect(() => {
     if (user) {
@@ -38,25 +39,10 @@ const Header = ({ onProfileToggle }) => {
   const logout = () => {
     setIsMenu(false);
     setmenu(false);
-      // Retrieve the cart items before clearing localStorage
-  const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-  console.log("from localstorage cartItems",cartItems)
-
-  // Remove all keys except for cartItems
-  Object.keys(localStorage).forEach((key) => {
-    if (key !== 'cartItems') {
-      localStorage.removeItem(key);
-    }
-  });
-
-  // Restore the cart items to localStorage
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  dispatch({ type: actionType.SET_CARTITEMS, cartItems: cartItems });
-    dispatch({
-      type: actionType.SET_USER,
-      user: null,
-    });
-    // window.location.reload(true);
+    localStorage.clear();
+    dispatch({ type: actionType.SET_CARTITEMS, cartItems: null});
+    dispatch({type: actionType.SET_USER, user: null, });
+    window.location.reload()
     navigate("/");
   };
 
@@ -229,7 +215,7 @@ const Header = ({ onProfileToggle }) => {
                 </li>
                 <li>
                   <input id="header_search" placeholder="Search..." type="text" />
-                </li>
+                </li> 
               </>
             )}
 
@@ -353,7 +339,7 @@ const Header = ({ onProfileToggle }) => {
                   </Link>
                 </li>
 
-                {user?.name ? (
+                {user?.name? (
                   <li>
                     <p>
                       <a
