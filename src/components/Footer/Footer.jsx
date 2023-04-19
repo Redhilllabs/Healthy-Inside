@@ -6,7 +6,7 @@ const Footer = () => {
       <footer class="footer">
         <div className="footer_container">
           <div className="ror_footer">
-            <div className="col_option">
+            {/* <div className="col_option">
               
                 <ul>
                   <li>Our Product</li>
@@ -32,7 +32,7 @@ const Footer = () => {
                   <li>Carriers</li>
                 </ul>
              
-            </div>
+            </div> */}
             <div className="connect_option">
               <div>
                 <h4>Follow us at :</h4>
@@ -48,14 +48,14 @@ const Footer = () => {
         </div>
         <div class="col">
           <p>© Copyright 2023 Red Hill Labs. All rights reserved.</p>
-          <div>
+          {/* <div>
             <a href="/terms">Terms &amp; Conditions</a> |
             <a href="/privacy">Privacy Policy</a> |
             <a href="/california_privacy">California Privacy Policy</a> |
             <a href="/do_not_sell">Do Not Sell My Info</a> |
             <a href="/accessibility">Accessibility Statement</a> |
             <a href="/sitemap">Site Map</a>
-          </div>
+          </div> */}
         </div>
       </footer>
     </div>
