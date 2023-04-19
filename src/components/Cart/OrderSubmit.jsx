@@ -1,5 +1,5 @@
 import React from 'react';
-import RazorpayCheckout from './RazorpayCheckout';
+// import RazorpayCheckout from './RazorpayCheckout';
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 import { AddOrder } from "../../utils/ApiCall";
