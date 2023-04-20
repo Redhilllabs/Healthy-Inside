@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./cart.css";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import {AddCart,DecreaseCart} from "../../utils/ApiCall";
+import {AddCart,DecreaseCart, SaveUserAddress} from "../../utils/ApiCall";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
@@ -153,7 +153,7 @@ const totalAmount = Object.keys(cartItems).reduce((acc, key) => {
         zip: zip},
       contact:contact
     };
-    // const res = await SaveUserAddress(data);
+    const res = await SaveUserAddress(data);
     // console.log(res);
     const updatedUser = { ...user, address: data };
     localStorage.setItem("user", JSON.stringify(updatedUser));

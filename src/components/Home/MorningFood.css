@@ -69,7 +69,7 @@ display: -webkit-box;
     flex-direction: row;
     position: relative;
     min-height: 100vh;
-    background-color: #ffffffbd;
+    background-color: white;
     border-radius: 15px;
 }
 
@@ -677,6 +677,7 @@ margin-right: -8px;
     display: flex;
     -webkit-flex: 1;
     -moz-box-flex: 1;
+    cursor: pointer;
     -ms-flex: 1;
     flex: 1;
     -webkit-align-self: stretch;

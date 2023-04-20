@@ -3,13 +3,25 @@ import "./MorningFood.css";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
 import CartItem from "../Cart/CartItem";
+import { Link } from "react-router-dom";
 import BhelMakhani2 from "../../images/BhelMakhani2.jpg";
+import { useNavigate } from "react-router-dom";
+import {AddCart,DecreaseCart, SaveUserAddress} from "../../utils/ApiCall";
 
 const MorningFood = () => {
-  const [{ foodItems }, dispatch] = useStateValue();
+  const [{cartItems,foodItems, user }, dispatch] = useStateValue();
   const [activeTab, setActiveTab] = useState("Upcoming meals");
   const [imageurl, setimageurl] = useState(BhelMakhani2);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [ShowAddressForm, setShowAddressForm] = useState(false);
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [name, setName] = useState("");
+  const [contact,setcontact] = useState("");
+  const navigate = useNavigate();
 
   const handleItemClick = (item) => {
     // Function to change details below when an image is clicked
@@ -21,6 +33,50 @@ const MorningFood = () => {
     setActiveTab(label);
   };
 
+  const handelSubcribeButton = () =>{
+    if(user){
+if(user.Address){
+// navigate to checkout
+// window.location.reload()
+    navigate("/oderSubmit");
+}else{
+  setShowAddressForm(true)
+}
+    }else{
+      navigate("/login");
+    }
+  }
+    const handleUserAddressForm = async (event) => {
+    event.preventDefault();
+    console.log("coming to submit form ");
+
+    if (!addressLine1 || !addressLine2 || !city || !state || !zip ||!contact ) {
+      alert("Please enter your complete address");
+      return;
+    }
+    const data = {
+      email : user.email,
+      Address:{addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        city: city,
+        state: state,
+        zip: zip},
+      contact:contact
+    };
+    const res = await SaveUserAddress(data);
+    // console.log(res);
+    const updatedUser = { ...user, address: data };
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    dispatch({
+      type: actionType.SET_USER,
+      user: updatedUser,
+    });
+
+    
+    navigate("/oderSubmit");
+    alert("Address saved!");
+  };
   return (
     <div className="MorningFood">
       <div className="line-container">
@@ -73,7 +129,7 @@ const MorningFood = () => {
                   >
                     Upcoming meals
                   </div>
-                  <div
+                  {/* <div
                     onClick={() => handleTabClick("How it works")}
                     className={`Container1_Item ${
                       activeTab === "How it works"
@@ -92,7 +148,7 @@ const MorningFood = () => {
                     }`}
                   >
                     Why subscribe
-                  </div>
+                  </div> */}
                 </ul>
 
                 {activeTab === "Upcoming meals" && (
@@ -111,14 +167,14 @@ const MorningFood = () => {
                                 type="LARGE"
                                 className="container1_content_HeaderSubtitle"
                               >
-                                *&amp; Sun meals will not be delivered if
+                                * Sun meals will not be delivered if
                                 deliver on weekends is off
                               </p>
                             </div>
 
                             
                               <div className="container1_content_ImageTabContainer">
-                              
+
                                 <div className="container1_content_ImageTabList">
                                   {foodItems &&
                                     foodItems.data &&
@@ -253,7 +309,7 @@ const MorningFood = () => {
                     
                   </div>
                 )}
-                {activeTab === "How it works" && (
+                {/* {activeTab === "How it works" && (
                   <div class="css-w24bu7-TabContent e14t7k01">
                     <div
                       label="How it works"
@@ -455,7 +511,7 @@ const MorningFood = () => {
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -486,49 +542,8 @@ const MorningFood = () => {
                     </div>
                     <div class="container options-container">
                       
-                          <div class="css-llv7ed-PackDurationWrapper e1xbwmax0">
-                            <div class="css-1dvo6ju-PackPrice e1xbwmax1">
-                              <h4 class="css-l3v3q5-StrikedOffText e1xbwmax11">
-                                ₹1175
-                              </h4>
-                              <h4 class="css-3v5mc8-PackPriceText e1xbwmax2">
-                                <span class="css-1do42gg-CurrencySymbol e1xbwmax8">
-                                  ₹
-                                </span>
-                                750
-                              </h4>
-                              <span class="css-cxn0v3-MealDurationText e1xbwmax3">
-                                for 5 days
-                              </span>
-                            </div>
-                            <div class="css-1a2ksrv-PackInfoContainer e1xbwmax5">
-                              {/* <img src="/assets/images/non-veg-new.svg" className="css-1igj5rm-PackTypeImg e1xbwmax4" /> */}
-                              <div class="css-1avqi0l-PackPlanContainer e1xbwmax6">
-                                <div
-                                  size="2"
-                                  class="css-d9eevg-PackPlan e1xbwmax7"
-                                >
-                                  Monthly
-                                </div>
-                                <div
-                                  size="2"
-                                  class="css-to5yzn-PackPlan e1xbwmax7"
-                                >
-                                  Weekly
-                                </div>
-                              </div>
-                              <div class="css-2tb3dt-SwitchButtonContainer e1xbwmax9">
-                                <div class="switch  ">
-                                  <div class="switch-toggle"></div>
-                                </div>
-                                <span class="css-16c0h46-SwitchText e1xbwmax10">
-                                  Include Weekends
-                                </span>
-                              </div>
-                            </div>
-                          </div>
                           
-                            <div class="product-action-button">
+                            <div class="product-action-button" onClick={handelSubcribeButton}>
                               <div
                                 className="action-button normal-button"
                                 style={{
@@ -544,9 +559,10 @@ const MorningFood = () => {
                                     "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
                                   fontSize: "16px",
                                   color: "rgb(255, 255, 255)",
+                                  
                                 }}
                               >
-                                <p>Subscribe Meal Plan</p>
+                                <p >Subscribe 6 Day Meal Plan</p>
                               </div>
                             </div>
 
@@ -561,6 +577,113 @@ const MorningFood = () => {
           </div>
         </div>
       </div>
+
+      {ShowAddressForm && (
+
+<div class="modal">
+<div class="modal-content">
+<form id="address-form" class="address-form">
+  <div class="address-form-heading">
+    <div class="addressheading">
+      <h3>Enter Address</h3>
+    </div>
+    <div class="address-close" onClick={() => setShowAddressForm(false)}>
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  </div>
+  <div class="input-wrapper">
+  <div>
+  <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value={user.name}
+      onChange={(event) => setName(event.target.value)}
+      required
+    />
+  </div>
+    
+<div>
+<label for="address-line1">Address Line 1:</label>
+    <input
+      type="text"
+      id="addressline1"
+      name="addressline1"
+      value={addressLine1}
+      onChange={(event) => setAddressLine1(event.target.value)}
+      required
+    />
+</div>
+
+    
+<div>
+<label for="address-line2">Address Line 2:</label>
+    <input
+      type="text"
+      id="addressline2"
+      name="addressline2"
+      value={addressLine2}
+      onChange={(event) => setAddressLine2(event.target.value)}
+    />
+</div>
+  
+  <div>
+<label for="contact">contact:</label>
+    <input
+      type="text"
+      id="contact"
+      name="contact"
+      value={contact}
+      onChange={(event) => setcontact(event.target.value)}
+      required
+    />
+</div>
+<div>
+<label for="city">City:</label>
+<input
+type="text"
+id="city"
+name="city"
+value={city}
+onChange={(event) => setCity(event.target.value)}
+required
+/>
+</div>
+
+<div>
+<label for="state">State:</label>
+<input
+type="text"
+id="state"
+name="state"
+value={state}
+onChange={(event) => setState(event.target.value)}
+required
+/>
+</div>
+
+
+<div>
+<label for="zip">Zip Code:</label>
+<input
+type="text"
+id="zip"
+name="zip"
+value={zip}
+onChange={(event) => setZip(event.target.value)}
+required
+/>
+</div>
+
+</div>
+<button type="submit" onClick={handleUserAddressForm} name="submit">
+Checkout
+</button>
+</form>
+</div>
+</div>
+)}
     </div>
   );
 };
