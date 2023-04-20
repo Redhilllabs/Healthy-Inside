@@ -796,8 +796,8 @@ margin-right: -8px;
     width: 20rem;
     }
     .morning_container_eatfit {
-      margin: 0px;
-      padding: 0px;
+      margin: 14px;
+      padding: 31px;
       width: 100%;
     }
     .morning_container_eatfit2 {
@@ -831,5 +831,11 @@ margin-right: -8px;
       width: 20rem;
     padding: 27px;
     }
+    .pack-summary-widget .options-container {
+      width: 14rem;}
+
+      .product-action-button {
+        justify-content: flex-start;
+      }
   }
   

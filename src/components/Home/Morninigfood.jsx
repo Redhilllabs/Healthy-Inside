@@ -573,7 +573,7 @@ if(user.Address){
                     </div>
                   </div>
 
-                  <div type="line" class="css-sbklat-Separator eaz9pu80"></div>
+                  {/* <div type="line" class="css-sbklat-Separator eaz9pu80"></div> */}
                 </div>
                 {/* <div className="colm2"></div> */}
               </div>
