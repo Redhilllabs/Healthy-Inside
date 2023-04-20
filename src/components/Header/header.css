@@ -181,7 +181,8 @@ background-color: var(--secondary);
     padding: 3px 12px;
 }
 #menuIcon{
-  margin-right: 3rem;
+  margin-right: 1rem;
+  margin-top: 5px;
 }
 #search_results{
   border: 1px solid #ccc;

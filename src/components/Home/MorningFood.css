@@ -55,7 +55,8 @@
 .morning_container_eatfit{
   margin-right: auto;
   margin-left: auto;
-  /* width: 60rem; */
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .morning_container_eatfit2{
@@ -68,36 +69,40 @@ display: -webkit-box;
     flex-direction: row;
     position: relative;
     min-height: 100vh;
-    background-color: white;
+    background-color: #ffffffbd;
     border-radius: 15px;
 }
 
 .container1{
-  padding: 80px 40px 20px 0px;
+  padding: 80px 40px 20px 50px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     display: inline-block;
-    width: 60%;
+    width: 42%;
     position: static;
     vertical-align: top;
     margin: 2rem;
 }
 
 .container1_img{
-  width: 60%;
+  width: 100%;
   height: 100%;
   overflow: hidden;}
 
   .imageelement_container1{
-    width: 100%;
+    width: 92%;
     height: 100%;
     background: transparent;
     -webkit-animation: animation-1ij7hjp 0.5s;
     animation: animation-1ij7hjp 0.5s;
   }
 
-
+  .css-1pf7hc2-SubscriptionBottomContainer {
+    width: 100%;
+    padding-top: 20px;
+    max-width: 630px;
+}
 
   .Container1_options{
     padding-left: 0;
@@ -160,7 +165,7 @@ display: -webkit-box;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 30rem;
+  /* width: 30rem; */
   
 }
 .container1_content_ImageTabList{
@@ -384,19 +389,19 @@ display: -webkit-box;
     -webkit-flex: 0 1 36%;
     -ms-flex: 0 1 36%;
     flex: 0 1 36%;
-    padding: 70px 0px 20px 0px;
-    width: 52%;
+    padding: 80px 0px 20px 0px;
+    width: 90%;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     overflow: hidden;
-    height: 90vh;
+    height: 100vh;
 }
 
 .containeroverflow_Y{
-
+/* 
 overflow: hidden;
-overflow-y: auto;
+overflow-y: auto; */
 
 }
 
@@ -471,6 +476,7 @@ margin-right: -8px;
     text-align: left;
     color: #25282E;
     width: 100%;
+    /* margin: 2rem; */
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -567,7 +573,7 @@ margin-right: -8px;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding: 23px 30px;
+    padding: 63px 30px;
     padding-left: 40px;
     box-shadow: 1px 1px 12px 0px #00000017;
     border-radius: 4px;
@@ -685,6 +691,93 @@ margin-right: -8px;
     -ms-flex-pack: end;
     justify-content: flex-end;
 }
+.css-w24bu7-TabContent {
+  padding-top: 13px;
+}
+.css-117zcp7-ProductListWidgetContainer {
+  width: 100%;
+  padding: 40px 0;
+} 
+.product-list-widget {
+  width: 100%;
+}
+.css-56p0yi-Header {
+  width: 100%;
+}
+.css-148zztk-actionRowWrapper {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 5px 0px 0px;
+}
+.css-9q8i2j-Cell {
+  width: 100%;
+}
+
+.css-w24bu7-TabContent {
+  padding-top: 13px;
+}
+.css-117zcp7-ProductListWidgetContainer {
+  width: 100%;
+  padding: 40px 0;
+}
+.product-list-widget {
+  width: 100%;
+}
+.css-56p0yi-Header {
+  width: 100%;
+}
+.css-w1btn4-actionTwoItemRowStyles {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 5px 0px 0px;
+  width: 90%;
+}
+.css-1nlsc3d-InfoCell {
+  display: flex;
+  width: 50%;
+}
+.product-info-cell {
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 17px;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+} 
+.product-info-cell .img-container {
+  margin-bottom: 10px;
+}
+.product-info-cell .text-container {
+  font-size: 16px;
+  line-height: 1.13;
+  color: #262626;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+.product-info-cell .text-container {
+  font-size: 16px;
+  line-height: 1.13;
+  color: #262626;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+}
 
   @media only screen and (max-width: 600px) {
     .MorningFood {
@@ -700,6 +793,42 @@ margin-right: -8px;
     }
     .line-container{
     width: 20rem;
+    }
+    .morning_container_eatfit {
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+    }
+    .morning_container_eatfit2 {
+      flex-direction: column;
+    }
+    .container1{
+      padding: unset;
+      width: unset;
+      position: unset;
+      /* margin-right: -16px;
+      margin-left: -16px; */
+      /* display: none; */
+    }
+    .container2{
+      padding: unset;
+    -webkit-flex: unset;
+    -ms-flex: unset;
+    flex: unset;
+    overflow: unset;
+    width: unset;
+    position: static;
+    height: unset;
+    }
+    .container1_content_ImageTabContainer {
+      /* width: 20rem; */
+    }
+    .css-1a2ksrv-PackInfoContainer {
+      left: -55px;
+    }
+    .pack-summary-widget {
+      width: 20rem;
+    padding: 27px;
     }
   }
   

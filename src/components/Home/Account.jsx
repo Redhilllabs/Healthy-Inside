@@ -28,7 +28,7 @@ const Account = () => {
   const Addaddress = () => {};
 
   return (
-    <div className="container">
+    <div className="Accountcontainer">
       <div className="account">
         <h1>Account</h1>
         <div className="account-info">

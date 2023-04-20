@@ -32,7 +32,7 @@ const OrderSubmit = () => {
 
   return (
     <>
-<div class="container">
+<div class="Ordercontainer">
   <div class="checkout-form">
     <h2>Checkout</h2>
     <div class="summary-address">
