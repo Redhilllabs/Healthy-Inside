@@ -13,7 +13,7 @@ const MorningFood = () => {
   const [activeTab, setActiveTab] = useState("Upcoming meals");
   const [imageurl, setimageurl] = useState(BhelMakhani2);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [ShowAddressForm, setShowAddressForm] = useState(false);
+  const [ShowAddressForm, setShowAddressForm] = useState(true);
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
   const [city, setCity] = useState("");
@@ -534,11 +534,8 @@ if(user.Address){
                       <div class="css-17otamg-BottomContainerDiv e4rxp0r1">
                         <p class="css-j2duwn-BottomText e4rxp0r2">
                           <p class="css-j2duwn-BottomText e4rxp0r2">
-                            A low calorie weight management plan constructed
-                            with simple yet good quality, nutritious ingredients
-                            that follow a calorie cap of 1500kcal (including
-                            Breakfast, Lunch and Dinner). We make sure to please
-                            your taste buds during this diet plan.
+                          Breakfast kick-starts your metabolism, helping you burn calories throughout the day. It also gives you the energy you need to get things done and helps you focus at work or at school. Those are just a few reasons why it's the most important meal of the day.
+
                           </p>
                         </p>
                         <p class="css-j2duwn-BottomText e4rxp0r2"></p>
@@ -589,13 +586,18 @@ if(user.Address){
 <form id="address-form" class="address-form">
   <div class="address-form-heading">
     <div class="addressheading">
-      <h3>Enter Address</h3>
+      <h3>Enter Details </h3>
     </div>
     <div class="address-close" onClick={() => setShowAddressForm(false)}>
       <i class="fa-solid fa-xmark"></i>
     </div>
   </div>
+  <div>
+  <label for="name">Unit</label>
+  </div>
   <div class="input-wrapper">
+  
+  
   <div>
   <label for="name">Name</label>
     <input
