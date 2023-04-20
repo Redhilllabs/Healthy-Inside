@@ -13,7 +13,7 @@ const MorningFood = () => {
   const [activeTab, setActiveTab] = useState("Upcoming meals");
   const [imageurl, setimageurl] = useState(BhelMakhani2);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [ShowAddressForm, setShowAddressForm] = useState(true);
+  const [ShowAddressForm, setShowAddressForm] = useState(false);
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
   const [city, setCity] = useState("");
@@ -592,9 +592,7 @@ if(user.Address){
       <i class="fa-solid fa-xmark"></i>
     </div>
   </div>
-  <div>
-  <label for="name">Unit</label>
-  </div>
+
   <div class="input-wrapper">
   
   
@@ -604,7 +602,7 @@ if(user.Address){
       type="text"
       id="name"
       name="name"
-      value={user.name}
+      value={user?.name}
       onChange={(event) => setName(event.target.value)}
       required
     />
