@@ -155,7 +155,7 @@ const totalAmount = Object.keys(cartItems).reduce((acc, key) => {
     };
     const res = await SaveUserAddress(data);
     // console.log(res);
-    const updatedUser = { ...user, address: data };
+    const updatedUser = { ...user, Address: data.Address };
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
     dispatch({

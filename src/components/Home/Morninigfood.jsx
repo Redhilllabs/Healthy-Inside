@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import BhelMakhani2 from "../../images/BhelMakhani2.jpg";
 import { useNavigate } from "react-router-dom";
 import {AddCart,DecreaseCart, SaveUserAddress} from "../../utils/ApiCall";
-
+import Message from "../../utils/Message";
 const MorningFood = () => {
   const [{cartItems,foodItems, user }, dispatch] = useStateValue();
   const [activeTab, setActiveTab] = useState("Upcoming meals");
@@ -21,6 +21,7 @@ const MorningFood = () => {
   const [zip, setZip] = useState("");
   const [name, setName] = useState("");
   const [contact,setcontact] = useState("");
+  const [response, setResponse] = useState(null);
   const navigate = useNavigate();
 
   const handleItemClick = (item) => {
@@ -48,10 +49,10 @@ if(user.Address){
   }
     const handleUserAddressForm = async (event) => {
     event.preventDefault();
-    console.log("coming to submit form ");
+    // console.log("coming to submit form ");
 
     if (!addressLine1 || !addressLine2 || !city || !state || !zip ||!contact ) {
-      alert("Please enter your complete address");
+      setResponse({ message: "Fill all fields", status: "error" });
       return;
     }
     const data = {
@@ -64,8 +65,7 @@ if(user.Address){
       contact:contact
     };
     const res = await SaveUserAddress(data);
-    // console.log(res);
-    const updatedUser = { ...user, address: data };
+    const updatedUser = { ...user,  Address: data.Address };
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
     dispatch({
@@ -75,10 +75,14 @@ if(user.Address){
 
     
     navigate("/oderSubmit");
-    alert("Address saved!");
+    setResponse({
+      message: "Address saved!",
+      status: "success",
+    });
   };
   return (
     <div className="MorningFood">
+    <Message response={response} />
       <div className="line-container">
         <hr className="line" />
         <div className="text">

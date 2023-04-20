@@ -38,11 +38,11 @@ const OrderSubmit = () => {
     <div class="summary-address">
       <div class="address">
         <h2>Address</h2>
-        <p>Address Line 1: {user.Address.addressLine1}</p>
-        <p>Address Line 2: {user.Address.addressLine2}</p>
-        <p>City: {user.Address.city}</p>
-        <p>State: {user.Address.state}</p>
-        <p>Zip: {user.Address.zip}</p>
+        <p>Address Line 1: {user.Address?.addressLine1}</p>
+        <p>Address Line 2: {user.Address?.addressLine2}</p>
+        <p>City: {user.Address?.city}</p>
+        <p>State: {user.Address?.state}</p>
+        <p>Zip: {user.Address?.zip}</p>
       </div>
 
       <div class="order-summary">
