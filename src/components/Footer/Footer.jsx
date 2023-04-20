@@ -33,17 +33,17 @@ const Footer = () => {
                 </ul>
              
             </div> */}
-            <div className="connect_option">
+            {/* <div className="connect_option"> */}
               <div>
                 <h4>Follow us at :</h4>
-                <div className="optionsfollow">
-                  <img src="https://img.icons8.com/ios-glyphs/30/null/facebook.png" />
-                  <img src="https://img.icons8.com/ios-glyphs/30/null/instagram-new.png" />
-                  <img src="https://img.icons8.com/ios-glyphs/30/null/twitter--v1.png" />
-                </div>
+                {/* <div className="optionsfollow"> */}
+                <img src="https://img.icons8.com/ios-glyphs/30/null/facebook.png" />
+                <img src="https://img.icons8.com/ios-glyphs/30/null/instagram-new.png" />
+                <img src="https://img.icons8.com/ios-glyphs/30/null/twitter--v1.png" />
               </div>
+              {/* </div> */}
               <div className="connectform"></div>
-            </div>
+            {/* </div> */}
           </div>
         </div>
         <div class="col">

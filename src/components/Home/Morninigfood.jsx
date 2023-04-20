@@ -550,7 +550,7 @@ const MorningFood = () => {
                     <div class="css-140e8aq-ProductHeaderWidgetContainer e4rxp0r0">
                       <div class="css-1sbql4a-TopContainerDiv e4rxp0r4">
                         <h1 class="css-ava5k2-TitleText e4rxp0r3">
-                          Weight Loss Thali Veg &amp; Non-Veg
+                          BreakFast &amp; Meals
                         </h1>
                       </div>
                       <div class="css-17otamg-BottomContainerDiv e4rxp0r1">
