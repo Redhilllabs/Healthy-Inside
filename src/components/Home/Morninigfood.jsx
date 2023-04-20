@@ -19,10 +19,12 @@ const MorningFood = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
+  const [qty, setQty] = useState(0);
   const [name, setName] = useState("");
   const [contact,setcontact] = useState("");
   const [response, setResponse] = useState(null);
   const navigate = useNavigate();
+  const [showSubcriptionButton,setshowSubcriptionButton] = useState(true);
 
   const handleItemClick = (item) => {
     // Function to change details below when an image is clicked
@@ -35,22 +37,28 @@ const MorningFood = () => {
   };
 
   const handelSubcribeButton = () =>{
-    if(user){
-if(user.Address){
-// navigate to checkout
-// window.location.reload()
-    navigate("/oderSubmit");
-}else{
-  setShowAddressForm(true)
-}
-    }else{
-      navigate("/login");
-    }
+    setshowSubcriptionButton(false)
+
   }
+
+ const handelContinuePayment = ()=>{
+  if(user){
+    if(user.Address){
+    // navigate to checkout
+    // window.location.reload()
+        navigate("/oderSubmit");
+    }else{
+      setShowAddressForm(true)
+    
+    }
+        }else{
+          navigate("/login");
+        }
+ }
     const handleUserAddressForm = async (event) => {
     event.preventDefault();
     // console.log("coming to submit form ");
-
+    
     if (!addressLine1 || !addressLine2 || !city || !state || !zip ||!contact ) {
       setResponse({ message: "Fill all fields", status: "error" });
       return;
@@ -80,6 +88,21 @@ if(user.Address){
       status: "success",
     });
   };
+  async function updateQuantity(action) {
+    const currentQty = qty;
+    let newQty;
+  
+    if (action === "add") {
+      newQty = currentQty + 1;
+    }else{
+      newQty = currentQty - 1;
+    }
+    if (newQty < 0) {
+      newQty = 0;
+    }
+  
+    setQty(newQty);
+  }
   return (
     <div className="MorningFood">
     <Message response={response} />
@@ -543,8 +566,7 @@ if(user.Address){
                     </div>
                     <div class="container options-container">
                       
-                          
-                            <div class="product-action-button" onClick={handelSubcribeButton}>
+                          {showSubcriptionButton?<div class="product-action-button" onClick={handelSubcribeButton}>
                               <div
                                 className="action-button normal-button"
                                 style={{
@@ -565,7 +587,48 @@ if(user.Address){
                               >
                                 <p >Subscribe 6 Day Meal Plan</p>
                               </div>
-                            </div>
+                            </div>:<>
+                            
+                            <label style={{
+                                  
+                                  marginLeft: "10px",
+                                  
+                                  padding: "1rem 1.5rem",
+                                 
+                                  
+                                }} for="name">Quantity</label>
+                            <div className="viewcart_box_control">
+          <a onClick={() => updateQuantity("subtract")}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" id="minus"><path fill="#000" d="M6 13a1 1 0 1 1 0-2h12a1 1 0 1 1 0 2H6Z"></path></svg>
+</a>
+<p>{qty}</p>
+<a onClick={() => updateQuantity("add")}>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" id="plus"><path fill="#000" d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"></path></svg>
+</a>
+
+      </div>
+      <div onClick={handelContinuePayment}
+                                className="action-button normal-button"
+                                style={{
+                                  height: "40px",
+                                  display: "flex",
+                                  borderRadius: "5px",
+                                  marginLeft: "10px",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  padding: "1rem 1.5rem",
+                                  minWidth: "100%",
+                                  backgroundImage:
+                                    "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
+                                  fontSize: "16px",
+                                  color: "rgb(255, 255, 255)",
+                                  
+                                }}
+                              >
+                                <p >Continue</p>
+                              </div>
+      </>}
+                            
 
                     </div>
                   </div>

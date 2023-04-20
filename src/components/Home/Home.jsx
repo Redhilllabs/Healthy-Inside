@@ -152,7 +152,7 @@ const Home = () => {
               Discover outrageously tasty, super satisfying plant-based meals.
             </p>
 
-            <Link to="morninigfood" className="herobutton" href="">
+            <Link to="/morningfood" className="herobutton" href="">
               <h4> Let's Do This! </h4>
               <img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png" />
             </Link>

@@ -70,7 +70,7 @@ function App() {
         <Header onProfileToggle={handleProfileToggle} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/morninigfood" element={<Morninigfood />} />
+          <Route path="/morningfood" element={<Morninigfood />} />
 
           <Route element={<AdminRoutes></AdminRoutes>}>
             <Route

@@ -152,7 +152,7 @@ const Header = ({ onProfileToggle }) => {
                   {showMenu && (
                     <ul className="dropdown-menu">
                       <li>
-                        <Link to="/morninigfood">Morning</Link>
+                        <Link to="/morningfood">Morning</Link>
                       </li>
 
                       <li>
@@ -243,7 +243,7 @@ const Header = ({ onProfileToggle }) => {
 {showsearchResults?<div id="search_results">
         {searchResults?.map(item => (
           <div key={item.foodID}>
-            <Link  onClick={()=>setshowsearchResults(false)}  id="header_link" to="/morninigfood">{item.foodName}</Link>
+            <Link  onClick={()=>setshowsearchResults(false)}  id="header_link" to="/morningfood">{item.foodName}</Link>
           </div>
         ))}
       </div>:<></>}
@@ -342,7 +342,7 @@ const Header = ({ onProfileToggle }) => {
                   {showMenu && (
                     <ul className="dropdown-menu">
                       <li>
-                        <Link onClick={() => setmenu(false)} to="/morninigfood">
+                        <Link onClick={() => setmenu(false)} to="/morningfood">
                           Morning
                         </Link>
                       </li>
@@ -426,7 +426,7 @@ const Header = ({ onProfileToggle }) => {
 {showsearchResults?<div id="search_results">
         {searchResults.map(item => (
           <div key={item.foodID}>
-            <Link  onClick={() => setmenu(false)}  id="header_link" to="/morninigfood">{item.foodName}</Link>
+            <Link  onClick={() => setmenu(false)}  id="header_link" to="/morningfood">{item.foodName}</Link>
           </div>
         ))}
       </div>:<></>}
