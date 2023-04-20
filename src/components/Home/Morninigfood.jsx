@@ -44,9 +44,8 @@ const MorningFood = () => {
  const handelContinuePayment = ()=>{
   if(user){
     if(user.Address){
-    // navigate to checkout
-    // window.location.reload()
-        navigate("/oderSubmit");
+  console.log(qty)
+        navigate("/oderSubmit",{state:qty});
     }else{
       setShowAddressForm(true)
     
@@ -82,7 +81,7 @@ const MorningFood = () => {
     });
 
     
-    navigate("/oderSubmit");
+    navigate("/oderSubmit",{state:qty});
     setResponse({
       message: "Address saved!",
       status: "success",

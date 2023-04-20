@@ -44,7 +44,18 @@
     justify-content: space-between;
     margin-top: 20px;
   }
-  
+  .bill_summary {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+  }
+  #billsummary{
+    background-color: var(--color1);
+    border-radius: 15px;
+    padding: 1rem;
+    overflow-y: scroll;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
   .address, .order-summary {
     width: 100%;
     margin-top: 20px;

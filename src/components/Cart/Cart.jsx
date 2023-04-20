@@ -252,6 +252,7 @@ if(user.Address){
           <h6 >{(22 + 49 + totalAmount).toFixed(2)}</h6>
         </div>
         </div>
+        
         <br />
         {Object.keys(cartItems).length > 0 ?
   <a className="orderbtn" onClick={handleAddress}>
