@@ -37,9 +37,9 @@ const Cart = () => {
     <div className="deliveryaddress">
     <h2>Delivery Address </h2>
     <address>
-  <div>{user.Address.addressLine1}</div>
-  <div>{user.Address.addressLine2}</div>
-  <div>{user.Address.city}, {user.Address.state} {user.Address.zip}</div>
+  <div>{user?.Address?.addressLine1}</div>
+  <div>{user?.Address?.addressLine2}</div>
+  <div>{user?.Address?.city}, {user?.Address?.state} {user?.Address?.zip}</div>
 </address>
       
     </div>
@@ -50,13 +50,13 @@ const Cart = () => {
   <h2> My Subscriptions </h2>
  
 <div className="mysubscriptions"> 
-  {user.Orders.map(order => (
+  {user?.Orders?.map(order => (
     <div key={order.ValidFrom} className="order_card">
-      <p>Quantity: {order.quantity}</p>
-      <p>Valid From: {order.ValidFrom}</p>
-      <p>Valid Till: {order.ValidTill}</p>
-      <p>Grand Total: {order.GrandTotal}</p>
-      <p>Subscribed On: {order.SubcribedOn}</p>
+      <p>Quantity: {order?.quantity}</p>
+      <p>Valid From: {order?.ValidFrom}</p>
+      <p>Valid Till: {order?.ValidTill}</p>
+      <p>Grand Total: {order?.GrandTotal}</p>
+      <p>Subscribed On: {order?.SubcribedOn}</p>
     </div>
   ))}
 </div>
@@ -66,7 +66,7 @@ const Cart = () => {
 <h4>Item Chagres : Rs 777</h4>
         <h4>Delivery Charge: Free</h4>
         <hr />
-  {user.Orders.map((order, index) => (
+  {user?.Orders?.map((order, index) => (
     <div key={order.ValidFrom}>
       
       <div>
@@ -74,7 +74,7 @@ const Cart = () => {
              </div>
     </div>
   ))}
-  <h2>Total Payable: {user.Orders.reduce((total, order) => total + order.GrandTotal, 0)} </h2>
+  <h2>Total Payable: {user?.Orders?.reduce((total, order) => total + order.GrandTotal, 0)} </h2>
  
 
 </div>
