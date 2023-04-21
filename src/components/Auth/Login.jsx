@@ -66,12 +66,12 @@ const Login = () => {
             type="password"
             name="password"
             id="password"
-            placeholder="*********"
+            placeholder="+++++++++++"
             {...register("password", { required: true })}
           />
           {errors.password && <span>Password is required</span>}
           <button type="submit" name="submit">
-            Log In
+            Submit
           </button>
           <div id="continue_with_google">
             <GoogleButton />
