@@ -17,13 +17,13 @@ const OrderSalesForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(startDate);
+    // console.log(startDate);
     let bodyContent = JSON.stringify({
       Date: startDate,
     });
   
     const response = await SearchOrder(bodyContent);
-    console.log(response)
+    // console.log(response)
     if (response.status === 404) {
       setResponse({ message: "Date is Not Present", status: "error" });
       return;
@@ -82,11 +82,13 @@ const OrderSalesForm = () => {
       <thead>
         <tr>
           <th>User ID</th>
-          <th>Date Added</th>
-          <th>Food ID</th>
-          <th>Food Name</th>
-          <th>Price</th>
+          <th>Address</th>
+          <th>SubcribedOn</th>
+          <th>Valid From</th>
+          <th>Valid Till</th>
+          <th>GrandTotal</th>
           <th>Quantity</th>
+          <th>Contact</th>
         </tr>
       </thead>
       <tbody>
@@ -95,11 +97,21 @@ const OrderSalesForm = () => {
   return userOrders.map((order, index) => (
     <tr key={`${userId}-${index}`}>
       {index === 0 && <td rowSpan={userOrders.length}>{userId}</td>}
-      <td>{order.dateAdded}</td>
-      <td>{order.foodID}</td>
-      <td>{order.foodName}</td>
-      <td>{order.price}</td>
-      <td>{order.qty}</td>
+      <td>
+  {order?.Address?.addressLine1}
+  {order?.Address?.addressLine2 && `, ${order.Address.addressLine2}`}
+  {order?.Address?.city && `, ${order.Address.city}`}
+  {order?.Address?.state && `, ${order.Address.state}`}
+  {order?.Address?.zip && `, ${order.Address.zip}`}
+</td>
+
+      <td>{order?.SubcribedOn}</td>
+      
+      <td>{order?.ValidTill}</td>
+      <td>{order?.ValidFrom}</td>
+      <td>{order?.GrandTotal}</td>
+      <td>{order?.quantity}</td>
+      <td>{order?.contact}</td>
     </tr>
   ));
 })}

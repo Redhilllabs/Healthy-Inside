@@ -13,9 +13,7 @@ const OrderSubmit = (props) => {
   const [display, setDisplay] = useState(false);
   const [message,setmessage] = useState("")
   const navigate = useNavigate();
-
   const location = useLocation();
-
   const qty = location.state
   const contact = location.contact
   // console.log(qty,"in order submit ",)
@@ -27,11 +25,25 @@ const OrderSubmit = (props) => {
     let bodyContent = JSON.stringify({
       "date": formattedDate,
       "user_email": user.email,
-      "order_details": [{"quantity":qty,"ValidFrom":validFrom,"ValidTill":validTillString,"GrandTotal":qty * 777,"contact":contact,"SubcribedOn":formattedDate}]
+      "order_details": [{"quantity":qty,"ValidFrom":validFrom,"ValidTill":validTillString,"GrandTotal":qty * 777,"contact":contact,"SubcribedOn":formattedDate, "Address":user.Address,"contact":user.NewContact}]
     });
 
     const response = await AddOrder(bodyContent);
     
+    const newOrder = {"quantity":qty,"ValidFrom":validFrom,"ValidTill":validTillString,"GrandTotal":qty * 777,"contact":contact,"SubcribedOn":formattedDate};
+
+    const updatedUser = { 
+      ...user, 
+      Orders: user?.Orders ? [...user.Orders, newOrder] : [newOrder]
+    };
+    
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+
+    dispatch({
+      type: actionType.SET_USER,
+      user: updatedUser,
+    });
     if (response.status === 200) {
       setDisplay(true);
       setmessage("Order Done");

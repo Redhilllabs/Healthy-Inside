@@ -264,18 +264,10 @@ const Header = ({ onProfileToggle }) => {
                   {showMenu && (
                     <ul className="dropdown-menu">
                       <li>
-                        <Link to="/account">Profile</Link>
-                      </li>
-
-                      <li>
-                        <p>
-                          <a id="kit-claim" onClick={handleClaimKitClick}>
-                            ClaimKit
-                          </a>
-                        </p>
+                        <Link id="kit-claim" to="/account">Profile</Link>
                       </li>
                       <li>
-                        <a onClick={logout}>Log out</a>
+                        <a id="kit-claim" onClick={logout}>Log out</a>
                       </li>
                     </ul>
                   )}

@@ -502,6 +502,100 @@ margin-right: -8px; */
     flex-direction: column;
     padding: unset;
 }
+* address form  */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  width: 40%;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.address-form label {
+  font-weight: bold;
+}
+
+.address-form input {
+  /* border-radius: 5px;
+  border: none;
+  padding: 10px; */
+}
+
+.address-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.address-form button:hover {
+  background-color: #0062cc;
+}
+
+.address-form-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.addressheading h3 {
+  margin: 0;
+}
+
+.address-close {
+  cursor: pointer;
+}
+/* Label and input wrapper */
+.input-wrapper {
+  display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+/* Label */
+.input-wrapper label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Input */
+.input-wrapper input {
+  width: 100%;
+  height: 30px;
+  /* padding: 5px; */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.input-wrapper div{
+
+  width: 8rem;
+  margin: 5px;
+}
 .css-sbklat-Separator {
     margin: 7px 0;
     background: #b8b8b8;

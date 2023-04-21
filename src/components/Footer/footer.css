@@ -3,16 +3,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    /* width: 100%; */
+    align-items: flex-start;
+    /* flex-wrap: wrap; */
+    width: 100%;
     padding: 2rem;
     background-color:rgb(238, 236, 236);
   }
   .footer_container{
-    width: 100%;
-    margin: 1rem;
-  padding: 2rem;
+    /* width: 100%; */
+    /* margin: 1rem;
+  padding: 1rem; */
  
   }
 .ror_footer{
@@ -41,5 +41,8 @@
     width: 100%;
     margin: 0rem;
     padding: 0rem;
+  }
+  .footer{
+    width: auto;
   }
 }

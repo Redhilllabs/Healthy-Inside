@@ -1,146 +1,44 @@
 .Viewcart {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-image: url(../../images/moringfood.jpg);
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    display: flex;
-    height: fit-content;
-      /* max-width: 1200px; */
-      -ms-flex-align: center;
-      margin: 0 auto;
-      padding: 0 15px;
-      flex-direction: column;
-  }
-  #cartItem{
-    /* height: 50%; */
-    padding: 1rem;
-    width: 80%;
-    background-color: var(--color1);
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6rem;
+    margin: 2rem;
+    background-color: rgb(224, 226, 228);
     border-radius: 15px;
-    overflow-y: scroll;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
-
+  
   .sidebar {
+    z-index: 111;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    border-radius: 10px;
+    width: 30%;
+    top: 5rem;
+    margin-right: 10rem;
+    margin-left: 5rem;
+    position: sticky;
+  }
+  .mysubscriptions{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .subscriptiondetails{
+    display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.829);
-    border: 1px solid #ccc;
-    
+    justify-content: center;
+  }
+.order_card{
+    background-color: white;
     padding: 1rem;
-    margin: 1rem;
-  }
-  
-  .head {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
- /* Style for the parent container */
-.foot {
-  display: flex;
-  height: 50%;
-    padding: 1rem;
-  flex-direction: column;
-  background-color: var(--color1);
-  border-radius: 15px;
-  overflow-y: scroll;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    margin: .5rem;
 }
-
-/* Style for the "Total" section */
-.totalprice {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.totalprice h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.totalprice #total {
-  font-size: 24px;
-  font-weight: bold;
-  color: #FF8C00; /* Change color as desired */
-}
-
-/* Style for the "Your Credit" section */
-.creditsuser {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: space-between;
-  align-items: center;
-}
-
-.creditsuser h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-/* Style for the credit value */
-.creditsuser h2:last-of-type {
-  font-size: 24px;
-  font-weight: bold;
-  color: #008000; /* Change color as desired */
-}
-
-  #balance {
-    font-weight: bold;
-  }
-  
-  .orderbtn {
-    background-color: #e00d0d;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    width: 90%;
-    text-align: center;
-    font-size: medium;
-    padding: 0.5rem 1rem;
-    margin: 1rem;
-    cursor: pointer;
-  }
-  
-  .orderbtn:hover {
-    background-color: #0069d9;
-  }
-  
-  #checkoutLink {
-    display: none;
-  }
-
-/* address form  */
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  width: 40%;
-}
+   .subscriptiondetails img{
+    width: 40%;
+    height: 9rem;
+    margin: 6px;
+    border-radius: 15px;
+   }
 
 .address-form {
   display: flex;
@@ -150,167 +48,26 @@
 
 .address-form label {
   font-weight: bold;
-}
-
-.address-form input {
-  /* border-radius: 5px;
-  border: none;
-  padding: 10px; */
-}
-
-.address-form button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.address-form button:hover {
-  background-color: #0062cc;
-}
-
-.address-form-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.addressheading h3 {
-  margin: 0;
-}
-
-.address-close {
-  cursor: pointer;
-}
-/* Label and input wrapper */
-.input-wrapper {
-  display: flex;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-}
-
-/* Label */
-.input-wrapper label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-/* Input */
-.input-wrapper input {
-  width: 100%;
-  height: 30px;
-  /* padding: 5px; */
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-
-.input-wrapper div{
-
-  width: 8rem;
-  margin: 5px;
-}
-
-.viewcart {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.viewcart img {
-  width: 8rem;
-  height: 8rem;
-  object-fit: cover;
-  margin-right: 1rem;
-}
-
-.viewcart_box {
-  flex: 1;
-}
-
-.viewcart_box_name {
-  font-size: 1.2rem;
-  margin: 0 0 0.5rem;
-}
-
-.viewcart_box_price {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.viewcart_box_control {
-  display: flex;
-  align-items: center;
-}
-
-.viewcart_box_control a {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  margin: 0 0.5rem;
-}
-
-.viewcart_box_control a img {
-  width: 30px;
-  height: 30px;
-}
-
-.viewcart_box_control a:hover {
-  cursor: pointer;
-}
-
-.viewcart_box_control p {
-  font-size: 1.2rem;
-  margin: 1rem;
-}
-
-@media only screen and (max-width: 768px) {
-  .viewcart img {
-    width: 6rem;
-    height: 6rem;
+   }
+ 
+  .Subscriptioncontainer{
+    width: 70%;
   }
 
-  .viewcart_box_name {
-    font-size: 1rem;
-  }
 
-  .viewcart_box_price {
-    font-size: 1rem;
+  @media (max-width: 768px) {
+    .Viewcart {
+    flex-direction: column;
   }
-
-  .viewcart_box_control p {
-    font-size: 1rem;
+  .sidebar {
+    width: auto;
+    z-index: 0;
+    margin-right: 0;
+    margin: 2rem;
+    margin-left: 0;
+    position: relative;
   }
+  .Subscriptioncontainer {
+    width: auto;
 }
-
-@media only screen and (max-width: 480px) {
-  .viewcart img {
-    width: 4rem;
-    height: 4rem;
-    margin-right: 0.5rem;
-  }
-
-  .viewcart_box_name {
-    font-size: 0.8rem;
-  }
-
-  .viewcart_box_price {
-    font-size: 0.8rem;
-  }
-
-  /* .viewcart_box_control a {
-    width: 1rem;
-    height: 1rem;
-    margin: 0 0.2rem;
-  } */
-
-  .viewcart_box_control p {
-    font-size: 0.8rem;
-    /* margin: 0 0.3rem; */
-  }
 }
