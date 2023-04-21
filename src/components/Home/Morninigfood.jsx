@@ -45,10 +45,9 @@ const MorningFood = () => {
   if(user){
     if(user.Address){
   console.log(qty)
-        navigate("/oderSubmit",{state:qty, contact: contact});
+        navigate("/orderSubmit",{state:qty, contact: contact});
     }else{
       setShowAddressForm(true)
-    
     }
         }else{
           navigate("/login");
@@ -72,7 +71,7 @@ const MorningFood = () => {
       Contact:contact
     };
     const res = await SaveUserAddress(data);
-    console.log(res)
+    // console.log(res)
     const updatedUser = { ...user,  Address: data.Address };
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
@@ -82,7 +81,7 @@ const MorningFood = () => {
     });
 
     
-    navigate("/oderSubmit",{state:qty, contact: contact});
+    navigate("/orderSubmit",{state:qty, contact: contact});
     setResponse({
       message: "Address saved!",
       status: "success",

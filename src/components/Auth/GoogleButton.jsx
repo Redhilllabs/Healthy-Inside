@@ -66,6 +66,12 @@ const GoogleButton = () => {
       });
 
       localStorage.setItem("user", JSON.stringify(response.data));
+
+      dispatch({
+        type: actionType.SET_Admin_USER,
+        admin: null,
+      });
+      localStorage.setItem("admin", null);
     } else {
       alert("You are already logged in");
       // setIsMenu(!isMenu);

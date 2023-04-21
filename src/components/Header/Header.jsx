@@ -167,7 +167,7 @@ const Header = ({ onProfileToggle }) => {
 
                 <li>
                  
-                  <Link id="header_link" to="/cart">Subscription</Link>
+                  <Link id="header_link" to="/cart"> My Subscription</Link>
                   {/* <div id="cartquantity">{itemCount}</div> */}
                   
                   </li>

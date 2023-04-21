@@ -1,7 +1,15 @@
+.login_container{
+  background-image: url(../../images/checkin.jpg);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
 .login {
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
+    
     background-color: #ffffff;
     border: 1px solid #242323;
     border-radius: 15px;

@@ -43,8 +43,8 @@ const AdminLogin = () => {
       });
   };
   return (
-    <div>
-      <div class="login">
+    <div className="login_container">
+      <div className="login">
         <h1> Admin Login </h1>
         <form>
           <label for="userName">Email </label>
