@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: 2rem; */
+    margin: 2rem;
   }
   .text{
     color: var(--color1);
@@ -28,7 +28,7 @@
   .line{
     padding: 0rem;
     color: var(--color2);
-    width: 21rem;
+    width: 10rem;
     height: 0px;
     margin: 0.5rem;
   }
@@ -406,11 +406,11 @@ overflow-y: auto; */
 }
 
 .widgetrow{
-margin-left: -8px;
-margin-right: -8px;
+/* margin-left: -8px;
+margin-right: -8px; */
 }
 .colm1{
-  width: 100%;
+  /* width: 100%; */
 }
 .pack-summary-widget {
     display: -webkit-flex;
@@ -797,7 +797,7 @@ margin-right: -8px;
     }
     .morning_container_eatfit {
       margin: 14px;
-      padding: 31px;
+      /* padding: 31px; */
       width: 100%;
     }
     .morning_container_eatfit2 {

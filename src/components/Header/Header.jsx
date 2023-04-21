@@ -167,8 +167,8 @@ const Header = ({ onProfileToggle }) => {
 
                 <li>
                  
-                  <Link id="header_link" to="/cart">Order</Link>
-                  <div id="cartquantity">{itemCount}</div>
+                  <Link id="header_link" to="/cart">Subscription</Link>
+                  {/* <div id="cartquantity">{itemCount}</div> */}
                   
                   </li>
 
@@ -357,8 +357,8 @@ const Header = ({ onProfileToggle }) => {
                   )}
                 </li>
                 <li>
-                  <Link  onClick={() => setmenu(false)} to="/cart">Order</Link>
-                  <div id="cartquantity">{itemCount}</div>
+                  <Link  onClick={() => setmenu(false)} to="/cart">Subscription </Link>
+                  {/* <div id="cartquantity">{itemCount}</div> */}
                   </li>
 
                 <li>

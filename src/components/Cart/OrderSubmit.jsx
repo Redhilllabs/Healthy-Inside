@@ -95,7 +95,7 @@ const validTillString = validTill.toISOString().slice(0, 10);
   <div class="checkout-form">
   <div class="line-container">
   <hr class="line"/>
-  <div ><h7>CheckOut</h7></div>
+  <div ><h4>CHECKOUT</h4></div>
   <hr class="line"/>
 </div>
     <div class="summary-address">
@@ -125,13 +125,13 @@ const validTillString = validTill.toISOString().slice(0, 10);
     <div className="bill_summery">
     <div class="line-container">
   <hr class="line"/>
-  <div ><h7>BILL SUMMARY</h7></div>
+  <h4>BILL SUMMARY</h4>
   <hr class="line"/>
 </div>
     <div class="foot" id="billsummary">
         <div className="totalprice">
         <h4>Subtotal </h4>
-          <h4>${qty * 777}</h4>
+          <h4>Rs. {qty * 777}</h4>
         </div>
 
         <div className="totalprice">
@@ -141,11 +141,11 @@ const validTillString = validTill.toISOString().slice(0, 10);
 <hr />
 <div className="totalprice">
         <h4>Grand Total </h4>
-          <h4 >${(qty * 7)}</h4>
+          <h4 >Rs. {qty * 777}</h4>
         </div>
         <div class="cash-on-delivery">
           <p>*Delivery Will Be COD </p>
-          <button id="checkout-button" onClick={handleCheckOut}>Cash On Delivery</button>
+          <button id="checkout-button" onClick={handleCheckOut}>CheckOut</button>
         </div>
         </div>
     </div>

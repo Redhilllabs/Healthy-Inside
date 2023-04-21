@@ -1,12 +1,17 @@
 .Ordercontainer{
     display: flex;
     justify-content: center;
+    background-image: url(../../images/moringfood.jpg);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    padding: 5px;
   }
   
   .checkout-form {
     width: 100%;
     margin-top: 50px;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #f0f0f0;
     border-radius: 10px;
   }
@@ -42,10 +47,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 20px;
+    background-color: var(--color1);
     border-radius: 15px;
     padding: 1rem;
-    background-color: #ffffff;
+    margin: 20px;
+    overflow-y: scroll;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
   .bill_summary {
     border: 1px solid black;
@@ -56,6 +63,7 @@
     background-color: var(--color1);
     border-radius: 15px;
     padding: 1rem;
+    margin: 20px;
     overflow-y: scroll;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
@@ -75,7 +83,12 @@
     justify-content: center;
     align-items: center;
   }
-  
+  .cash-on-delivery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
   .order-confirmation svg{
     width: 5rem;
   }

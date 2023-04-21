@@ -547,9 +547,7 @@ const currentDay = today.getDay();
           </div>
 
           <div className="container2">
-            <div className="containeroverflow_Y">
-              <div className="widgetrow">
-                <div className="colm1">
+          
                   <div class="pack-summary-widget no-border">
                     <div class="css-140e8aq-ProductHeaderWidgetContainer e4rxp0r0">
                       <div class="css-1sbql4a-TopContainerDiv e4rxp0r4">
@@ -625,6 +623,7 @@ const currentDay = today.getDay();
                                     "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
                                   fontSize: "16px",
                                   color: "rgb(255, 255, 255)",
+                                  cursor:"pointer",
                                   
                                 }}
                               >
@@ -635,12 +634,6 @@ const currentDay = today.getDay();
 
                     </div>
                   </div>
-
-                  {/* <div type="line" class="css-sbklat-Separator eaz9pu80"></div> */}
-                </div>
-                {/* <div className="colm2"></div> */}
-              </div>
-            </div>
           </div>
         </div>
       </div>
