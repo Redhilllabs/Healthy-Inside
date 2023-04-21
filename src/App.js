@@ -82,7 +82,7 @@ function App() {
           <Route element={<PrivateRoutes></PrivateRoutes>}>
             <Route path="/morningfood" element={<Morninigfood />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart/>} />
             <Route path="/orderSubmit" element={<OrderSubmit />} />
           </Route>
 

@@ -11,8 +11,6 @@ const Cart = () => {
 
   return (
 <>
-
-
     <div className="Viewcart">
     
   <div className="sidebar">
