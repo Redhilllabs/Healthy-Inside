@@ -240,17 +240,7 @@ export const sendWhatsAppMessage = async(data)=>{
 }
 
 export const sendSMStwilio = async(data)=>{
-  // const accountSid = "ACa0a66424767d8a933a30da0e329a62960";
-  // const authToken = "19a2a67a877a90730c6d816558ce13c5";
-  // const client = require('twilio')(accountSid, authToken);
-  // client.messages
-  //   .create({
-  //      from: '+14345776606',
-  //      to: data.number,
-  //      body: data.message
-  //    })
-  //   .then(message => console.log(message.sid))
-  //   .catch((error) => console.log(error));
+
 }
 
 export const sendSNS = async(data)=>{

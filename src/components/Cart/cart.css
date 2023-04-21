@@ -1,44 +1,44 @@
 .Viewcart {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 6rem;
-    margin: 2rem;
-    background-color: rgb(224, 226, 228);
-    border-radius: 15px;
-  }
-  
-  .sidebar {
-    z-index: 111;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    width: 30%;
-    top: 5rem;
-    margin-right: 10rem;
-    margin-left: 5rem;
-    position: sticky;
-  }
-  .mysubscriptions{
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .subscriptiondetails{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-.order_card{
-    background-color: white;
-    padding: 1rem;
-    margin: .5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6rem;
+  margin: 2rem;
+  background-color: rgb(224, 226, 228);
+  border-radius: 15px;
 }
-   .subscriptiondetails img{
-    width: 40%;
-    height: 9rem;
-    margin: 6px;
-    border-radius: 15px;
-   }
+
+.sidebar {
+  z-index: 111;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 30%;
+  top: 5rem;
+  margin-right: 10rem;
+  margin-left: 5rem;
+  position: sticky;
+}
+.mysubscriptions {
+  display: flex;
+  flex-wrap: wrap;
+}
+.subscriptiondetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order_card {
+  background-color: white;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+.subscriptiondetails img {
+  width: 40%;
+  height: 9rem;
+  margin: 6px;
+  border-radius: 15px;
+}
 
 .address-form {
   display: flex;
@@ -48,15 +48,14 @@
 
 .address-form label {
   font-weight: bold;
-   }
- 
-  .Subscriptioncontainer{
-    width: 70%;
-  }
+}
 
+.Subscriptioncontainer {
+  width: 70%;
+}
 
-  @media (max-width: 768px) {
-    .Viewcart {
+@media (max-width: 768px) {
+  .Viewcart {
     flex-direction: column;
   }
   .sidebar {
@@ -69,5 +68,5 @@
   }
   .Subscriptioncontainer {
     width: auto;
-}
+  }
 }

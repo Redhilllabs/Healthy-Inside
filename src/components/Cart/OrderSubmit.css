@@ -1,283 +1,267 @@
-.Ordercontainer{
-    display: flex;
-    justify-content: center;
-    background-image: url(../../images/moringfood.jpg);
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    padding: 5px;
-  }
-  
-  .checkout-form {
-    width: 100%;
-    margin-top: 50px;
-    /* padding: 20px; */
-    background-color: #f0f0f0;
-    border-radius: 10px;
-  }
-  
-  .foot {
-    display: flex;
-    height: 50%;
-      padding: 1rem;
-    flex-direction: column;
-    background-color: var(--color1);
-    border-radius: 15px;
-    overflow-y: scroll;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  }
-  /* h2 {
-    margin-bottom: 10px;
-  } */
-  
-  #razorpay-container {
-    margin-top: 20px;
-  }
-  
-  #checkout-button {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #008000;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    width: 40%;
-  }
-  
-  .address-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .address-form label {
-    font-weight: bold;
-  }
-  
-  .address-form input {
-    /* border-radius: 5px;
-    border: none;
-    padding: 10px; */
-  }
-  
-  .address-form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .address-form button:hover {
-    background-color: #0062cc;
-  }
-  
-  .address-form-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .addressheading h3 {
-    margin: 0;
-  }
-  
-  .address-close {
-    cursor: pointer;
-  }
-  /* Label and input wrapper */
-  .input-wrapper {
-    display: flex;
-      flex-wrap: wrap;
-      overflow-y: scroll;
-  }
-  
-  /* Label */
-  .input-wrapper label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  /* Input */
-  .input-wrapper input {
-    width: 100%;
-    height: 30px;
-    /* padding: 5px; */
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-  }
-  
-  .input-wrapper div{
-  
-    width: 8rem;
-    margin: 5px;
-  }
-  
-  #gpay-button {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    /* background-color: #f0f0f0; */
-  }
-  
-  .summary-address {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: var(--color1);
-    border-radius: 15px;
-    padding: 1rem;
-    margin: 20px;
-    overflow-y: scroll;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  }
-  .bill_summary {
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
-  }
-  .totalprice {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  #billsummary{
-    background-color: var(--color1);
-    border-radius: 15px;
-    padding: 1rem;
-    margin: 20px;
-    overflow-y: scroll;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .order-confirmation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .cash-on-delivery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.Ordercontainer {
+  display: flex;
+  justify-content: center;
+  background-image: url(../../images/moringfood.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5px;
 }
-  .order-confirmation svg{
-    width: 5rem;
-  }
-  .order-confirmation.show {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .order-confirmation p {
-    font-size: 2rem;
-    color: #fff;
-    text-align: center;
-    padding: 2rem;
-    background-color: #000;
-    border-radius: 1rem;
-  }
-  
 
-  .address, .order-summary {
-    width: 100%;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
+.checkout-form {
+  width: 100%;
+  margin-top: 50px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.foot {
+  display: flex;
+  height: 50%;
+  padding: 1rem;
+  flex-direction: column;
+  background-color: var(--color1);
+  border-radius: 15px;
+  overflow-y: scroll;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+#razorpay-container {
+  margin-top: 20px;
+}
+
+#checkout-button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #008000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  width: 40%;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.address-form label {
+  font-weight: bold;
+}
+
+.address-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.address-form button:hover {
+  background-color: #0062cc;
+}
+
+.address-form-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.addressheading h3 {
+  margin: 0;
+}
+
+.address-close {
+  cursor: pointer;
+}
+.input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.input-wrapper label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.input-wrapper div {
+  width: 8rem;
+  margin: 5px;
+}
+
+#gpay-button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.summary-address {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--color1);
+  border-radius: 15px;
+  padding: 1rem;
+  margin: 20px;
+  overflow-y: scroll;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+.bill_summary {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+.totalprice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#billsummary {
+  background-color: var(--color1);
+  border-radius: 15px;
+  padding: 1rem;
+  margin: 20px;
+  overflow-y: scroll;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.order-confirmation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cash-on-delivery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.order-confirmation svg {
+  width: 5rem;
+}
+.order-confirmation.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.order-confirmation p {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  background-color: #000;
+  border-radius: 1rem;
+}
+
+.address,
+.order-summary {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.order-summary img {
+  max-width: 100%;
+  height: auto;
+}
+
+.payment-options {
+  margin-top: 20px;
+}
+
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.payment-methods div {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+#submit-button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #008000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .checkout-form {
+    width: 60%;
   }
-  
-  .order-summary img {
-    max-width: 100%;
-    height: auto;
+
+  .summary-address {
+    flex-wrap: nowrap;
   }
-  
-  .payment-options {
-    margin-top: 20px;
+
+  .address,
+  .order-summary {
+    width: 48%;
+    margin-top: 0;
   }
-  
+
   .payment-methods {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-wrap: nowrap;
   }
-  
+
   .payment-methods div {
-    width: 100%;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
+    width: 30%;
+    margin-top: 0;
   }
-  
-  #submit-button {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #008000;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  @media (min-width: 768px) {
-    .checkout-form {
-      width: 60%;
-    }
-  
-    .summary-address {
-      flex-wrap: nowrap;
-    }
-  
-    .address, .order-summary {
-      width: 48%;
-      margin-top: 0;
-    }
-  
-    .payment-methods {
-      flex-wrap: nowrap;
-    }
-  
-    .payment-methods div {
-      width: 30%;
-      margin-top: 0;
-    }
-  }
-  
+}

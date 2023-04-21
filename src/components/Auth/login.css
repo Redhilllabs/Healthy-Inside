@@ -1,4 +1,4 @@
-.login_container{
+.login_container {
   background-image: url(../../images/checkin.jpg);
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -11,69 +11,65 @@
 }
 
 .login {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 70rem;
+  background-color: #ffffff;
+  border: 1px solid #242323;
+  border-radius: 15px;
+  padding: 50px;
+  margin: 13px;
+  height: 70vh;
+}
 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 70rem;
-    
-    background-color: #ffffff;
-    border: 1px solid #242323;
-    border-radius: 15px;
-    padding: 50px;
-    margin: 13px;
-    height: 70vh;
+.login h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
 
-  }
-  
-  .login h1 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .login label {
-    display: block;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-  }
-  
-  .login input[type="email"],
-  .login input[type="password"] {
-    display: block;
-    width: 100%;
-    padding: 16px;
-    margin-bottom: 20px;
-    border: 2px solid #32814d;
-    border-radius: 15px;
-    box-sizing: border-box;
-  }
-  
-  .login button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 7px;
-    background-color: #000000;
-    color: #fff;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .login button[type="submit"]:hover {
-    background-color: #3e8e41;
-  }
-  #continue_with_google {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .GoogleButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    color: rgba(0, 0, 0, 0.54);
-    box-shadow: 0 
-  }  
-  
+.login label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.login input[type="email"],
+.login input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 2px solid #32814d;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+.login button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 7px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+#continue_with_google {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.GoogleButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.54);
+  box-shadow: 0;
+}

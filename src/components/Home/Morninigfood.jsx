@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./MorningFood.css";
 import { useStateValue } from "../../context/StateProvider";
 import { actionType } from "../../context/reducer";
-import CartItem from "../Cart/CartItem";
-import { Link } from "react-router-dom";
 import BhelMakhani2 from "../../images/BhelMakhani2.jpg";
 import { useNavigate } from "react-router-dom";
 import { AddCart, DecreaseCart, SaveUserAddress } from "../../utils/ApiCall";
@@ -27,8 +25,7 @@ const MorningFood = () => {
   const [showSubcriptionButton, setshowSubcriptionButton] = useState(true);
 
   const handleItemClick = (item) => {
-    console.log("came here")
-  setSelectedItem(item);
+    setSelectedItem(item);
     setimageurl(item.foodUrl);
   };
   const handleTabClick = (label) => {
@@ -40,10 +37,9 @@ const MorningFood = () => {
   };
 
   const handelContinuePayment = () => {
-    // console.log("came , here")
-    if (user){
+    if (user) {
       if (user.Address) {
-        console.log(qty)
+        console.log(qty);
         if (qty === 0) {
         } else {
           navigate("/orderSubmit", { state: qty, contact: contact });
@@ -57,7 +53,6 @@ const MorningFood = () => {
   };
   const handleUserAddressForm = async (event) => {
     event.preventDefault();
-    // console.log("coming to submit form ");
 
     if (!addressLine1 || !addressLine2 || !city || !state || !zip || !contact) {
       setResponse({ message: "Fill all fields", status: "error" });
@@ -75,8 +70,11 @@ const MorningFood = () => {
       Contact: contact,
     };
     const res = await SaveUserAddress(data);
-    // console.log(res)
-    const updatedUser = { ...user, Address: data.Address, NewContact:data.Contact };
+    const updatedUser = {
+      ...user,
+      Address: data.Address,
+      NewContact: data.Contact,
+    };
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
     dispatch({
@@ -166,30 +164,47 @@ const MorningFood = () => {
 
                           <div className="container1_content_ImageTabContainer">
                             <div className="container1_content_ImageTabList">
-                            {foodItems && foodItems.data && Array.isArray(foodItems.data) && foodItems.data
-  .filter(item => item.foodType === "breakfast")
-  .map((item, index) => {
-    const today = new Date().getDay(); // get current day index (0-6)
-    const itemDay =  (index + 1) % 6; // map item index to day index (0-6)
-    const isToday = today === itemDay;
-    const isActive = isToday;
+                              {foodItems &&
+                                foodItems.data &&
+                                Array.isArray(foodItems.data) &&
+                                foodItems.data
+                                  .filter(
+                                    (item) => item.foodType === "breakfast"
+                                  )
+                                  .map((item, index) => {
+                                    const today = new Date().getDay();
+                                    const itemDay = (index + 1) % 6;
+                                    const isToday = today === itemDay;
+                                    const isActive = isToday;
 
-    return (
-      <div onClick={() => handleItemClick(item)}>
-        <img
-          src={item.foodUrl}
-          alt={item.foodName}
-          className={isActive ? "container1_content_Image_active" : "container1_content_Image"}
-        />
-        <p className="container1_content_DayText">
-          {[ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][index]}
-        </p>
-      </div>
-    );
-  })}
-
-
-
+                                    return (
+                                      <div
+                                        onClick={() => handleItemClick(item)}
+                                      >
+                                        <img
+                                          src={item.foodUrl}
+                                          alt={item.foodName}
+                                          className={
+                                            isActive
+                                              ? "container1_content_Image_active"
+                                              : "container1_content_Image"
+                                          }
+                                        />
+                                        <p className="container1_content_DayText">
+                                          {
+                                            [
+                                              "Mon",
+                                              "Tue",
+                                              "Wed",
+                                              "Thu",
+                                              "Fri",
+                                              "Sat",
+                                            ][index]
+                                          }
+                                        </p>
+                                      </div>
+                                    );
+                                  })}
                             </div>
 
                             <div className="container1_content_ImageTabContent">
@@ -281,7 +296,6 @@ const MorningFood = () => {
                                 <div>Select an item to view details</div>
                               )}
                             </div>
-
                           </div>
                         </div>
                       </div>
@@ -313,101 +327,98 @@ const MorningFood = () => {
                   <p class="css-j2duwn-BottomText e4rxp0r2"></p>
                 </div>
                 <div class="container options-container">
-                {showSubcriptionButton ? (
-                  
-                  <div
-                    class="product-action-button"
-                    onClick={handelSubcribeButton}
-                  >
+                  {showSubcriptionButton ? (
                     <div
-                      className="action-button normal-button"
-                      style={{
-                        height: "40px",
-                        display: "flex",
-                        borderRadius: "5px",
-                        // marginLeft: "10px",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: "1rem 1.5rem",
-                        minWidth: "100%",
-                        backgroundImage:
-                          "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
-                        fontSize: "16px",
-                        color: "rgb(255, 255, 255)",
-                      }}
+                      class="product-action-button"
+                      onClick={handelSubcribeButton}
                     >
-                      <p>Subscribe 6 Day Meal Plan</p>
+                      <div
+                        className="action-button normal-button"
+                        style={{
+                          height: "40px",
+                          display: "flex",
+                          borderRadius: "5px",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "1rem 1.5rem",
+                          minWidth: "100%",
+                          backgroundImage:
+                            "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
+                          fontSize: "16px",
+                          color: "rgb(255, 255, 255)",
+                        }}
+                      >
+                        <p>Subscribe 6 Day Meal Plan</p>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <>
-                    <label
-                      style={{
-                        marginLeft: "10px",
+                  ) : (
+                    <>
+                      
+                      <div className="viewcart_box_control">
+                      <label
+                        style={{
+                          marginLeft: "10px",
+                          padding: "1rem 1.5rem",
+                        }}
+                        for="name"
+                      >
+                        Quantity :
+                      </label>
+                        <a onClick={() => updateQuantity("subtract")}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            id="minus"
+                          >
+                            <path
+                              fill="#000"
+                              d="M6 13a1 1 0 1 1 0-2h12a1 1 0 1 1 0 2H6Z"
+                            ></path>
+                          </svg>
+                        </a>
+                        <p>{qty}</p>
+                        <a onClick={() => updateQuantity("add")}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            id="plus"
+                          >
+                            <path
+                              fill="#000"
+                              d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                      <div
+                        onClick={handelContinuePayment}
+                        className="action-button normal-button"
+                        style={{
+                          height: "40px",
+                          display: "flex",
+                          borderRadius: "5px",
 
-                        padding: "1rem 1.5rem",
-                      }}
-                      for="name"
-                    >
-                      Quantity
-                    </label>
-                    <div className="viewcart_box_control">
-                      <a onClick={() => updateQuantity("subtract")}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          id="minus"
-                        >
-                          <path
-                            fill="#000"
-                            d="M6 13a1 1 0 1 1 0-2h12a1 1 0 1 1 0 2H6Z"
-                          ></path>
-                        </svg>
-                      </a>
-                      <p>{qty}</p>
-                      <a onClick={() => updateQuantity("add")}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          id="plus"
-                        >
-                          <path
-                            fill="#000"
-                            d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"
-                          ></path>
-                        </svg>
-                      </a>
-                    </div>
-                    <div
-                      onClick={handelContinuePayment}
-                      className="action-button normal-button"
-                      style={{
-                        height: "40px",
-                        display: "flex",
-                        borderRadius: "5px",
-                        // marginLeft: "10px",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: "1rem 1.5rem",
-                        minWidth: "100%",
-                        backgroundImage:
-                          "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
-                        fontSize: "16px",
-                        color: "rgb(255, 255, 255)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <p>Continue</p>
-                    </div>
-                  </>
-                )}
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "1rem 1.5rem",
+                          minWidth: "100%",
+                          backgroundImage:
+                            "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
+                          fontSize: "16px",
+                          color: "rgb(255, 255, 255)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <p>Continue</p>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
-              </div>
-              
             </div>
           </div>
         </div>

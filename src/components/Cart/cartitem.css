@@ -1,11 +1,7 @@
 .cart_container {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
-  /* width: 200px; */
-  /* width: 23%; */
   margin-bottom: 20px;
-  /* margin: 10px; */
   box-sizing: border-box;
   background-color: var(--color1);
   border-radius: 8px;
@@ -61,7 +57,7 @@
 
 @media only screen and (max-width: 600px) {
   .cart_container img {
-width: 82px;
-height: 100px;
+    width: 82px;
+    height: 100px;
   }
 }

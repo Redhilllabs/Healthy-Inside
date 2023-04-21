@@ -2,138 +2,22 @@ import React, { useState, useEffect } from "react";
 import "./home.css";
 import { useStateValue } from "../../context/StateProvider";
 import { Link } from "react-router-dom";
-import f1 from "../../images/f1.png";
-import f2 from "../../images/f2.png";
-import f3 from "../../images/f3.png";
-import f4 from "../../images/f4.png";
-import f5 from "../../images/f5.png";
-import f6 from "../../images/f6.png";
 import menu1 from "../../images/menu1.jpg";
 import menu2 from "../../images/menu2.jpg";
 import { actionType } from "../../context/reducer";
-import CartItem from "../Cart/CartItem";
-import { GetCart, AddToCart } from "../../utils/ApiCall";
-import ff2 from "../../images/ff2.jpeg";
-import heroimg from "../../images/heroimg.jpg";
-import BhelMakhani2 from "../../images/BhelMakhani2.jpg";
-import OilFreeChole1 from "../../images/OilFreeChole1.jpg";
-import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 const Home = () => {
-  // add to cart funtionality
   const [{ foodItems, cartItems, user }, dispatch] = useStateValue();
   const [fooditems, setfooditems] = useState([]);
-  // const [cart, setCart] = useState([]);
-  // const [mogoadd, setmongoadd] = useState([]);
   const [alert, setalert] = useState("");
 
-  const addfooditem = (item) => {
-    if (user) {
-      const existingProductIndex = cartItems.findIndex(
-        (e) => e.foodID === item.foodID
-      );
-
-      setalert("Item Added");
-
-      setTimeout(function () {
-        setalert("");
-      }, 1000);
-
-      if (existingProductIndex === -1) {
-        // If the product is not in the cart, add it
-        setfooditems([...cartItems, { ...item, quantity: 1 }]);
-      } else {
-        // If the product is already in the cart, increase its quantity
-        const updatedCartItems = cartItems.map((cartItem, index) => {
-          if (index === existingProductIndex) {
-            return {
-              ...cartItem,
-              quantity: cartItem.quantity + 1,
-            };
-          } else {
-            return cartItem;
-          }
-        });
-        setfooditems(updatedCartItems);
-      }
-    } else {
-      setalert("Login To Continue");
-      setTimeout(function () {
-        setalert("");
-      }, 1000);
-    }
-  };
-
-  const addcartmongo = async (item_id) => {
-    console.log("cameing into addto mongo");
-    // if(user){
-    //  await AddToCart(item_id,user._id).then((data)=>{
-    //   // console.log(data)
-    //     setmongoadd(data)
-
-    //     setalert("Item Added")
-
-    //    setTimeout(function() {
-    //       setalert("")
-    //     }, 1000);
-    //     }).catch((err)=>{
-    //       alert("Server Issue")
-    //     console.log("Error occured",err)
-    //     })
-    // }
-  };
   const addtocart = () => {
-    // console.log(cartItems)
-
     dispatch({
       type: actionType.SET_CARTITEMS,
       cartItems: fooditems,
     });
-
     localStorage.setItem("cartItems", JSON.stringify(fooditems));
   };
-  const divStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundSize: "cover",
-    height: "400px",
-  };
-  const buttonStyle = {
-    display: "flex",
-    padding: "15px",
-    backgroundColor: "#009879",
-    justifyContent: "center",
-    textAlign: "center",
-    alignItem: "center",
-    borderRadius: "5px",
-    color: "white",
-    borderRadius: "25px",
-    fontSize: "18px",
-    fontWeight: "bold",
-    margin: "10px",
-    cursor: "pointer",
-    textDecoration: "none",
-    transition: "background-color 0.3s ease-in-out",
-  };
-
-  const slideImages = [
-    {
-      url: "https://amplify-amplifye544c09ddce64-staging-51255-deployment.s3.amazonaws.com/foodsImages/aa7.jpeg",
-      caption: "Healthified tasty breakfast meals",
-      linkto: "#breakfast",
-    },
-    {
-      url: "https://amplify-amplifye544c09ddce64-staging-51255-deployment.s3.amazonaws.com/foodsImages/aa2.jpeg",
-      caption: "Subscribe for Daily Breakfast Packages",
-      linkto: "#lunch",
-    },
-    {
-      url: "https://amplify-amplifye544c09ddce64-staging-51255-deployment.s3.amazonaws.com/foodsImages/ff2.jpeg",
-      caption: "Exclusive range of fitness equipments",
-      linkto: "#fitness",
-    },
-  ];
 
   useEffect(() => {
     addtocart();

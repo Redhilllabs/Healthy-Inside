@@ -1,62 +1,58 @@
 .signupform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 1rem;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #f1f1f1;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+}
+
+.signupform form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.signupform label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signupform input {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 5px lightgray;
+  width: 100%;
+}
+
+.signupform button {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signupform button:hover {
+  background-color: var(--secondary);
+}
+
+@media (max-width: 768px) {
   .signupform form {
-    display: flex;
+    max-width: 100%;
+  }
+
+  .signupform {
     flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-    
   }
-  
-  .signupform label {
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .signupform input {
-    padding: 5px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 1px 1px 5px lightgray;
-    width: 100%;
-  }
-  
-  .signupform button {
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: var(--primary);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .signupform button:hover {
-    background-color: var(--secondary)
-  }
-  
-  @media (max-width: 768px) {
-    .signupform form {
-      max-width: 100%;
-
-    }
-
-
-    .signupform{
-      flex-direction: column;
-    }
-  }
-  
+}

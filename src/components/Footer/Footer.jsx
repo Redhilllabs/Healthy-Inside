@@ -3,7 +3,7 @@ import "./footer.css";
 const Footer = () => {
   return (
     <>
-      <footer class="footer">
+      <footer className="footer">
         <div className="footer_container">
         <div>
         <i><h1>
@@ -23,8 +23,8 @@ Healthy Inside
               </div>
               
               <div>
-              <hr class="footerline"/>
- <h7>© Copyright 2023 Red Hill Labs. All rights reserved.</h7>
+              <hr className="footerline"/>
+ <h3>© Copyright 2023 Red Hill Labs. All rights reserved.</h3>
               </div>
 
 

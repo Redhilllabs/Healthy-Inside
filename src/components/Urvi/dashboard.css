@@ -1,4 +1,4 @@
-  /* Google Fonts Import Link */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 .dashboard{
@@ -65,9 +65,6 @@
   opacity: 0;
   pointer-events: none;
 }
-
-
-
 .dashboard_sidebar .nav-links li{
   position: relative;
   list-style: none;
@@ -130,7 +127,6 @@
   color: var(--color1);
   transition: all 0.4s ease;
 }
-
 
 .dashboard_sidebar .nav-links li .sub-menu a{
   color: var(--color1);
@@ -413,21 +409,13 @@ overflow: scroll;
   
   .recipe_table td {
     display: table-cell;
-    /* border-collapse: collapse; */
-    /* width: 30px; set the width to one-third of the container width */
-    box-sizing: border-box; /* include padding and border in the width */
+    box-sizing: border-box;
   }
   .recipe_table th {
-    /* width: 30px; */
-    /* background-color: var(--dashboard); */
-    /* background-color: #dddddd; */
     font-weight: bold;
     text-align: center;
   }
 
-  .recipe_table tr:nth-child(even) {
-    /* background-color: #f2f2f2; */
-  }
   .showInventoryTable{
     border-collapse: collapse;
     width: 100%;

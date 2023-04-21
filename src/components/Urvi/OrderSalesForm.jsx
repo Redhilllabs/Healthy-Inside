@@ -17,13 +17,11 @@ const OrderSalesForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(startDate);
     let bodyContent = JSON.stringify({
       Date: startDate,
     });
   
     const response = await SearchOrder(bodyContent);
-    // console.log(response)
     if (response.status === 404) {
       setResponse({ message: "Date is Not Present", status: "error" });
       return;

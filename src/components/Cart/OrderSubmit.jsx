@@ -16,7 +16,6 @@ const OrderSubmit = (props) => {
   const location = useLocation();
   const qty = location.state
   const contact = location.contact
-  // console.log(qty,"in order submit ",)
 
   const handleCheckOut = async () => {
     const currentDate = new Date();
@@ -57,32 +56,25 @@ const OrderSubmit = (props) => {
   }
   useEffect(() => {
     if (!qty) {
-      navigate('/'); // Redirect to the homepage if the qty value is not provided in the state
+      navigate('/');
     }
   }, [qty, navigate]);
 
   const now = new Date();
   let daysToAdd = 6;
   let validFrom = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
-  
-  // If the valid from date is on or after a Sunday, add an extra day
+
   if (validFrom.getDay() === 0) {
     validFrom.setDate(validFrom.getDate() + 1);
   }
   
   validFrom = validFrom.toISOString().slice(0, 10);
-  
-  // Calculate the valid till date as 6 days from the valid from date
   let validTill = new Date(validFrom);
   validTill.setDate(validTill.getDate() + daysToAdd);
-  
-  // If the valid till date is on or after a Sunday, add an extra day
   if (validTill.getDay() === 0) {
     validTill.setDate(validTill.getDate() + 1);
     daysToAdd++;
   }
-  
-  // Check if there is a Sunday between the valid from and valid till dates
   let hasSunday = false;
   let currentDate = new Date(validFrom);
   while (currentDate <= validTill) {
@@ -92,8 +84,7 @@ const OrderSubmit = (props) => {
     }
     currentDate.setDate(currentDate.getDate() + 1);
   }
-  
-  // If there is a Sunday, add one more day to the valid till date
+
   if (hasSunday) {
     validTill.setDate(validTill.getDate() + 1);
     daysToAdd++;

@@ -1,18 +1,15 @@
-/* hero section */
+
 .hero-section {
   height: 700px;
 }
 
 .hero_container {
-  background-image: url(../../images/heroimage.jpg); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  /* height: 500px; You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  /* display: flex; */
+  background-image: url(../../images/heroimage.jpg); 
+  background-color: #cccccc; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
     height: 100%;
-    /* max-width: 1200px; */
     -ms-flex-align: center;
     align-items: center;
     margin: 0 auto;
@@ -73,7 +70,6 @@ font-size: 4rem;
   /* font-size: 15px; */
 }
 
-/* menu section */
 
 .menu{
   display: flex;
@@ -136,11 +132,6 @@ justify-content: center;
   color: var(--secondary);
 }
 
-/* .menuitem_1 a{
-  background-color: var(--primary);
-  text-decoration: none;
-  font-size: medium;
-} */
 
 .imggfood{
   background-image: url(../../images/imgg2.jpg);
@@ -151,7 +142,6 @@ justify-content: center;
 }
 
 
-/* section p1 */
 .section-p1 {
   padding: 20px;
 }
@@ -164,7 +154,6 @@ justify-content: center;
   line-height: 54px;
   color: #222;
 }
-/* alert box css */
 
 #alert-box {
   position: fixed;
@@ -194,8 +183,6 @@ justify-content: center;
   to { transform: translate(-50%, -50%); opacity: 1; }
 }
 
-
-/* slider css */
 .sliderInfo h1{
   background: transparent;
   color: white;
@@ -222,7 +209,6 @@ justify-content: center;
   align-items:center;
   /* padding: 2rem; */
 }
-/* features */
 
 #feature {
   display: flex;
@@ -302,7 +288,7 @@ justify-content: center;
 
 
 
-/* cart button */
+
 #floatingButton {
   position: fixed;
   bottom: 50px;
@@ -312,7 +298,7 @@ justify-content: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px; /* Increase the size of the button */
+  width: 80px;
   height: 80px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 15);
   z-index: 999;

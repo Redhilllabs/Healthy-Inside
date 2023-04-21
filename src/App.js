@@ -22,7 +22,6 @@ import "./App.css";
 function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [{ foodItems, user }, dispatch] = useStateValue();
-  // console.log("foodItems",foodItems)
   const handleProfileToggle = useCallback(() => {
     setShowProfile((prev) => !prev);
   }, []);
@@ -40,8 +39,7 @@ function App() {
       ]);
   
       if (userData?.Item) {
-        // dispatch({ type: actionType.SET_USER, user: userData.Item });
-        // localStorage.setItem('user', JSON.stringify(userData.Item));
+
       }
     } else {
       foodItemsData = await getAllFoodItems();
@@ -63,7 +61,6 @@ function App() {
   
   
   
-
   return (
     <>
       <Router>
@@ -82,7 +79,7 @@ function App() {
           <Route element={<PrivateRoutes></PrivateRoutes>}>
             <Route path="/morningfood" element={<Morninigfood />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/cart" element={<Cart/>} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/orderSubmit" element={<OrderSubmit />} />
           </Route>
 
