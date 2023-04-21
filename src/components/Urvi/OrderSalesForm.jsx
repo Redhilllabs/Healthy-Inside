@@ -83,7 +83,7 @@ const OrderSalesForm = () => {
         <tr>
           <th>User ID</th>
           <th>Address</th>
-          <th>SubcribedOn</th>
+          <th>Subscribed On</th>
           <th>Valid From</th>
           <th>Valid Till</th>
           <th>GrandTotal</th>
