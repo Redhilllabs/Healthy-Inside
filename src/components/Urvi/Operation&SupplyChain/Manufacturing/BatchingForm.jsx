@@ -88,8 +88,26 @@ function BatchingForm({ date, setSelectedDate }) {
             <td>{supply.particulars}</td>
             <td>{supply.quantity}</td>
             <td>{supply.unit}</td>
-            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].particulars}{(item.exportSupply[0].particulars).replace(/\d+/g,(match) => (Math.floor(item.exportSupply[0].quantity) === 3 ? "10" : "20"))}</td>}
-            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].quantity}</td>}
+
+           
+{index === 0 && item.exportSupply.length > 0 && (
+  <td rowSpan={item.importSupply.length}>
+    
+        <td >
+          {item.exportSupply[0].particulars}
+        </td>
+        <td>
+          {(item.exportSupply[0].particulars).replace(/\d+/g, (match) => {
+            const decimal = item.exportSupply[0].quantity % 1;
+            return decimal.toFixed(1) === '0.3' ? '10' : '20';
+          })}
+        </td>
+  </td>
+)}
+
+
+            
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}><td>{item.exportSupply[0].quantity}</td><td>1</td></td>}
             {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].unit}</td>}
           </tr>
         ))}
@@ -97,7 +115,26 @@ function BatchingForm({ date, setSelectedDate }) {
           <tr key={index}>
             {index === 0 && item.importSupply.length === 0 && <td rowSpan={item.exportSupply.length}>{item.rootItem}</td>}
             {index === 0 && item.importSupply.length > 0 && <td rowSpan={item.importSupply.length}></td>}
-            {index === 0 && <td>{supply.particulars}{(supply.particulars).replace(/\d+/g,(match) => (Math.floor(supply.quantity) === 3 ? "10" : "20"))}</td>}
+            {index === 0 && <td></td>}
+            {index === 0 && item.importSupply.length > 0 && (
+  <td rowSpan={item.exportSupply.length}>
+    <div style={{display: 'table'}}>
+      <div style={{display: 'table-row'}}>
+        <div style={{display: 'table-cell'}}>
+          {supply.particulars}
+        </div>
+        <div style={{display: 'table-cell'}}>
+          {(supply.particulars).replace(/\d+/g, (match) => {
+            const decimal = supply.quantity % 1;
+            return decimal.toFixed(1) === '0.3' ? '10' : '20';
+          })}
+        </div>
+      </div>
+    </div>
+  </td>
+)}
+
+
             <td>{supply.quantity}</td>
             <td>{supply.unit}</td>
           </tr>

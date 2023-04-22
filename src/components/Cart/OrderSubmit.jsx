@@ -60,38 +60,23 @@ const OrderSubmit = (props) => {
     }
   }, [qty, navigate]);
 
-  const now = new Date();
-  let daysToAdd = 6;
-  let validFrom = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
 
+  const now = new Date();
+  let daysToAdd = 5;
+  let validFrom = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
   if (validFrom.getDay() === 0) {
     validFrom.setDate(validFrom.getDate() + 1);
+  } else if (validFrom.getDay() === 6) {
+    validFrom.setDate(validFrom.getDate() + 2);
   }
-  
-  validFrom = validFrom.toISOString().slice(0, 10);
+  validFrom = validFrom.toISOString().slice(0, 10); 
   let validTill = new Date(validFrom);
   validTill.setDate(validTill.getDate() + daysToAdd);
-  if (validTill.getDay() === 0) {
-    validTill.setDate(validTill.getDate() + 1);
-    daysToAdd++;
+  if(validTill.getDay() === 0){
+    validTill.setDate(validTill.getDay()+1);
   }
-  let hasSunday = false;
-  let currentDate = new Date(validFrom);
-  while (currentDate <= validTill) {
-    if (currentDate.getDay() === 0) {
-      hasSunday = true;
-      break;
-    }
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
-
-  if (hasSunday) {
-    validTill.setDate(validTill.getDate() + 1);
-    daysToAdd++;
-  }
-  
   const validTillString = validTill.toISOString().slice(0, 10);
-  
+
   return (
     <>
 <div className={`order-confirmation ${display ? "show" : ""}`}>

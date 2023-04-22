@@ -170,6 +170,7 @@ background-color: var(--secondary);
   position: relative;
   display: -ms-flexbox;
   display: flex;
+  width: 7rem;
   -ms-flex-align: center;
   align-items: center;
   font-size: 1rem;
