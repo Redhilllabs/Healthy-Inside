@@ -44,7 +44,7 @@ const Cart = () => {
           <h2>Breakfast Meal</h2>
           <p>Weekly Plan</p>
           <h5>
-            <s>  1570</s> Rs. 777
+             Rs. 777
           </h5>
         </div>
     </div>

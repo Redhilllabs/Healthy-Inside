@@ -84,9 +84,9 @@ const SeedKitchenForm = ({ date }) => {
             {index === 0 && <td rowSpan={item.importSupply.length}>{item.rootItem}</td>}
             <td> 
   
-    <td>
+    
       {supply.particulars}
-    </td>
+    
   
   {/\d+/.test(supply.particulars) &&
     <tr>
@@ -101,11 +101,9 @@ const SeedKitchenForm = ({ date }) => {
 </td>
 
             <td>
-            <tr>
-              <td>
+            
               {Math.floor(supply.quantity)}
-              </td>
-            </tr>
+              
             {/\d+/.test(supply.particulars) &&
             <tr>
               <td>
@@ -168,8 +166,35 @@ const SeedKitchenForm = ({ date }) => {
                   }, [])
                   .map((supply, index) => (
                     <tr key={index}>
-                      <td>{supply.particulars}</td>
-                      <td>{supply.quantity}</td>
+                    <td> 
+  
+    
+  {supply.particulars}
+
+
+{/\d+/.test(supply.particulars) &&
+<tr>
+  <td>
+    {supply.particulars.replace(/\d+/g, (match) => {
+    const decimal = supply.quantity % 1;
+        return decimal.toFixed(1) === '0.3' ? '10' : '20';}
+        )}
+  </td>
+</tr>
+}
+</td>
+                      <td>
+            
+            {Math.floor(supply.quantity)}
+            
+          {/\d+/.test(supply.particulars) &&
+          <tr>
+            <td>
+{1}
+            </td>
+          </tr>
+          }
+          </td>
                       <td>{supply.unit}</td>
                     </tr>
                   ))}
