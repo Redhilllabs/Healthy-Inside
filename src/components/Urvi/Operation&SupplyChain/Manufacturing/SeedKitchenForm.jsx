@@ -82,7 +82,7 @@ const SeedKitchenForm = ({ date }) => {
         {item.importSupply.map((supply, index) => (
           <tr key={index}>
             {index === 0 && <td rowSpan={item.importSupply.length}>{item.rootItem}</td>}
-            <td>{supply.particulars}</td>
+            <td> {supply.particulars} {(supply.particulars).replace(/\d+/g,(match) => (Math.floor(supply.quantity) === 3 ? "10" : "20"))}</td>
             <td>{supply.quantity}</td>
             <td>{supply.unit}</td>
             {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].particulars}</td>}
