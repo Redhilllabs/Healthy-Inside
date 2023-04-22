@@ -81,8 +81,37 @@ function MasterForm({ date, setSelectedDate }) {
         {item.importSupply.map((supply, index) => (
           <tr key={index}>
             {index === 0 && <td rowSpan={item.importSupply.length}>{item.rootItem}</td>}
-            <td>{supply.particulars}{(supply.particulars).replace(/\d+/g,(match) => (Math.floor(supply.quantity) === 3 ? "10" : "20"))} </td>
-            <td>{supply.quantity}</td>
+            <td>
+            <td>
+            {supply.particulars}
+            </td>
+           
+
+            {/\d+/.test(supply.particulars) &&
+    <tr>
+      <td>
+        {supply.particulars.replace(/\d+/g, (match) => {
+        const decimal = supply.quantity % 1;
+            return decimal.toFixed(1) === '0.3' ? '10' : '20';}
+            )}
+      </td>
+    </tr>
+  }
+             </td>
+             <td>
+            <tr>
+              <td>
+              {Math.floor(supply.quantity)}
+              </td>
+            </tr>
+            {/\d+/.test(supply.particulars) &&
+            <tr>
+              <td>
+{1}
+              </td>
+            </tr>
+            }
+            </td>
             <td>{supply.unit}</td>
             {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].particulars}</td>}
             {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].quantity}</td>}

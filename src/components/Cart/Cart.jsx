@@ -5,12 +5,33 @@ import { actionType } from "../../context/reducer";
 import {AddCart,DecreaseCart, SaveUserAddress} from "../../utils/ApiCall";
 import { useNavigate } from "react-router-dom";
 import f6 from "../../images/BhelMakhani2.jpg"
-
+import unSub from "../../images/unSub.jpg"
 const Cart = () => {
   const [{cartItems, user }, dispatch] = useStateValue();
+  const [redirect, setRedirect] = useState(false);
+  const history = useNavigate();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRedirect(true);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!user.Orders) {
+    return (
+      <div class="center-message">
+  <div class="message-container">
+    <img src={unSub} alt="Image" class="center-image"/>
+    <h1>You Have Not Subscribed Yet</h1>
+    <p class="highlight">Please subscribe to our services to enjoy delicious breakfast meals every day!</p>
+  </div>
+  {redirect && history('/morningfood')}
+</div>
+    );
+  }
   return (
-<>
+<div className="VIewcart_container">
     <div className="Viewcart">
     
   <div className="sidebar">
@@ -70,7 +91,7 @@ const Cart = () => {
     <div key={order.ValidFrom}>
       
       <div>
-      <h4>Order {index} Total : {order.GrandTotal}</h4>
+      <h4>Order {index+1} Total : {order.GrandTotal}</h4>
              </div>
     </div>
   ))}
@@ -80,8 +101,9 @@ const Cart = () => {
 </div>
 
   </div>
+
 </div>
-</>
+</div>
   );
 };
 

@@ -93,21 +93,29 @@ function BatchingForm({ date, setSelectedDate }) {
 {index === 0 && item.exportSupply.length > 0 && (
   <td rowSpan={item.importSupply.length}>
     
-        <td >
-          {item.exportSupply[0].particulars}
-        </td>
+        <tr style={{display: 'table-row'}} >
         <td>
-          {(item.exportSupply[0].particulars).replace(/\d+/g, (match) => {
+        {item.exportSupply[0].particulars}
+        </td>
+          
+        </tr>
+        <tr style={{display: 'table-row'}}>
+        <td>
+        {(item.exportSupply[0].particulars).replace(/\d+/g, (match) => {
             const decimal = item.exportSupply[0].quantity % 1;
             return decimal.toFixed(1) === '0.3' ? '10' : '20';
           })}
         </td>
+          
+        </tr>
   </td>
 )}
 
 
             
-            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}><td>{item.exportSupply[0].quantity}</td><td>1</td></td>}
+            {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}><tr> <td>{Math.floor(item.exportSupply[0].quantity)} </td> </tr><tr> <td>
+1
+            </td> </tr></td>}
             {index === 0 && item.exportSupply.length > 0 && <td rowSpan={item.importSupply.length}>{item.exportSupply[0].unit}</td>}
           </tr>
         ))}
