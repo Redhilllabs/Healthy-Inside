@@ -21,7 +21,7 @@ import ItemMasterForm from "./ProductR&D/ItemMasterForm";
 import RecipeMasterForm from "./ProductR&D/RecipeMasterForm";
 import ManufacturingLogEntryForm from "./Operation&SupplyChain/Manufacturing/ManufacturingLogEntryForm";
 import OrderSalesForm from "./OrderSalesForm" ;
-
+import SalesPlan from "./Business&Branding/SalesPlan";
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
@@ -56,10 +56,12 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [showItemMasterForm, setShowItemMasterForm] = useState(false);
   const [showRecipeMasterForm, setshowRecipeMasterForm] = useState(false);
   const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] = useState(false);
-  const [showOderSales,setshowOderSales] = useState(false)
+  const [showOderSales,setshowOderSales] = useState(false);
+  const [ShowSalesPlan ,setShowSalesPlan] = useState(false);
 
   const handleFormToggle = (formName) => {
-
+    
+    setShowSalesPlan(formName === "SalesPlan"? !ShowSalesPlan : false)
     setshowOderSales(formName === "OderSales"? !showOderSales: false)
 
     setshowManufacturingLogEntryForm(
@@ -163,6 +165,11 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   };
 
   const forms = [
+    
+    {
+      show: ShowSalesPlan,
+      component: SalesPlan,
+    },
     {
       show: showOderSales,
       component: OrderSalesForm,
@@ -419,24 +426,29 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
               {showMarketing && (
                 <div id="product-dash">
                   <a>Upload File</a>
-                  <a
+                  {/* <a
                     id={Showdailysalesmatricsform ? "active" : ""}
                     onClick={() => handleFormToggle("dailySalesMatricsForm")}
                   >
                     Sales Matrics
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     id={showSalesPlanForm ? "active" : ""}
                     onClick={() => handleFormToggle("salesPlanForm")}
                   >
                     Sale Forecast Planner
-                  </a>
-                  <a
+                  </a> */}
+                  {/* <a
                     id={ShowViewSalesPlanform ? "active" : ""}
                     onClick={() => handleFormToggle("viewSalesPlanForm")}
                   >
-                    View Sales Plan
-                  </a>
+                    View Sales
+                  </a> */}
+
+                  <a 
+                  id={ShowSalesPlan ? "active" : ""}
+                  onClick={() => handleFormToggle("SalesPlan")} > Sales Plan </a>
+                  
                   <a
                     id={ShowPackingPlanner ? "active" : ""}
                     onClick={() => handleFormToggle("packingPlannerForm")}
@@ -447,7 +459,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                     id={showOderSales ? "active" : ""}
                     onClick={() => handleFormToggle("OderSales")}
                   >
-                    Order Sales
+                    Sales Metrics 
                   </a>
                 </div>
               )}
