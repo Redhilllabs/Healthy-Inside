@@ -305,20 +305,21 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                             View Purchase Order
                           </a>
                           <a
-                            id={ShowRecordForwardLossesForm ? "active" : ""}
-                            onClick={() =>
-                              handleFormToggle("recordForwardLossesForm")
-                            }
-                          >
-                            Forward & Losses
-                          </a>
-                          <a
                             id={ShowinventoryForm ? "active" : ""}
                             onClick={() => handleFormToggle("inventoryForm")}
                           >
                             {" "}
                             Purchase Log Entry
                           </a>
+                          <a
+                            id={ShowRecordForwardLossesForm ? "active" : ""}
+                            onClick={() =>
+                              handleFormToggle("recordForwardLossesForm")
+                            }
+                          >
+                            Forwards & Losses
+                          </a>
+                          
                         </div>
                       )}
                     </ul>
@@ -366,7 +367,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                               handleFormToggle("ManufacturingLogEntryForm")
                             }
                           >
-                            Manufacturing Log Entry
+                            Manufacturing Records
                           </a>
                         </div>
                       )}

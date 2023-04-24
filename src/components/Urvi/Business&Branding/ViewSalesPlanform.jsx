@@ -37,7 +37,7 @@ const ViewSalesPlanform = () => {
     <>
     <Message response={response} />
       <div className="formcontains">
-        <h1>View Sales Plan</h1>
+
         <form
           action=""
           className="form"

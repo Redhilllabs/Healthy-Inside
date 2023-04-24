@@ -101,13 +101,13 @@ const SalesPlanForm = () => {
     <Message response={response} />
 
       <div className="formcontains">
-        <div className="recipeform_buttons_options">
+        {/* <div className="recipeform_buttons_options">
           <button  id={DaysPlan ? "active" : ""} onClick={() => setDaysPlan(!DaysPlan)}>
             Submit Days Plan
           </button>
           <button>Custom Plan</button>
-        </div>
-        {DaysPlan ? (
+        </div> */}
+        {/* {DaysPlan ? ( */}
           <form
             className="form"
             id="recipe-designing"
@@ -161,9 +161,9 @@ const SalesPlanForm = () => {
             </div>
             <input value="Add" type="submit" id="addmoreingredients" />
           </form>
-        ) : (
+        {/* ) : (
           <></>
-        )}
+        )} */}
       </div>
 
       {showSalesPlanTable && (

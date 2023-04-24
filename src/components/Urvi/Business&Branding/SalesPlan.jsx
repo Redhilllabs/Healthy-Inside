@@ -16,7 +16,7 @@ const SalesPlan = () => {
     setShowComponent2(!showComponent2);
   };
   return (
-    <>
+    <div className="formcontains">
 <div className="recipeform_buttons_options">
       <button id={showComponent1 ? "active" : ""} onClick={handleClick1}>
          Plan New Sales
@@ -31,7 +31,7 @@ const SalesPlan = () => {
     {showComponent2 && <ViewSalesPlanform />}
     </div>
 
-    </>
+    </div>
   )
 }
 
