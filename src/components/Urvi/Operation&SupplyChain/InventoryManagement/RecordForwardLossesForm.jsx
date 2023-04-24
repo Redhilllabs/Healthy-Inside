@@ -55,7 +55,7 @@ const handlecancel = ()=>{
   return (
     <>
 <div className="formcontains">
-            <h1>Record Forward and Losses </h1>
+            {/* <h1>Record Forward and Losses </h1> */}
             <form
               action=""
               class="form"

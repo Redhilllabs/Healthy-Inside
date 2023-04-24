@@ -20,7 +20,7 @@ import PackingPlanner from "./Business&Branding/PackingPlanner";
 import ItemMasterForm from "./ProductR&D/ItemMasterForm";
 import RecipeMasterForm from "./ProductR&D/RecipeMasterForm";
 import ManufacturingLogEntryForm from "./Operation&SupplyChain/Manufacturing/ManufacturingLogEntryForm";
-import OrderSalesForm from "./OrderSalesForm" ;
+import OrderSalesForm from "./Business&Branding/OrderSalesForm";
 import SalesPlan from "./Business&Branding/SalesPlan";
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
@@ -55,14 +55,14 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [showRMIProfileingForm, setshowRMIProfileingForm] = useState(false);
   const [showItemMasterForm, setShowItemMasterForm] = useState(false);
   const [showRecipeMasterForm, setshowRecipeMasterForm] = useState(false);
-  const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] = useState(false);
-  const [showOderSales,setshowOderSales] = useState(false);
-  const [ShowSalesPlan ,setShowSalesPlan] = useState(false);
+  const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] =
+    useState(false);
+  const [showOderSales, setshowOderSales] = useState(false);
+  const [ShowSalesPlan, setShowSalesPlan] = useState(false);
 
   const handleFormToggle = (formName) => {
-    
-    setShowSalesPlan(formName === "SalesPlan"? !ShowSalesPlan : false)
-    setshowOderSales(formName === "OderSales"? !showOderSales: false)
+    setShowSalesPlan(formName === "SalesPlan" ? !ShowSalesPlan : false);
+    setshowOderSales(formName === "OderSales" ? !showOderSales : false);
 
     setshowManufacturingLogEntryForm(
       formName === "ManufacturingLogEntryForm"
@@ -165,7 +165,6 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   };
 
   const forms = [
-    
     {
       show: ShowSalesPlan,
       component: SalesPlan,
@@ -208,7 +207,6 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
           <span className="logo_name">DashBoard</span>
         </div>
         <ul className="nav-links">
-
           <li>
             <div
               className="iocn-link"
@@ -319,7 +317,6 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                           >
                             Forwards & Losses
                           </a>
-                          
                         </div>
                       )}
                     </ul>
@@ -360,7 +357,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                           >
                             Import and Export Log
                           </a>
-                          
+
                           <a
                             id={showManufacturingLogEntryForm ? "active" : ""}
                             onClick={() =>
@@ -408,7 +405,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
               )}
             </ul>
           </li>
-          
+
           <li>
             <div
               className="iocn-link"
@@ -446,10 +443,14 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                     View Sales
                   </a> */}
 
-                  <a 
-                  id={ShowSalesPlan ? "active" : ""}
-                  onClick={() => handleFormToggle("SalesPlan")} > Sales Plan </a>
-                  
+                  <a
+                    id={ShowSalesPlan ? "active" : ""}
+                    onClick={() => handleFormToggle("SalesPlan")}
+                  >
+                    {" "}
+                    Sales Plan{" "}
+                  </a>
+
                   <a
                     id={ShowPackingPlanner ? "active" : ""}
                     onClick={() => handleFormToggle("packingPlannerForm")}
@@ -460,7 +461,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                     id={showOderSales ? "active" : ""}
                     onClick={() => handleFormToggle("OderSales")}
                   >
-                    Sales Metrics 
+                    Sales Metrics
                   </a>
                 </div>
               )}
@@ -494,14 +495,13 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
           </li>
 
           <li>
-            <div className="iocn-link" >
+            <div className="iocn-link">
               <a>
                 <span className="link_name">Training center</span>
                 {showFinance ? <img src="" /> : <img src="" />}
               </a>
             </div>
           </li>
-
         </ul>
       </div>
 

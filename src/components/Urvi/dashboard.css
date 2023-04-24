@@ -86,6 +86,7 @@
 
 #active{
   background-color: var(--active-button);
+    width: fit-content;
   color: var(--color3);
 }
 .dashboard_sidebar .nav-links li a{
@@ -107,11 +108,12 @@
 
 .recipeform_buttons_options button {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   background-color: var(--color1);
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 3px 3px 1px #008000;
+  padding: 8px 9px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -132,7 +134,7 @@
   color: var(--color1);
   font-size: 13px;
   white-space: nowrap;
-  opacity: 0.6;
+  /* opacity: 0.6; */
   transition: all 0.3s ease;
 }
 

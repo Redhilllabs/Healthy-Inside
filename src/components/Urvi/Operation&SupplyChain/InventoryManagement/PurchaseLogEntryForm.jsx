@@ -104,7 +104,7 @@ const handelQunatity = (e)=>{
     <>
       <Message response={response} />
       <div className="formcontains">
-        <h1>Inventory Purchase Log</h1>
+        {/* <h1>Inventory Purchase Log</h1> */}
         <form
           action=""
           class="form"
@@ -404,7 +404,7 @@ const handelQunatity = (e)=>{
 
       {showInventoryTable && (
         <div className="table-container">
-          <h2>Purchase Log</h2>
+          {/* <h2>Purchase Log</h2> */}
           <br />
           <table className="showInventoryTable">
             <thead>
