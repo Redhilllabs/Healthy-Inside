@@ -22,6 +22,7 @@ const OrderSalesForm = () => {
     });
   
     const response = await SearchOrder(bodyContent);
+    console.log(response)
     if (response.status === 404) {
       setResponse({ message: "Date is Not Present", status: "error" });
       return;
@@ -80,6 +81,7 @@ const OrderSalesForm = () => {
       <thead>
         <tr>
           <th>User ID</th>
+          <th>Name</th>
           <th>Address</th>
           <th>Subscribed On</th>
           <th>Valid From</th>
@@ -95,6 +97,12 @@ const OrderSalesForm = () => {
   return userOrders.map((order, index) => (
     <tr key={`${userId}-${index}`}>
       {index === 0 && <td rowSpan={userOrders.length}>{userId}</td>}
+      {index === 0 && (
+  <td rowSpan={userOrders.length}>
+    {((userId).split("@")[0]).replace(/\d+/g, "").charAt(0).toUpperCase() + ((userId).split("@")[0]).replace(/\d+/g, "").slice(1)}
+  </td>
+)}
+
       <td>
   {order?.Address?.addressLine1}
   {order?.Address?.addressLine2 && `, ${order.Address.addressLine2}`}

@@ -23,6 +23,8 @@ const ManufacturingLogEntryForm = () => {
   const [salesplan, setsalesplan] = useState([]);
   const [actualmanufacturing, setactualmanufacturing] = useState([]);
   const [response, setResponse] = useState(null);
+  const [ NewProduceProfile,setNewProduceProfile] = useState(false);
+  const [RecordProduceProfile ,setRecordProduceProfile] = useState(false);
 
   const handeladdtoActualmanufacturing = (e) => {
     e.preventDefault();
@@ -146,6 +148,49 @@ setshowSalesPlanTable(false)
 setplannerList([])
 
   }
+
+let newform  = null;
+if(NewProduceProfile || RecordProduceProfile){
+  newform = (<>
+      <div>
+        <form
+          action=""
+          class="form"
+          name="inventory-purchase-log"
+          id="inventory-purchase-log"
+          method="post"
+          // onSubmit={handleManufacturingHistory}
+        >
+          <div class="button-container">
+            <label htmlFor="start-date-input">Select Date:</label>
+
+            <input
+              type="date"
+              id="start-date-input"
+              value={searchDate}
+              onChange={handleDateChange}
+              required
+            />
+
+<label htmlFor="">Product Name</label>
+<input type="text" />
+<label htmlFor="">Quantity</label>
+<input type="number" name="" id="" />
+
+            <input
+              id="addmoreingredients"
+              type="submit"
+              name="submit"
+              value="submit"
+            />
+          </div>
+        </form>
+      </div>
+
+  </>)
+}
+
+
   return (
     <>
       <div className="formcontains">
@@ -155,19 +200,35 @@ setplannerList([])
             onClick={() => {
               setManufacturingHistoryProfile(!ManufacturingHistoryProfile);
               setActualManufacturingProfile(false);
+              setNewProduceProfile(false)
+              setRecordProduceProfile(false)
             }}
           >
             Manufacturing History
           </button>
           <button
-            id={ActualManufacturingProfile ? "active" : ""}
+            id={NewProduceProfile ? "active" : ""}
             onClick={() => {
-              setActualManufacturingProfile(!ActualManufacturingProfile);
+              setNewProduceProfile(!NewProduceProfile)
+              setActualManufacturingProfile(false);
+              setRecordProduceProfile(false)
               setManufacturingHistoryProfile(false);
               setShowTable(false);
             }}
           >
-            Actual Manufacturing
+            New Produce
+          </button>
+          <button
+            id={RecordProduceProfile ? "active" : ""}
+            onClick={() => {
+              setRecordProduceProfile(!RecordProduceProfile)
+              setActualManufacturingProfile(false);
+              setNewProduceProfile(false)
+              setManufacturingHistoryProfile(false);
+              setShowTable(false);
+            }}
+          >
+            Record Produce
           </button>
         </div>
         {form}
@@ -299,6 +360,9 @@ setplannerList([])
       ) : (
         <></>
       )}
+
+      {NewProduceProfile && (<>{newform}</>)}
+      {RecordProduceProfile && (<>{newform}</>)}
 
       {showSalesPlanTable && (
         <div className="table-container">

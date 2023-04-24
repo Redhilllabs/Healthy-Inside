@@ -253,6 +253,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
               )}
             </ul>
           </li>
+
           <li>
             <div
               className="iocn-link"
@@ -351,12 +352,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                           >
                             Import and Export Log
                           </a>
-                          <a
-                            id={showTaskSheetForm ? "active" : ""}
-                            onClick={() => handleFormToggle("taskSheetForm")}
-                          >
-                            Task Sheet{" "}
-                          </a>
+                          
                           <a
                             id={showManufacturingLogEntryForm ? "active" : ""}
                             onClick={() =>
@@ -404,6 +400,7 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
               )}
             </ul>
           </li>
+          
           <li>
             <div
               className="iocn-link"
@@ -446,6 +443,12 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                   >
                     Packaging Planner
                   </a>
+                  <a
+                    id={showOderSales ? "active" : ""}
+                    onClick={() => handleFormToggle("OderSales")}
+                  >
+                    Order Sales
+                  </a>
                 </div>
               )}
             </ul>
@@ -485,19 +488,6 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
               </a>
             </div>
           </li>
-
-<li>
-<div className="iocn-link">
-<a
-                    id={showrecipeform ? "active" : ""}
-                    onClick={() => handleFormToggle("OderSales")}
-                  >
-<span className="link_name">Order Sales</span>
-                    
-                    {showFinance ? <img src="" /> : <img src="" />}
-                  </a>
-            </div>
-</li>
 
         </ul>
       </div>
