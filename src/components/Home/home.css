@@ -14,9 +14,28 @@
     align-items: center;
     margin: 0 auto;
     padding: 0 15px;
+    z-index: -11;
 
 
 }
+.cursor {
+  position: fixed;
+  z-index: 999;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background: linear-gradient(237deg, #00FF7F, #00FF7F);
+  opacity: 0.5;
+  box-shadow: 0 1px 20px #00FF7F, 0 1px 50px #00FF7F, 0 10px 80px #00FF7F, 0 10px 100px #00FF7F;
+  filter: drop-shadow(0 10px 20px #00FF7F);
+  transition: all 0.5s ease-out;
+  
+
+}
+
+
+
 
 .texthero {
   display: flex;

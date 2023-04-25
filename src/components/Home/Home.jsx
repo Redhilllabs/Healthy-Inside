@@ -23,10 +23,18 @@ const Home = () => {
     addtocart();
   }, [fooditems]);
 
+  const handleMouseMove = (event) => {
+    const cursor = document.querySelector('.cursor');
+    cursor.style.left = event.clientX + 'px';
+    cursor.style.top = event.clientY + 'px';
+  }
+
   return (
-    <div>
-      <div className="hero-section">
+    <div onMouseMove={handleMouseMove} >
+    <div className="cursor"></div>
+      <div className="hero-section" >
         <div className="hero_container">
+        
           <div className="texthero">
             <h1>
               Make your <br /> taste buds{" "}

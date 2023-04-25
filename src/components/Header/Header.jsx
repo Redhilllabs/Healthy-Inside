@@ -172,26 +172,10 @@ const Header = ({ onProfileToggle }) => {
                   
                   </li>
 
-                <li
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a id="header_link">Happy Inside</a>
+                <li>
+                  <Link to="/why-plant" id="header_link">Why Plants</Link>
 
-                  {showMenu && (
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a>MindFull Game</a>
-                      </li>
-
-                      <li>
-                        <a>Challenge Game</a>
-                      </li>
-                      <li>
-                        <a>Order Game</a>
-                      </li>
-                    </ul>
-                  )}
+                  
                 </li>
 
                 <li

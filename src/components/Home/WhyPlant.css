@@ -1,0 +1,282 @@
+.c-why-hero {
+    height: 458px;
+    overflow: hidden;
+    background-image: url(https://www.purplecarrot.com/packs/media/images/consumer/pages/why-plants/why-hero-lg-f83ea2cc71282576de3fb9aa8c0208f1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}
+.c-why-hero__container {
+    display: flex;
+    height: 100%;
+    max-width: 1200px;
+    align-items: center;
+    margin: 0px auto;
+    padding: 0px 15px;
+}
+
+.c-why-hero__content {
+    padding: 15px 0;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.u-text--center {
+    text-align: center;
+}
+.a-rise.is-animated, .is-animated .a-rise {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.c-why-hero__title {
+    color: #490572;
+}
+.c-why-hero__title span {
+    position: relative;
+}
+
+.c-why-hero__title sup {
+    font-size: .5rem;
+    position: absolute;
+    top: 0.75rem;
+}
+
+.a-rise--1 {
+    -webkit-transition-delay: 0;
+    transition-delay: 0;
+}
+.a-rise {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: transform 0.75s cubic-bezier(0.3, 0, 0.3, 1) 0s, opacity 0.75s cubic-bezier(1, 0, 0.43, 1) 0s, -webkit-transform 0.75s cubic-bezier(0.3, 0, 0.3, 1) 0s;
+}
+
+.c-heading--brand-1 {
+    font-family: Zilla Slab;
+    font-weight: 500;
+    -webkit-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+    font-variant-numeric: lining-nums;
+    font-size: 4.375rem;
+    line-height: 1;
+    margin: 0 0 1.25rem;
+}
+
+.c-why-1 {
+    position: relative;
+    overflow: hidden;
+    background-image: url(https://www.purplecarrot.com/packs/media/images/consumer/pages/why-plants/why-1-background-ea8b104cb67b519296b371e1fd511301.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 70px 0 115px;
+    background-position: 0 100%;
+    
+}
+
+.l-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-width: 320px;
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 0px 15px;
+}
+
+.c-why-1__content {
+    margin: 0px auto;
+    padding: 0px 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-5 {
+    max-width: 41.6667%;
+    flex: 0 0 41.6667%;
+}
+.c-why-1__title-1 {
+    max-width: 100%;
+    font-size: 86px;
+    margin-right: 80px;
+}
+.c-why-1__title-1, .c-why-1__title-2 {
+    color: #dbc5e0;
+    font-weight: 900;
+    font-size: 86px;
+    line-height: .85;
+    margin: 0 auto 30px;
+}
+.d-inline {
+    display: inline!important;
+}
+.d-sm-inline-block {
+    display: inline-block!important;
+}
+
+.offset-sm-5 {
+    margin-left: 41.6667%;
+}
+
+
+.c-why-1__plus {
+    width: 80px;
+}
+.c-why-1__plus {
+    position: relative;
+    margin-left: 0px;
+}
+
+.c-why-1__plus {
+    fill: rgb(219, 197, 224);
+    position: absolute;
+    margin-left: -150px;
+    margin-top: -30px;
+}
+
+.c-why-1__title-2 {
+    max-width: 100%;
+    margin-left: 100px;
+}
+
+.d-sm-inline-block {
+    display: inline-block !important;
+}
+.u-text--sm-left {
+    text-align: left;
+}
+
+.c-why-2 {
+    position: relative;
+    background-color: rgb(152, 55, 148);
+    overflow: hidden;
+    padding: 60px 0px;
+}
+.c-why-2__text {
+    color: rgb(255, 255, 255);
+    margin: 0px;
+}
+.c-heading--brand-4 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.c-why-3 {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 0px;
+    background-repeat: no-repeat;
+    height: 590px;
+    background-image: url(https://www.purplecarrot.com/packs/media/images/consumer/pages/why-plants/why-3-lg-92ce251e8288e36449abcb540eab5b6d.jpg);
+}
+.d-flex {
+    display: flex !important;
+}
+.c-why-3__content {
+    width: 100%;
+    padding: 50px 0px 30px;
+}
+
+.col-lg-6 {
+    max-width: 50%;
+    flex: 0 0 50%;
+}
+.offset-sm-1 {
+    margin-left: 8.33333%;
+}
+.c-why-3__break {
+    width: 100%;
+}
+
+.c-why-3 hr {
+    width: 270px;
+    margin-bottom: 50px;
+    margin-right: initial;
+    margin-left: initial;
+    margin-top: 20px;
+    height: 2px;
+    background: rgb(152, 55, 148);
+}
+.u-text--brand {
+    color: rgb(152, 55, 148);
+}
+
+.a-rise--4 {
+    transition-delay: 1.2s;
+}
+.c-why-1__highlight {
+    font-size: 1.5rem;
+    line-height: 2.175rem;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+.c-why-4__image {
+    width: 100%;
+}
+
+.c-why-5 {
+    background-size: contain;
+    background-position-x: 50%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    height: 667px;
+    background-image: url(https://www.purplecarrot.com/packs/media/images/consumer/pages/why-plants/why-5-lg-a6771af5ca92608d5b4f1bd4052ffb72.jpg);
+}
+.c-why-5__content {
+    width: 100%;
+    padding: 50px 0px 100px;
+}
+
+.a-rise--2 {
+    transition-delay: 0.4s;
+}
+
+.c-heading--decorative-2 {
+    font-size: 5.313rem;
+    line-height: 3.75rem;
+    margin: 0px 0px 1.25rem;
+    font-weight: 400;
+}
+
+.c-heading--brand-4 {
+    font-family: "Zilla Slab";
+    font-weight: 500;
+    font-feature-settings: "lnum";
+    font-variant-numeric: lining-nums;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    
+    margin: 0px 0px 1.25rem;
+}
+
+.a-rise--3 {
+    transition-delay: 0.8s;
+}
+
+.c-why-5 ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.c-why-5 li {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.u-text--lg-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.a-rise--6 {
+    transition-delay: 2.1s;
+}

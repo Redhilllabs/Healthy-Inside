@@ -13,7 +13,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const [{ user }, dispatch] = useStateValue();
-  // const [isMenu, setIsMenu] = useState(false);
 
   const onSubmit = async (data) => {
     const { userName: username, password } = data;
@@ -34,7 +33,6 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(response.data));
       } else {
         alert("You are already logged in");
-        // setIsMenu(!isMenu);
         return;
       }
     } catch (error) {

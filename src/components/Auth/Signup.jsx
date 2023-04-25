@@ -25,10 +25,11 @@ const Signup = () => {
   };
 
   return (
-    <div className="signupform">
+    <div className="login_container">
+    <div className="signup">
       <h1>Sign-Up </h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
@@ -38,7 +39,7 @@ const Signup = () => {
           required
         />
 
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           id="name"
@@ -48,7 +49,7 @@ const Signup = () => {
           required
         />
 
-        <label htmlFor="contact">Contact:</label>
+        <label htmlFor="contact">Contact</label>
         <input
           type="tel"
           id="contact"
@@ -58,7 +59,7 @@ const Signup = () => {
           required
         />
 
-        <label htmlFor="dob">Date of Birth:</label>
+        <label htmlFor="dob">Date of Birth</label>
         <input
           type="date"
           id="dob"
@@ -71,7 +72,10 @@ const Signup = () => {
         <button type="submit">Sign Up</button>
       </form>
 
-      <GoogleButton />
+      <div id="continue_with_google">
+            <GoogleButton />
+          </div>
+    </div>
     </div>
   );
 };

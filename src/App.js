@@ -17,6 +17,7 @@ import Account from "./components/Home/Account";
 import OrderSubmit from "./components/Cart/OrderSubmit";
 import Dashboard from "./components/Urvi/Dashboard";
 import Cart from "./components/Cart/Cart";
+import WhyPlant from "./components/Home/WhyPlant"
 import "./App.css";
 
 function App() {
@@ -67,6 +68,8 @@ function App() {
         <Header onProfileToggle={handleProfileToggle} />
         <Routes>
           <Route path="/" element={<Home />} />
+          
+          <Route path="/why-plant" element={<WhyPlant />} />
           
 
           <Route element={<AdminRoutes></AdminRoutes>}>
