@@ -30,10 +30,18 @@
     transform: translateY(0px);
 }
 .c-why-hero__title {
-    color: #490572;
+    color: #305F01;
 }
 .c-why-hero__title span {
     position: relative;
+}
+.c-why-1__image-2 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 0px;
+    margin-top: -40px;
+    display: block;
 }
 
 .c-why-hero__title sup {
@@ -107,7 +115,7 @@
     margin-right: 80px;
 }
 .c-why-1__title-1, .c-why-1__title-2 {
-    color: #dbc5e0;
+    color: #CAF6A2;
     font-weight: 900;
     font-size: 86px;
     line-height: .85;
@@ -134,7 +142,7 @@
 }
 
 .c-why-1__plus {
-    fill: rgb(219, 197, 224);
+    fill: #CAF6A2;
     position: absolute;
     margin-left: -150px;
     margin-top: -30px;
@@ -154,7 +162,7 @@
 
 .c-why-2 {
     position: relative;
-    background-color: rgb(152, 55, 148);
+    background-color: #1EAF08;
     overflow: hidden;
     padding: 60px 0px;
 }
@@ -162,10 +170,7 @@
     color: rgb(255, 255, 255);
     margin: 0px;
 }
-.c-heading--brand-4 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-}
+
 
 .c-why-3 {
     position: relative;
@@ -183,6 +188,12 @@
 .c-why-3__content {
     width: 100%;
     padding: 50px 0px 30px;
+}
+
+.col-sm-5 {
+    -ms-flex: 0 0 41.66666667%;
+    flex: 0 0 41.66666667%;
+    max-width: 41.66666667%;
 }
 
 .col-lg-6 {
@@ -203,10 +214,10 @@
     margin-left: initial;
     margin-top: 20px;
     height: 2px;
-    background: rgb(152, 55, 148);
+    background: #1EAF08;
 }
 .u-text--brand {
-    color: rgb(152, 55, 148);
+    color: #1EAF08;
 }
 
 .a-rise--4 {
@@ -224,7 +235,7 @@
 
 .c-why-5 {
     background-size: contain;
-    background-position-x: 50%;
+    background-position-x: 100%;
     background-position-y: 100%;
     background-repeat: no-repeat;
     height: 667px;
@@ -261,10 +272,21 @@
     transition-delay: 0.8s;
 }
 
+
 .c-why-5 ul {
     margin: 0px;
     padding: 0px;
     list-style: none;
+}
+.c-why-5 hr {
+    height: 2px;
+    
+    background: #1EAF08;
+    margin-right: initial;
+    margin-left: initial;
+    margin-top: 20px;
+    width: 270px;
+    margin-bottom: 50px;
 }
 
 .c-why-5 li {
@@ -277,6 +299,43 @@
     line-height: 1.75rem;
 }
 
+
 .a-rise--6 {
     transition-delay: 2.1s;
 }
+.c-why-1__image-1 {
+    -webkit-transform: translate(-50%,370px);
+    transform: translate(-50%,370px);
+    position: absolute;
+    left: 50%;
+}
+.d-sm-block {
+    display: block!important;
+}
+
+.c-why-6 {
+    background-color: rgb(247, 239, 246);
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.c-why-6__content {
+    width: 90%;
+    margin: 0px auto;
+    padding: 0px 0px 60px;
+}
+
+.c-why-1 hr{
+    height: 2px;
+    background: #1EAF08;
+    width: 270px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+

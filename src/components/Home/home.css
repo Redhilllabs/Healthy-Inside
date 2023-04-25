@@ -1,38 +1,52 @@
 
 .hero-section {
   height: 700px;
+  position: relative;
+  backdrop-filter: blur(9px);
+  transition: backdrop-filter 0.5s ease-in-out;
+  background-color: #d0eca3; 
+  left: 0px;
 }
 
+.hero-section:hover {
+  
+}
 .hero_container {
-  background-image: url(../../images/heroimage.jpg); 
-  background-color: #cccccc; 
+  /* background-image: url(../../images/heroimage.jpg);  */
+  
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; 
-    height: 100%;
-    -ms-flex-align: center;
-    align-items: center;
+  height: 100%;
+  -ms-flex-align: center;
+  backdrop-filter: blur(9px);
+  transition: backdrop-filter 0.5s ease-in-out;
+  align-items: center;
+  
     margin: 0 auto;
     padding: 0 15px;
-    z-index: -11;
+    z-index: 11;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 
 }
 .cursor {
   position: fixed;
-  z-index: 999;
-  width: 18rem;
-  height: 18rem;
-  border-radius: 50%;
+  z-index: 9;
+  width: 30rem;
+  height: 30rem;
   pointer-events: none;
+  border-radius: 50%;
   background: linear-gradient(237deg, #00FF7F, #00FF7F);
-  opacity: 0.5;
-  box-shadow: 0 1px 20px #00FF7F, 0 1px 50px #00FF7F, 0 10px 80px #00FF7F, 0 10px 100px #00FF7F;
+  /* opacity: 0.5; */
+  box-shadow: 0 1px 20px #00FF7F, 0 0px 30px #00FF7F, 0 0px 40px #00FF7F, 0 0px 50px #00FF7F;
   filter: drop-shadow(0 10px 20px #00FF7F);
   transition: all 0.5s ease-out;
-  
-
 }
+
 
 
 
@@ -45,6 +59,7 @@
   color: #ffffff;
   text-align: center;
   padding: 0 20px;
+  z-index: 999;
 }
 
 .texthero h1{
