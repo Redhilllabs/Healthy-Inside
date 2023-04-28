@@ -102,7 +102,11 @@ function MasterForm({ date, setSelectedDate }) {
              </td>
              <td>
             
-              {Math.floor(supply.quantity)}
+             {Math.floor(supply.quantity) > 0 && (
+                              <tr>
+  <td>{Math.floor(supply.quantity)}</td>
+  </tr>
+)}
               
             {/\d+/.test(supply.particulars) &&
             <tr>
@@ -186,7 +190,11 @@ function MasterForm({ date, setSelectedDate }) {
              </td>
              <td>
             
-            {Math.floor(supply.quantity)}
+             {Math.floor(supply.quantity) > 0 && (
+                              <tr>
+  <td>{Math.floor(supply.quantity)}</td>
+  </tr>
+)}
             
           {/\d+/.test(supply.particulars) &&
           <tr>
