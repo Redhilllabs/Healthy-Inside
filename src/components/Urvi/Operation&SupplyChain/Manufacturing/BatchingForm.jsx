@@ -95,10 +95,14 @@ function BatchingForm({ date, setSelectedDate }) {
 
                           {index === 0 && item.exportSupply.length > 0 && (
                             <td rowSpan={item.importSupply.length}>
-                              <tr style={{ display: "table-row" }}>
-                                <td>{item.exportSupply[0].particulars}</td>
-                              </tr>
                               
+                              {Math.floor(item.exportSupply[0].quantity) > 0 && (
+                        <tr  style={{ display: "table-row" }}>
+                        {item.exportSupply[0].particulars}
+                        </tr>
+                        
+                        )}
+                        {/* {Math.floor(item.exportSupply[0].quantity) > 0 && ( */}
                               <tr style={{ display: "table-row" }}>
                                 <td>
                                   {item.exportSupply[0].particulars.replace(
@@ -113,6 +117,7 @@ function BatchingForm({ date, setSelectedDate }) {
                                   )}
                                 </td>
                               </tr>
+                              {/* )} */}
                             </td>
                           )}
 
@@ -120,7 +125,7 @@ function BatchingForm({ date, setSelectedDate }) {
                             <td rowSpan={item.importSupply.length}>
                             {Math.floor(item.exportSupply[0].quantity) > 0 && (
                               <tr>
-  <td>{Math.floor(item.exportSupply[0].quantity)}</td>
+  <td>{item.exportSupply[0].quantity}</td>
   </tr>
 )}
                               <tr>
@@ -136,6 +141,7 @@ function BatchingForm({ date, setSelectedDate }) {
                           )}
                         </tr>
                       ))}
+
                       {item.exportSupply.slice(1).map((supply, index) => (
                         <tr key={index}>
                           {index === 0 && item.importSupply.length === 0 && (
@@ -143,18 +149,25 @@ function BatchingForm({ date, setSelectedDate }) {
                               {item.rootItem}
                             </td>
                           )}
-                          {index === 0 && item.importSupply.length > 0 && (
-                            <td rowSpan={item.importSupply.length}></td>
-                          )}
-                          {/* {index === 0 && <td></td>} */}
+                      
+                          
                           {index === 0 && item.importSupply.length > 0 && (
                             <td rowSpan={item.exportSupply.length}>
                               <div style={{ display: "table" }}>
                                 <div style={{ display: "table-row" }}>
+                                
                                   <div style={{ display: "table-cell" }}>
-                                    {supply.particulars}
+                                  {Math.floor(supply.quantity) > 0 && (
+                        <tr>
+                        {supply.particulars}
+                        </tr>
+                        
+                        )}
                                   </div>
                                   <div style={{ display: "table-cell" }}>
+                                  {Math.floor(supply.quantity) > 0 && (
+                                    <tr>
+
                                     {supply.particulars.replace(
                                       /\d+/g,
                                       (match) => {
@@ -163,6 +176,8 @@ function BatchingForm({ date, setSelectedDate }) {
                                           ? "10"
                                           : "20";
                                       }
+                                    )}
+                                    </tr>
                                     )}
                                   </div>
                                 </div>
@@ -178,7 +193,9 @@ function BatchingForm({ date, setSelectedDate }) {
                   ))}
               </tbody>
             </table>
+
             <div id="batchtable3"> </div>
+
             <table className="recipe_table" id="batchtable2" ref={table2Ref}>
               <thead>
                 <tr>

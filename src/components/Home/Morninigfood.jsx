@@ -104,23 +104,42 @@ const MorningFood = () => {
   ];
 
   const [translateX, setTranslateX] = useState(0);
+  const [translateValue,setTranslateValue] = useState(100);
 
   const handleNextClick = () => {
-    if (translateX <= -100 * (items.length - 1)) {
+    if (translateX <= -(translateValue) * (items.length - 1)) {
       setTranslateX(0);
     } else {
-      setTranslateX(translateX - 100);
+      setTranslateX(translateX - translateValue);
     }
+    setActiveButton("about");
   };
   
   const handlePrevClick = () => {
     if (translateX === 0) {
-      setTranslateX(-100 * (items.length - 1));
+      setTranslateX(-(translateValue) * (items.length - 1));
     } else {
-      setTranslateX(translateX + 100);
+      setTranslateX(translateX + translateValue);
     }
+    setActiveButton("about");
   };
   
+  useEffect(() => {
+    const handleResize = () => {
+      const vw = window.innerWidth;
+      if (vw < 768) {
+        setTranslateValue(150);
+      } else {
+        setTranslateValue(100);
+      }
+    };
+    handleResize(); // call handleResize initially
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="MorningFood">
       <Message response={response} />
@@ -133,15 +152,16 @@ const MorningFood = () => {
       </div>
 
       <div className="morning_container_eatfit">
-      <div>
-      <button onClick={handleNextClick}><svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" id="arrow"><path fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7h16M11 1l6 6-6 6"></path></svg></button>
       
-      </div>
-      <div className="slider-container">
+      <div className="slider-container"  >
+      
       <div className="slider-content" style={{ transform: `translateX(${translateX}%)` }}>
         {items.map((item) => (
           <div key={item.id} className="slider-item">
           <div className="morning_container_eatfit2">
+          <div className="slider-navigation1">
+      <button onClick={handlePrevClick}><svg xmlns="http://www.w3.org/2000/svg" width="11" height="20" id="arrow"><path fill-rule="evenodd" d="M10.634.292a1.063 1.063 0 0 0-1.464 0L.607 8.556a1.95 1.95 0 0 0 0 2.827l8.625 8.325c.4.385 1.048.39 1.454.01a.975.975 0 0 0 .01-1.425l-7.893-7.617a.975.975 0 0 1 0-1.414l7.83-7.557a.974.974 0 0 0 0-1.413"></path></svg></button>
+      </div>
           <div className="container1">
             <div className="container1_img">
               <img src={item.image} alt={`Slide ${item.id}`} className="imageelement_container1" />
@@ -218,7 +238,17 @@ const MorningFood = () => {
             <div class="css-17otamg-BottomContainerDiv e4rxp0r1">
               {renderContent()}
             </div>
+
+            <div className="orderSubmitBUtton">
+              Submit Order
+            </div>
+            
           </div>
+
+          <div className="slider-navigation2">
+    <button onClick={handleNextClick}><svg xmlns="http://www.w3.org/2000/svg" width="11" height="20" id="arrow"><path fill-rule="evenodd" d="M.366 19.708c.405.39 1.06.39 1.464 0l8.563-8.264a1.95 1.95 0 0 0 0-2.827L1.768.292A1.063 1.063 0 0 0 .314.282a.976.976 0 0 0-.011 1.425l7.894 7.617a.975.975 0 0 1 0 1.414L.366 18.295a.974.974 0 0 0 0 1.413"></path></svg></button>
+     
+    </div>
           </div>
            
           </div>
@@ -226,14 +256,10 @@ const MorningFood = () => {
       </div>
       
         
-        
+      
       
     </div>
-    <div>
-    {/* <button onClick={handlePrevClick}>Prev</button> */}
-    <button onClick={handleNextClick}><svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" id="arrow"><path fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7h16M11 1l6 6-6 6"></path></svg></button>
-     
-    </div>
+    
     
     </div>
     </div>

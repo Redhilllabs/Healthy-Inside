@@ -35,6 +35,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  width: 100%;
+  overflow: scroll;
 }
 
 .Morning-button-container button {
@@ -97,19 +99,61 @@
 
 .slider-item {
   flex: 0 0 100%;
-  margin-right: 20px;
-  
+}
+.orderSubmitBUtton {
+  width: 150px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 20px auto;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
 }
 
-/* .slider-navigation {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-} */
+.orderSubmitBUtton:hover {
+  background-color: #0056b3;
+}
 
-.slider-navigation button {
-  margin: 0 10px;
+
+.slider-navigation1 {
+  position: absolute;
+  bottom: 50%;
+  left: 5%;
+  z-index: 999;
+}
+
+.slider-navigation2 {
+  position: absolute;
+  bottom: 50%;
+  right: 5%;
+  z-index: 999;
+}
+
+.slider-navigation1 button {
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  padding: 20px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-navigation2 button {
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  padding: 20px;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .morning_container_eatfit2{
@@ -118,6 +162,7 @@
   position: relative;
   min-height: 100vh;
   width: fit-content;
+  margin-left: 2rem;
   overflow: hidden;
   background-color: white;
   border-radius: 15px;
@@ -128,10 +173,8 @@
 
   height: fit-content;
   display: inline-block;
-  /* width: 42%; */
   position: static;
   vertical-align: top;
-  /* margin: 2rem; */
 }
 
 .container1_img {
@@ -152,6 +195,7 @@
   width: 100%;
   padding-top: 20px;
   max-width: 630px;
+  overflow: scroll;
 }
 
 .Container1_options {
@@ -913,6 +957,12 @@
   }
   .morning_container_eatfit2 {
     flex-direction: column;
+    margin: 0 auto;
+    /* width: 90%; */
+    border-radius: 0;
+  }
+  .slider-navigation2 {
+    right: 38%;
   }
   .container1 {
     padding: unset;
