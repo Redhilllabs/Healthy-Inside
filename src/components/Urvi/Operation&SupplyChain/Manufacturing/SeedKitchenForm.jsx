@@ -61,17 +61,16 @@ const SeedKitchenForm = ({ date }) => {
     <th rowspan="3">Root Item</th>
     <th colspan="3">Import supply</th>
     <th colspan="3">Export supply</th>
-    {/* <th>Headed For</th> */}
   </tr>
   <tr>
-    {/* <th></th> */}
+    
     <th>Particulars</th>
     <th>Quantity</th>
     <th>Metrics</th>
     <th>Particulars</th>
     <th>Quantity</th>
     <th>Metrics</th>
-    {/* <th></th> */}
+  
   </tr>
 </thead>
              <tbody>
@@ -102,7 +101,11 @@ const SeedKitchenForm = ({ date }) => {
 
             <td>
             
-              {Math.floor(supply.quantity)}
+            {Math.floor(supply.quantity) > 0 && (
+                              <tr>
+  <td>{Math.floor(supply.quantity)}</td>
+  </tr>
+)}
               
             {/\d+/.test(supply.particulars) &&
             <tr>
