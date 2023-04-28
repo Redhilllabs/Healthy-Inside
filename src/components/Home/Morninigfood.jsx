@@ -23,6 +23,60 @@ const MorningFood = () => {
   const [response, setResponse] = useState(null);
   const navigate = useNavigate();
   const [showSubcriptionButton, setshowSubcriptionButton] = useState(true);
+  const [activeButton, setActiveButton] = useState('about');
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+
+  const renderContent = () => {
+    switch (activeButton) {
+      case 'about':
+        return <div>About content goes here
+        <p class="css-j2duwn-BottomText e4rxp0r2">
+                    <p class="css-j2duwn-BottomText e4rxp0r2">
+                      Breakfast kick-starts your metabolism, helping you burn
+                      calories throughout the day. It also gives you the energy
+                      you need to get things done and helps you focus at work or
+                      at school. Those are just a few reasons why it's the most
+                      important meal of the day.
+                    </p>
+                  </p></div>;
+      case 'rich-in':
+        return <div>Rich In content goes here
+        <p class="css-j2duwn-BottomText e4rxp0r2">
+                    <p class="css-j2duwn-BottomText e4rxp0r2">
+                      Breakfast kick-starts your metabolism, helping you burn
+                      calories throughout the day. It also gives you the energy
+                      you need to get things done and helps you focus at work or
+                      at school. Those are just a few reasons why it's the most
+                      important meal of the day.
+                    </p>
+                  </p></div>;
+      case 'nutrition':
+        return <div>Nutrition Profile content goes here <p class="css-j2duwn-BottomText e4rxp0r2">
+        <p class="css-j2duwn-BottomText e4rxp0r2">
+          Breakfast kick-starts your metabolism, helping you burn
+          calories throughout the day. It also gives you the energy
+          you need to get things done and helps you focus at work or
+          at school. Those are just a few reasons why it's the most
+          important meal of the day.
+        </p>
+      </p></div>;
+      case 'health-benefit':
+        return <div>Health Benefit content goes here <p class="css-j2duwn-BottomText e4rxp0r2">
+        <p class="css-j2duwn-BottomText e4rxp0r2">
+          Breakfast kick-starts your metabolism, helping you burn
+          calories throughout the day. It also gives you the energy
+          you need to get things done and helps you focus at work or
+          at school. Those are just a few reasons why it's the most
+          important meal of the day.
+        </p>
+      </p></div>;
+      default:
+        return null;
+    }
+  };
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -30,26 +84,6 @@ const MorningFood = () => {
   };
   const handleTabClick = (label) => {
     setActiveTab(label);
-  };
-
-  const handelSubcribeButton = () => {
-    setshowSubcriptionButton(false);
-  };
-
-  const handelContinuePayment = () => {
-    if (user) {
-      if (user.Address) {
-        console.log(qty);
-        if (qty === 0) {
-        } else {
-          navigate("/orderSubmit", { state: qty, contact: contact });
-        }
-      } else {
-        setShowAddressForm(true);
-      }
-    } else {
-      navigate("/login");
-    }
   };
   const handleUserAddressForm = async (event) => {
     event.preventDefault();
@@ -88,21 +122,6 @@ const MorningFood = () => {
       status: "success",
     });
   };
-  async function updateQuantity(action) {
-    const currentQty = qty;
-    let newQty;
-
-    if (action === "add") {
-      newQty = currentQty + 1;
-    } else {
-      newQty = currentQty - 1;
-    }
-    if (newQty < 0) {
-      newQty = 0;
-    }
-
-    setQty(newQty);
-  }
 
   const today = new Date();
   const currentDay = today.getDay();
@@ -112,7 +131,8 @@ const MorningFood = () => {
       <div className="line-container">
         <hr className="line" />
         <div className="text">
-          <h2>MORNING</h2>
+          <h2>
+          Break Fast Meal </h2>
         </div>
         <hr className="line" />
       </div>
@@ -163,49 +183,37 @@ const MorningFood = () => {
                           </div>
 
                           <div className="container1_content_ImageTabContainer">
-                            <div className="container1_content_ImageTabList">
-                              {foodItems &&
-                                foodItems.data &&
-                                Array.isArray(foodItems.data) &&
-                                foodItems.data
-                                  .filter(
-                                    (item) => item.foodType === "breakfast"
-                                  )
-                                  .map((item, index) => {
-                                    const today = new Date().getDay();
-                                    const itemDay = (index + 1) % 6;
-                                    const isToday = today === itemDay;
-                                    const isActive = isToday;
+                          <div className="container1_content_ImageTabList">
+  {foodItems &&
+    foodItems.data &&
+    Array.isArray(foodItems.data) &&
+    foodItems.data
+      .filter((item) => item.foodType === "breakfast")
+      .map((item, index) => {
+        const today = new Date().getDay();
+        const itemDay = (index + 1) % 6;
+        const isToday = today === itemDay;
+        const isActive = selectedItem && selectedItem.foodName === item.foodName;
 
-                                    return (
-                                      <div
-                                        onClick={() => handleItemClick(item)}
-                                      >
-                                        <img
-                                          src={item.foodUrl}
-                                          alt={item.foodName}
-                                          className={
-                                            isActive
-                                              ? "container1_content_Image_active"
-                                              : "container1_content_Image"
-                                          }
-                                        />
-                                        <p className="container1_content_DayText">
-                                          {
-                                            [
-                                              "Mon",
-                                              "Tue",
-                                              "Wed",
-                                              "Thu",
-                                              "Fri",
-                                              "Sat",
-                                            ][index]
-                                          }
-                                        </p>
-                                      </div>
-                                    );
-                                  })}
-                            </div>
+        return (
+          <div onClick={() => handleItemClick(item)}>
+            <img
+              src={item.foodUrl}
+              alt={item.foodName}
+              className={
+                isActive
+                  ? "container1_content_Image_active"
+                  : "container1_content_Image"
+              }
+            />
+            <p className="container1_content_DayText">
+              {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][index]}
+            </p>
+          </div>
+        );
+      })}
+</div>
+
 
                             <div className="container1_content_ImageTabContent">
                               {selectedItem ? (
@@ -307,120 +315,29 @@ const MorningFood = () => {
           </div>
 
           <div className="container2">
-            <div class="pack-summary-widget no-border">
-              <div class="css-140e8aq-ProductHeaderWidgetContainer e4rxp0r0">
-                <div class="css-1sbql4a-TopContainerDiv e4rxp0r4">
-                  <h1 class="css-ava5k2-TitleText e4rxp0r3">
-                    BreakFast &amp; Meals
-                  </h1>
+            <div className="pack-summary-widget no-border">
+              <div className="css-140e8aq-ProductHeaderWidgetContainer e4rxp0r0">
+                <div className="css-1sbql4a-TopContainerDiv e4rxp0r4">
+                <div className="Morning-button-container">
+  <button  className="active" onClick={() => handleButtonClick('about')}>About</button>
+        <button onClick={() => handleButtonClick('rich-in')}>Rich In</button>
+        <button onClick={() => handleButtonClick('nutrition')}>Nutrition Profile</button>
+        <button onClick={() => handleButtonClick('health-benefit')}>Health Benefit</button>
+</div>
                 </div>
                 <div class="css-17otamg-BottomContainerDiv e4rxp0r1">
-                  <p class="css-j2duwn-BottomText e4rxp0r2">
-                    <p class="css-j2duwn-BottomText e4rxp0r2">
-                      Breakfast kick-starts your metabolism, helping you burn
-                      calories throughout the day. It also gives you the energy
-                      you need to get things done and helps you focus at work or
-                      at school. Those are just a few reasons why it's the most
-                      important meal of the day.
-                    </p>
-                  </p>
-                  <p class="css-j2duwn-BottomText e4rxp0r2"></p>
-                </div>
-                <div class="container options-container">
-                  {showSubcriptionButton ? (
-                    <div
-                      class="product-action-button"
-                      onClick={handelSubcribeButton}
-                    >
-                      <div
-                        className="action-button normal-button"
-                        style={{
-                          height: "40px",
-                          display: "flex",
-                          borderRadius: "5px",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          padding: "1rem 1.5rem",
-                          minWidth: "100%",
-                          backgroundImage:
-                            "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
-                          fontSize: "16px",
-                          color: "rgb(255, 255, 255)",
-                        }}
-                      >
-                        <p>Subscribe 6 Day Meal Plan</p>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      
-                      <div className="viewcart_box_control">
-                      <label
-                        style={{
-                          marginLeft: "10px",
-                          padding: "1rem 1.5rem",
-                        }}
-                        for="name"
-                      >
-                        Quantity :
-                      </label>
-                        <a onClick={() => updateQuantity("subtract")}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            id="minus"
-                          >
-                            <path
-                              fill="#000"
-                              d="M6 13a1 1 0 1 1 0-2h12a1 1 0 1 1 0 2H6Z"
-                            ></path>
-                          </svg>
-                        </a>
-                        <p>{qty}</p>
-                        <a onClick={() => updateQuantity("add")}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            id="plus"
-                          >
-                            <path
-                              fill="#000"
-                              d="M12 5a1 1 0 0 0-1 1v5H6a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5V6a1 1 0 0 0-1-1Z"
-                            ></path>
-                          </svg>
-                        </a>
-                      </div>
-                      <div
-                        onClick={handelContinuePayment}
-                        className="action-button normal-button"
-                        style={{
-                          height: "40px",
-                          display: "flex",
-                          borderRadius: "5px",
 
-                          justifyContent: "center",
-                          alignItems: "center",
-                          padding: "1rem 1.5rem",
-                          minWidth: "100%",
-                          backgroundImage:
-                            "linear-gradient(rgb(5, 36, 101), rgb(5, 36, 101))",
-                          fontSize: "16px",
-                          color: "rgb(255, 255, 255)",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <p>Continue</p>
-                      </div>
-                    </>
-                  )}
+                {
+                  <div>{renderContent()}</div>
+
+}
                 </div>
+                
+                
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -534,6 +451,7 @@ const MorningFood = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };

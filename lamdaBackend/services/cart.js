@@ -5,61 +5,122 @@ AWS.config.update({
 
 const util = require("../utils/util");
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = "users";
+const CartTable = "shopping_Cart_session";
 
 const addtocart = async (requestBody) => {
   const email = requestBody.email;
-  const foodID = requestBody.foodID;
-  const quantity = requestBody.quantity;
+  const Cart_Details = requestBody.cartDetails;
+  console.log(requestBody.cartDetails.foodID)
 
   // Get the current cart of the user
   const dynamoUser = await getUser(email);
-  let cart = dynamoUser.cart || [];
 
-  // Check if the food item is already in the cart
-  let itemIndex = cart.findIndex((item) => item.foodID === foodID);
-  if (itemIndex !== -1) {
-    // Update the quantity if the food item is already in the cart
-    cart[itemIndex].quantity = parseInt(quantity);
+  if (!dynamoUser) {
+    // User not present in DynamoDB, add the cart details
+    try {
+      const params = {
+        TableName: CartTable,
+        Item: {
+          email: email,
+          cart: [Cart_Details],
+        },
+      };
+      await dynamodb.put(params).promise();
+      const body = {
+        Operation: "Cart_Added",
+        Message: "SUCCESS",
+        status: 200,
+        Item: requestBody,
+      };
+      return util.buildResponse(200, body);
+    } catch (error) {
+      console.error("Some Error Occurred:", error);
+    }
   } else {
-    // Add the new food item to the cart
-    cart.push({ foodID: foodID, quantity: quantity });
+    // User present in DynamoDB, check if the food item already exists in cart details
+    const currentCart = dynamoUser.cart;
+    
+    if(currentCart){
+      const existingCartItem = currentCart.find(
+      (item) => item.foodID === requestBody.cartDetails.foodID
+    );
+
+    if (existingCartItem) {
+      // If the food item already exists in cart details, update the quantity
+      existingCartItem.qty += requestBody.cartDetails.qty;
+    } else {
+      // If the food item doesn't exist in cart details, add it to the cart
+      currentCart.push(Cart_Details);
+    }
+
+    const params = {
+      TableName: CartTable,
+      Key: {
+        email: email,
+      },
+      UpdateExpression: "SET cart = :cart",
+      ExpressionAttributeValues: {
+        ":cart": currentCart,
+      },
+      ReturnValues: "UPDATED_NEW",
+    };
+     return await dynamodb
+      .update(params)
+      .promise()
+      .then(
+        (response) => {
+          const body = {
+            Operation: "Update Cart",
+            Message: "SUCCESS",
+            Item: response.Attributes,
+          };
+          return util.buildResponse(200, body);
+        },
+        (error) => {
+          console.log("Some Error Occured", error);
+        }
+      );
+      
+    }else{
+      
+    const params = {
+  TableName: CartTable,
+  Key: {
+    email: email,
+  },
+  UpdateExpression: "SET cart = list_append(cart, :cart)",
+  ExpressionAttributeValues: {
+    ":cart": [Cart_Details],
+  },
+  ReturnValues: "UPDATED_NEW",
+};
+
+return await dynamodb
+  .update(params)
+  .promise()
+  .then(
+    (response) => {
+      const body = {
+        Operation: "Update Cart",
+        Message: "SUCCESS",
+        Item: response.Attributes,
+      };
+      return util.buildResponse(200, body);
+    },
+    (error) => {
+      console.log("Some Error Occured", error);
+    }
+  );
+
+    }
+      
+    }
   }
 
-  // Update the user's cart
-  const params = {
-    TableName: userTable,
-    Key: {
-      email: email,
-    },
-    UpdateExpression: "SET cart = :cart",
-    ExpressionAttributeValues: {
-      ":cart": cart,
-    },
-    ReturnValues: "UPDATED_NEW",
-  };
-
-  return await dynamodb
-    .update(params)
-    .promise()
-    .then(
-      (response) => {
-        const body = {
-          Operation: "Update",
-          Message: "SUCCESS",
-          Item: response.Attributes,
-        };
-        return util.buildResponse(200, body);
-      },
-      (error) => {
-        console.log("Some Error Occured", error);
-      }
-    );
-};
 
 async function getUser(email) {
   const params = {
-    TableName: userTable,
+    TableName: CartTable,
     Key: {
       email: email,
     },
@@ -77,65 +138,82 @@ async function getUser(email) {
     );
 }
 
-//   async function getcart(req, res, next) {
-//     try {
-//       console.log("came to get cart items")
-//       const userID = req.body.userID;
-//       const data = await Users.findOne({_id: userID}).populate('cart.productID');
+async function getcart(requestBody) {
+  const email = requestBody.email; 
   
-//       if (data) {
-//         res.status(200).send({ message: "Get cart", data: data });
-//       } else {
-//         res.status(404).send({ message: "User not found" });
-//       }
-//     } catch (error) {
-//       console.error("Error getting cart: ", error);
-//       res.status(500).send({ message: "Server error" });
-//     }
-//   }
+      const dynamoUser = await getUser(email);
+      const body = {
+        Operation: "Get_Cart",
+        Message: "SUCCESS",
+        status: 200,
+        Item: dynamoUser,
+      };
+      return util.buildResponse(200, body);
+  }
   
-//   async function decreaseCartItem(req, res, next) {
-//     try {
-//       const user = await Users.findOne({ _id: req.body.userID });
-//       const productID = mongoose.Types.ObjectId(req.body.productID);
-//       if (!user) {
-//         res.status(404).send("User not found.");
-//         return;
-//       }
+async function decreaseCartItem(requestBody) {
+  try {
+    const email = requestBody.email;
+    // const Cart_Details = requestBody.cartDetails;
+    const dynamoUser = await getUser(email);
+
+    if (!dynamoUser) {
+      console.log("can remove cart item because User Not Present ")
+      const body = {
+        Operation: "User not Present",
+        Message: "Failed",
+      };
+      return util.buildResponse(401, body);
+    } else {
+      // User present in DynamoDB, check if the food item already exists in cart details
+      const currentCart = dynamoUser.cart;
+      const existingCartItem = currentCart.find(
+        (item) => item.foodID === requestBody.cartDetails.foodID
+      );
+
+      if (existingCartItem) {
+        // If the food item already exists in cart details, update the quantity
+        existingCartItem.qty -= requestBody.cartDetails.qty;
+        if (existingCartItem.qty <= 0) {
+          currentCart.splice(currentCart.indexOf(existingCartItem), 1);
+        }
+      } else {
+        // If the food item doesn't exist in cart details, add it to the cart
+        // currentCart.push(Cart_Details);
+      }
+
+      const params = {
+        TableName: CartTable,
+        Key: {
+          email: email,
+        },
+        UpdateExpression: "SET cart = :cart",
+        ExpressionAttributeValues: {
+          ":cart": currentCart,
+        },
+        ReturnValues: "UPDATED_NEW",
+      };
+
+      const response = await dynamodb.update(params).promise();
+      const body = {
+        Operation: "Deleted Cart Item",
+        Message: "SUCCESS",
+        Item: response.Attributes,
+      };
+      return util.buildResponse(200, body);
+    }
+  } catch (error) {
+    console.log("Error occurred while decreasing cart item: ", error);
+    const body = {
+      Operation: "Decrease Cart Item",
+      Message: "FAILED",
+    };
+    return util.buildResponse(500, body);
+  }
+}
+
   
-//       const existingCartItem = user.cart.find((item) =>
-//         item.productID.equals(productID)
-//       );
-  
-//       if (!existingCartItem) {
-//         res.status(404).send("Item not found in cart.");
-//         return;
-//       }
-  
-//       if (existingCartItem.quantity === 1) {
-//         // If the item quantity is 1, remove it from the cart
-//         await Users.updateOne(
-//           { _id: req.body.userID },
-//           {
-//             $pull: {
-//               cart: { productID: productID },
-//             },
-//           }
-//         );
-//         res.status(200).send("Item removed from cart.");
-//       } else {
-//         // If the item quantity is greater than 1, decrement the quantity by 1
-//         await Users.updateOne(
-//           { _id: req.body.userID, "cart.productID": productID },
-//           { $inc: { "cart.$.quantity": -1 } }
-//         );
-//         res.status(200).send("Cart item quantity decreased.");
-//       }
-//     } catch (error) {
-//       console.error("Error decreasing cart item quantity: ", error);
-//     }
-//   }
 
 
-module.exports ={addtocart}
+module.exports ={addtocart,decreaseCartItem,getcart}
   

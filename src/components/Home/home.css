@@ -8,14 +8,12 @@
   left: 0px;
 }
 
-.hero-section:hover {
-  
-}
 .hero_container {
-  /* background-image: url(../../images/heroimage.jpg);  */
+  background-image: url(../../images/heroimage.jpg); 
   
   background-position: center;
   background-repeat: no-repeat;
+  width: 100%;
   background-size: cover; 
   height: 100%;
   -ms-flex-align: center;
@@ -33,23 +31,6 @@
 
 
 }
-.cursor {
-  position: fixed;
-  z-index: 9;
-  width: 30rem;
-  height: 30rem;
-  pointer-events: none;
-  border-radius: 50%;
-  background: linear-gradient(237deg, #00FF7F, #00FF7F);
-  /* opacity: 0.5; */
-  box-shadow: 0 1px 20px #00FF7F, 0 0px 30px #00FF7F, 0 0px 40px #00FF7F, 0 0px 50px #00FF7F;
-  filter: drop-shadow(0 10px 20px #00FF7F);
-  transition: all 0.5s ease-out;
-}
-
-
-
-
 
 .texthero {
   display: flex;

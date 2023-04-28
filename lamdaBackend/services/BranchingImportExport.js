@@ -32,7 +32,7 @@ async function searchBranchingImportExport(data) {
   // iterate over each item in SalesPlanList
   for (const item of SalesPlanList) {
     const itemName = item.itemName;
-    const quantity = item.salesforecast / 10;
+    const quantity = item.salesforecast / 30;
     const user = await getItemListUser(itemName);
     
     for (const name in user.ItemList) {
@@ -49,7 +49,7 @@ async function searchBranchingImportExport(data) {
               
               const newQuantity = Number(x.quantity) * quantity;
               // check if the particular is already present in exportSupply
-                exportSupply.push({ particulars: x.particulars, quantity: newQuantity });
+                exportSupply.push({ particulars: x.particulars, quantity: newQuantity,unit:x.unit });
               
               });
           }
@@ -57,7 +57,7 @@ async function searchBranchingImportExport(data) {
           if (Array.isArray(branch.importSupply)) {
             branch.importSupply.forEach(x => {
                const newQuantity = Number(x.quantity) * quantity;
-                importSupply.push({ particulars: x.particulars, quantity: newQuantity });
+                importSupply.push({ particulars: x.particulars, quantity: newQuantity ,unit:x.unit});
               
             });
           }
@@ -116,7 +116,7 @@ async function searchBranchingImportExport(data) {
             branch.exportSupply.forEach(x => {
              const newQuantity = Number(x.quantity) * quantity;
 
-                exportSupply.push({ particulars: x.particulars, quantity: newQuantity });
+                exportSupply.push({ particulars: x.particulars, quantity: newQuantity ,unit:x.unit });
               // }
               
             });
@@ -125,7 +125,7 @@ async function searchBranchingImportExport(data) {
           if (Array.isArray(branch.importSupply)) {
             branch.importSupply.forEach(x => {
               const newQuantity = Number(x.quantity) * quantity;
-              importSupply.push({particulars:x.particulars , quantity:newQuantity});
+              importSupply.push({particulars:x.particulars , quantity:newQuantity,unit:x.unit});
               // }
             });
           }

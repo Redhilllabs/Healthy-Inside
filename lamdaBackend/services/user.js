@@ -7,58 +7,49 @@ const util = require("../utils/util");
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userTable = "users";
 
-
-
 const saveUserAddress = async (requestBody) => {
     const email = requestBody.email;
-
     const dynamoUser = await getUser(email);
-    if (dynamoUser && dynamoUser.city) {
+    if (!dynamoUser.Address) {
+        // address not present
+        const params = {
+            TableName: userTable,
+            Key: {
+                email: email,
+            },
+            UpdateExpression: "SET Address = :address, NewContact = :contact",
+            ExpressionAttributeValues: {
+                ":address": requestBody.Address,
+                ":contact": requestBody.Contact,
+            },
+            ReturnValues: "UPDATED_NEW",
+        };
+
+        return await dynamodb
+            .update(params)
+            .promise()
+            .then(
+                (response) => {
+                    const body = {
+                        Operation: "Updated Address and Contact",
+                        Message: "SUCCESS",
+                        status:200,
+                        Item: response.Attributes,
+                    };
+                    return util.buildResponse(200, body);
+                },
+                (error) => {
+                    console.log("Some Error Occured", error);
+                }
+            );
+    } else {
         // User address is already present, return an error response
         return util.buildResponse(401, {
             message: "Address already exists",
         });
-    } else {
-        console.log("User not found or address not present, creating new item");
     }
-
-    // Update the user's address if they already exist
-    const params = {
-        TableName: userTable,
-        Key: {
-            email: email,
-        },
-        UpdateExpression: "SET addressLine1 = :line1, addressLine2 = :line2, city = :city, #s = :state, zip = :zip",
-        ExpressionAttributeNames: {
-            "#s": "state", // 'state' is a reserved keyword in DynamoDB, so you need to use an expression attribute name to reference it
-        },
-        ExpressionAttributeValues: {
-            ":line1": requestBody.addressLine1,
-            ":line2": requestBody.addressLine2,
-            ":city": requestBody.city,
-            ":state": requestBody.state,
-            ":zip": requestBody.zip,
-        },
-        ReturnValues: "UPDATED_NEW",
-    };
-
-    return await dynamodb
-        .update(params)
-        .promise()
-        .then(
-            (response) => {
-                const body = {
-                    Operation: "Update",
-                    Message: "SUCCESS",
-                    Item: response.Attributes,
-                };
-                return util.buildResponse(200, body);
-            },
-            (error) => {
-                console.log("Some Error Occured", error);
-            }
-        );
 };
+
 
 const saveclaimkit = async (requestBody) => {
   const mail = requestBody.email;

@@ -32,7 +32,7 @@ async function searchSeedImportExport(data) {
   // iterate over each item in SalesPlanList
   for (const item of SalesPlanList) {
     const itemName = item.itemName;
-    const quantity = item.salesforecast / 10;
+    const quantity = item.salesforecast / 30;
     const user = await getItemListUser(itemName);
     
     for (const name in user.ItemList) {

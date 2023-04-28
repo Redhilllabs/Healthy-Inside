@@ -19,7 +19,15 @@ const ActualManufacturingService = require("./services/ActualManufacturing");
 const BranchingImportExportService = require("./services/BranchingImportExport");
 const SeedImportExportService = require("./services/SeedimportAndExport");
 const MasterImportAndExportService =require("./services/MasterImportAndExport");
+const OPKimportandexportService = require("./services/OPKimportandexport");
+const orderServices = require("./services/Order")
 
+
+const orderPath = "/orders"
+const SearchOrderPath = "/orders/searchorder";
+
+// searching in OPK IMPORT END EXPORT 
+const OPKpath = "/opkimportandexport"
 
 // searching in master import and export 
 
@@ -54,7 +62,7 @@ const ClaimKitPath ="/saveclaimkit";
 const getUserPath = "/getuser";
 
 // Cart path
-const addtocartPath = "/addtocart";
+const cartPath = "/cart";
 const getcartPath ="/getcart";
 const decCartItemPath ="/decreasecartitem";
 
@@ -117,7 +125,7 @@ exports.handler = async (event) => {
       
     case event.httpMethod === "POST" && event.path === SaveAddressPath:
       const SaveAddressPathBody = JSON.parse(event.body);
-      response = await UserService.saveUserAddress( SaveAddressPathBody);
+      response = await UserService.saveUserAddress(SaveAddressPathBody);
       break;
       
     case event.httpMethod === "POST" && event.path === branchingPath:
@@ -128,6 +136,15 @@ exports.handler = async (event) => {
     case event.httpMethod === "POST" && event.path === seedPath:
       const seedPathBody = JSON.parse(event.body);
       response = await SeedImportExportService.searchSeedImportExport( seedPathBody);
+      break;
+    case event.httpMethod === "POST" && event.path === orderPath:
+      const orderPathBody = JSON.parse(event.body);
+      response = await orderServices.addtoOrder( orderPathBody);
+      break;  
+      
+    case event.httpMethod === "POST" && event.path === OPKpath:
+      const OPKpathBody = JSON.parse(event.body);
+      response = await OPKimportandexportService.searchOPKImportExport(OPKpathBody);
       break;   
     
     case event.httpMethod === "POST" && event.path === MasterPath:
@@ -163,6 +180,12 @@ exports.handler = async (event) => {
     case event.httpMethod === "POST" && event.path === searchpurchaseorderPath:
       const searchpurchaseorderBody = JSON.parse(event.body);
       response = await PurchaseorderService.searchPurchaseOrder( searchpurchaseorderBody);
+      // response = buildResponse(200, "workedsearch");
+      break;
+      
+    case event.httpMethod === "POST" && event.path === SearchOrderPath:
+      const SearchOrderPathBody = JSON.parse(event.body);
+      response = await orderServices.searchOrder( SearchOrderPathBody);
       // response = buildResponse(200, "workedsearch");
       break;  
     
@@ -251,11 +274,21 @@ exports.handler = async (event) => {
       // response = buildResponse(200 , "worked sign in");
       break;  
 
-    case event.httpMethod === "POST" && event.path === addtocartPath:
+    case event.httpMethod === "POST" && event.path === cartPath:
       const addtocartBody = JSON.parse(event.body);
       response = await CartService.addtocart(addtocartBody);
       // response = buildResponse(200, "worked add to cart");
-      break;
+      break; 
+    case event.httpMethod === "DELETE" && event.path === cartPath:
+      const decreaseBody = JSON.parse(event.body);
+      response = await CartService.decreaseCartItem(decreaseBody);
+      // response = buildResponse(200, "worked add to cart");
+      break; 
+    
+    case event.httpMethod === "POST" && event.path === getcartPath:
+      const GetCartBody = JSON.parse(event.body);
+      response = await CartService.getcart(GetCartBody);
+      break;   
     
     
     case event.httpMethod === "POST" && event.path === ClaimKitPath:
@@ -281,9 +314,9 @@ exports.handler = async (event) => {
       response = buildResponse(200 ,"worked decrease cart");
       break;
 
-    case event.httpMethod === "POST" && event.path === getcartPath:
-      response = buildResponse(200,"worked getcart");
-      break;
+    // case event.httpMethod === "POST" && event.path === getcartPath:
+    //   response = buildResponse(200,"worked getcart");
+    //   break;
 
     default:
       response = buildResponse(404, "404 Not Found ");

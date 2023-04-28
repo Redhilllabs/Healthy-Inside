@@ -33,7 +33,7 @@ const Home = () => {
     <div onMouseMove={handleMouseMove} >
     
       <div className="hero-section" >
-      <div className="cursor"></div>
+      
         <div className="hero_container">
         
           <div className="texthero">
@@ -111,6 +111,7 @@ const Home = () => {
           <p>{alert}</p>{" "}
         </div>
       )}
+      
     </div>
   );
 };

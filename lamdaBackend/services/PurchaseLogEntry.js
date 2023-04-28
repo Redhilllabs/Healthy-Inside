@@ -8,52 +8,55 @@ const util = require("../utils/util");
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const PurchaseLogEntryTable = "PurchaseLogEntry";
 
+
+
 const AddToPurchaseLogEntry = async(requestBody) => {
-    const date = requestBody.Date;
-    const dynamoUser = await getUser(date);
-    if (!dynamoUser) {
-      const params = {
-        TableName: PurchaseLogEntryTable,
-        Item: requestBody,
+  const date = requestBody.Date;
+  const dynamoUser = await getUser(date);
+  console.log("PurchaseLogEntry", dynamoUser)
+  
+  if (!dynamoUser) {
+    const params = {
+      TableName: PurchaseLogEntryTable,
+      Item: requestBody,
     };
 
     return await dynamodb
-    .put(params)
-    .promise()
-    .then(
-      
-      () => {
-        const body = {
-          operation: "Saved PurchaseLogEntry",
-          Message: "SUCCESS",
-          status:200,
-          Item: requestBody,
-          // ingredients :ingredients
-        };
-        return util.buildResponse(200, body);
-      },
-      (error) => {
-        console.log("Some Error Occured", error);
-        const body = {
-          operation: "Saved PurchaseLogEntry",
-          Message: "Failed",
-          status:401,
-          Item: requestBody,
-        };
-        return util.buildResponse(200, body);
-        
-      }
-    );
-    }else{
-      const existingIngredient = dynamoUser.ingredients.find(item => item.name === requestBody.ingredients[0].name);
-  if (existingIngredient) {
-    existingIngredient.quantity = Number(existingIngredient.quantity) + Number(requestBody.ingredients[0].quantity);
+      .put(params)
+      .promise()
+      .then(
+        () => {
+          const body = {
+            operation: "Saved PurchaseLogEntry",
+            Message: "SUCCESS",
+            status:200,
+            Item: requestBody,
+          };
+          return util.buildResponse(200, body);
+        },
+        (error) => {
+          console.log("Some Error Occured", error);
+          const body = {
+            operation: "Saved PurchaseLogEntry",
+            Message: "Failed",
+            status:401,
+            Item: requestBody,
+          };
+          return util.buildResponse(200, body);  
+        }
+      );
   } else {
-    dynamoUser.ingredients.push(requestBody.ingredients[0]);
+    requestBody.ingredients.forEach(ingredient => {
+      const existingIngredient = dynamoUser.ingredients.find(item => item.name === ingredient.name);
+      if (existingIngredient) {
+        existingIngredient.quantity = Number(existingIngredient.quantity) + Number(ingredient.quantity);
+      } else {
+        dynamoUser.ingredients.push(ingredient);
+      }
+    });
   }
-    }
-    
-     const params = {
+
+  const params = {
     TableName: PurchaseLogEntryTable,
     Key: {
       Date: date,
@@ -64,9 +67,8 @@ const AddToPurchaseLogEntry = async(requestBody) => {
     },
     ReturnValues: "UPDATED_NEW",
   };
-    // const ingredients = await AddToInventoryTable()
-    
-    return await dynamodb
+  
+  return await dynamodb
     .update(params)
     .promise()
     .then(
@@ -80,7 +82,6 @@ const AddToPurchaseLogEntry = async(requestBody) => {
         return util.buildResponse(200, body);
       },
       (error) => {
-        
         console.log("Some Error Occured", error);
         const body = {
           operation: "Update PurchaseLogEntry",
@@ -91,24 +92,7 @@ const AddToPurchaseLogEntry = async(requestBody) => {
         return util.buildResponse(200, body);
       }
     );
-    
-    
-    
-  }
-  
-  async function scanDynamoRecords(scanParams, itemArray) {
-  try {
-    const dynamoData = await dynamodb.scan(scanParams).promise();
-    itemArray = itemArray.concat(dynamoData.Items);
-    if (dynamoData.LastEvaluatedKey) {
-      scanParams.ExclusiveStartkey = dynamoData.LastEvaluatedKey;
-      return await scanDynamoRecords(scanParams, itemArray);
-    }
-    return itemArray;
-  } catch (error) {
-    console.log("Some Error Occured", error);
-  }
-}
+};
 
 async function getUser(e) {
     const params = {

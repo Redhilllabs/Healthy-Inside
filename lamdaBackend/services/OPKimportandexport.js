@@ -5,14 +5,13 @@ const util = require("../utils/util");
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const ItemTable = "ItemList";
 const SalesPlanTable = "SalesPlan";
-const MasterTable = "MasterImportAndExport"
-// const ExtraBatchingTable = "ExtraBatching"
+const OPKTable = "OPKImportandExport";
 
 AWS.config.update({
   region: "us-east-1",
 });
 
-async function searchMasterImportExport(data) {
+async function searchOPKImportExport(data) {
   const date = data.Date;
   const branching = [];
 //   const ExtraBatching = [];
@@ -31,12 +30,14 @@ async function searchMasterImportExport(data) {
 
   // iterate over each item in SalesPlanList
   for (const item of SalesPlanList) {
+      console.log()
     const itemName = item.itemName;
     const quantity = item.salesforecast / 30;
     const user = await getItemListUser(itemName);
     
-    for (const name in user.ItemList) {
-      const seedUser = await getMasterImportExportUser(user.ItemList[name].Constituent_Recipe);
+    console.log(user.ItemList)
+    // for (const name in user.ItemList) {
+      const seedUser = await getSeedImportExportUser(user.ItemName);
     //   const ExtrabatchingUser = await getExtraBatching(user.ItemList[name].Constituent_Recipe);
       
       if (seedUser) {
@@ -105,55 +106,18 @@ async function searchMasterImportExport(data) {
           }
         }
       }
-      
-    //   if(ExtrabatchingUser){
-        
-    //       for (const branch of ExtrabatchingUser) {
-    //       const importSupply = [];
-    //       const exportSupply = [];
-          
-    //       if (Array.isArray(branch.exportSupply)) {
-    //         branch.exportSupply.forEach(x => {
-    //          const newQuantity = Number(x.quantity) * quantity;
 
-    //             exportSupply.push({ particulars: x.particulars, quantity: newQuantity });
-    //           // }
-              
-    //         });
-    //       }
-          
-    //       if (Array.isArray(branch.importSupply)) {
-    //         branch.importSupply.forEach(x => {
-    //           const newQuantity = Number(x.quantity) * quantity;
-    //           importSupply.push({particulars:x.particulars , quantity:newQuantity});
-    //           // }
-    //         });
-    //       }
-          
-    //       ExtraBatching.push({
-    //         rootItem: branch.rootItem,
-    //         id: branch.id,
-    //         headedFor: branch.headedFor,
-    //         exportSupply: exportSupply,
-    //         importSupply: importSupply
-    //       });
-    //     }
-        
-    //   }
-    }
+    // }
     
     
   }
 
   const body ={
     data: branching,
-    // ExtrabatchingUser:ExtraBatching
   };
   
   return util.buildResponse(200, body);
 }
-
-
 
 async function getSalesPlanUser(date) {
   const params = {
@@ -189,9 +153,9 @@ async function getItemListUser(e) {
   }
 }
 
-async function getMasterImportExportUser(e){
+async function getSeedImportExportUser(e) {
   const params = {
-    TableName: MasterTable,
+    TableName: OPKTable,
     KeyConditionExpression: "#rootItem = :rootItem",
     ExpressionAttributeNames: {
       "#rootItem": "rootItem"
@@ -210,25 +174,4 @@ async function getMasterImportExportUser(e){
   }
 }
 
-// async function getExtraBatching(e) {
-//   const params = {
-//     TableName: ExtraBatchingTable ,
-//     KeyConditionExpression: "#rootItem = :rootItem",
-//     ExpressionAttributeNames: {
-//       "#rootItem": "rootItem"
-//     },
-//     ExpressionAttributeValues: {
-//       ":rootItem": e
-//     }
-//   };
-
-//   try {
-//     const response = await dynamodb.query(params).promise();
-//     return response.Items;
-//   } catch (error) {
-//     console.error("There is an error getting user: ", error);
-//     throw error;
-//   }
-// }
-
-module.exports = {searchMasterImportExport};
+module.exports = {searchOPKImportExport};
