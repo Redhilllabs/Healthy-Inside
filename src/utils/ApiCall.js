@@ -43,7 +43,8 @@ const urls = {
   DecreaseCartapi:`${produrl}/cart`,
   GetCartapi:`${produrl}/getcart`,
   AddOrderapi:`${produrl}/orders`,
-  SearchOrderapi:`${produrl}/orders/searchorder`
+  SearchOrderapi:`${produrl}/orders/searchorder`,
+  AddCustomerapi:`${produrl}/customer`,
 
 };
 
@@ -292,4 +293,9 @@ export const AddOrder = async(data)=>{
 
 export const SearchOrder = async(data)=>{
   return makeRequest(urls.SearchOrderapi,"POST",data)
+}
+
+
+export const AddToCustomer = async(data)=>{
+  return makeRequest(urls.AddCustomerapi,"POST",data)
 }

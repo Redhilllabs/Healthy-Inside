@@ -22,6 +22,9 @@ import RecipeMasterForm from "./ProductR&D/RecipeMasterForm";
 import ManufacturingLogEntryForm from "./Operation&SupplyChain/Manufacturing/ManufacturingLogEntryForm";
 import OrderSalesForm from "./Business&Branding/OrderSalesForm";
 import SalesPlan from "./Business&Branding/SalesPlan";
+import Customer from "./Business&Branding/Customer";
+import Invoice from "./Business&Branding/Invoice";
+// coustomer and invoice ;- bussiness and branding c-:-name email phone (pk) adddress special instrucction 
 
 const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [{ user, admin }, dispatch] = useStateValue();
@@ -36,17 +39,11 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [showSalesPlanForm, setShowSalesPlanForm] = useState(false);
   const [ShowPackingPlanner, setShowPackingPlanner] = useState(false);
   const [ShowViewSalesPlanform, setShowViewSalesPlanform] = useState(false);
-  const [Showdailysalesmatricsform, setShowdailysalesmatricsform] =
-    useState(false);
-  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] =
-    useState(false);
+  const [Showdailysalesmatricsform, setShowdailysalesmatricsform] = useState(false);
+  const [ShowRecordForwardLossesForm, setShowRecordForwardLossesForm] = useState(false);
   const [showItemDesignForm, setshowItemDesignForm] = useState(false);
-  const [
-    ShowItemmanufacturingPlannerForm,
-    setShowItemmanufacturingPlannerForm,
-  ] = useState(false);
-  const [ShowImportandExportLogForm, setShowImportandExportLogForm] =
-    useState(false);
+  const [ShowItemmanufacturingPlannerForm,setShowItemmanufacturingPlannerForm] = useState(false);
+  const [ShowImportandExportLogForm, setShowImportandExportLogForm] = useState(false);
   const [showTaskSheetForm, setShowTaskSheetForm] = useState(false);
   const [OprationsOption3, setOprationsOption3] = useState(false);
   const [OprationsOption1, setOprationsOption1] = useState(false);
@@ -55,15 +52,17 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   const [showRMIProfileingForm, setshowRMIProfileingForm] = useState(false);
   const [showItemMasterForm, setShowItemMasterForm] = useState(false);
   const [showRecipeMasterForm, setshowRecipeMasterForm] = useState(false);
-  const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] =
-    useState(false);
+  const [showManufacturingLogEntryForm, setshowManufacturingLogEntryForm] = useState(false);
   const [showOderSales, setshowOderSales] = useState(false);
   const [ShowSalesPlan, setShowSalesPlan] = useState(false);
+  const [ShowCustomer,setShowCustomer] = useState(false);
+  const [ShowInvoice,setShowInvoice] = useState(false);
 
   const handleFormToggle = (formName) => {
+    setShowCustomer(formName === "Customer" ? !ShowCustomer : false);
+    setShowInvoice(formName === "Invoice" ? !ShowInvoice : false)
     setShowSalesPlan(formName === "SalesPlan" ? !ShowSalesPlan : false);
     setshowOderSales(formName === "OderSales" ? !showOderSales : false);
-
     setshowManufacturingLogEntryForm(
       formName === "ManufacturingLogEntryForm"
         ? !showManufacturingLogEntryForm
@@ -165,6 +164,14 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
   };
 
   const forms = [
+    {
+      show: ShowCustomer,
+      component: Customer,
+    },
+    {
+      show: ShowInvoice,
+      component: Invoice,
+    },
     {
       show: ShowSalesPlan,
       component: SalesPlan,
@@ -317,6 +324,12 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                           >
                             Forwards & Losses
                           </a>
+                          <a
+                    id={ShowPackingPlanner ? "active" : ""}
+                    onClick={() => handleFormToggle("packingPlannerForm")}
+                  >
+                    Packaging Planner
+                  </a>
                         </div>
                       )}
                     </ul>
@@ -424,25 +437,6 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
               {showMarketing && (
                 <div id="product-dash">
                   <a>Upload File</a>
-                  {/* <a
-                    id={Showdailysalesmatricsform ? "active" : ""}
-                    onClick={() => handleFormToggle("dailySalesMatricsForm")}
-                  >
-                    Sales Matrics
-                  </a> */}
-                  {/* <a
-                    id={showSalesPlanForm ? "active" : ""}
-                    onClick={() => handleFormToggle("salesPlanForm")}
-                  >
-                    Sale Forecast Planner
-                  </a> */}
-                  {/* <a
-                    id={ShowViewSalesPlanform ? "active" : ""}
-                    onClick={() => handleFormToggle("viewSalesPlanForm")}
-                  >
-                    View Sales
-                  </a> */}
-
                   <a
                     id={ShowSalesPlan ? "active" : ""}
                     onClick={() => handleFormToggle("SalesPlan")}
@@ -452,10 +446,17 @@ const Dashboard = ({ showProfile, onProfileToggle }) => {
                   </a>
 
                   <a
-                    id={ShowPackingPlanner ? "active" : ""}
-                    onClick={() => handleFormToggle("packingPlannerForm")}
+                    id={ShowInvoice ? "active" : ""}
+                    onClick={() => handleFormToggle("Invoice")}
                   >
-                    Packaging Planner
+                    Invoice
+                  </a>
+
+                  <a
+                    id={ShowCustomer ? "active" : ""}
+                    onClick={() => handleFormToggle("Customer")}
+                  >
+                    Customer
                   </a>
                   <a
                     id={showOderSales ? "active" : ""}
