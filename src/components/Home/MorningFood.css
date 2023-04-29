@@ -65,7 +65,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0rem 5rem;
+  flex-direction: column;
+  /* margin: 0rem 5rem; */
   border-radius: 20px;
   background-color: var(--color1);
 }
@@ -78,13 +79,10 @@
   align-items: center;
 }
 .morning_container_eatfit {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 16px;
+  margin: auto;
+  margin-left: 1.5rem;
+
+  padding: 16px;
 
 }
 .slider-container {
@@ -99,7 +97,10 @@
 
 .slider-item {
   flex: 0 0 100%;
+  /* width: 100%; */
 }
+
+
 .orderSubmitBUtton {
   width: 150px;
   padding: 10px 20px;
@@ -117,18 +118,14 @@
 
 
 .slider-navigation1 {
-  position: absolute;
-  bottom: 50%;
-  left: 5%;
-  z-index: 999;
+  /* position: fixed; */
+  z-index: 9;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.slider-navigation2 {
-  position: absolute;
-  bottom: 50%;
-  right: 5%;
-  z-index: 999;
-}
 
 .slider-navigation1 button {
   border: none;
@@ -143,26 +140,22 @@
   align-items: center;
 }
 
-.slider-navigation2 button {
-  border: none;
-  background-color: white;
-  border-radius: 50%;
-  padding: 20px;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+.dish{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: fit-content;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 15px;
 }
 
 .morning_container_eatfit2{
   display: flex;
-  flex-direction: row;
-  position: relative;
-  min-height: 100vh;
+  /* flex-direction: row; */
   width: fit-content;
-  margin-left: 2rem;
   overflow: hidden;
   background-color: white;
   border-radius: 15px;
@@ -958,7 +951,7 @@
   .morning_container_eatfit2 {
     flex-direction: column;
     margin: 0 auto;
-    /* width: 90%; */
+    width: 90%;
     border-radius: 0;
   }
   .slider-navigation2 {
@@ -994,4 +987,12 @@
   .product-action-button {
     justify-content: flex-start;
   }
+}
+@media (max-width: 600px) {
+  .slider-item {
+    width: 100%;
+    }
+    .dish{
+      width: 100%;
+    }
 }

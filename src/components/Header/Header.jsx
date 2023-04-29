@@ -147,7 +147,7 @@ const Header = ({ onProfileToggle }) => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <a id="header_link">Bento Box</a>
+                  <a id="header_link">Meal Plan</a>
 
                   {showMenu && (
                     <ul className="dropdown-menu">
@@ -166,74 +166,14 @@ const Header = ({ onProfileToggle }) => {
                 </li>
 
                 <li>
-                 
-                  <Link id="header_link" to="/cart"> My Subscription</Link>
-                  {/* <div id="cartquantity">{itemCount}</div> */}
-                  
+  
+                  <Link id="header_link" to="/cart"> Our Meals</Link>                  
                   </li>
 
                 <li>
-                  <Link to="/why-plant" id="header_link">Why Plants</Link>
-
-                  
+                  <Link to="/why-plant" id="header_link">Why Healthy Inside</Link>
                 </li>
 
-                <li
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a id="header_link">Cook Your Own</a>
-
-                  {showMenu && (
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a>Make your own food</a>
-                      </li>
-
-                      <li>
-                        <a>Heat up food</a>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-
-                <li
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a id="header_link">Make SomeOne Happy</a>
-
-                  {showMenu && (
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a>Gift</a>
-                      </li>
-
-                      <li>
-                        <a>Free Food</a>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-                <li>
-                  <div>
-      <input
-        id="header_search"
-        placeholder="Search Food... "
-        type="text"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-{showsearchResults?<div id="search_results">
-        {searchResults?.map(item => (
-          <div key={item.foodID}>
-            <Link  onClick={()=>setshowsearchResults(false)}  id="header_link" to="/morningfood">{item.foodName}</Link>
-          </div>
-        ))}
-      </div>:<></>}
-      
-    </div>
-                </li> 
               </>
             )}
 
@@ -250,6 +190,10 @@ const Header = ({ onProfileToggle }) => {
                       <li>
                         <Link id="kit-claim" to="/account">Profile</Link>
                       </li>
+                      <li>
+  
+                  <Link id="header_link" to="/cart"> My Subscriptions</Link>                  
+                  </li>
                       <li>
                         <a id="kit-claim" onClick={logout}>Log out</a>
                       </li>
@@ -280,7 +224,7 @@ const Header = ({ onProfileToggle }) => {
               )}
             </li>
           </ul>
-        </div>
+        </div> 
 
         <div id="mobile">
           <span onClick={showmenu}>
