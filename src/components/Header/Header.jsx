@@ -147,26 +147,11 @@ const Header = ({ onProfileToggle }) => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <a id="header_link">Meal Plan</a>
+                  <Link id="header_link"  to="/morningfood">Meal Plan</Link>
 
-                  {showMenu && (
-                    <ul className="dropdown-menu">
-                      <li>
-                        <Link to="/morningfood">Morning</Link>
-                      </li>
-
-                      <li>
-                        <a>Lunch</a>
-                      </li>
-                      <li>
-                        <a>Supper</a>
-                      </li>
-                    </ul>
-                  )}
                 </li>
 
                 <li>
-  
                   <Link id="header_link" to="/cart"> Our Meals</Link>                  
                   </li>
 
@@ -192,7 +177,7 @@ const Header = ({ onProfileToggle }) => {
                       </li>
                       <li>
   
-                  <Link id="header_link" to="/cart"> My Subscriptions</Link>                  
+                  <Link id="header_link" to="/cart">Subscriptions</Link>                  
                   </li>
                       <li>
                         <a id="kit-claim" onClick={logout}>Log out</a>
@@ -237,6 +222,7 @@ const Header = ({ onProfileToggle }) => {
                 src="https://img.icons8.com/ios/50/null/close-window--v1.png"
               />
               <ul>
+                
                 {user ? (
                   <li>
                     <p>
@@ -253,39 +239,14 @@ const Header = ({ onProfileToggle }) => {
                   <></>
                 )}
 
-                <li
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a id="header_link">Bento Box</a>
-
-                  {showMenu && (
-                    <ul className="dropdown-menu">
-                      <li>
-                        <Link onClick={() => setmenu(false)} to="/morningfood">
-                          Morning
+                <li><Link  id="header_link" onClick={() => setmenu(false)} to="/morningfood">
+                          Meal Plan
                         </Link>
-                      </li>
-
-                      <li>
-                        <a>Lunch</a>
-                      </li>
-                      <li>
-                        <a>Supper</a>
-                      </li>
-                    </ul>
-                  )}
                 </li>
+
                 <li>
                   <Link  onClick={() => setmenu(false)} to="/cart">Subscription </Link>
-                  {/* <div id="cartquantity">{itemCount}</div> */}
                   </li>
-
-                <li>
-                  <Link class="active" id="header_link" to="/">
-                    Happy Inside
-                  </Link>
-                </li>
 
                 <li>
                   <Link class="active" id="header_link" to="/">
@@ -293,23 +254,6 @@ const Header = ({ onProfileToggle }) => {
                   </Link>
                 </li>
 
-                {user?.name? (
-                  <li>
-                    <p>
-                      <a
-                        onClick={() => {
-                          handleClaimKitClick();
-                          setmenu(false);
-                        }}
-                        id="kit-claim"
-                      >
-                        ClaimKit
-                      </a>
-                    </p>
-                  </li>
-                ) : (
-                  <></>
-                )}
                 <li>
                   <p>
                     {isMenu ? (
@@ -333,94 +277,12 @@ const Header = ({ onProfileToggle }) => {
                     )}
                   </p>
                 </li>
-                <li>
-                <div>
-
-                <input
-        id="header_search"
-        placeholder="Search Food... "
-        type="text"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-{showsearchResults?<div id="search_results">
-        {searchResults.map(item => (
-          <div key={item.foodID}>
-            <Link  onClick={() => setmenu(false)}  id="header_link" to="/morningfood">{item.foodName}</Link>
-          </div>
-        ))}
-      </div>:<></>}
-      
-    </div>
-
-                </li>
                 
               </ul>
             </div>
           )}
         </div>
       </section>
-
-      {showClaimKitForm && (
-        <div id="claim-kit-form-overlay">
-          <form id="claim-kit-form" onSubmit={handleClaimKitFormSubmit}>
-            <h2>Claim your kit</h2>
-            <div
-              className="closeShowClaimKitForm"
-              onClick={() => setShowClaimKitForm(false)}
-            >
-              {/* <img src="https://img.icons8.com/ios/50/null/close-window--v1.png" /> */}
-              <i class="fa-solid fa-xmark"></i>
-            </div>
-            <label htmlFor="name"> Your Name</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              placeholder="Your Name"
-              onChange={(event) => setName(event.target.value)}
-              required
-            />
-            <label htmlFor="email"> Name ON Your Kit </label>
-            <input
-              type="text"
-              id="Name kit"
-              value={NameOnKit}
-              placeholder="Name On Kit"
-              onChange={(event) => setNameOnKit(event.target.value)}
-              required
-            />
-            <label htmlFor="address">Jersey Number</label>
-            <input
-              type="number"
-              id="jerseyNumber"
-              value={jerseyNumber}
-              onChange={(event) => setjerseyNumber(event.target.value)}
-              placeholder
-              required
-            ></input>
-
-            <label htmlFor="address">Address</label>
-            <textarea
-              id="address"
-              value={address}
-              onChange={(event) => setAddress(event.target.value)}
-              required
-            ></textarea>
-            <label htmlFor="jersey-size">Jersey size</label>
-            <select
-              id="jersey-size"
-              value={jerseySize}
-              onChange={(event) => setJerseySize(event.target.value)}
-              required
-            >
-              <option value="">Select size</option>
-              {options}
-            </select>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      )}
 
     </div>
   );
