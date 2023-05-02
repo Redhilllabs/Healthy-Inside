@@ -45,6 +45,8 @@ const urls = {
   AddOrderapi:`${produrl}/orders`,
   SearchOrderapi:`${produrl}/orders/searchorder`,
   AddCustomerapi:`${produrl}/customer`,
+  SearchCustomerapi:`${produrl}/customer/searchcustomer`,
+  
 
 };
 
@@ -298,4 +300,8 @@ export const SearchOrder = async(data)=>{
 
 export const AddToCustomer = async(data)=>{
   return makeRequest(urls.AddCustomerapi,"POST",data)
+}
+
+export const SearchCustomer = async(data)=>{
+  return makeRequest(urls.SearchCustomerapi,"POST",data)
 }

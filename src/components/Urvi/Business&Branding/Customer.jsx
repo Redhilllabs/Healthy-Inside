@@ -14,12 +14,12 @@ const Customer = () => {
 
   const handleTable = (event) => {
     event.preventDefault()
-    console.log(`Name: ${name}, Email: ${email}, Specific Instruction: ${specificInstruction}, Phone Number: ${phoneNumber}, Address: ${address}`)
-    console.log(typeof(phoneNumber))
+    // console.log(`Name: ${name}, Email: ${email}, Specific Instruction: ${specificInstruction}, Phone Number: ${phoneNumber}, Address: ${address}`)
+    // console.log(typeof(phoneNumber))
     setShowTable(true)  ;
 }
 const handlesubmit = async ()=>{
-    console.log("came here")
+    // console.log("came here")
     let bodyContent = JSON.stringify({
         "phoneNumber":Number(phoneNumber),
         "name":name ,

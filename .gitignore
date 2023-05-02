@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 /Old_Mongodb_Server
+/lamdaBackend
+/csv_data
+/build
+/.vscode
 # testing
 /coverage
 

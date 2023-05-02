@@ -80,7 +80,7 @@
 }
 .morning_container_eatfit {
   margin: 1.5rem;
-  width: 100%;
+  width: 90%;
   padding: 16px;
 
 }
@@ -123,6 +123,7 @@
   z-index: 9;
   width: 95%;
   display: flex;
+  
   justify-content: space-between;
   align-items: center;
 }
@@ -936,8 +937,8 @@
   }
   
   .slider-navigation1 {
-    position:relative;
-    width: 100%;
+    /* width: 100%; */
+    top: 15rem;
 
   }
 
