@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import logo from "../../../images/logo.png";
-import {SearchCustomer} from '../../../utils/ApiCall';
+import {SearchCustomer,AddToCustomerOrder} from '../../../utils/ApiCall';
 import Message from "../../../utils/Message";
+import load2 from "../../../images/load2.gif";
 
 const Invoice = () => {
 const [phoneNumber,setPhoneNumber] = useState(0);
@@ -13,6 +14,7 @@ const [startDate, setStartDate] = useState("");
 const [endDate, setEndDate] = useState("");
 const [subscription, setSubscription] = useState("");
 const [response, setResponse] = useState(null);
+const [isLoading, setIsLoading] = useState(false);
 const [data,setdata] = useState({})
 
 const handleSubmit = (event) => {
@@ -40,6 +42,53 @@ const handelForm = async(e)=>{
     setshowForm(true);
   }
 }
+
+const handlesave = async ()=>{
+  console.log("came here");
+  const body = JSON.stringify({
+    "number": Number(phoneNumber),
+    "OrderDetails":{
+      "Quantity": quantity,
+      "StartDate":startDate,
+      "EndTillDate":endDate,
+      "Price": price,
+      "Subscription":subscription
+    }
+  });
+
+  const res = await AddToCustomerOrder(body);
+  if (res.status === 404) {
+    setResponse({ message: "Not Saved", status: "error" });
+    return;
+  } else {
+    setResponse({
+      message: "Data  successfully Saved",
+      status: "success",
+    });
+    setshowForm(false);
+    setEndDate('')
+setStartDate('')
+setPhoneNumber(0)
+setPrice('')
+setQuantity('')
+setSubscription('')
+setdata({})
+setshowTable(false)
+  }
+
+}
+const handlecancel = async () => {
+setEndDate('')
+setStartDate('')
+setPhoneNumber(0)
+setPrice('')
+setQuantity('')
+setSubscription('')
+setdata({})
+setshowForm(false);
+setshowTable(false)
+}
+
   return (
     <>
       <Message response={response} />
@@ -146,7 +195,28 @@ const handelForm = async(e)=>{
         </tbody>
 
       </table>
+      <div id="tabel_controllers">
+          <div id="recipebutton_close" onClick={handlecancel}>
+            cancel
+          </div>
+          <div id="recipebutton_save" onClick={isLoading ? null : handlesave}>
+            {isLoading ? (
+              <>
+                <button disabled>Submit</button>
+                <img
+                  src={load2}
+                  alt=""
+                  srcset=""
+                  style={{ width: "30px", height: "30px" }}
+                />
+              </>
+            ) : (
+              <>Submit</>
+            )}
+          </div>
+        </div>
     </div>
+    
   )}
 </div>
 

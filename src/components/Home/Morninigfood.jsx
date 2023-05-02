@@ -101,6 +101,24 @@ const MorningFood = () => {
       title: "Slide 3",
       content: "This is the content for slide 3",
     },
+    {
+      id: 4,
+      image: imageurl,
+      title: "Slide 4",
+      content: "This is the content for slide 3",
+    },
+    {
+      id: 5,
+      image: imageurl,
+      title: "Slide 5",
+      content: "This is the content for slide 3",
+    },
+    {
+      id: 6,
+      image: imageurl,
+      title: "Slide 6",
+      content: "This is the content for slide 3",
+    },
   ];
 
   const [translateX, setTranslateX] = useState(0);
@@ -186,7 +204,7 @@ const MorningFood = () => {
                         Array.isArray(foodItems.data) &&
                         foodItems.data
                           .filter((item) => item.foodType === "breakfast")
-                          .slice(0, 4)
+                          
                           .map((item, index) => {
                             const isActive =
                               selectedItem && selectedItem.foodName === item.foodName;
@@ -255,23 +273,12 @@ const MorningFood = () => {
             
           </div>
 </div>
-          
-
-          
           </div>
-           
           </div>
         ))}
       </div>
-      
-        
-      
-      
     </div>
-    
-    
     </div>
-    
     </div>
   
 

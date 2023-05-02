@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifye544c09ddce64-staging-51255-authRole",
+      "UnauthRoleArn": "arn:aws:iam::647331252240:role/amplify-amplifye544c09ddce64-staging-51255-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::647331252240:role/amplify-amplifye544c09ddce64-staging-51255-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplifye544c09ddce64-staging-51255-deployment",
+      "UnauthRoleName": "amplify-amplifye544c09ddce64-staging-51255-unauthRole",
+      "StackName": "amplify-amplifye544c09ddce64-staging-51255",
+      "StackId": "arn:aws:cloudformation:us-east-1:647331252240:stack/amplify-amplifye544c09ddce64-staging-51255/bb7bb2e0-b338-11ed-91f2-0a5cdd118105",
+      "AmplifyAppId": "dr9hw0dy6vfb1"
+    },
+    "categories": {
+      "auth": {
+        "MERNFOOD": {}
+      }
+    }
+  }
+}

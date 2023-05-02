@@ -147,12 +147,12 @@ const Header = ({ onProfileToggle }) => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <Link id="header_link"  to="/morningfood">Meal Plan</Link>
+                  <Link id="header_link"  >Meal Plan</Link>
 
                 </li>
 
                 <li>
-                  <Link id="header_link" to="/cart"> Our Meals</Link>                  
+                  <Link id="header_link" to="/morningfood" > Our Meals</Link>                  
                   </li>
 
                 <li>
