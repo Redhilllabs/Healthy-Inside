@@ -315,9 +315,8 @@ width: 75%;
     flex-wrap: wrap;
   }
   #rmi_options_input div{
-
-    width: 6rem;
-    margin: 2rem;
+    width: 8rem;
+    margin: 1rem;
   }
   .option_container{
     display: flex;

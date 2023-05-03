@@ -59,31 +59,48 @@ const handlecancel = async () => {
     <Message response={response} />
         <div className="formcontains">
         <form  class="form" id="recipe-designing" onSubmit={handleTable}>
-      <label>
+        <div id="rmi_options_input">
+
+        
+        <div>
+        <label>
         Name:
-        <input type="text" value={name} onChange={(event) => setName(event.target.value)} required />
+       
       </label>
-      <br />
+       <input type="text" value={name} onChange={(event) => setName(event.target.value)} required />
+        </div>
+      <div>
       <label>
         Email:
-        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)}  required/>
+       
       </label>
-      <br />
+      <input type="email" value={email} onChange={(event) => setEmail(event.target.value)}  required/>
+      </div>
+      
+      <div>
       <label>
         Specific Instruction:
-        <textarea value={specificInstruction} onChange={(event) => setSpecificInstruction(event.target.value)} required />
+        
       </label>
-      <br />
-      <label>
+      <input type='text' value={specificInstruction} onChange={(event) => setSpecificInstruction(event.target.value)} required />
+      </div>
+      
+     <div>
+     <label>
         Phone Number:
-        <input type="number" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} required />
+        
       </label>
-      <br />
-      <label>
+      <input type="number" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} required />
+     </div>
+      
+     <div>
+     <label>
         Address:
-        <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} required />
+        
       </label>
-      <br />
+      <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} required />
+     </div>
+</div>
       <button type="submit">Submit</button>
     </form>
         </div>

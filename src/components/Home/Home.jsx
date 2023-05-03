@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./home.css";
 import { useStateValue } from "../../context/StateProvider";
-import { Link } from "react-router-dom";
+import { Link , useLocation} from "react-router-dom";
 import menu1 from "../../images/menu1.jpg";
 import menu2 from "../../images/menu2.jpg";
 import { actionType } from "../../context/reducer";
-import "react-slideshow-image/dist/styles.css";
+
 const Home = () => {
   const [{ foodItems, cartItems, user }, dispatch] = useStateValue();
   const [fooditems, setfooditems] = useState([]);
@@ -23,14 +23,24 @@ const Home = () => {
     addtocart();
   }, [fooditems]);
 
-  const handleMouseMove = (event) => {
-    const cursor = document.querySelector('.cursor');
-    cursor.style.left = event.clientX + 'px';
-    cursor.style.top = event.clientY + 'px';
+  function useHashScroll() {
+    const { hash } = useLocation();
+    React.useEffect(() => {
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }else{
+        window.scrollTo(0, 0);
+      }
+    }, [hash]);
   }
 
+  useHashScroll();
+
   return (
-    <div onMouseMove={handleMouseMove} >
+    <div>
     
       <div className="hero-section" >
       
@@ -104,7 +114,29 @@ const Home = () => {
       </section>
 
       <div className="imggfood"></div>
-      
+      <div id="bottom_section">
+  <h2>Meal Plan Options</h2>
+  <p>Choose from our delicious meal plan options:</p>
+  {/* <ul>
+    <li>Basic Plan</li>
+    <li>Premium Plan</li>
+    <li>Vegetarian Plan</li>
+  </ul> */}
+  <div class="buttons">
+    <button className="herobutton"> <h4> Basic Plan</h4>
+              <img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png" />
+  </button>
+    <button className="herobutton"> <h4>Premium Plan</h4>
+              <img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png" />
+  </button>
+    <button className="herobutton"> <h4>Vegetarian Plan</h4>
+              <img src="https://img.icons8.com/external-outline-black-m-oki-orlando/32/null/external-greater-than-math-vol-1-outline-outline-black-m-oki-orlando.png" />
+  </button>
+  </div>
+</div>
+
+
+
       {alert && (
         <div id="alert-box">
           {" "}

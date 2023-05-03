@@ -6,6 +6,7 @@ import { actionType } from "../../context/reducer";
 import { useNavigate } from "react-router-dom";
 import { LoginAPi } from "../../utils/ApiCall";
 import { useForm } from "react-hook-form";
+// import PhoneLogin from "./PhoneLogin";
 const Login = () => {
   const {
     register,
@@ -73,6 +74,9 @@ const Login = () => {
           </button>
           <div id="continue_with_google">
             <GoogleButton />
+          </div>
+          <div id="continue_with_google">
+{/* <PhoneLogin /> */}
           </div>
         </form>
       </div>

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './WhyPlant.css';
 
 const WhyPlant = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <main id="content" aria-label="Main content" tabindex="-1">

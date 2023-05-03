@@ -9,11 +9,30 @@
       "UnauthRoleName": "amplify-amplifye544c09ddce64-staging-51255-unauthRole",
       "StackName": "amplify-amplifye544c09ddce64-staging-51255",
       "StackId": "arn:aws:cloudformation:us-east-1:647331252240:stack/amplify-amplifye544c09ddce64-staging-51255/bb7bb2e0-b338-11ed-91f2-0a5cdd118105",
-      "AmplifyAppId": "dr9hw0dy6vfb1"
+      "AmplifyAppId": "dr9hw0dy6vfb1",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-amplifye544c09ddce64-staging-51255-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "MERNFOOD": {}
+      },
+      "function": {
+        "MERNFOODCreateAuthChallenge": {
+          "deploymentBucketName": "amplify-amplifye544c09ddce64-staging-51255-deployment",
+          "s3Key": "amplify-builds/MERNFOODCreateAuthChallenge-6c4267333759584a774e-build.zip"
+        },
+        "MERNFOODDefineAuthChallenge": {
+          "deploymentBucketName": "amplify-amplifye544c09ddce64-staging-51255-deployment",
+          "s3Key": "amplify-builds/MERNFOODDefineAuthChallenge-4f526a787a7744486a6f-build.zip"
+        },
+        "MERNFOODPreSignup": {
+          "deploymentBucketName": "amplify-amplifye544c09ddce64-staging-51255-deployment",
+          "s3Key": "amplify-builds/MERNFOODPreSignup-3477736d2b6a68355162-build.zip"
+        },
+        "MERNFOODVerifyAuthChallengeResponse": {
+          "deploymentBucketName": "amplify-amplifye544c09ddce64-staging-51255-deployment",
+          "s3Key": "amplify-builds/MERNFOODVerifyAuthChallengeResponse-2f6a5576314d494a5175-build.zip"
+        }
       }
     }
   }

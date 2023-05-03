@@ -19,7 +19,6 @@ import Dashboard from "./components/Urvi/Dashboard";
 import Cart from "./components/Cart/Cart";
 import WhyPlant from "./components/Home/WhyPlant"
 import "./App.css";
-
 function App() {
   const [showProfile, setShowProfile] = useState(false);
   const [{ foodItems, user }, dispatch] = useStateValue();

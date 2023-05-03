@@ -77,6 +77,10 @@ const MorningFood = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setimageurl(item.foodUrl);

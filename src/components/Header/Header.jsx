@@ -147,8 +147,8 @@ const Header = ({ onProfileToggle }) => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <Link id="header_link"  >Meal Plan</Link>
-
+                    <Link id="header_link" to="/#bottom_section">Meal Plan</Link>
+                    {/* <a href="/#bottom_section">Meal Plan</a> */}
                 </li>
 
                 <li>
@@ -176,8 +176,7 @@ const Header = ({ onProfileToggle }) => {
                         <Link id="kit-claim" to="/account">Profile</Link>
                       </li>
                       <li>
-  
-                  <Link id="header_link" to="/cart">Subscriptions</Link>                  
+                  <Link id="kit-claim" to="/cart">Subscriptions</Link>     
                   </li>
                       <li>
                         <a id="kit-claim" onClick={logout}>Log out</a>

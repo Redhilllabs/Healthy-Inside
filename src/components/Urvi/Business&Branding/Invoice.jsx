@@ -5,7 +5,7 @@ import Message from "../../../utils/Message";
 import load2 from "../../../images/load2.gif";
 
 const Invoice = () => {
-const [phoneNumber,setPhoneNumber] = useState(0);
+const [phoneNumber,setPhoneNumber] = useState('');
 const [showForm,setshowForm] = useState(false);
 const [showTable,setshowTable] = useState(false);
 const [quantity, setQuantity] = useState("");
@@ -30,8 +30,8 @@ const handelForm = async(e)=>{
   });
   const res = await SearchCustomer(bodyContent)
   setdata(res.Item)
-  console.log(res.Item)
-  if (res.status === 404) {
+  console.log(res)
+  if (!res || res.status === 404) {
     setResponse({ message: "Number Not Present", status: "error" });
     return;
   } else {
@@ -46,9 +46,9 @@ const handelForm = async(e)=>{
 const handlesave = async ()=>{
   console.log("came here");
   const body = JSON.stringify({
-    "number": Number(phoneNumber),
+    "number": phoneNumber,
     "OrderDetails":{
-      "Quantity": quantity,
+
       "StartDate":startDate,
       "EndTillDate":endDate,
       "Price": price,
@@ -57,7 +57,8 @@ const handlesave = async ()=>{
   });
 
   const res = await AddToCustomerOrder(body);
-  if (res.status === 404) {
+  console.log(res)
+  if (!res || res.status === 404) {
     setResponse({ message: "Not Saved", status: "error" });
     return;
   } else {
@@ -108,16 +109,6 @@ setshowTable(false)
 <br />
       {showForm?<div className="formcontains">
       <form  class="form" id="recipe-designing" onSubmit={handleSubmit}>
-      <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          value={quantity}
-          onChange={(event) => setQuantity(event.target.value)}
-          required
-        />
-
         <label htmlFor="price">Price:</label>
         <input
           type="number"
@@ -175,7 +166,7 @@ setshowTable(false)
           <tr>
             <th>Phone Number</th>
             <th>Name</th>
-            <th>Quantity</th>
+            {/* <th>Quantity</th> */}
             <th>Price</th>
             <th>Start Date</th>
             <th>End Date</th>
@@ -186,7 +177,7 @@ setshowTable(false)
           <tr>
             <td>{phoneNumber}</td>
             <td>{data?.name}</td>
-            <td>{quantity}</td>
+            {/* <td>{quantity}</td> */}
             <td>{price}</td>
             <td>{startDate}</td>
             <td>{endDate}</td>

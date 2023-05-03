@@ -1,12 +1,12 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "testAuthIdentityPool",
+    "identityPoolName": "MERNFOOD",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "mernfo1958bb9d",
+    "resourceNameTruncated": "mernfo7ea6b780",
     "userPoolName": "MERNFOOD",
     "autoVerifiedAttributes": [
-      "email"
+      "phone_number"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
@@ -14,37 +14,49 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Verification code: {####}",
-    "emailVerificationMessage": "Verification code: {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [
-      "Requires Lowercase",
-      "Requires Numbers",
-      "Requires Symbols",
-      "Requires Uppercase"
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+      "phone_number"
     ],
-    "requiredAttributes": [],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [],
-    "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "MERNFO1958bb9d_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
-    "sharedId": "1958bb9d",
-    "resourceName": "MERNFOOD",
-    "authSelections": "identityPoolAndUserPool",
-    "serviceName": "Cognito",
-    "usernameAttributes": [
+    "userpoolClientWriteAttributes": [
       "phone_number"
     ],
+    "userpoolClientReadAttributes": [
+      "phone_number"
+    ],
+    "userpoolClientLambdaRole": "MERNFO7ea6b780_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": true,
+    "sharedId": "7ea6b780",
+    "resourceName": "MERNFOOD",
+    "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
-    "userPoolGroups": false,
-    "userPoolGroupList": [],
-    "adminQueries": false,
     "thirdPartyAuth": false,
-    "authProviders": [],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {
+      "CreateAuthChallenge": [
+        "boilerplate-create-challenge"
+      ],
+      "DefineAuthChallenge": [
+        "boilerplate-define-challenge"
+      ],
+      "PreSignup": [
+        "custom"
+      ],
+      "VerifyAuthChallengeResponse": [
+        "boilerplate-verify"
+      ]
+    },
+    "hostedUI": false,
+    "userPoolGroupList": [],
+    "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }
