@@ -261,7 +261,7 @@ background-color: var(--secondary);
   }
   .mobilemenu img {
     position: absolute;
-    /* top: 1rem; */
+    width: 30px;
     right: 1rem;
     cursor: pointer;
   }

@@ -6,7 +6,7 @@ import { actionType } from "../../context/reducer";
 import { useNavigate } from "react-router-dom";
 import { LoginAPi } from "../../utils/ApiCall";
 import { useForm } from "react-hook-form";
-// import PhoneLogin from "./PhoneLogin";
+import PhoneLoginModal from "./PhoneLoginModal";
 const Login = () => {
   const {
     register,
@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       const response = await LoginAPi(username, password);
-
+console.log("inside login",response)
       if (response.status === 401) {
         alert(response.message);
         return;
@@ -44,6 +44,7 @@ const Login = () => {
   const handleError = (error) => {
     const message = error.response.data;
     alert(message);
+    console.log("handel error")
   };
 
   return (
@@ -72,13 +73,12 @@ const Login = () => {
           <button type="submit" name="submit">
             Submit
           </button>
-          <div id="continue_with_google">
-            <GoogleButton />
-          </div>
-          <div id="continue_with_google">
-{/* <PhoneLogin /> */}
-          </div>
         </form>
+        <div id="continue_with_google">
+  <GoogleButton />
+  <span>Or</span>
+  <PhoneLoginModal />
+</div>
       </div>
     </div>
   );

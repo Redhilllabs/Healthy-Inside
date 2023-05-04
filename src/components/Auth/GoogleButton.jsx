@@ -16,7 +16,7 @@ const GoogleButton = () => {
     // check if user is already registered
     const user = await getUserFromDatabase(userObject.email);
     // console.log(user , userObject.email)
-    if (user === 404) {
+    if (user.status === 404) {
       // register user
       await registerUser(userObject);
 
@@ -94,7 +94,8 @@ const GoogleButton = () => {
       document.getElementById("signInDiv"),
       {
         theme: "outline",
-        size: "large",
+        size: 'Large',
+        width:'250px'
       }
     );
 

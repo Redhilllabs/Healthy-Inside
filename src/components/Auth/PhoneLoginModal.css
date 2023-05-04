@@ -1,0 +1,133 @@
+.phone-button {
+    background-color: #FFFFFF;
+    color: #1A73E8;
+    border: 1px solid #1A73E8;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  .phone-button svg {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .phone-button:hover {
+    background-color: #F1F3F4;
+  }
+  
+  .phone-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    width:  380px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+    z-index: 9999;
+  }
+  
+  .modal-header {
+    padding: 16px;
+    border-bottom: 1px solid #EDEDED;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .close {
+    color: #5F6368;
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0.5;
+  }
+  
+  .close:hover {
+    opacity: 1;
+  }
+  
+  .modal-body {
+    padding: 16px;
+  }
+  
+  .modal-footer {
+    padding: 16px;
+    border-top: 1px solid #EDEDED;
+    text-align: right;
+  }
+  
+  .btn-secondary {
+    background-color: #F1F3F4;
+    color: #5F6368;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #EDEDED;
+  }
+  
+  .PhoneLogin {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .Phone-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .Phone-header p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .Phone-header input {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .Phone-header button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .Phone-header button:hover {
+    background-color: #0069d9;
+    cursor: pointer;
+  }
+  
+  .Phone-header .error {
+    color: #f00;
+    margin-top: 10px;
+  }
+  
+  .Phone-header .success {
+    color: #008000;
+    margin-top: 10px;
+  }
+  
+  .Phone-header .signout {
+    margin-top: 20px;
+  }
+  
