@@ -8,8 +8,8 @@ import { getUser, signup, LoginAPi } from "../../utils/ApiCall";
 import { Amplify, Auth } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import awsExports from '../../aws-exports';
-Amplify.configure(awsExports);
+import awsmobile from '../../aws-exports.js';
+Amplify.configure(awsmobile);
 
 const NOTSIGNIN = 'Enter All Details';
 const SIGNEDIN = 'You have logged in successfully';
@@ -91,10 +91,10 @@ function PhoneLogin() {
 
   const verifyOtp = async () => {
     try {
-      console.log("run on load");
+      // console.log("run on load");
       const user = await Auth.sendCustomChallengeAnswer(session, otp);
       setUser(user);
-      console.log("Otp Verify user", user);
+      // console.log("Otp Verify user", user);
  
       const userObject = { name, email, number };
       const existingUser = await getUserFromDatabase(email);
@@ -116,7 +116,7 @@ function PhoneLogin() {
     } catch (err) {
       setMessage(err.message);
       setOtp('');
-      console.log(err);
+      // console.log(err);
     }
   };
   
