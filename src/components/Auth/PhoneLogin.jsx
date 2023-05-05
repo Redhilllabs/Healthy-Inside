@@ -99,9 +99,6 @@ function PhoneLogin() {
       const userObject = { name, email, number };
       const existingUser = await getUserFromDatabase(email);
 
-//       if(existingUser.Item.contact != number){
-// // updaet the contact of User
-//       }
   
       if (existingUser.status === 404) {
         // register user
