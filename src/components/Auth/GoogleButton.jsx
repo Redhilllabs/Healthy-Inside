@@ -84,7 +84,7 @@ const GoogleButton = () => {
     /* global google */
     google.accounts.id.initialize({
       client_id:
-        "196869436847-t71ug51lqtamei4gbmlgaogetetee79u.apps.googleusercontent.com",
+        "Enter yourclient ID here",
       callback: handleCallbackResponse,
       scope:
         "https://www.googleapis.com/auth/contacts.readonly https://www.googleapis.com/auth/user.birthday.read",
